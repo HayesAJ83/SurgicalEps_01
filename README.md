@@ -1,2 +1,2 @@
 # surgical-eponyms
-Surgery eponyms test 01
+Surgical eponyms test 01
