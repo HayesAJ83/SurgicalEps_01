@@ -51,7 +51,7 @@ def main():
     st.sidebar.title('Navigator')
     page = st.sidebar.radio("""Go to""",
                             ["Homepage",
-                             "Surgical Eponym Explorer ©",
+                             "Surgical Eponym Explorer",
                              "App Team"])
 
     if page   == "Homepage":                   show_homepage()
@@ -69,8 +69,9 @@ def main():
 
 def show_homepage():
     ''' Home / About page '''
+    st.write('''WEB APP UNDER CONSTRUCTION''')
     st.markdown('''# SurgicalEps''')
-    st.markdown('''_An Educational Web App from Excision_''')
+    st.markdown('''_An Educational Web App from Excision Ltd._''')
     st.subheader('Welcome')
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history, and how they relate to one another using the **Eponym Explorer**.''')
@@ -92,6 +93,43 @@ def show_homepage():
     st.sidebar.markdown('''**Contact details**''')
     st.sidebar.info("Please get in touch with any contributions or comments: surgicaleponyms@gmail.com")
 
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  About the team                                                                              #
+# :::                                                                                          #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def show_the_app_team():
+    st.title("Surgical App Development Team")
+    st.markdown('''<br>We are group of General Surgeons based in Edinburgh developing app software to improve surgical **data systems**,
+             **research** and **education**.''',unsafe_allow_html=True)
+
+    st.sidebar.markdown("---")
+    st.sidebar.markdown('''**Contact details**''')
+    st.sidebar.info("Get in touch with any comments, queries or suggestions: surgicaleponyms@gmail.com")
+    
+    st.subheader("Project Lead & App Developer")
+    about1 = st.checkbox("Alastair Hayes")
+    if about1:
+        st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Endocrine and Emergency General Surgery.
+    His qualifications consist of BSc(Hons), MBChB, MRCS(Ed), MSc, PhD.
+    He is working to develop data science and software solutions for clinical data systems, research and education in surgical practice.''')
+
+    st.subheader("Associate Project Lead")
+    about2 = st.checkbox('''Anne Ewing''')
+    if about2:
+        st.markdown('''Anne is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Hernias and Emergency General Surgery.
+    She is passionate about surgical teaching and outside work Anne is a competitive triathlete.''')
+    
+
+    st.subheader("Acknowledgements")
+    st.markdown('''[Google](https://www.google.com/search/howsearchworks/?fg=1),
+    [Mapbox](https://www.mapbox.com),
+    [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/), [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
+    [Streamlit](https://www.streamlit.io)''')
+    #[TeachMeSurgery](https://teachmesurgery.com)
+    st.sidebar.markdown("---")
 
 if __name__ == "__main__":
     main()
