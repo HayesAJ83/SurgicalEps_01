@@ -26,7 +26,7 @@ import numpy as np
 #----------------------------------------------------------------------------------------------#
 
 def main():
-    df = load_data()
+
 #    st.sidebar.markdown('''**Advertisement**''')
 #    st.sidebar.markdown('''[Advert space for Google AdSense]''')
 #    st.sidebar.markdown("---")
