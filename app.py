@@ -36,6 +36,23 @@ st.write(
         unsafe_allow_html=True,
     )
 
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+# Read in data                                                                                 #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+#Data read and arrange
+E4P = 'https://github.com/HayesAJ83/SurgicalEps_01/Eponyms4python_Lite.csv'
+df1 = pd.read_csv(E4P, error_bad_lines=False)
+df2 = df1.sort_values(by=['Year'],ascending=True)
+df3 = df2.drop(['Lat_A1', 'Long_A1','Year','ISO_country_A1','CityOfEponym_A1',
+               'Author_2','Pubmed_results','Type',
+               'Societies','ICD11','PMID','Google_results','Class'], axis=1)
+df3.rename(columns={'Author_1': 'Main Person'}, inplace=True)
+df4 = df3.drop_duplicates(subset='Eponym', keep="first")
+
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
 #  Main                                                                                        #
@@ -128,8 +145,130 @@ def show_the_app_team():
     [Mapbox](https://www.mapbox.com),
     [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/), [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
     [Streamlit](https://www.streamlit.io)''')
-    #[TeachMeSurgery](https://teachmesurgery.com)
     st.sidebar.markdown("---")
+
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Explorer                                                                                    #
+# ::: Handles the navigation                                                                   #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def show_explore():
+    st.sidebar.markdown("---")
+    st.sidebar.title("**Explorer**")
+    exp = st.sidebar.radio('Select',
+                                ["About",
+                                 "By Operation",
+                                 "Type of Eponym",
+                                 "Geographical",
+                                 "Journal of Publication",
+                                 "People",
+                                 "Time Travel",
+                                 "Exam Favourites",
+                                 "A to Z",
+                                 ])
+    if   exp == "About":                    exp_about()             #1
+    elif exp == "By Operation":             exp_operation()         #2
+    elif exp == "Type of Eponym":           exp_type()              #3
+    elif exp == "Geographical":             exp_geography()         #4         
+    elif exp == "Journal of Publication":   exp_journals()          #5
+    elif exp == "People":                   exp_people()            #6
+    elif exp == "Time Travel":              exp_year()              #7
+    elif exp == "Exam Favourites":          exp_exam()              #8
+    elif exp == "A to Z":                   exp_A2Z()               #9
+
+
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Surgical Operations (2)                                                                     #
+# ::: Handles                                                                                  #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def exp_operation():
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        .hovertext text {
+        font-size: 20px !important;}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,)
+    
+    #Sidebar
+    st.sidebar.markdown("---")
+
+    #Page
+    E4P = 'https://github.com/HayesAJ83/SurgicalEps_01/Eponyms4python_Lite.csv'
+    df1 = pd.read_csv(E4P, error_bad_lines=False)
+    df2 = df1.sort_values(by=['Year'],ascending=True)
+    df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
+    df4 = df3['Operation'].dropna()
+    string = df4.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+
+    st.markdown('''[Advert space for Google AdSense1]''')
+    st.subheader('''First, choose operation(s) of interest:''')
+    eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+    new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
+    new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
+ 
+    if not eponymByOp == None:
+        st.subheader('''Then, search this list of relevant eponyms:''')
+        Op_options = st.selectbox('',
+                                  new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+
+
+        df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
+        ep_yr = df_ep_info2['Year'].to_string(index=False)
+
+        if not df_ep_info2['Who'].isnull().all():
+            st.write('*_Who_*:', df_ep_info2['Who'].to_string(index=False))
+
+        if not df_ep_info2['Year_str'].isnull().all():
+            st.write('*_When_*:', df_ep_info2['Year_str'].to_string(index=False))
+
+        if not df_ep_info2['Where'].isnull().all():
+            st.write('*_Where_*:', df_ep_info2['Where'].to_string(index=False))
+    
+        description = df_ep_info2['Description'].to_string(index=False)
+        history = df_ep_info2['History'].to_string(index=False)
+
+        if not df_ep_info2['Description'].isnull().all():
+            st.markdown(description, unsafe_allow_html=True)
+        if not df_ep_info2['History'].isnull().all():
+            st.write('**_History_**:', history)
+            st.markdown("---")
+
+        if not df_ep_info2['Who'].isnull().all():
+            st.write('**External links**')
+        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
+        if not df_ep_info2['Pubmed'].isnull().all():
+           st.markdown(f"[PubMed.gov]({ref_link})")
+
+        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
+        if not df_ep_info2['Wiki_link'].isnull().all():
+            st.markdown(f"[wikipedia.org]({wiki_link})")
+
+        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
+        if not df_ep_info2['WNI_link'].isnull().all():
+           st.markdown(f"[whonamedit.com]({wni_link})")
+
+        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
+        if not df_ep_info2['ICD11_link'].isnull().all():
+           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+           
+
+
+
+
 
 if __name__ == "__main__":
     main()
