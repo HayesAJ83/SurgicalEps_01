@@ -22,7 +22,7 @@ import plotly
 import plotly.express as px          
 import plotly.graph_objects as go    
 import plotly.figure_factory as ff
-px.set_mapbox_access_token(open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read())
+#px.set_mapbox_access_token(open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read())
 
 st.write(
         """
