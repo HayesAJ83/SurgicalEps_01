@@ -64,11 +64,11 @@ def main():
     page = st.sidebar.radio("""Go to""",
                             ["Homepage",
                              "Surgical Eponym Explorer",
-                             "App Team"])
+                             "Excision - App Team"])
 
     if page   == "Homepage":                   show_homepage()
     elif page == "Surgical Eponym Explorer":   show_explore()
-    elif page == "App Team":                   show_the_app_team()
+    elif page == "Excision - App Team":        show_the_app_team()
 
 
 
@@ -83,7 +83,7 @@ def show_homepage():
     ''' Home / About page '''
     st.write('''WEB APP UNDER CONSTRUCTION''')
     st.markdown('''# SurgicalEps''')
-    st.markdown('''_An Educational Web App from Excision Ltd._''')
+    st.markdown('''_An Educational Web App made by Excision_''')
     st.subheader('Welcome')
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history, and how they relate to one another using the **Eponym Explorer**.''')
@@ -113,7 +113,7 @@ def show_homepage():
 #----------------------------------------------------------------------------------------------#
 
 def show_the_app_team():
-    st.title("Surgical App Development Team")
+    st.title("Excision - A Surgical App Development Team")
     st.markdown('''<br>We are group of General Surgeons based in Edinburgh developing app software to improve surgical **data systems**,
              **research** and **education**.''',unsafe_allow_html=True)
 
@@ -198,9 +198,44 @@ def exp_operation():
     st.sidebar.markdown("---")
 
 
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Types (eg. Incisions, Instruments) (3)                                                      #
+# ::: Handles the                                                                              #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def exp_type():
+    st.markdown('''[Advert space for Google AdSense2]''')
+    st.subheader('''First, select type:''')
+    st.sidebar.markdown("---")
+    
+    types = st.selectbox(""" """,
+                            ["Anatomical structures",
+                             "Clinical scores",
+                             "Clinical signs",
+                             "Operations",
+                             "Pathology",
+                             "Patient positioning",
+                             "Research trials",
+                             "Surgical incisions",
+                             "Surgical instruments",
+                             "Surgical maneuvers & techniques",
+                             ], index=0)
+
+    if types   == "Anatomical structures":              show_anatomical()       #1
+    elif types == "Clinical scores":                    show_scores()           #2
+    elif types == "Clinical signs":                     show_signs()            #3
+    elif types == "Operations":                         show_opNames()          #4
+    elif types == "Pathology":                          show_path()             #5
+    elif types == "Patient positioning":                show_positions()        #6
+    elif types == "Research trials":                    show_trials()           #7
+    elif types == "Surgical incisions":                 show_cuts()             #8
+    elif types == "Surgical instruments":               show_instruments()      #9
+    elif types == "Surgical maneuvers & techniques":    show_maneuvers()        #10
 
 
 
-
+#-------------------------------------------------------------------------------------------#
 if __name__ == "__main__":
     main()
