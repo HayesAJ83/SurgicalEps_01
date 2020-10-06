@@ -26,31 +26,6 @@ import io
 import requests
 #px.set_mapbox_access_token(open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read())
 
-st.write(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {
-            height:250px;
-        }
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,
-    )
-
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-# Read in data                                                                                 #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
-#Data read and arrange
-#E4P = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv?raw=true'
-#df1 = pd.read_csv(E4P, index_col=0)
-url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-df1 = pd.read_csv(url, index_col=0)
-df2 = df1.sort_values(by=['Year'],ascending=True)
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -60,20 +35,26 @@ df2 = df1.sort_values(by=['Year'],ascending=True)
 #----------------------------------------------------------------------------------------------#
 
 def main():
-
-#    st.sidebar.markdown('''**Advertisement**''')
-#    st.sidebar.markdown('''[Advert space for Google AdSense]''')
-#    st.sidebar.markdown("---")
+#   st.sidebar.markdown('''[Advert space for Google AdSense]''')
+    st.write(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {
+            height:250px;
+        }
+        </style>
+        """
+        ,unsafe_allow_html=True,)
+    
     st.sidebar.title('Navigator')
     page = st.sidebar.radio("""Go to""",
                             ["Homepage",
                              "Surgical Eponym Explorer",
-                             "Excision - App Team"])
+                             "App Design Team - Excision"])
 
     if page   == "Homepage":                   show_homepage()
     elif page == "Surgical Eponym Explorer":   show_explore()
-    elif page == "Excision - App Team":        show_the_app_team()
-
+    elif page == "App Design Team - Excision": show_the_app_team()
 
 
 #----------------------------------------------------------------------------------------------#
@@ -85,9 +66,9 @@ def main():
 
 def show_homepage():
     ''' Home / About page '''
-    st.write('''WEB APP UNDER CONSTRUCTION''')
+    st.write('''# UNDER CONSTRUCTION''')
     st.markdown('''# SurgicalEps''')
-    st.markdown('''_An Educational Web App made by Excision_''')
+    st.markdown('''_An Educational Web App designed by Excision_''')
     st.subheader('Welcome')
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history, and how they relate to one another using the **Eponym Explorer**.''')
@@ -105,7 +86,7 @@ def show_homepage():
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched Dec 2020")
     st.sidebar.markdown('''**About**''')
-    st.sidebar.info("This App is maintained by Alastair Hayes, a Surgeon and Coder based in Edinburgh UK, supported by the App Team")
+    st.sidebar.info("This App is maintained by Alastair Hayes, a Surgeon and Programer, supported by the wider Excision team")
     st.sidebar.markdown('''**Contact details**''')
     st.sidebar.info("Please get in touch with any contributions or comments: surgicaleponyms@gmail.com")
 
@@ -273,7 +254,7 @@ def exp_operation():
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
     if not eponymByOp == None:
-        st.subheader('''Then, search list for relevant eponyms:''')
+        st.subheader('''Then, search list of related eponyms:''')
         Op_options = st.selectbox('',
                                   new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
 
@@ -325,7 +306,7 @@ def exp_operation():
 #----------------------------------------------------------------------------------------------#
 
 def exp_type():
-    st.markdown('''[Advert space for Google AdSense2]''')
+    #st.markdown('''[Advert space for Google AdSense2]''')
     st.subheader('''First, select type:''')
     st.sidebar.markdown("---")
     
@@ -353,6 +334,41 @@ def exp_type():
     elif types == "Surgical instruments":               show_instruments()      #9
     elif types == "Surgical maneuvers & techniques":    show_maneuvers()        #10
 
+
+#1
+def show_anatomical():
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {height:430px}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        .hovertext text {
+        font-size: 20px !important;}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, index_col=0)
+    df1 = df.rename(columns={"Eponym": "Eponym_OLD", "Eponym_easy": "Eponym"})
+    Anat_df = df1[(df1['Type'].str.match('Structures'))]
+    if not Anat_df['Type'].isnull().all():
+        Table = ff.create_table(Anat_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP','Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym_OLD'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
 
 
 #-------------------------------------------------------------------------------------------#
