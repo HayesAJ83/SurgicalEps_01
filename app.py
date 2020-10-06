@@ -182,6 +182,58 @@ def show_explore():
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
+#  About (1)                                                                     #
+# ::: Handles                                                                                  #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def exp_about():
+
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        .hovertext text {
+        font-size: 20px !important;}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
+    #Sidebar
+    st.sidebar.markdown("---")
+
+    #Page
+
+    st.markdown('''# About - Surgical Eponym Explorer''')
+    st.markdown("""<br>Use the **Explorer** select options in the sidebar to explore eponyms related to surgery.""",
+        unsafe_allow_html=True)
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">By Operation</span>''', unsafe_allow_html=True)
+    st.write('''Here you can choose an operation type, and then access all the common eponyms related to that procedure.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Type of Eponym</span>''', unsafe_allow_html=True)
+    st.write('''Choose from anatomical structures, clinical scores or signs, operations,
+                pathology, patient positioning, research trials, incisions, instruments,
+                surgical maneouvers & techniques.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Geographical</span>''', unsafe_allow_html=True)
+    st.write('''Choose a region of the world to find eponyms. Select a country or famous city.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Journal of Publication</span>''', unsafe_allow_html=True)
+
+    st.write('''In this section, journals can be selected to find which eponyms can be traced to their archives.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">People</span>''', unsafe_allow_html=True)
+
+    st.write('''Some famous people have been attributed to many eponyms.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Time Travel</span>''', unsafe_allow_html=True)
+
+    st.write('''Explore through time using the time travel function.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Exam Favourites</span>''', unsafe_allow_html=True)
+    st.write('''Select from those often found in exams. Explore by speciality.''')
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">A to Z</span>''', unsafe_allow_html=True)
+    st.write('''Explore the eponym library alphabetically.''')
+ 
+
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
 #  Surgical Operations (2)                                                                     #
 # ::: Handles                                                                                  #                                                                                              #
 #                                                                                              #
