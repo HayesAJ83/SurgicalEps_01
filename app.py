@@ -44,9 +44,9 @@ st.write(
 #----------------------------------------------------------------------------------------------#
 
 #Data read and arrange
-#E4P = 'https://github.com/HayesAJ83/SurgicalEps_01/Eponyms4python_Lite.csv'
-#df1 = pd.read_csv(E4P, error_bad_lines=False)
-#df2 = df1.sort_values(by=['Year'],ascending=True)
+E4P = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv?token=ARG6SGKMGS6HMFOIWVMRQFC7PRBYI'
+df1 = pd.read_csv(E4P, error_bad_lines=False)
+df2 = df1.sort_values(by=['Year'],ascending=True)
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
