@@ -137,7 +137,7 @@ def show_the_app_team():
 #----------------------------------------------------------------------------------------------#
 
 def show_explore():
-    st.sidebar.markdown("---")
+#   st.sidebar.markdown("---")
     st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('Select',
                                 ["About",
