@@ -40,7 +40,7 @@ def main():
         """
         <style type="text/css" media="screen">
         div[role="listbox"] ul {
-            height:250px;
+            height:200px;
         }
         </style>
         """
@@ -50,11 +50,11 @@ def main():
     page = st.sidebar.radio("""Go to""",
                             ["Homepage",
                              "Surgical Eponym Explorer",
-                             "App Design Team - Excision"])
+                             "App Design Team"])
 
     if page   == "Homepage":                   show_homepage()
     elif page == "Surgical Eponym Explorer":   show_explore()
-    elif page == "App Design Team - Excision": show_the_app_team()
+    elif page == "App Design Team":            show_the_app_team()
 
 
 #----------------------------------------------------------------------------------------------#
@@ -68,7 +68,7 @@ def show_homepage():
     ''' Home / About page '''
     st.write('''# UNDER CONSTRUCTION''')
     st.markdown('''# SurgicalEps''')
-    st.markdown('''_An Educational Web App designed by Excision_''')
+    st.markdown('''_An Educational Web App designed by **Excision**_''')
     st.subheader('Welcome')
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history, and how they relate to one another using the **Eponym Explorer**.''')
@@ -98,13 +98,14 @@ def show_homepage():
 #----------------------------------------------------------------------------------------------#
 
 def show_the_app_team():
-    st.title("Excision - A Surgical App Development Team")
-    st.markdown('''<br>We are group of General Surgeons based in Edinburgh developing app software to improve surgical **data systems**,
-             **research** and **education**.''',unsafe_allow_html=True)
+    st.title("App Design Team")
+    st.markdown('''The team consists of a group of General Surgeons based in Edinburgh who are motivated to develop software to improve surgical **data systems**,
+             **research** and **education**.''')
+    st.markdown('''To meet these aims, a company called **Excision** was founded in 2020, and **SurgicalEps** Web App was one of the initial projects.''',unsafe_allow_html=True)
 
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Contact details**''')
-    st.sidebar.info("Get in touch with any comments, queries or suggestions: surgicaleponyms@gmail.com")
+    st.sidebar.info("Get in touch with any comments, queries or suggestions about this App: surgicaleponyms@gmail.com")
     
     st.subheader("Project Lead & App Developer")
     about1 = st.checkbox("Alastair Hayes")
@@ -163,7 +164,7 @@ def show_explore():
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
-#  About (1)                                                                     #
+#  About (1)                                                                                   #
 # ::: Handles                                                                                  #                                                                                              #
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
@@ -237,7 +238,7 @@ def exp_operation():
     #Page
 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-    df1 = pd.read_csv(url, index_col=0)
+    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
 #   df1 = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv',dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Year'],ascending=True)
     df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
@@ -262,13 +263,13 @@ def exp_operation():
         ep_yr = df_ep_info2['Year'].to_string(index=False)
 
         if not df_ep_info2['Who'].isnull().all():
-            st.write('*_Who_*:', df_ep_info2['Who'].to_string(index=False))
+            st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
 
         if not df_ep_info2['Year_str'].isnull().all():
-            st.write('*_When_*:', df_ep_info2['Year_str'].to_string(index=False))
+            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
 
         if not df_ep_info2['Where'].isnull().all():
-            st.write('*_Where_*:', df_ep_info2['Where'].to_string(index=False))
+            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
     
         description = df_ep_info2['Description'].to_string(index=False)
         history = df_ep_info2['History'].to_string(index=False)
@@ -340,6 +341,33 @@ def show_anatomical():
     st.markdown(
         """
         <style type="text/css" media="screen">
+        .hovertext text {
+        font-size: 20px !important;}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df1 = df.rename(columns={"Eponym": "Eponym_OLD", "Eponym_easy": "Eponym"})
+    Anat_df = df1[(df1['Type'].str.match('Structures'))]
+    if not Anat_df['Type'].isnull().all():
+        Table = ff.create_table(Anat_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP','Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym_OLD'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+
+
+
+#2
+def show_scores():
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
         div[role="listbox"] ul {height:430px}
         </style>
         """
@@ -359,16 +387,17 @@ def show_anatomical():
     )
 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-    df = pd.read_csv(url, index_col=0)
-    df1 = df.rename(columns={"Eponym": "Eponym_OLD", "Eponym_easy": "Eponym"})
-    Anat_df = df1[(df1['Type'].str.match('Structures'))]
-    if not Anat_df['Type'].isnull().all():
-        Table = ff.create_table(Anat_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
-                    'Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP','Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link','Year',
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Scores_df = df[(df['Type'].str.match('Scores'))]
+    if not Scores_df['Type'].isnull().all():
+        Table = ff.create_table(Scores_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
-                             axis=1).sort_values(by=['Eponym_OLD'],
+                             axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+
+
 
 
 #-------------------------------------------------------------------------------------------#
