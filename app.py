@@ -266,18 +266,55 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-
 #   st.markdown('''[Advert space for Google AdSense1]''')
-    st.subheader('''First, choose operation(s) of interest:''')
+    st.subheader('''First, choose operations of interest:''')
     eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
     if not eponymByOp == None:
-        st.subheader('''Then, search this list of relevant eponyms:''')
+        st.subheader('''Then, search list for relevant eponyms:''')
         Op_options = st.selectbox('',
                                   new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
 
+        df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
+        ep_yr = df_ep_info2['Year'].to_string(index=False)
+
+        if not df_ep_info2['Who'].isnull().all():
+            st.write('*_Who_*:', df_ep_info2['Who'].to_string(index=False))
+
+        if not df_ep_info2['Year_str'].isnull().all():
+            st.write('*_When_*:', df_ep_info2['Year_str'].to_string(index=False))
+
+        if not df_ep_info2['Where'].isnull().all():
+            st.write('*_Where_*:', df_ep_info2['Where'].to_string(index=False))
+    
+        description = df_ep_info2['Description'].to_string(index=False)
+        history = df_ep_info2['History'].to_string(index=False)
+
+        if not df_ep_info2['Description'].isnull().all():
+            st.markdown(description, unsafe_allow_html=True)
+        if not df_ep_info2['History'].isnull().all():
+            st.write('**_History_**:', history)
+            st.markdown("---")
+
+        if not df_ep_info2['Who'].isnull().all():
+            st.write('**External links**')
+        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
+        if not df_ep_info2['Pubmed'].isnull().all():
+           st.markdown(f"[PubMed.gov]({ref_link})")
+
+        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
+        if not df_ep_info2['Wiki_link'].isnull().all():
+            st.markdown(f"[wikipedia.org]({wiki_link})")
+
+        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
+        if not df_ep_info2['WNI_link'].isnull().all():
+           st.markdown(f"[whonamedit.com]({wni_link})")
+
+        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
+        if not df_ep_info2['ICD11_link'].isnull().all():
+           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
 
 
 #----------------------------------------------------------------------------------------------#
