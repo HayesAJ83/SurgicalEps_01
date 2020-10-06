@@ -22,6 +22,8 @@ import plotly
 import plotly.express as px          
 import plotly.graph_objects as go    
 import plotly.figure_factory as ff
+import io
+import requests
 #px.set_mapbox_access_token(open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read())
 
 st.write(
@@ -46,8 +48,10 @@ st.write(
 #Data read and arrange
 #E4P = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv?raw=true'
 #df1 = pd.read_csv(E4P, index_col=0)
-df1 = pd.read_csv('https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv')
-df2 = df1.sort_values(by=['Year'],ascending=True)
+url ='https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv?token=ARG6SGLQAFROI5B4GWF2VJC7PRFEQ'
+s=requests.get(url).content
+c=pd.read(io.StringIO(s.decode('utf-8'))
+df2 = c.sort_values(by=['Year'],ascending=True)
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
