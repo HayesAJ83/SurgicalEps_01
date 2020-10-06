@@ -267,7 +267,7 @@ def exp_operation():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
 
-    st.markdown('''[Advert space for Google AdSense1]''')
+#   st.markdown('''[Advert space for Google AdSense1]''')
     st.subheader('''First, choose operation(s) of interest:''')
     eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
