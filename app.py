@@ -201,6 +201,32 @@ def exp_operation():
     #Sidebar
     st.sidebar.markdown("---")
 
+    #Page
+
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df1 = pd.read_csv(url, index_col=0)
+#   df1 = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv',dtype={'PMID':str,'Year':int})
+    df2 = df1.sort_values(by=['Year'],ascending=True)
+    df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
+    df4 = df3['Operation'].dropna()
+    string = df4.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+
+    st.markdown('''[Advert space for Google AdSense1]''')
+    st.subheader('''First, choose operation(s) of interest:''')
+    eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+    new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
+    new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
+ 
+    if not eponymByOp == None:
+        st.subheader('''Then, search this list of relevant eponyms:''')
+        Op_options = st.selectbox('',
+                                  new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+
+
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
