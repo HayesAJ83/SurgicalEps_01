@@ -1,4 +1,4 @@
-#Copyright [2020] [Alastair Hayes]
+#Copyright [2020] [EXCISION LIMITED]
 #
 #Licensed under the Apache License, Version 2.0 (the "License");
 #you may not use this file except in compliance with the License.
@@ -239,7 +239,6 @@ def exp_operation():
 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
-#   df1 = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv',dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Year'],ascending=True)
     df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
     df4 = df3['Operation'].dropna()
@@ -360,6 +359,49 @@ def show_anatomical():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+
+    worldMap = st.checkbox('''Show anatomical eponyms on world map''', value=False)
+    if worldMap:
+        Year = st.slider('Time traveler function - Year:', 1560, 2020, value=2020)
+#       mapbox_access_token = open('https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/ajhayes83_1mapbox_token.txt').read()  
+        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+        dfT = Anat_df.sort_values(by=['Year'],ascending=True)
+        time_df = Anat_df.loc[Anat_df['Year'] <= Year]
+        site_lat = time_df['Lat_A1']                           
+        site_lon = time_df['Long_A1']           
+        text = time_df['Eponym'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
+        locations_name = time_df['Eponym']
+        fig = go.Figure()
+        fig.add_trace(go.Scattermapbox(
+                lat=site_lat,lon=site_lon,
+                mode='markers',
+                marker=go.scattermapbox.Marker(
+                    color='yellow',
+                    opacity=0.7,
+                    size=12,
+                ),
+                text=text,
+            hoverinfo='text'
+            ))
+        fig.update_layout(
+            autosize=True,
+            hovermode='closest',
+            showlegend=False,
+            width=1100,
+            height=570,
+            mapbox=dict(
+                accesstoken=mapbox_access_token,
+                bearing=0,
+                center=dict(lat=25,lon=8),
+                pitch=0,
+                zoom=1.08,
+                style='dark'),
+            )
+        fig.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        st.write(fig) 
+    st.subheader('''Then, search list of named anatomical structures:''')
+    Anat_options2 = st.selectbox('', Anat_df['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+    Anat_options2_info = Anat_df[Anat_df['Eponym'].str.match(Anat_options2)]
 
 
 
