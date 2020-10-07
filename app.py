@@ -40,7 +40,7 @@ def main():
         """
         <style type="text/css" media="screen">
         div[role="listbox"] ul {
-            height:200px;
+            height:320px;
         }
         </style>
         """
@@ -138,7 +138,7 @@ def show_the_app_team():
 
 def show_explore():
     st.sidebar.title("**Explorer**")
-    exp = st.sidebar.radio('Select',
+    exp = st.sidebar.selectbox('Select',
                                 ["About",
                                  "By Operation",
                                  "Type of Eponym",
