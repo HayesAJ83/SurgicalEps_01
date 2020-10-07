@@ -137,7 +137,6 @@ def show_the_app_team():
 #----------------------------------------------------------------------------------------------#
 
 def show_explore():
-#   st.sidebar.markdown("---")
     st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('Select',
                                 ["About",
@@ -145,21 +144,18 @@ def show_explore():
                                  "Type of Eponym",
                                  "Geographical",
                                  "Journal of Publication",
-                                 "People",
+                                 "Famous People",
                                  "Time Travel",
                                  "Exam Favourites",
-                                 "A to Z",
                                  ])
     if   exp == "About":                    exp_about()             #1
     elif exp == "By Operation":             exp_operation()         #2
     elif exp == "Type of Eponym":           exp_type()              #3
     elif exp == "Geographical":             exp_geography()         #4         
     elif exp == "Journal of Publication":   exp_journals()          #5
-    elif exp == "People":                   exp_people()            #6
+    elif exp == "Famous People":            exp_people()            #6
     elif exp == "Time Travel":              exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
-    elif exp == "A to Z":                   exp_A2Z()               #9
-
 
 
 #----------------------------------------------------------------------------------------------#
