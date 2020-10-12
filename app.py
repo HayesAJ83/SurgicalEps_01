@@ -374,7 +374,7 @@ def show_anatomical():
             autosize=True,
             hovermode='closest',
             showlegend=False,
-            width=360,
+            width=320,
             height=250,
             mapbox=dict(
                 accesstoken=mapbox_access_token,
@@ -405,7 +405,7 @@ def show_anatomical():
                 marker=go.scattermapbox.Marker(
                     color='yellow',
                     opacity=0.7,
-                    size=8,
+                    size=12,
                 ),
                 text=text,
             hoverinfo='text'
@@ -421,7 +421,7 @@ def show_anatomical():
                 bearing=0,
                 center=dict(lat=25,lon=8),
                 pitch=0,
-                zoom=0.90,
+                zoom=1.00,
                 style='dark'),
             )
         fig.update_layout(margin=dict(l=2, r=2, t=0, b=0))
