@@ -374,8 +374,8 @@ def show_anatomical():
             autosize=True,
             hovermode='closest',
             showlegend=False,
-            width=320,
-            height=250,
+            width=340,
+            height=280,
             mapbox=dict(
                 accesstoken=mapbox_access_token,
                 bearing=0,
