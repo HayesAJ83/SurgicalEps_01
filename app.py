@@ -40,55 +40,20 @@ def main():
         """
         <style type="text/css" media="screen">
         div[role="listbox"] ul {
-            height:320px;
+            height:110px;
         }
         </style>
         """
         ,unsafe_allow_html=True,)
     
     st.sidebar.title('Navigator')
-    page = st.sidebar.radio("""Go to""",
-                            ["Homepage",
-                             "Surgical Eponym Explorer",
+    page = st.sidebar.selectbox('',#'Go to',
+                            ["Surgical Eponym Explorer",
                              "App Design Team"])
 
-    if page   == "Homepage":                   show_homepage()
-    elif page == "Surgical Eponym Explorer":   show_explore()
-    elif page == "App Design Team":            show_the_app_team()
+    if page == "Surgical Eponym Explorer":   show_explore()
+    elif page == "App Design Team":          show_the_app_team()
 
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Homepage                                                                                    #
-# ::: Handles                                                                                  #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
-def show_homepage():
-    ''' Home / About page '''
-    st.write('''# UNDER CONSTRUCTION''')
-    st.markdown('''# SurgicalEps''')
-    st.markdown('''_An Educational Web App designed by **Excision**_''')
-    st.subheader('Welcome')
-    st.write('''There are a hundreds of eponyms used in daily surgical practice.
-    We hope that you will find this app helpful in understanding what these terms mean, their history, and how they relate to one another using the **Eponym Explorer**.''')
-    st.markdown('''We suggest starting with **Operations** of interest, or eponyms related to **Anatomy**.
-    To explore their origins, check out the **Year** and **Geography** options. See **Journals** for eponyms that can be traced back to a famous publication.
-    To gauge eponym usage see **Google hits**, and choose **Surgical instruments** to find eponymously named equipment.''')
-    st.markdown('''We include **direct links to primary papers**, as well as useful webpages in **Wikipedia**, **Whonamedit?**, **ICD-11** and **TeachMeSurgery**. To simply search **A to Z** use the search box (below).''')
-    st.markdown("---")
-    st.subheader('Who is this App for?')
-    st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health professionals and students''')
-    st.markdown("---")
-    st.subheader('Disclaimer')
-    st.write('''Educational purposes''')
-    st.sidebar.markdown("---")
-    st.sidebar.markdown('''**Latest News**''')
-    st.sidebar.info("App will be launched Dec 2020")
-    st.sidebar.markdown('''**About**''')
-    st.sidebar.info("This App is maintained by Alastair Hayes, a Surgeon and Programer, supported by the wider Excision team")
-    st.sidebar.markdown('''**Contact details**''')
-    st.sidebar.info("Please get in touch with any contributions or comments: surgicaleponyms@gmail.com")
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -137,9 +102,9 @@ def show_the_app_team():
 #----------------------------------------------------------------------------------------------#
 
 def show_explore():
-    st.sidebar.title("**Explorer**")
-    exp = st.sidebar.selectbox('Select',
-                                ["About",
+   # st.sidebar.title("**Explorer**")
+    exp = st.sidebar.radio('',#'Select',
+                                ["About This App",
                                  "By Operation",
                                  "Type of Eponym",
                                  "Geographical",
@@ -148,7 +113,7 @@ def show_explore():
                                  "Time Travel",
                                  "Exam Favourites",
                                  ])
-    if   exp == "About":                    exp_about()             #1
+    if   exp == "About This App":                    exp_about()             #1
     elif exp == "By Operation":             exp_operation()         #2
     elif exp == "Type of Eponym":           exp_type()              #3
     elif exp == "Geographical":             exp_geography()         #4         
@@ -179,35 +144,61 @@ def exp_about():
     )
 
     #Sidebar
-    st.sidebar.markdown("---")
+ #   st.sidebar.markdown("---")
 
     #Page
 
-    st.markdown('''# About - Surgical Eponym Explorer''')
-    st.markdown("""<br>Use the **Explorer** select options in the sidebar to explore eponyms related to surgery.""",
-        unsafe_allow_html=True)
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">By Operation</span>''', unsafe_allow_html=True)
-    st.write('''Here you can choose an operation type, and then access all the common eponyms related to that procedure.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Type of Eponym</span>''', unsafe_allow_html=True)
-    st.write('''Choose from anatomical structures, clinical scores or signs, operations,
-                pathology, patient positioning, research trials, incisions, instruments,
-                surgical maneouvers & techniques.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Geographical</span>''', unsafe_allow_html=True)
-    st.write('''Choose a region of the world to find eponyms. Select a country or famous city.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Journal of Publication</span>''', unsafe_allow_html=True)
+    st.write('''_UNDER CONSTRUCTION_''')
+    st.markdown('''# SurgicalEps''')
+    st.markdown('''_An Educational Web App designed by Excision Ltd_''')
 
-    st.write('''In this section, journals can be selected to find which eponyms can be traced to their archives.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">People</span>''', unsafe_allow_html=True)
+    st.markdown("---")
+    st.subheader('Introduction')
+    st.markdown(' ')
+  #  st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
+    st.write('''There are a hundreds of eponyms used in daily surgical practice.
+    We hope that you will find this app helpful in understanding what these terms mean, their history,
+    and how they relate to one another. We include direct links to primary papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and TeachMeSurgery.''')
 
-    st.write('''Some famous people have been attributed to many eponyms.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Time Travel</span>''', unsafe_allow_html=True)
-
-    st.write('''Explore through time using the time travel function.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Exam Favourites</span>''', unsafe_allow_html=True)
-    st.write('''Select from those often found in exams. Explore by speciality.''')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">A to Z</span>''', unsafe_allow_html=True)
-    st.write('''Explore the eponym library alphabetically.''')
+    st.markdown("---")
+    st.subheader('How To Use This App')
+    st.markdown(' ')
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Operation:</span><span style="font-size:12pt;color:black;"> Here you
+                   can choose an operation type (eg. Oesophagectomy), and then access all the common eponyms related to that procedure.</span>''',
+                unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Type of Eponym:</span><span style="font-size:12pt;color:black;"> Choose from anatomical structures, clinical scores or signs, operations,
+                pathology, patient positioning, research trials, incisions, instruments, surgical maneouvers & techniques.</span>''',
+                unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Geographical:</span><span style="font-size:12pt;color:black;"> Choose a region of the world to find eponyms.
+                Select a country or famous city.</span>''',
+                unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Journal of Publication:</span><span style="font-size:12pt;color:black;"> In this section, journals can be selected to
+                find which eponyms can be traced to their archives.</span>''',
+                unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Famous People:</span><span style="font-size:12pt;color:black;"> Some famous people have
+                been attributed to many eponyms.</span>''',
+                unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Time Travel:</span><span style="font-size:12pt;color:black;"> Explore
+                through time using the time travel function.</span>''',
+                unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:</span><span style="font-size:12pt;color:black;"> Select from those often found in exams.
+                Explore by speciality.</span>''',
+                unsafe_allow_html=True)
  
+    st.markdown("---")
+    st.subheader('Who is this App for?')
+    st.markdown(' ')
+    st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health professionals and students''')
+
+    st.markdown("---")
+    st.subheader('Disclaimer')
+    st.markdown(' ')
+    st.write('''Educational purposes''')
+    
+    st.sidebar.markdown("---")
+    st.sidebar.markdown('''**Latest News**''')
+    st.sidebar.info("App will be launched Jan 2021")
+
 
 
 #----------------------------------------------------------------------------------------------#
@@ -229,7 +220,7 @@ def exp_operation():
         unsafe_allow_html=True,)
     
     #Sidebar
-    st.sidebar.markdown("---")
+#    st.sidebar.markdown("---")
 
     #Page
 
@@ -304,7 +295,7 @@ def exp_operation():
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
     st.subheader('''First, select type:''')
-    st.sidebar.markdown("---")
+#    st.sidebar.markdown("---")
     
     types = st.selectbox(""" """,
                             ["Anatomical structures",
@@ -383,14 +374,14 @@ def show_anatomical():
             autosize=True,
             hovermode='closest',
             showlegend=False,
-            width=1100,
-            height=570,
+            width=600,
+            height=360,
             mapbox=dict(
                 accesstoken=mapbox_access_token,
                 bearing=0,
                 center=dict(lat=25,lon=8),
                 pitch=0,
-                zoom=1.08,
+                zoom=0.50,
                 style='dark'),
             )
         fig.update_layout(margin=dict(l=2, r=2, t=0, b=0))
