@@ -149,7 +149,7 @@ def exp_about():
 
     st.write('''_UNDER CONSTRUCTION_''')
     st.markdown('''# SurgicalEps''')
-    st.markdown('''_An Educational Web App designed by Excision Ltd_''')
+    st.markdown('''_An Educational Web App from Excision Ltd_''')
 
     st.markdown("---")
     st.subheader('Introduction')
@@ -197,7 +197,6 @@ def exp_about():
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched Jan 2021")
-
 
 
 #----------------------------------------------------------------------------------------------#
@@ -341,7 +340,7 @@ def show_anatomical():
     if not Anat_df['Type'].isnull().all():
         Table = ff.create_table(Anat_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
                     'Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP','Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link','Year',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','ExamFav','Journal','History','ICD11_link','Year',
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
@@ -476,6 +475,17 @@ def show_scores():
 #----------------------------------------------------------------------------------------------#
 
 def exp_exam():
+
+   st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {height:430px}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
     st.markdown(
         """
         <style type="text/css" media="screen">
@@ -484,69 +494,20 @@ def exp_exam():
         </style>
         """
         ,
-        unsafe_allow_html=True,)
-    
+        unsafe_allow_html=True,
+    )
 
-    #Page
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
-    df2 = df1.sort_values(by=['Year'],ascending=True)
-    df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
-    df4 = df3['Operation'].dropna()
-    string = df4.str.cat(sep=',')
-    splits = string.split(",")
-    S = set(splits)
-    T = np.array(list(S)).astype(object)
-    U = np.sort(T)
-#   st.markdown('''[Advert space for Google AdSense1]''')
-    st.subheader('''First, choose operations of interest:''')
-    eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
-    new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
-    new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
- 
-    if not eponymByOp == None:
-        st.subheader('''Then, search list of related eponyms:''')
-        Op_options = st.selectbox('',
-                                  new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    ExamF_df = df[(df['ExamFav'].str.match('Yes'))]
+    if not ExamF_df['ExamFav'].isnull().all():
+        Table = ff.create_table(ExamF_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
 
-        df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
-        ep_yr = df_ep_info2['Year'].to_string(index=False)
-
-        if not df_ep_info2['Who'].isnull().all():
-            st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
-
-        if not df_ep_info2['Year_str'].isnull().all():
-            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
-
-        if not df_ep_info2['Where'].isnull().all():
-            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
-    
-        description = df_ep_info2['Description'].to_string(index=False)
-        history = df_ep_info2['History'].to_string(index=False)
-
-        if not df_ep_info2['Description'].isnull().all():
-            st.markdown(description, unsafe_allow_html=True)
-        if not df_ep_info2['History'].isnull().all():
-            st.write('**_History_**:', history)
-            st.markdown("---")
-
-        if not df_ep_info2['Who'].isnull().all():
-            st.write('**External links**')
-        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
-        if not df_ep_info2['Pubmed'].isnull().all():
-           st.markdown(f"[PubMed.gov]({ref_link})")
-
-        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
-        if not df_ep_info2['Wiki_link'].isnull().all():
-            st.markdown(f"[wikipedia.org]({wiki_link})")
-
-        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
-        if not df_ep_info2['WNI_link'].isnull().all():
-           st.markdown(f"[whonamedit.com]({wni_link})")
-
-        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
-        if not df_ep_info2['ICD11_link'].isnull().all():
-           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
 
 
 #-------------------------------------------------------------------------------------------#
