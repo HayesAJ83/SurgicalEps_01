@@ -34,18 +34,7 @@ import requests
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 
-def main():
-#   st.sidebar.markdown('''[Advert space for Google AdSense]''')
-    st.write(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {
-            height:110px;
-        }
-        </style>
-        """
-        ,unsafe_allow_html=True,)
-    
+def main():    
     st.sidebar.title('Navigator')
     page = st.sidebar.selectbox('',#'Go to',
                             ["Surgical Eponym Explorer",
@@ -139,14 +128,23 @@ def exp_about():
         </style>
         """
         ,
-        unsafe_allow_html=True,
-    )
+        unsafe_allow_html=True)
 
-    #Sidebar
- #   st.sidebar.markdown("---")
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {
+            height:110px;
+        }
+        </style>
+        """
+        ,
+        unsafe_allow_html=True)
+
+
+
 
     #Page
-
     st.write('''_UNDER CONSTRUCTION_''')
     st.markdown('''# SurgicalEps''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
@@ -154,7 +152,7 @@ def exp_about():
     st.markdown("---")
     st.subheader('Introduction')
     st.markdown(' ')
-  #  st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
+#   st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history,
     and how they relate to one another. We include direct links to primary papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and TeachMeSurgery.''')
@@ -206,6 +204,7 @@ def exp_about():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 
+
 def exp_operation():
     st.markdown(
         """
@@ -216,12 +215,25 @@ def exp_operation():
         """
         ,
         unsafe_allow_html=True,)
-    
-    #Sidebar
-#    st.sidebar.markdown("---")
+
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {
+            height:250px;
+        }
+        </style>
+        """
+        ,unsafe_allow_html=True,)
+
+    ScreenSize = st.selectbox('Screen size',
+                     options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
+
+    if   ScreenSize == "Smartphone":Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "15-inch":   Screen_width = 1100; Screen_height = 500
+    st.markdown("---")
 
     #Page
-
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
     df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -232,8 +244,7 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-#   st.markdown('''[Advert space for Google AdSense1]''')
-    st.subheader('''First, choose operations of interest:''')
+    st.subheader('''Choose operations of interest:''')
     eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
@@ -292,6 +303,13 @@ def exp_operation():
 
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
+    ScreenSize = st.selectbox('Screen size',
+                     options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
+
+    if   ScreenSize == "Smartphone":Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "15-inch":   Screen_width = 1100; Screen_height = 500
+    st.markdown("---")
+    
     st.subheader('''First, Select Type:''')
 #    st.sidebar.markdown("---")
     
@@ -322,6 +340,7 @@ def exp_type():
 
 #1
 def show_anatomical():
+    
     st.markdown(
         """
         <style type="text/css" media="screen">
@@ -465,15 +484,168 @@ def show_scores():
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
 
 
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Geographical Origins (4)                                                                    #
+# ::: Handles the                                                                              #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def exp_geography():
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {height:53px}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
+#   st.markdown('''[Advert space for Google AdSense3]''')
+    ScreenSize = st.selectbox('Screen size',
+                     options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
+
+    if   ScreenSize == "Smartphone":Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "15-inch":   Screen_width = 1100; Screen_height = 500
+    st.markdown("---")
+    
+    st.subheader('''Type in box for geographical location:''')
+    options1 = st.selectbox(' ', [" ",
+                                 "   ",
+                                 "All",
+                                 "Argentina",
+                                 "Austria",
+                                 "Brazil",
+                                 "Canada",
+                                 "Chicago",
+                                 "Denmark",
+                                 "Edinburgh",
+                                 "Europe",
+                                 "France",
+                                 "Germany",
+                                 "Hawaii",
+                                 "Ireland",
+                                 "Italy",
+                                 "Japan",
+                                 "London",
+                                 "Netherlands",
+                                 "New York City",
+                                 "North America",
+                                 "Paris",
+                                 "Poland",
+                                 "South America",
+                                 "Sweden",
+                                 "Switzerland",
+                                 "UK",
+                                 "United Kingdom",
+                                 "USA",
+                                 "World",
+                                 ])
+
+
+    Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
+    df1 = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv',dtype={'PMID':str,'Year':int})
+    df2 = df1.sort_values(by=['Year'],ascending=True)
+    mapbox_access_token = open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read()  
+    df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
+    dfT = df3.sort_values(by=['Year'],ascending=True)
+    time_df = dfT.loc[dfT['Year'] <= Year]
+    site_lat = time_df['Lat_A1']            #df3['Lat_A1']                
+    site_lon = time_df['Long_A1']           #df3['Long_A1']
+    text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
+    locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
+
+    if   options1 == " ":              lat_country  = 25.0;  lon_country  =8.0;    zoom_country = 1.08;  markersize = 12
+    if   options1 == "london":         lat_country  = 51.52; lon_country  = -0.1; zoom_country = 9.8; markersize = 18
+    if   options1 == "london":         lat_country  = 51.52; lon_country  = -0.1; zoom_country = 9.8; markersize = 18
+    if   options1 == "Paris":          lat_country  = 48.85; lon_country  = 2.36;   zoom_country = 10.4; markersize = 18
+    if   options1 == "World":          lat_country  = 25.0;  lon_country  =8.0;    zoom_country = 1.08;  markersize = 12
+    if   options1 == "All":            lat_country  = 25.0;  lon_country  =8.0;    zoom_country = 1.08;  markersize = 12
+    if   options1 == "Europe":         lat_country  = 54.0;  lon_country  = 10.0;   zoom_country = 2.85; markersize = 12
+    if   options1 == "Austria":        lat_country  = 47.2;  lon_country  = 13.4;   zoom_country = 6.5; markersize = 16
+    if   options1 == "Denmark":        lat_country  = 56.0;  lon_country  = 9.8;    zoom_country = 4.0; markersize = 16
+    if   options1 == "France":         lat_country  = 47.0;  lon_country  = 4.0;    zoom_country = 4.5; markersize = 16
+    if   options1 == "Germany":        lat_country  = 51.25;  lon_country  = 10.5;   zoom_country = 5.2; markersize = 16
+    if   options1 == "Ireland":        lat_country  = 53.5;  lon_country  = -6.2;   zoom_country = 5.0; markersize = 16
+    if   options1 == "Italy":          lat_country  = 41.5;  lon_country  = 14.0;   zoom_country = 4.0; markersize = 16
+    if   options1 == "Japan":          lat_country  = 37.4;  lon_country  = 135.0;  zoom_country = 4.4; markersize = 16
+    if   options1 == "Netherlands":    lat_country  = 52.0;  lon_country  =  5.0;   zoom_country = 4.8; markersize = 16
+    if   options1 == "Poland":         lat_country  = 52.0;  lon_country  = 19.0;   zoom_country = 4.0; markersize = 16
+    if   options1 == "Sweden":         lat_country  = 62.5;  lon_country  = 18.5;   zoom_country = 3.0; markersize = 16
+    if   options1 == "Switzerland":    lat_country  = 47.0;  lon_country  =  8.0;   zoom_country = 4.5; markersize = 16
+    if   options1 == "UK":             lat_country  = 53.0;  lon_country  = -3.2; zoom_country = 3.8; markersize = 18
+    if   options1 == "Edinburgh":      lat_country  = 55.8;  lon_country  = -3.2;   zoom_country = 6.8; markersize = 18
+    if   options1 == "London":         lat_country  = 51.52; lon_country  = -0.1; zoom_country = 9.8; markersize = 18
+    if   options1 == "North America":  lat_country  = 52.0;  lon_country  = -100;   zoom_country = 1.8; markersize = 10
+    if   options1 == "Canada":         lat_country  = 59.0;  lon_country  = -95.0;  zoom_country = 2.5; markersize = 16
+    if   options1 == "USA":            lat_country  = 37.0;  lon_country  = -113;   zoom_country = 2.9; markersize = 16
+    if   options1 == "Chicago":        lat_country  = 42.0;  lon_country  = -88.0;  zoom_country = 8.0; markersize = 18
+    if   options1 == "New York":       lat_country  = 40.8;  lon_country  = -73.9;  zoom_country = 9.8; markersize = 18
+    if   options1 == "Hawaii":         lat_country  = 20.5;  lon_country  = -157.4; zoom_country = 6.1; markersize = 18
+    if   options1 == "South America":  lat_country  =-28.0;  lon_country  = -65.0;  zoom_country = 1.8; markersize = 12
+    if   options1 == "Argentina":      lat_country  =-40.0;  lon_country  = -65.0;  zoom_country = 2.5; markersize = 16
+    if   options1 == "Brazil":         lat_country  =-10.0;  lon_country  = -55.0;  zoom_country = 3.0; markersize = 16
+
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        .hovertext text {
+        font-size: 20px !important;}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+
+
+    fig3 = go.Figure()
+    fig3.add_trace(go.Scattermapbox(
+            lat=site_lat,
+            lon=site_lon,
+            mode='markers',
+            marker=go.scattermapbox.Marker(
+                size=markersize,
+                color='yellow', #'rgb(255, 0, 0)',
+                opacity=0.7
+            ),
+            text=text,
+            hoverinfo='text',
+        ))
+
+    fig3.update_layout(
+        autosize=True,
+        hovermode='closest',
+        showlegend=False,
+        width=Screen_width,
+        height=Screen_height,
+        mapbox=dict(
+            accesstoken=mapbox_access_token,
+            bearing=0,
+            center=dict(lat=lat_country,lon=lon_country),
+            pitch=0,
+            zoom=zoom_country,
+            style='satellite-streets'), #'dark'
+    )
+    fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+    st.write(fig3)
+    st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+
+    df4 = df3.sort_values(by=['Eponym'],ascending=True)
+    Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
+
+#'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor', 'basic', 'streets',
+    #'outdoors', 'light', 'dark',
+    #'satellite', 'satellite-streets'
+
 
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
-#  Surgical Operations (2)                                                                     #
-# ::: Handles                                                                                  #                                                                                              #
+#  Exam (8)                                                                                    #
+# ::: Handles the                                                                              #                                                                                              #
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
-
 def exp_exam():
 
     st.markdown(
