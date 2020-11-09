@@ -506,8 +506,8 @@ def exp_geography():
     ScreenSize = st.selectbox('Screen size',
                      options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
 
-    if   ScreenSize == "Smartphone":Screen_width =  400; Screen_height = 600
-    if   ScreenSize == "15-inch":   Screen_width = 1100; Screen_height = 500
+    if   ScreenSize == "Smartphone":Screen_width = 400; Screen_height = 600
+    if   ScreenSize == "15-inch":   Screen_width = 710; Screen_height = 500
     st.markdown("---")
     
     st.subheader('''Type in box for geographical location:''')
@@ -545,7 +545,8 @@ def exp_geography():
 
 
     Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
-    df1 = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv',dtype={'PMID':str,'Year':int})
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Year'],ascending=True)
     mapbox_access_token = open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read()  
     df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
