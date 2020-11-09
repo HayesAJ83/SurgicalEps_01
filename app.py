@@ -506,7 +506,7 @@ def exp_geography():
     ScreenSize = st.selectbox('Screen size',
                      options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
 
-    if   ScreenSize == "Smartphone":Screen_width = 400; Screen_height = 600
+    if   ScreenSize == "Smartphone":Screen_width = 300; Screen_height = 500
     if   ScreenSize == "15-inch":   Screen_width = 710; Screen_height = 500
     st.markdown("---")
     
