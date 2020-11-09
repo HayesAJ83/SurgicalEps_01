@@ -548,7 +548,8 @@ def exp_geography():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Year'],ascending=True)
-    mapbox_access_token = open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read()  
+#    mapbox_access_token = open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read()  
+    mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
     df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
     dfT = df3.sort_values(by=['Year'],ascending=True)
     time_df = dfT.loc[dfT['Year'] <= Year]
