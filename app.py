@@ -227,10 +227,14 @@ def exp_operation():
         ,unsafe_allow_html=True,)
 
     ScreenSize = st.selectbox('Screen size',
-                     options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
+                     options=['Smartphone - portrait',
+                              'Smartphone - landscape',
+                              'Tablet','13-inch','15-inch','27-inch'])
 
-    if   ScreenSize == "Smartphone":Screen_width =  400; Screen_height = 600
-    if   ScreenSize == "15-inch":   Screen_width = 1100; Screen_height = 500
+    if   ScreenSize == "Smartphone - portrait":  Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "Smartphone - landscape": Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "15-inch":                Screen_width = 1100; Screen_height = 500
+    if   ScreenSize == "27-inch":                Screen_width = 1100; Screen_height = 500
     st.markdown("---")
 
     #Page
