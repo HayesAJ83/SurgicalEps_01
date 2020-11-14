@@ -499,7 +499,7 @@ def exp_geography():
     st.markdown(
         """
         <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:53px}
+        div[role="listbox"] ul {height:55px}
         </style>
         """
         ,
@@ -508,10 +508,14 @@ def exp_geography():
 
 #   st.markdown('''[Advert space for Google AdSense3]''')
     ScreenSize = st.selectbox('Screen size',
-                     options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
+                     options=['Smartphone - portrait',
+                              'Smartphone - landscape',
+                              'Tablet','13-inch','15-inch','27-inch'])
 
-    if   ScreenSize == "Smartphone":Screen_width = 300; Screen_height = 500
-    if   ScreenSize == "15-inch":   Screen_width = 710; Screen_height = 500
+    if   ScreenSize == "Smartphone - portrait":  Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "Smartphone - landscape": Screen_width =  700; Screen_height = 500
+    if   ScreenSize == "15-inch":                Screen_width = 1100; Screen_height = 500
+    if   ScreenSize == "27-inch":                Screen_width = 1100; Screen_height = 500
     st.markdown("---")
     
     st.subheader('''Type in box for geographical location:''')
