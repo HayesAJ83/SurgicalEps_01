@@ -512,8 +512,8 @@ def exp_geography():
                               'Smartphone - landscape',
                               'Tablet','13-inch','15-inch','27-inch'])
 
-    if   ScreenSize == "Smartphone - portrait":  Screen_width =  350; Screen_height = 500
-    if   ScreenSize == "Smartphone - landscape": Screen_width =  600; Screen_height = 360
+    if   ScreenSize == "Smartphone - portrait":  Screen_width =  340; Screen_height = 490
+    if   ScreenSize == "Smartphone - landscape": Screen_width =  610; Screen_height = 340
     if   ScreenSize == "15-inch":                Screen_width = 1100; Screen_height = 500
     if   ScreenSize == "27-inch":                Screen_width = 1100; Screen_height = 500
     st.markdown("---")
