@@ -500,22 +500,21 @@ def exp_geography():
     st.markdown(
         """
         <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:150px}
+        div[role="listbox"] ul {height:55px}
         </style>
         """
         ,
         unsafe_allow_html=True,
     )
-
 #   st.markdown('''[Advert space for Google AdSense3]''')
-    ScreenSize = st.radio('Screen size',
+    ScreenSize = st.radio('Select Screen Size:',
                      options=['Smartphone - portrait',
                               'Smartphone - landscape',
                               'Tablet / Laptop / Desktop',])
 
     if ScreenSize == "Smartphone - portrait":
-        st.subheader('''Type in box for geographical location:''')
-        options1 = st.selectbox(' ', [" ",
+        options1 = st.selectbox('Choose Geographical Location:',
+                                [" ",
                                  "   ",
                                  "All",
                                  "Argentina",
@@ -548,7 +547,7 @@ def exp_geography():
                                  ])
 
 
-        Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
+        Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -657,7 +656,7 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options1 == " ":              lat_country  = 30.00;  lon_country  =  10.0; zoom_country = 0.20; markersize = 6; Screen_width =  590; Screen_height = 320
+        if   options1 == " ":              lat_country  = 25.00;  lon_country  =  10.0; zoom_country = 0.18; markersize = 6; Screen_width =  590; Screen_height = 320
         if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  590; Screen_height = 320
 
 
