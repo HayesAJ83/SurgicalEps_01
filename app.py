@@ -510,8 +510,7 @@ def exp_geography():
     ScreenSize = st.radio('Screen size',
                      options=['Smartphone - portrait',
                               'Smartphone - landscape',
-                              'Tablet',
-                              '13-inch or larger'])
+                              'Tablet / Laptop / Desktop',])
 
     if ScreenSize == "Smartphone - portrait":
         st.subheader('''Type in box for geographical location:''')
@@ -629,7 +628,7 @@ def exp_geography():
         Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
 
-    if ScreenSize == "13-inch or larger":                
+    if ScreenSize == "Tablet / Laptop / Desktop":                
         st.subheader('''Type in box for geographical location:''')
         options1 = st.selectbox(' ', [" ",
                                  "   ",
@@ -697,8 +696,7 @@ def exp_geography():
 
 
     if ScreenSize == "Smartphone - landscape": Screen_width =  620; Screen_height = 320
-    if ScreenSize == "15-inch":                Screen_width = 1100; Screen_height = 500
-
+   
 #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor', 'basic', 'streets',
     #'outdoors', 'light', 'dark',
     #'satellite', 'satellite-streets'
