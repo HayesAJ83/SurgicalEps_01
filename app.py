@@ -507,10 +507,11 @@ def exp_geography():
     )
 
 #   st.markdown('''[Advert space for Google AdSense3]''')
-    ScreenSize = st.selectbox('Screen size',
+    ScreenSize = st.radio('Screen size',
                      options=['Smartphone - portrait',
                               'Smartphone - landscape',
-                              'Tablet','13-inch','15-inch','27-inch'])
+                              'Tablet',
+                              '13-inch or larger'])
 
     if ScreenSize == "Smartphone - portrait":
         st.subheader('''Type in box for geographical location:''')
@@ -628,7 +629,7 @@ def exp_geography():
         Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
 
-    if ScreenSize == "27-inch":                
+    if ScreenSize == "13-inch or larger":                
         st.subheader('''Type in box for geographical location:''')
         options1 = st.selectbox(' ', [" ",
                                  "   ",
