@@ -562,8 +562,8 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options1 == " ":              lat_country  = 20.00;  lon_country  =  8.0; zoom_country = -0.40; markersize = 4; Screen_width =  340; Screen_height = 260
-        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18; Screen_width =  340; Screen_height = 480
+        if   options1 == " ":              lat_country  = 20.00;  lon_country  =  8.0; zoom_country = -0.42; markersize = 4; Screen_width =  350; Screen_height = 260
+        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18; Screen_width =  350; Screen_height = 480
         if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18
         if   options1 == "Paris":          lat_country  = 48.85;  lon_country  = 2.36; zoom_country = 10.40; markersize = 18
         if   options1 == "World":          lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08; markersize = 12
@@ -657,7 +657,7 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options1 == " ":              lat_country  = 30.00;  lon_country  =  10.0; zoom_country = 0.55; markersize = 6; Screen_width =  600; Screen_height = 330
+        if   options1 == " ":              lat_country  = 30.00;  lon_country  =  10.0; zoom_country = 0.50; markersize = 6; Screen_width =  600; Screen_height = 330
         if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  600; Screen_height = 330
 
 
