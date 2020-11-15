@@ -655,7 +655,7 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options1 == " ":              lat_country  = 20.00;  lon_country  =  0.0; zoom_country = -0.40; markersize = 10; Screen_width =  760; Screen_height = 360
+        if   options1 == " ":              lat_country  = 20.00;  lon_country  =  0.0; zoom_country = 0.20; markersize = 7; Screen_width =  720; Screen_height = 360
         if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18; Screen_width =  640; Screen_height = 400
 
 
