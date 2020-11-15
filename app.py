@@ -308,10 +308,10 @@ def exp_operation():
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
     ScreenSize = st.selectbox('Screen size',
-                     options=['Smartphone','Tablet','13-inch','15-inch','27-inch'])
+                     options=['Smartphone - portrait','Smartphone - landscape'])
 
-    if   ScreenSize == "Smartphone":Screen_width =  400; Screen_height = 600
-    if   ScreenSize == "15-inch":   Screen_width = 1100; Screen_height = 500
+    if   ScreenSize == "Smartphone - portrait":  Screen_width =  400; Screen_height = 600
+    if   ScreenSize == "Smartphone - landscape": Screen_width = 1100; Screen_height = 500
     st.markdown("---")
     
     st.subheader('''First, Select Type:''')
@@ -628,6 +628,82 @@ def exp_geography():
         Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
 
+
+    if ScreenSize == "Smartphone - landscape":
+        st.subheader('''Type in box for geographical location:''')
+        options1 = st.selectbox(' ', [" ",
+                                 "   ",
+                                 "All",
+                                 "Argentina",
+                                 "Austria",
+                                 "UK",
+                                 "United Kingdom",
+                                 "USA",
+                                 "World",
+                                 ])
+
+
+        Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        df2 = df1.sort_values(by=['Year'],ascending=True)
+        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+        df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
+        dfT = df3.sort_values(by=['Year'],ascending=True)
+        time_df = dfT.loc[dfT['Year'] <= Year]
+        site_lat = time_df['Lat_A1']            #df3['Lat_A1']                
+        site_lon = time_df['Long_A1']           #df3['Long_A1']
+        text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
+        locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
+
+        if   options1 == " ":              lat_country  = 30.00;  lon_country  =  10.0; zoom_country = 0.45; markersize = 6; Screen_width =  550; Screen_height = 300
+        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 5; Screen_width =  550; Screen_height = 300
+
+
+        fig3 = go.Figure()
+        fig3.add_trace(go.Scattermapbox(
+                lat=site_lat,
+                lon=site_lon,
+                mode='markers',
+                marker=go.scattermapbox.Marker(
+                    size=markersize,
+                    color='yellow', #'rgb(255, 0, 0)',
+                    opacity=0.7
+                ),
+                text=text,
+                hoverinfo='text',
+                ))
+
+        fig3.update_layout(
+                autosize=True,
+                hovermode='closest',
+                showlegend=False,
+                width=Screen_width,
+                height=Screen_height,
+        mapbox=dict(
+                accesstoken=mapbox_access_token,
+                bearing=0,
+                center=dict(lat=lat_country,lon=lon_country),
+                pitch=0,
+                zoom=zoom_country,
+                style='satellite-streets'), #'dark'
+            )
+        fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        st.write(fig3)
+        st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+
+        df4 = df3.sort_values(by=['Eponym'],ascending=True)
+        Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
+
+
+
+
+
+
+
+
+
+
     if ScreenSize == "Tablet / Laptop / Desktop":                
         st.subheader('''Type in box for geographical location:''')
         options1 = st.selectbox(' ', [" ",
@@ -694,14 +770,10 @@ def exp_geography():
         df4 = df3.sort_values(by=['Eponym'],ascending=True)
         Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
-
-    if ScreenSize == "Smartphone - landscape": Screen_width =  620; Screen_height = 320
    
 #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor', 'basic', 'streets',
     #'outdoors', 'light', 'dark',
     #'satellite', 'satellite-streets'
-
-
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
