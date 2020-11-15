@@ -645,6 +645,132 @@ def exp_geography():
     if   ScreenSize == "15-inch":                Screen_width = 1100; Screen_height = 500
     if   ScreenSize == "27-inch":                Screen_width = 1100; Screen_height = 500
 
+        if ScreenSize == "27-inch":
+            st.subheader('''Type in box for geographical location:''')
+            options1 = st.selectbox(' ', [" ",
+                                 "   ",
+                                 "All",
+                                 "Argentina",
+                                 "Austria",
+                                 "Brazil",
+                                 "Canada",
+                                 "Chicago",
+                                 "Denmark",
+                                 "Edinburgh",
+                                 "Europe",
+                                 "France",
+                                 "Germany",
+                                 "Hawaii",
+                                 "Ireland",
+                                 "Italy",
+                                 "Japan",
+                                 "London",
+                                 "Netherlands",
+                                 "New York City",
+                                 "North America",
+                                 "Paris",
+                                 "Poland",
+                                 "South America",
+                                 "Sweden",
+                                 "Switzerland",
+                                 "UK",
+                                 "United Kingdom",
+                                 "USA",
+                                 "World",
+                                 ])
+
+
+            Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
+            url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+            df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+            df2 = df1.sort_values(by=['Year'],ascending=True)
+            mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+            df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
+            dfT = df3.sort_values(by=['Year'],ascending=True)
+            time_df = dfT.loc[dfT['Year'] <= Year]
+            site_lat = time_df['Lat_A1']            #df3['Lat_A1']                
+            site_lon = time_df['Long_A1']           #df3['Long_A1']
+            text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
+            locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
+
+            if   options1 == " ":              lat_country  = 20.00;  lon_country  =  8.0; zoom_country = -0.40; markersize = 4; Screen_width =  340; Screen_height = 260
+            if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18; Screen_width =  340; Screen_height = 480
+            if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18
+            if   options1 == "Paris":          lat_country  = 48.85;  lon_country  = 2.36; zoom_country = 10.40; markersize = 18
+            if   options1 == "World":          lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08; markersize = 12
+            if   options1 == "All":            lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08;  markersize = 12
+            if   options1 == "Europe":         lat_country  = 54.00;  lon_country  = 10.0; zoom_country =  2.85; markersize = 12
+            if   options1 == "Austria":        lat_country  = 47.20;  lon_country  = 13.4; zoom_country =  6.50; markersize = 16
+            if   options1 == "Denmark":        lat_country  = 56.00;  lon_country  =  9.8; zoom_country =  4.00; markersize = 16
+            if   options1 == "France":         lat_country  = 47.00;  lon_country  =  4.0; zoom_country =  4.50; markersize = 16
+            if   options1 == "Germany":        lat_country  = 51.25;  lon_country  = 10.5; zoom_country =  5.20; markersize = 16
+            if   options1 == "Ireland":        lat_country  = 53.50;  lon_country  = -6.2; zoom_country = 5.0; markersize = 16
+            if   options1 == "Italy":          lat_country  = 41.50;  lon_country  = 14.0; zoom_country = 4.0; markersize = 16
+            if   options1 == "Japan":          lat_country  = 37.40;  lon_country  = 135.0;zoom_country = 4.4; markersize = 16
+            if   options1 == "Netherlands":    lat_country  = 52.00;  lon_country  =  5.0; zoom_country = 4.8; markersize = 16
+            if   options1 == "Poland":         lat_country  = 52.00;  lon_country  = 19.0; zoom_country = 4.0; markersize = 16
+            if   options1 == "Sweden":         lat_country  = 62.50;  lon_country  = 18.5; zoom_country = 3.0; markersize = 16
+            if   options1 == "Switzerland":    lat_country  = 47.00;  lon_country  =  8.0; zoom_country = 4.5; markersize = 16
+            if   options1 == "UK":             lat_country  = 53.00;  lon_country  = -3.2; zoom_country = 3.8; markersize = 18
+            if   options1 == "Edinburgh":      lat_country  = 55.80;  lon_country  = -3.2; zoom_country = 6.8; markersize = 18
+            if   options1 == "London":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country = 9.8; markersize = 18
+            if   options1 == "North America":  lat_country  = 52.00;  lon_country  = -100; zoom_country = 1.8; markersize = 10
+            if   options1 == "Canada":         lat_country  = 59.00;  lon_country  = -95.0;zoom_country = 2.5; markersize = 16
+            if   options1 == "USA":            lat_country  = 37.00;  lon_country  = -113;   zoom_country = 2.9; markersize = 16
+            if   options1 == "Chicago":        lat_country  = 42.00;  lon_country  = -88.0;  zoom_country = 8.0; markersize = 18
+            if   options1 == "New York":       lat_country  = 40.80;  lon_country  = -73.9;  zoom_country = 9.8; markersize = 18
+            if   options1 == "Hawaii":         lat_country  = 20.50;  lon_country  = -157.4; zoom_country = 6.1; markersize = 18
+            if   options1 == "South America":  lat_country  =-28.00;  lon_country  = -65.0;  zoom_country = 1.8; markersize = 12
+            if   options1 == "Argentina":      lat_country  =-40.00;  lon_country  = -65.0;  zoom_country = 2.5; markersize = 16
+            if   options1 == "Brazil":         lat_country  =-10.00;  lon_country  = -55.0;  zoom_country = 3.0; markersize = 16
+
+            st.markdown(
+                """
+                <style type="text/css" media="screen">
+                .hovertext text {
+                font-size: 16px !important;}
+                </style>
+                """
+                ,
+                unsafe_allow_html=True,
+                )
+
+
+            fig3 = go.Figure()
+            fig3.add_trace(go.Scattermapbox(
+                lat=site_lat,
+                lon=site_lon,
+                mode='markers',
+                marker=go.scattermapbox.Marker(
+                    size=markersize,
+                    color='yellow', #'rgb(255, 0, 0)',
+                    opacity=0.7
+                ),
+                text=text,
+                hoverinfo='text',
+                ))
+
+            fig3.update_layout(
+                autosize=True,
+                hovermode='closest',
+                showlegend=False,
+                width=Screen_width,
+                height=Screen_height,
+            mapbox=dict(
+                accesstoken=mapbox_access_token,
+                bearing=0,
+                center=dict(lat=lat_country,lon=lon_country),
+                pitch=0,
+                zoom=zoom_country,
+                style='satellite-streets'), #'dark'
+            )
+            fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+            st.write(fig3)
+            st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+
+            df4 = df3.sort_values(by=['Eponym'],ascending=True)
+            Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
+
 #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor', 'basic', 'streets',
     #'outdoors', 'light', 'dark',
     #'satellite', 'satellite-streets'
