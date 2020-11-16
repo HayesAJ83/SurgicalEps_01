@@ -558,13 +558,13 @@ def exp_geography():
         if   options1 == "Argentina":      lat_country  =-40.00;  lon_country  = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "Austria":        lat_country  = 47.20;  lon_country  =  13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "Brazil":         lat_country  =-10.00;  lon_country  = -55.0; zoom_country =   3.0; markersize = 9; Screen_width =  350; Screen_height = 260
-        if   options1 == "Canada":         lat_country  = 59.00;  lon_country  = -95.0; zoom_country =   2.5; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "Canada":         lat_country  = 59.00;  lon_country  = -97.0; zoom_country =   1.4; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Chicago":        lat_country  = 42.00;  lon_country  = -88.0; zoom_country =   8.0; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Denmark":        lat_country  = 56.00;  lon_country  =   9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "Edinburgh":      lat_country  = 55.94;  lon_country  =  -3.2; zoom_country =   8.8; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "Edinburgh":      lat_country  = 55.94;  lon_country  =  -3.2; zoom_country =   9.0; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Europe":         lat_country  = 54.00;  lon_country  =  10.0; zoom_country =  2.85; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "France":         lat_country  = 47.00;  lon_country  =   4.0; zoom_country =  4.50; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "Germany":        lat_country  = 51.25;  lon_country  =  10.5; zoom_country =  5.20; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "Germany":        lat_country  = 51.25;  lon_country  =  10.2; zoom_country =  3.80; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "Hawaii":         lat_country  = 20.50;  lon_country  =-157.4; zoom_country =   6.1; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Ireland":        lat_country  = 53.50;  lon_country  =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
         if   options1 == "Italy":          lat_country  = 41.50;  lon_country  =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
@@ -578,8 +578,8 @@ def exp_geography():
         if   options1 == "South America":  lat_country  =-28.00;  lon_country  = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "Sweden":         lat_country  = 62.50;  lon_country  =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "Switzerland":    lat_country  = 47.00;  lon_country  =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "UK":             lat_country  = 53.00;  lon_country  =  -3.2; zoom_country =   3.8; markersize = 9; Screen_width =  350; Screen_height = 260
-        if   options1 == "USA":            lat_country  = 37.00;  lon_country  =  -113; zoom_country =   2.9; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "UK":             lat_country  = 54.40;  lon_country  =  -3.2; zoom_country =  3.55; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "USA":            lat_country  = 39.00;  lon_country  =   -96; zoom_country =  2.05; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "World":          lat_country  = 40.00;  lon_country  =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
        
         
@@ -613,10 +613,9 @@ def exp_geography():
         )
         fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(fig3)
-    #    st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
-
-        df4 = df3.sort_values(by=['Eponym'],ascending=True)
-        Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
+#       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+#       df4 = df3.sort_values(by=['Eponym'],ascending=True)
+#       Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
 
 
@@ -680,18 +679,9 @@ def exp_geography():
             )
         fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(fig3)
-        st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
-
-        df4 = df3.sort_values(by=['Eponym'],ascending=True)
-        Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
-
-
-
-
-
-
-
-
+#       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+#       df4 = df3.sort_values(by=['Eponym'],ascending=True)
+#       Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
 
     if ScreenSize == "Tablet / Laptop / Desktop":                
@@ -754,10 +744,9 @@ def exp_geography():
             )
         fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(fig3)
- #       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
-
-        df4 = df3.sort_values(by=['Eponym'],ascending=True)
-        Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
+#       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+#       df4 = df3.sort_values(by=['Eponym'],ascending=True)
+#       Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
 
    
 #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor', 'basic', 'streets',
