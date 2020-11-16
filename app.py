@@ -583,8 +583,8 @@ def exp_geography():
         if   options1 == "World":          lat_country  = 40.00;  lon_country  =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
        
         
-        fig3 = go.Figure()
-        fig3.add_trace(go.Scattermapbox(
+        figG1 = go.Figure()
+        figG1.add_trace(go.Scattermapbox(
                 lat=site_lat,
                 lon=site_lon,
                 mode='markers',
@@ -597,7 +597,7 @@ def exp_geography():
                 hoverinfo='text',
             ))
 
-        fig3.update_layout(
+        figG1.update_layout(
             autosize=True,
             hovermode='closest',
             showlegend=False,
@@ -607,12 +607,11 @@ def exp_geography():
                 accesstoken=mapbox_access_token,
                 bearing=0,
                 center=dict(lat=lat_country,lon=lon_country),
-                pitch=0,
-                zoom=zoom_country,
+                pitch=0,zoom=zoom_country,
                 style='satellite-streets'), #'dark'
-        )
-        fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(fig3)
+                )
+        figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        st.write(figG1)
 #       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
 #       df4 = df3.sort_values(by=['Eponym'],ascending=True)
 #       Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
@@ -648,9 +647,8 @@ def exp_geography():
         if   options2 == " ":              lat_country  = 25.00;  lon_country  =  10.0; zoom_country = 0.18; markersize = 6; Screen_width =  590; Screen_height = 320
         if   options2 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  590; Screen_height = 320
 
-
-        fig3 = go.Figure()
-        fig3.add_trace(go.Scattermapbox(
+        figG2 = go.Figure()
+        figG2.add_trace(go.Scattermapbox(
                 lat=site_lat,
                 lon=site_lon,
                 mode='markers',
@@ -663,22 +661,19 @@ def exp_geography():
                 hoverinfo='text',
                 ))
 
-        fig3.update_layout(
+        figG2.update_layout(
                 autosize=True,
                 hovermode='closest',
                 showlegend=False,
                 width=Screen_width,
                 height=Screen_height,
-        mapbox=dict(
-                accesstoken=mapbox_access_token,
-                bearing=0,
-                center=dict(lat=lat_country,lon=lon_country),
+                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_country,lon=lon_country),
                 pitch=0,
                 zoom=zoom_country,
                 style='satellite-streets'), #'dark'
             )
-        fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(fig3)
+        figG2.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        st.write(figG2)
 #       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
 #       df4 = df3.sort_values(by=['Eponym'],ascending=True)
 #       Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
@@ -714,8 +709,8 @@ def exp_geography():
         if   options3 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 5; Screen_width =  700; Screen_height = 450
 
 
-        fig3 = go.Figure()
-        fig3.add_trace(go.Scattermapbox(
+        figG3 = go.Figure()
+        figG3.add_trace(go.Scattermapbox(
                 lat=site_lat,
                 lon=site_lon,
                 mode='markers',
@@ -728,21 +723,18 @@ def exp_geography():
                 hoverinfo='text',
                 ))
 
-        fig3.update_layout(
+        figG3.update_layout(
                 autosize=True,
                 hovermode='closest',
                 showlegend=False,
                 width=Screen_width,
                 height=Screen_height,
-        mapbox=dict(
-                accesstoken=mapbox_access_token,
-                bearing=0,
-                center=dict(lat=lat_country,lon=lon_country),
+                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_country,lon=lon_country),
                 pitch=0,
                 zoom=zoom_country,
                 style='satellite-streets'), #'dark'
             )
-        fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(fig3)
 #       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
 #       df4 = df3.sort_values(by=['Eponym'],ascending=True)
