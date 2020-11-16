@@ -547,7 +547,7 @@ def exp_geography():
                                  ])
 
 
-        Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
+        Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -562,16 +562,16 @@ def exp_geography():
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
         if   options1 == " ":              lat_country  = 40.00;  lon_country  =  0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
-        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18; Screen_width =  350; Screen_height = 480
-        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 18
-        if   options1 == "Paris":          lat_country  = 48.85;  lon_country  = 2.36; zoom_country = 10.40; markersize = 18
-        if   options1 == "World":          lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08; markersize = 12
-        if   options1 == "All":            lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08;  markersize = 12
-        if   options1 == "Europe":         lat_country  = 54.00;  lon_country  = 10.0; zoom_country =  2.85; markersize = 12
-        if   options1 == "Austria":        lat_country  = 47.20;  lon_country  = 13.4; zoom_country =  6.50; markersize = 16
-        if   options1 == "Denmark":        lat_country  = 56.00;  lon_country  =  9.8; zoom_country =  4.00; markersize = 16
-        if   options1 == "France":         lat_country  = 47.00;  lon_country  =  4.0; zoom_country =  4.50; markersize = 16
-        if   options1 == "Germany":        lat_country  = 51.25;  lon_country  = 10.5; zoom_country =  5.20; markersize = 16
+        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260
+        if   options1 == "london":         lat_country  = 51.52;  lon_country  = -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260 
+        if   options1 == "Paris":          lat_country  = 48.85;  lon_country  = 2.36; zoom_country = 10.40; markersize = 6; Screen_width =  350; Screen_height = 260
+        if   options1 == "World":          lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
+        if   options1 == "All":            lat_country  = 25.00;  lon_country  =  8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
+        if   options1 == "Europe":         lat_country  = 54.00;  lon_country  = 10.0; zoom_country =  2.85; markersize = 6; Screen_width =  350; Screen_height = 260
+        if   options1 == "Austria":        lat_country  = 47.20;  lon_country  = 13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "Denmark":        lat_country  = 56.00;  lon_country  =  9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "France":         lat_country  = 47.00;  lon_country  =  4.0; zoom_country =  4.50; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "Germany":        lat_country  = 51.25;  lon_country  = 10.5; zoom_country =  5.20; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "Ireland":        lat_country  = 53.50;  lon_country  = -6.2; zoom_country = 5.0; markersize = 16
         if   options1 == "Italy":          lat_country  = 41.50;  lon_country  = 14.0; zoom_country = 4.0; markersize = 16
         if   options1 == "Japan":          lat_country  = 37.40;  lon_country  = 135.0;zoom_country = 4.4; markersize = 16
@@ -622,7 +622,7 @@ def exp_geography():
         )
         fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(fig3)
-        st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+    #    st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
 
         df4 = df3.sort_values(by=['Eponym'],ascending=True)
         Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
@@ -630,8 +630,7 @@ def exp_geography():
 
 
     if ScreenSize == "Smartphone - landscape":
-        st.subheader('''Type in box for geographical location:''')
-        options1 = st.selectbox(' ', [" ",
+        options1 = st.selectbox('Choose Geographical Location:', [" ",
                                  "   ",
                                  "All",
                                  "Argentina",
@@ -643,7 +642,7 @@ def exp_geography():
                                  ])
 
 
-        Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
+        Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -705,8 +704,7 @@ def exp_geography():
 
 
     if ScreenSize == "Tablet / Laptop / Desktop":                
-        st.subheader('''Type in box for geographical location:''')
-        options1 = st.selectbox(' ', [" ",
+        options1 = st.selectbox('Choose Geographical Location', [" ",
                                  "   ",
                                  "All",
                                  "Argentina",
@@ -718,7 +716,7 @@ def exp_geography():
                                  ])
 
 
-        Year = st.slider('Use the red dot slider to travel back in time:', 1560, 2020, value=2020)
+        Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -765,7 +763,7 @@ def exp_geography():
             )
         fig3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(fig3)
-        st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
+ #       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
 
         df4 = df3.sort_values(by=['Eponym'],ascending=True)
         Geo_options = st.selectbox('', df4['Eponym_easy'].unique())
