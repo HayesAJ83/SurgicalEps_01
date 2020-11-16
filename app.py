@@ -557,7 +557,9 @@ def exp_geography():
         if portrait1 == "Ireland":        lat_1 = 53.50;  lon_1 =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
         if portrait1 == "Italy":          lat_1 = 41.50;  lon_1 =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
         if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "London":         lat_1 = 51.52;  lon_1 =  -0.1; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260
+        if portrait1 == "London":         lat_1 = 52.52;  lon_1 =  -0.1; zoom_country =   7.5; markersize = 9; Screen_width =  350; Screen_height = 260
+#       if portrait1 == "London":         lat_1 = 51.52;  lon_1 =  -0.1; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260
+
         if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
         if portrait1 == "New York City":  lat_1 = 40.80;  lon_1 = -73.9; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260
         if portrait1 == "North America":  lat_1 = 52.00;  lon_1 =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height = 260
