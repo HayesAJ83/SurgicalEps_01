@@ -563,32 +563,32 @@ def exp_geography():
 
         if   options1 == " ":              lat_country  = 40.00;  lon_country  =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
         if   options1 == "All":            lat_country  = 25.00;  lon_country  =   8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
-        if   options1 == "Argentina":      lat_country  =-40.00;  lon_country  = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height
+        if   options1 == "Argentina":      lat_country  =-40.00;  lon_country  = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "Austria":        lat_country  = 47.20;  lon_country  =  13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "Brazil":         lat_country  =-10.00;  lon_country  = -55.0; zoom_country =   3.0; markersize = 9; Screen_width =  350; Screen_height
-        if   options1 == "Canada":         lat_country  = 59.00;  lon_country  = -95.0; zoom_country =   2.5; markersize = 9; Screen_width =  350; Screen_height
-        if   options1 == "Chicago":        lat_country  = 42.00;  lon_country  = -88.0; zoom_country =   8.0; markersize = 9; Screen_width =  350; Screen_height
+        if   options1 == "Brazil":         lat_country  =-10.00;  lon_country  = -55.0; zoom_country =   3.0; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "Canada":         lat_country  = 59.00;  lon_country  = -95.0; zoom_country =   2.5; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "Chicago":        lat_country  = 42.00;  lon_country  = -88.0; zoom_country =   8.0; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Denmark":        lat_country  = 56.00;  lon_country  =   9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "Edinburgh":      lat_country  = 55.80;  lon_country  =  -3.2; zoom_country =   6.8; markersize = 9; Screen_width =  350; Screen_height
+        if   options1 == "Edinburgh":      lat_country  = 55.80;  lon_country  =  -3.2; zoom_country =   6.8; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Europe":         lat_country  = 54.00;  lon_country  =  10.0; zoom_country =  2.85; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "France":         lat_country  = 47.00;  lon_country  =   4.0; zoom_country =  4.50; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "Germany":        lat_country  = 51.25;  lon_country  =  10.5; zoom_country =  5.20; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "Hawaii":         lat_country  = 20.50;  lon_country  =-157.4; zoom_country =   6.1; markersize = 9; Screen_width =  350; Screen_height
-        if   options1 == "Ireland":        lat_country  = 53.50;  lon_country  =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height 
-        if   options1 == "Italy":          lat_country  = 41.50;  lon_country  =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height
-        if   options1 == "Japan":          lat_country  = 37.40;  lon_country  = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height
+        if   options1 == "Hawaii":         lat_country  = 20.50;  lon_country  =-157.4; zoom_country =   6.1; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "Ireland":        lat_country  = 53.50;  lon_country  =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
+        if   options1 == "Italy":          lat_country  = 41.50;  lon_country  =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "Japan":          lat_country  = 37.40;  lon_country  = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "london":         lat_country  = 51.52;  lon_country  =  -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "london ":        lat_country  = 51.52;  lon_country  =  -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260 
-        if   options1 == "Netherlands":    lat_country  = 52.00;  lon_country  =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height
-        if   options1 == "New York":       lat_country  = 40.80;  lon_country  = -73.9; zoom_country =   9.8; markersize = 9; Screen_width =  350; Screen_height
-        if   options1 == "North America":  lat_country  = 52.00;  lon_country  =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height
+        if   options1 == "Netherlands":    lat_country  = 52.00;  lon_country  =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "New York":       lat_country  = 40.80;  lon_country  = -73.9; zoom_country =   9.8; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "North America":  lat_country  = 52.00;  lon_country  =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "Paris":          lat_country  = 48.85;  lon_country  =  2.36; zoom_country = 10.40; markersize = 6; Screen_width =  350; Screen_height = 260
-        if   options1 == "Poland":         lat_country  = 52.00;  lon_country  =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height
-        if   options1 == "South America":  lat_country  =-28.00;  lon_country  = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height
-        if   options1 == "Sweden":         lat_country  = 62.50;  lon_country  =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height
-        if   options1 == "Switzerland":    lat_country  = 47.00;  lon_country  =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height
-        if   options1 == "UK":             lat_country  = 53.00;  lon_country  =  -3.2; zoom_country =   3.8; markersize = 9; Screen_width =  350; Screen_height
-        if   options1 == "USA":            lat_country  = 37.00;  lon_country  =  -113; zoom_country =   2.9; markersize = 8; Screen_width =  350; Screen_height
+        if   options1 == "Poland":         lat_country  = 52.00;  lon_country  =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "South America":  lat_country  =-28.00;  lon_country  = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260
+        if   options1 == "Sweden":         lat_country  = 62.50;  lon_country  =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "Switzerland":    lat_country  = 47.00;  lon_country  =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height = 260
+        if   options1 == "UK":             lat_country  = 53.00;  lon_country  =  -3.2; zoom_country =   3.8; markersize = 9; Screen_width =  350; Screen_height = 260
+        if   options1 == "USA":            lat_country  = 37.00;  lon_country  =  -113; zoom_country =   2.9; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "World":          lat_country  = 25.00;  lon_country  =   8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
        
         
