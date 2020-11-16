@@ -226,15 +226,7 @@ def exp_operation():
         """
         ,unsafe_allow_html=True,)
 
-    ScreenSize = st.selectbox('Screen size',
-                     options=['Smartphone - portrait',
-                              'Smartphone - landscape',
-                              'Tablet','13-inch','15-inch','27-inch'])
 
-    if   ScreenSize == "Smartphone - portrait":  Screen_width =  400; Screen_height = 600
-    if   ScreenSize == "Smartphone - landscape": Screen_width =  400; Screen_height = 600
-    if   ScreenSize == "15-inch":                Screen_width = 1100; Screen_height = 500
-    if   ScreenSize == "27-inch":                Screen_width = 1100; Screen_height = 500
     st.markdown("---")
 
     #Page
@@ -577,8 +569,7 @@ def exp_geography():
         if   options1 == "Ireland":        lat_country  = 53.50;  lon_country  =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
         if   options1 == "Italy":          lat_country  = 41.50;  lon_country  =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "Japan":          lat_country  = 37.40;  lon_country  = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
-        if   options1 == "london":         lat_country  = 51.52;  lon_country  =  -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260
-        if   options1 == "london ":        lat_country  = 51.52;  lon_country  =  -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260 
+        if   options1 == "London":         lat_country  = 51.52;  lon_country  =  -0.1; zoom_country =  9.80; markersize = 6; Screen_width =  350; Screen_height = 260
         if   options1 == "Netherlands":    lat_country  = 52.00;  lon_country  =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
         if   options1 == "New York":       lat_country  = 40.80;  lon_country  = -73.9; zoom_country =   9.8; markersize = 9; Screen_width =  350; Screen_height = 260
         if   options1 == "North America":  lat_country  = 52.00;  lon_country  =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height = 260
