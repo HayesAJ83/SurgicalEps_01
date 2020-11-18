@@ -677,7 +677,7 @@ def exp_geography():
                 lat=site_lat,lon=site_lon,mode='markers',
                 marker=go.scattermapbox.Marker(size=5,color='yellow',opacity=0.7),
                 text=text,hoverinfo='text'))
-            #figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+            figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
             figG1.update_layout(width=350,height=260,
                 mapbox=dict(accesstoken=mapbox_access_token, bearing=0,
                     center=dict(lat=40.00,lon=0.0),pitch=0,zoom=-0.45,
