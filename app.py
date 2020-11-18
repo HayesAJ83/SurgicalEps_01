@@ -668,21 +668,22 @@ def exp_geography():
         site_lon = time_df['Long_A1']           #df3['Long_A1']
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
-        figG1 = go.Figure()
+        
 
 #        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
 #        if portrait1 == " ":              lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
         if portrait1 == "All":
-            figG1.add_trace(go.Scattermapbox(
+            fig_SP_all = go.Figure()
+            fig_SP_all.add_trace(go.Scattermapbox(
                 lat=site_lat,lon=site_lon,mode='markers',
                 marker=go.scattermapbox.Marker(size=5,color='yellow',opacity=0.7),
                 text=text,hoverinfo='text'))
-            figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-            figG1.update_layout(width=350,height=260,
+            fig_SP_all.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+            fig_SP_all.update_layout(width=350,height=260,
                 mapbox=dict(accesstoken=mapbox_access_token, bearing=0,
                     center=dict(lat=40.00,lon=0.0),pitch=0,zoom=-0.45,
                     style='satellite-streets'))
-            st.write(figG1)
+            st.write(fig_SP_all)
 
 #        if portrait1 == "Argentina":      lat_1 =-40.00;  lon_1 = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Austria":        lat_1 = 47.20;  lon_1 =  13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
