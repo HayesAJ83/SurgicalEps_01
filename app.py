@@ -691,12 +691,11 @@ def exp_geography():
 #        if portrait1 == "Paris":          lat_1 = 48.86;  lon_1 =  2.35; zoom_country =  10.2; markersize = 9; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Poland":         lat_1 = 52.00;  lon_1 =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "South America":  lat_1 =-28.00;  lon_1 = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260
-#        if portrait1 == "Sweden":         lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260
+        if portrait1 == "Sweden":         lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Switzerland":    lat_1 = 47.00;  lon_1 =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "UK":             lat_1 = 54.40;  lon_1 =  -3.2; zoom_country =  3.55; markersize = 9; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "USA":            lat_1 = 39.00;  lon_1 =   -96; zoom_country =  2.05; markersize = 9; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "World":        lat_1 = 90.00;  lon_1 = 30.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
 
        
         figG1 = go.Figure()
