@@ -692,6 +692,7 @@ def exp_geography():
 #        if portrait1 == "Chicago":        lat_1 = 42.00;  lon_1 = -88.0; zoom_country =   8.0; markersize = 9; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Denmark":        lat_1 = 56.00;  lon_1 =   9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260
         if portrait1 == "Edinburgh":
+            figG1 = go.Figure()
             lat_1 = 55.94;  lon_1 =  -3.2; zoom_country =   9.0; markersize = 9
             figG1.add_trace(go.Scattermapbox(
                 lat=site_lat,lon=site_lon,mode='markers',
@@ -714,6 +715,7 @@ def exp_geography():
 #        if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
 
         if portrait1 == "London":
+            figG1 = go.Figure()
             figG1.add_trace(go.Scattermapbox(mode='markers',
                 marker=go.scattermapbox.Marker(size=9,color='yellow',opacity=0.7),
                 text=text,hoverinfo='text'))
@@ -726,6 +728,7 @@ def exp_geography():
 
 #        if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
         if portrait1 == "New York City":
+            figG1 = go.Figure()
             lat_1 = 40.80;  lon_1 = -73.9; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260;
             figG1.add_trace(go.Scattermapbox(
                 lat=site_lat,lon=site_lon,
@@ -749,6 +752,7 @@ def exp_geography():
 #        if portrait1 == "Poland":         lat_1 = 52.00;  lon_1 =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "South America":  lat_1 =-28.00;  lon_1 = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260
         if portrait1 == "Sweden":
+            figG1 = go.Figure()
             lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260;
             figG1.add_trace(go.Scattermapbox(
                 lat=site_lat,lon=site_lon,
