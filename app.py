@@ -700,6 +700,7 @@ def exp_geography():
                     accesstoken=mapbox_access_token, bearing=0,
                     center=dict(lat=lat_1,lon=lon_1),pitch=0,zoom=zoom_country,
                     style='satellite-streets'))
+            figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
             st.write(figG1)
 
 
@@ -712,22 +713,14 @@ def exp_geography():
 #        if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
 
         if portrait1 == "London":
-            lat_1 = 51.52;  lon_1 =  -0.1; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260;
-            figG1.add_trace(go.Scattermapbox(
-                lat=site_lat,lon=site_lon,
-                mode='markers',
-                marker=go.scattermapbox.Marker(
-                    size=markersize,color='yellow',
-                    opacity=0.7),
-                text=text,hoverinfo='text',
-                ))
-            figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-            figG1.update_layout(
-                width=Screen_width,height=Screen_height,
-                mapbox=dict(
-                    accesstoken=mapbox_access_token, bearing=0,
-                    center=dict(lat=lat_1,lon=lon_1),pitch=0,zoom=zoom_country,
+            figG1.add_trace(go.Scattermapbox(mode='markers',
+                marker=go.scattermapbox.Marker(size=9,color='yellow',opacity=0.7),
+                text=text,hoverinfo='text'))
+            figG1.update_layout(width=350,height=260,
+                mapbox=dict(accesstoken=mapbox_access_token, bearing=0,
+                    center=dict(lat=51.52,lon=-0.1),pitch=0,zoom=8.5,
                     style='satellite-streets'))
+            figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
             st.write(figG1)
 
 #        if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
