@@ -532,8 +532,8 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options2 == " ":              lat_2 = 25.00; lon_2 = 10.0; zoom_country = 0.18; markersize = 6; Screen_width =  590; Screen_height = 320
-        if   options2 == "london":         lat_2 = 51.52; lon_2 = -0.1; zoom_country = 9.80; markersize = 6; Screen_width =  590; Screen_height = 320
+#        if   options2 == " ":              lat_2 = 25.00; lon_2 = 10.0; zoom_country = 0.18; markersize = 6; Screen_width =  590; Screen_height = 320
+#        if   options2 == "london":         lat_2 = 51.52; lon_2 = -0.1; zoom_country = 9.80; markersize = 6; Screen_width =  590; Screen_height = 320
 
         figG2 = go.Figure()
         figG2.add_trace(go.Scattermapbox(
@@ -593,8 +593,8 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options3 == " ":              lat_country3  = 30.00;  lon_country3  =  10.0; zoom_country = 0.45; markersize = 6; Screen_width =  700; Screen_height = 450
-        if   options3 == "london":         lat_country3  = 51.52;  lon_country3  = -0.1; zoom_country =  9.80; markersize = 5; Screen_width =  700; Screen_height = 450
+#        if   options3 == " ":              lat_country3  = 30.00;  lon_country3  =  10.0; zoom_country = 0.45; markersize = 6; Screen_width =  700; Screen_height = 450
+#        if   options3 == "london":         lat_country3  = 51.52;  lon_country3  = -0.1; zoom_country =  9.80; markersize = 5; Screen_width =  700; Screen_height = 450
 
 
         figG3 = go.Figure()
@@ -667,34 +667,34 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if portrait1 == " ":              lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
-        if portrait1 == "All":            lat_1 = 25.00;  lon_1 =   8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Argentina":      lat_1 =-40.00;  lon_1 = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Austria":        lat_1 = 47.20;  lon_1 =  13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Brazil":         lat_1 =-10.00;  lon_1 = -55.0; zoom_country =   3.0; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Canada":         lat_1 = 59.00;  lon_1 = -97.0; zoom_country =   1.4; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Chicago":        lat_1 = 42.00;  lon_1 = -88.0; zoom_country =   8.0; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Denmark":        lat_1 = 56.00;  lon_1 =   9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Edinburgh":      lat_1 = 55.94;  lon_1 =  -3.2; zoom_country =   9.0; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Europe":         lat_1 = 54.00;  lon_1 =  10.0; zoom_country =  2.85; markersize = 6; Screen_width =  350; Screen_height = 260
-        if portrait1 == "France":         lat_1 = 47.00;  lon_1 =   4.0; zoom_country =  4.50; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Germany":        lat_1 = 51.25;  lon_1 =  10.2; zoom_country =  3.80; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Hawaii":         lat_1 = 20.50;  lon_1 =-157.4; zoom_country =   6.1; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Ireland":        lat_1 = 53.50;  lon_1 =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
-        if portrait1 == "Italy":          lat_1 = 41.50;  lon_1 =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "London":         lat_1 = 51.52;  lon_1 =  -0.1; zoom_country =   6.5; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "New York City":  lat_1 = 40.80;  lon_1 = -73.9; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "North America":  lat_1 = 52.00;  lon_1 =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Paris":          lat_1 = 48.86;  lon_1 =  2.35; zoom_country =  10.2; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Poland":         lat_1 = 52.00;  lon_1 =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "South America":  lat_1 =-28.00;  lon_1 = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Sweden":         lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "Switzerland":    lat_1 = 47.00;  lon_1 =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "UK":             lat_1 = 54.40;  lon_1 =  -3.2; zoom_country =  3.55; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "USA":            lat_1 = 39.00;  lon_1 =   -96; zoom_country =  2.05; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "World":          lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
+#        if portrait1 == " ":              lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "All":            lat_1 = 25.00;  lon_1 =   8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Argentina":      lat_1 =-40.00;  lon_1 = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Austria":        lat_1 = 47.20;  lon_1 =  13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Brazil":         lat_1 =-10.00;  lon_1 = -55.0; zoom_country =   3.0; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Canada":         lat_1 = 59.00;  lon_1 = -97.0; zoom_country =   1.4; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Chicago":        lat_1 = 42.00;  lon_1 = -88.0; zoom_country =   8.0; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Denmark":        lat_1 = 56.00;  lon_1 =   9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Edinburgh":      lat_1 = 55.94;  lon_1 =  -3.2; zoom_country =   9.0; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Europe":         lat_1 = 54.00;  lon_1 =  10.0; zoom_country =  2.85; markersize = 6; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "France":         lat_1 = 47.00;  lon_1 =   4.0; zoom_country =  4.50; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Germany":        lat_1 = 51.25;  lon_1 =  10.2; zoom_country =  3.80; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Hawaii":         lat_1 = 20.50;  lon_1 =-157.4; zoom_country =   6.1; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Ireland":        lat_1 = 53.50;  lon_1 =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
+#        if portrait1 == "Italy":          lat_1 = 41.50;  lon_1 =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
+        if portrait1 == "London":         lat_1 = 51.52;  lon_1 =  -0.1; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "New York City":  lat_1 = 40.80;  lon_1 = -73.9; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "North America":  lat_1 = 52.00;  lon_1 =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Paris":          lat_1 = 48.86;  lon_1 =  2.35; zoom_country =  10.2; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Poland":         lat_1 = 52.00;  lon_1 =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "South America":  lat_1 =-28.00;  lon_1 = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Sweden":         lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "Switzerland":    lat_1 = 47.00;  lon_1 =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "UK":             lat_1 = 54.40;  lon_1 =  -3.2; zoom_country =  3.55; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "USA":            lat_1 = 39.00;  lon_1 =   -96; zoom_country =  2.05; markersize = 9; Screen_width =  350; Screen_height = 260
+#        if portrait1 == "World":          lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
        
         figG1 = go.Figure()
         figG1.add_trace(go.Scattermapbox(
