@@ -683,7 +683,6 @@ def exp_geography():
 #        if portrait1 == "Ireland":        lat_1 = 53.50;  lon_1 =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260 
 #        if portrait1 == "Italy":          lat_1 = 41.50;  lon_1 =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
-        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
 
         if portrait1 == "London":         lat_1 = 51.52;  lon_1 =  -0.1; zoom_country =   8.5; markersize = 9; Screen_width =  350; Screen_height = 260;
 #        if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260
@@ -697,6 +696,8 @@ def exp_geography():
 #        if portrait1 == "UK":             lat_1 = 54.40;  lon_1 =  -3.2; zoom_country =  3.55; markersize = 9; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "USA":            lat_1 = 39.00;  lon_1 =   -96; zoom_country =  2.05; markersize = 9; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
+        if portrait1 == "World":        lat_1 = 90.00;  lon_1 = 30.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
+
        
         figG1 = go.Figure()
         figG1.add_trace(go.Scattermapbox(
