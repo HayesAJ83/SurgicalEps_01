@@ -710,20 +710,18 @@ def exp_geography():
                     opacity=0.7),
                 text=text,hoverinfo='text',
             ))
-       
+
+        figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         figG1.update_layout(
-            #autosize=True,
-            #hovermode='closest',
-            showlegend=False,
             width=Screen_width,height=Screen_height,
             mapbox=dict(
                 accesstoken=mapbox_access_token,
                 bearing=0,
-                center=dict(lat=lat_1,lon=lon_1),
+                center=go.layout.mapbox.Center(lat=lat_1,lon=lon_1),
+                #center=dict(lat=lat_1,lon=lon_1),
                 pitch=0,zoom=zoom_country,
                 style='satellite-streets'),
                 )
-        figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG1)
 #       st.write('''To **zoom in**: first click on the map then use **=** key. Use **-** key to pan out.''')
 #       df4 = df3.sort_values(by=['Eponym'],ascending=True)
