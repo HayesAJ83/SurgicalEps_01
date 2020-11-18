@@ -646,7 +646,7 @@ def exp_geography():
                                  "Hawaii",
                                  "Ireland","Italy",
                                  "Japan",
-                                 "London",
+                                 #"London",
                                  "Netherlands","New York City","North America",
                                  "Paris",
                                  "Poland",
@@ -684,7 +684,7 @@ def exp_geography():
             st.write(fig_SP_NYC)
 
 
-        elif portrait1 == "All":
+        if portrait1 == "All":
             fig_SP_all = go.Figure()
             fig_SP_all.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
                 marker=go.scattermapbox.Marker(size=5,color='yellow',opacity=0.7),text=text,hoverinfo='text'))
@@ -696,7 +696,7 @@ def exp_geography():
             st.write(fig_SP_all)
 
 
-        elif portrait1 == "Edinburgh":
+        if portrait1 == "Edinburgh":
             figG1 = go.Figure()
             lat_1 = 55.94;  lon_1 =  -3.2; zoom_country =   9.0; markersize = 9
             figG1.add_trace(go.Scattermapbox(
@@ -724,19 +724,19 @@ def exp_geography():
 #        if portrait1 == "Italy":          lat_1 = 41.50;  lon_1 =  14.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Japan":          lat_1 = 37.40;  lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260
 
-        elif portrait1 == "London":
-            fig_SP_Lon = go.Figure()
-            fig_SP_Lon.add_trace(go.Scattermapbox(mode='markers',
-                marker=go.scattermapbox.Marker(size=9,color='yellow',opacity=0.7),
-                text=text,hoverinfo='text'))
-            fig_SP_Lon.update_layout(width=350,height=260,
-                mapbox=dict(accesstoken=mapbox_access_token, bearing=0,
-                    center=dict(lat=51.52,lon=-0.1),pitch=0,zoom=8.5,style='satellite-streets'))
-            fig_SP_Lon.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-            st.write(fig_SP_Lon)
+#       elif portrait1 == "London":
+#            fig_SP_Lon = go.Figure()
+#            fig_SP_Lon.add_trace(go.Scattermapbox(mode='markers',
+#                marker=go.scattermapbox.Marker(size=9,color='yellow',opacity=0.7),
+#                text=text,hoverinfo='text'))
+#            fig_SP_Lon.update_layout(width=350,height=260,
+#                mapbox=dict(accesstoken=mapbox_access_token, bearing=0,
+#                    center=dict(lat=51.52,lon=-0.1),pitch=0,zoom=8.5,style='satellite-streets'))
+#            fig_SP_Lon.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+#            st.write(fig_SP_Lon)
 
 
-        elif portrait1 == "Sweden":
+        if portrait1 == "Sweden":
             figG1 = go.Figure()
             lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260;
             figG1.add_trace(go.Scattermapbox(
