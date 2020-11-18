@@ -633,7 +633,8 @@ def exp_geography():
 
     if ScreenSize == "Smartphone - portrait":
         portrait1 = st.selectbox('Choose Geographical Location:',
-                                [" ",
+                                ["World",
+                                 " ",
                                  "   ",
                                  "All","Argentina","Austria",
                                  "Brazil",
@@ -651,7 +652,7 @@ def exp_geography():
                                  "Poland",
                                  "South America","Sweden","Switzerland",
                                  "UK","United Kingdom","USA",
-                                 "World",
+                                #"World",
                                  ])
 
         Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
@@ -668,7 +669,8 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if portrait1 == " ":              lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
+        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
+#        if portrait1 == " ":              lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "All":            lat_1 = 25.00;  lon_1 =   8.0; zoom_country =  1.08; markersize = 6; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Argentina":      lat_1 =-40.00;  lon_1 = -65.0; zoom_country =   2.5; markersize = 6; Screen_width =  350; Screen_height = 260
 #        if portrait1 == "Austria":        lat_1 = 47.20;  lon_1 =  13.4; zoom_country =  6.50; markersize = 8; Screen_width =  350; Screen_height = 260
