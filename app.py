@@ -669,6 +669,17 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
+        figG1 = go.Figure()
+        figG1.add_trace(go.Scattermapbox(
+                lat=site_lat,lon=site_lon,
+                mode='markers',
+                marker=go.scattermapbox.Marker(
+                    size=markersize,color='yellow', #'rgb(255, 0, 0)',
+                    opacity=0.7),
+                text=text,hoverinfo='text',
+            ))
+
+
 #        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
 #        if portrait1 == " ":              lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260
         if portrait1 == "All":            lat_1 = 40.00;  lon_1 =   0.0; zoom_country =  -0.45; markersize = 5; Screen_width =  350; Screen_height = 260
@@ -701,19 +712,9 @@ def exp_geography():
 #        if portrait1 == "World":        lat_1 = 40.00;  lon_1 = 0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
 
        
-        figG1 = go.Figure()
-        figG1.add_trace(go.Scattermapbox(
-                lat=site_lat,lon=site_lon,
-                mode='markers',
-                marker=go.scattermapbox.Marker(
-                    size=markersize,color='yellow', #'rgb(255, 0, 0)',
-                    opacity=0.7),
-                text=text,hoverinfo='text',
-            ))
-
         figG1.update_layout(
-            autosize=True,
-            hovermode='closest',
+            #autosize=True,
+            #hovermode='closest',
             showlegend=False,
             width=Screen_width,height=Screen_height,
             mapbox=dict(
@@ -721,7 +722,7 @@ def exp_geography():
                 bearing=0,
                 center=dict(lat=lat_1,lon=lon_1),
                 pitch=0,zoom=zoom_country,
-                style='satellite-streets'), #'dark'
+                style='satellite-streets'),
                 )
         figG1.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG1)
