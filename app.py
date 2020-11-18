@@ -533,8 +533,8 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options2 == " ":              lat_2 = 25.00; lon_2 = 10.0; zoom_country = 0.18; markersize = 6; Screen_width =  590; Screen_height = 320
-        if   options2 == "London":         lat_2 = 51.52; lon_2 = -0.1; zoom_country = 9.80; markersize = 6; Screen_width =  590; Screen_height = 320
+        if   options2 == " ":              lat_2 = 25.00; lon_2 = 10.0; zoom_country = 0.18; markersize = 9; Screen_width =  590; Screen_height = 320
+        if   options2 == "London":         lat_2 = 51.52; lon_2 = -0.1; zoom_country = 9.80; markersize = 9; Screen_width =  590; Screen_height = 320
 
         figG2 = go.Figure()
         figG2.add_trace(go.Scattermapbox(
