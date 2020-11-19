@@ -549,15 +549,15 @@ def exp_geography():
         if   options2 == "Brazil":         lat_2 =-10.00; lon_2 = -55.0; zoom_country = 2.00; markersize = 6; Screen_width =  590; Screen_height = 310
         if   options2 == "Canada":         lat_2 = 61.00; lon_2 = -97.0; zoom_country = 1.50; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "Chicago":        lat_2 = 42.00; lon_2 = -88.0; zoom_country = 1.40; markersize = 6; Screen_width =  590; Screen_height = 310
-        if   options2 == "Denmark":        lat_2 = 56.00; lon_2 = 9.80; zoom_country = 1.40; markersize = 6; Screen_width =  590; Screen_height = 310
-        if   options2 == "Edinburgh":      lat_2 = 55.94; lon_2 = -3.2; zoom_country = 9.00; markersize = 9; Screen_width =  590; Screen_height = 310
+        if   options2 == "Denmark":        lat_2 = 56.00; lon_2 =  9.80; zoom_country = 1.40; markersize = 6; Screen_width =  590; Screen_height = 310
+        if   options2 == "Edinburgh":      lat_2 = 55.94; lon_2 =  -3.2; zoom_country = 9.00; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "Europe":         lat_2 = 54.00; lon_2 =  10.0; zoom_country = 2.25; markersize = 6; Screen_width =  590; Screen_height = 310
         if   options2 == "France":         lat_2 = 47.00; lon_2 =   4.0; zoom_country = 4.50; markersize = 8; Screen_width =  590; Screen_height = 310
         if   options2 == "Germany":        lat_2 = 51.25; lon_2 =  10.2; zoom_country = 3.82; markersize = 8; Screen_width =  590; Screen_height = 310
         if   options2 == "Hawaii":         lat_2 = 20.50; lon_2 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  590; Screen_height = 310
-        if   options2 == "Japan":          lat_2 = 37.4.50; lon_2 = 135.0; zoom_country = 4.40; markersize = 9; Screen_width =  590; Screen_height = 310
+        if   options2 == "Japan":          lat_2 = 37.40; lon_2 = 135.0; zoom_country = 4.40; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "London":         lat_2 = 51.52; lon_2 =  -0.1; zoom_country = 9.00; markersize =11; Screen_width =  590; Screen_height = 310
-        if   options2 == "New York City":  lat_2 = 40.8; lon_2 = -73.9.0; zoom_country = 7.00; markersize = 9; Screen_width =  590; Screen_height = 310
+        if   options2 == "New York City":  lat_2 = 40.80; lon_2 = -73.0; zoom_country = 7.00; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "UK":             lat_2 = 54.40; lon_2 =  -3.2; zoom_country = 3.55; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "United Kingdom": lat_2 = 54.40; lon_2 =  -3.2; zoom_country = 3.55; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "USA":            lat_2 = 39.00; lon_2 = -96.0; zoom_country = 2.05; markersize = 9; Screen_width =  590; Screen_height = 310
