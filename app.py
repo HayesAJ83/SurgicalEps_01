@@ -511,18 +511,23 @@ def exp_geography():
                                 [" ",
                                  "   ",
                                  "All",
-                                 "Argentina",
-                                 "Austria",
-                                 "Europe",
+                                 "Argentina","Austria",
+                                 "Brazil",
+                                 "Canada","Chicago",
+                                 "Denmark",
+                                 "Edinburgh","Europe",
                                  "Germany",
                                  "Hawaii",
+                                 "Ireland","Italy",
+                                 "Japan",
                                  "London",
+                                 "Netherlands","New York City","North America",
+                                 "Paris","Poland",
+                                 "South America","Sweden","Switzerland",
                                  "UK",
                                  "United Kingdom",
                                  "USA",
-                                 "World",
-                                 ])
-
+                                 "World"])
 
         Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -540,10 +545,13 @@ def exp_geography():
         if   options2 == " ":              lat_2 = 25.00; lon_2 =  10.0; zoom_country = 0.18; markersize = 7; Screen_width =  590; Screen_height = 310
         if   options2 == "Argentina":      lat_2 =-40.00; lon_2 = -65.0; zoom_country = 2.20; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "Austria":        lat_2 = 47.20; lon_2 =  13.4; zoom_country = 6.10; markersize =10; Screen_width =  590; Screen_height = 310
-        if   options2 == "Europe":         lat_2 = 54.00; lon_2 =  10.0; zoom_country = 2.85; markersize = 6; Screen_width =  590; Screen_height = 310
+        if   options2 == "Brazil":         lat_2 =-10.00; lon_2 = -55.0; zoom_country = 3.00; markersize = 6; Screen_width =  590; Screen_height = 310
+        if   options2 == "Canada":         lat_2 = 59.00; lon_2 = -97.0; zoom_country = 1.40; markersize = 9; Screen_width =  590; Screen_height = 310
+        if   options2 == "Chicago":        lat_2 = 42.00; lon_2 = -88.0; zoom_country = 1.40; markersize = 6; Screen_width =  590; Screen_height = 310
+        if   options2 == "Europe":         lat_2 = 54.00; lon_2 =  10.0; zoom_country = 2.25; markersize = 6; Screen_width =  590; Screen_height = 310
         if   options2 == "France":         lat_2 = 47.00; lon_2 =   4.0; zoom_country = 4.50; markersize = 8; Screen_width =  590; Screen_height = 310
-        if   options2 == "Germany":        lat_2 = 51.25; lon_2 =  10.2; zoom_country = 3.80; markersize = 8; Screen_width =  590; Screen_height = 310
-        if   options2 == "Hawaii":         lat_2 = 20.50; lon_2 =-157.4; zoom_country = 6.10; markersize = 9; Screen_width =  590; Screen_height = 310
+        if   options2 == "Germany":        lat_2 = 51.25; lon_2 =  10.2; zoom_country = 3.82; markersize = 8; Screen_width =  590; Screen_height = 310
+        if   options2 == "Hawaii":         lat_2 = 20.50; lon_2 =-157.3; zoom_country = 6.00; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "London":         lat_2 = 51.52; lon_2 =  -0.1; zoom_country = 9.00; markersize =11; Screen_width =  590; Screen_height = 310
         if   options2 == "UK":             lat_2 = 54.40; lon_2 =  -3.2; zoom_country = 3.55; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options2 == "United Kingdom": lat_2 = 54.40; lon_2 =  -3.2; zoom_country = 3.55; markersize = 9; Screen_width =  590; Screen_height = 310
