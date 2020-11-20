@@ -650,7 +650,7 @@ def exp_geography():
         if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -95.0; zoom_country = 1.80; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Edinburgh":      lat_3 = 55.94; lon_3 =  -3.2; zoom_country = 9.10; markersize = 9; Screen_width =  700; Screen_height = 450
-        if   options3 == "England":        lat_3 = 54.00; lon_3 =  -3.2; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 450
+        if   options3 == "England":        lat_3 = 53.90; lon_3 =  -3.2; zoom_country = 5.10; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.40; markersize = 6; Screen_width =  700; Screen_height = 450
         if   options3 == "France":         lat_3 = 47.00; lon_3 =   4.0; zoom_country = 4.10; markersize = 8; Screen_width =  700; Screen_height = 450
         if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 3.95; markersize = 8; Screen_width =  700; Screen_height = 450
@@ -666,8 +666,8 @@ def exp_geography():
         if   options3 == "South America":  lat_3 =-21.50; lon_3 = -65.0; zoom_country = 1.82; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Sweden":         lat_3 = 62.80; lon_3 =  18.5; zoom_country =  3.1; markersize = 8; Screen_width =  700; Screen_height = 450
         if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  5.7; markersize = 8; Screen_width =  700; Screen_height = 450
-        if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 3.70; markersize = 9; Screen_width =  700; Screen_height = 450
-        if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 3.70; markersize = 9; Screen_width =  700; Screen_height = 450
+        if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 3.90; markersize = 9; Screen_width =  700; Screen_height = 450
+        if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 3.90; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "World":          lat_3 = 34.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 6; Screen_width =  700; Screen_height = 450
                
