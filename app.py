@@ -656,7 +656,7 @@ def exp_geography():
         if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Japan":          lat_3 = 37.70; lon_3 = 135.5; zoom_country = 3.45; markersize = 9; Screen_width =  700; Screen_height = 450
-        if   options3 == "London":         lat_3 = 51.56; lon_3 =  -0.1; zoom_country = 8.80; markersize =11; Screen_width =  700; Screen_height = 450
+        if   options3 == "London":         lat_3 = 51.50; lon_3 =  -0.1; zoom_country = 8.80; markersize =11; Screen_width =  700; Screen_height = 450
         if   options3 == "Netherlands":    lat_3 = 52.00; lon_3 =   5.0; zoom_country =  4.8; markersize = 8; Screen_width =  700; Screen_height = 450
         if   options3 == "New York City":  lat_3 = 40.80; lon_3 = -73.9; zoom_country = 7.80; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "North America":  lat_3 = 52.00; lon_3 =  -100; zoom_country =  1.8; markersize = 9; Screen_width =  700; Screen_height = 450
