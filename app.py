@@ -650,9 +650,9 @@ def exp_geography():
         if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -92.0; zoom_country = 1.88; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Edinburgh":      lat_3 = 55.90; lon_3 =  -3.2; zoom_country = 9.10; markersize = 9; Screen_width =  700; Screen_height = 450
-        if   options3 == "England":        lat_3 = 53.00; lon_3 =  -3.5; zoom_country = 4.85; markersize = 9; Screen_width =  700; Screen_height = 450
+        if   options3 == "England":        lat_3 = 53.00; lon_3 =  -3.5; zoom_country = 4.98; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 6; Screen_width =  700; Screen_height = 450
-        if   options3 == "France":         lat_3 = 47.00; lon_3 =   4.0; zoom_country = 4.20; markersize = 8; Screen_width =  700; Screen_height = 450
+        if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize = 8; Screen_width =  700; Screen_height = 450
         if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.20; markersize = 8; Screen_width =  700; Screen_height = 450
         if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 450
         if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  700; Screen_height = 450
