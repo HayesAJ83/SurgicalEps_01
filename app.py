@@ -665,7 +665,7 @@ def exp_geography():
         if   options3 == "UK":             lat_3 = 54.40; lon_3 =  -3.2; zoom_country = 3.55; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options3 == "United Kingdom": lat_3 = 54.40; lon_3 =  -3.2; zoom_country = 3.55; markersize = 9; Screen_width =  590; Screen_height = 310
         if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize = 9; Screen_width =  590; Screen_height = 310
-        if   options3 == "World":          lat_3 = 30.00; lon_3 =  10.0; zoom_country = 0.26; markersize = 6; Screen_width =  700; Screen_height = 450
+        if   options3 == "World":          lat_3 = 33.00; lon_3 =  10.0; zoom_country = 0.40; markersize = 6; Screen_width =  700; Screen_height = 450
                
 
         figG3 = go.Figure()
