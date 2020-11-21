@@ -505,25 +505,15 @@ def exp_geography():
 
     if ScreenSize == "Smartphone":
         portrait1 = st.selectbox('Choose Geographical Location:',
-                                ["World",
-                                 "  ",
-                                 "Argentina","Austria",
-                                 "Brazil",
-                                 "Canada","Chicago",
-                                 "Denmark",
-                                 "Edinburgh","England","Europe",
-                                 "France",
-                                 "Germany",
-                                 "Hawaii",
-                                 "Ireland","Italy",
-                                 "Japan",
-                                 "London",
+                                ["World","  ",
+                                 "Argentina","Austria","Brazil","Canada",
+                                 "Denmark","Edinburgh","England","Europe",
+                                 "France","Germany","Hawaii",
+                                 "Ireland","Italy","Japan","London",
                                  "Netherlands","New York City","North America",
-                                 "Paris",
-                                 "Poland",
+                                 "Paris","Poland",
                                  "South America","Sweden","Switzerland",
-                                 "UK","United Kingdom","USA"
-                                 ])
+                                 "UK","United Kingdom","USA"])
 
         Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -579,30 +569,17 @@ def exp_geography():
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
 
-
     if ScreenSize == "Desktop / Laptop / Tablet":                
         options3 = st.selectbox('Choose Geographical Location',
-                                ["World",
-                                 " ",
-                                 "  ",
-                                 "Argentina","Austria",
-                                 "Brazil",
-                                 "Canada",
-                                 "Denmark",
-                                 "Edinburgh","England",
-                                 "Europe",
-                                 "France",
-                                 "Germany",
-                                 "Hawaii",
-                                 "Ireland","Italy",
-                                 "Japan",
-                                 "London",
+                                ["World"," ","  ",
+                                 "Argentina","Austria","Brazil","Canada",
+                                 "Denmark","Edinburgh","England","Europe",
+                                 "France","Germany","Hawaii",
+                                 "Ireland","Italy","Japan","London",
                                  "Netherlands","New York City","North America",
                                  "Paris","Poland",
                                  "South America","Sweden","Switzerland",
-                                 "UK",
-                                 "United Kingdom",
-                                 "USA",])
+                                 "UK","United Kingdom","USA",])
 
         Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -653,21 +630,56 @@ def exp_geography():
                     size=markersize,color='yellow',opacity=0.7),
                 text=text,hoverinfo='text',
                 ))
-
         figG3.update_layout(
                 autosize=True,hovermode='closest',showlegend=False,
                 width=Screen_width,height=Screen_height,
                 mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_3,lon=lon_3),
                 pitch=5,zoom=zoom_country,
-                style='satellite-streets'), #'dark'
-            )
+                style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
 
+        #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor',
+        #'basic', 'streets','outdoors', 'light', 'dark','satellite', 'satellite-streets'
 
-#'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor', 'basic', 'streets',
-    #'outdoors', 'light', 'dark',
-    #'satellite', 'satellite-streets'
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Journals (5)                                                                                 #
+# ::: Handles                                                                                  #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def exp_journals():
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {height:350px}
+        </style>
+        """
+        ,
+        unsafe_allow_html=True,
+    )
+    #st.markdown('''[Advert space for Google AdSense4]''')
+    st.subheader('''Select a journal to explore related eponyms:''')
+    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
+    st.sidebar.markdown("---")
+
+    url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
+    dfY1 = url_J.dropna()
+    dfY1["JOURNALS"] = "JOURNALS"
+    figZ = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
+                      values='Log10 Google hits',
+                      color='Log2 Google hits',
+                      hover_data=['eponym'],
+                      color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+                      width=1000, height=900,
+                    )
+    figZ.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+    figZ.update_traces(hovertemplate=None, hoverinfo='skip')
+    st.write(figZ)
+
+
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
