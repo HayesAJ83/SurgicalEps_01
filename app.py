@@ -665,8 +665,7 @@ def exp_journals():
     st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
     st.sidebar.markdown("---")
 
-    url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-    dfY1 = url_J.dropna()
+    dfY1 = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
     dfY1["JOURNALS"] = "JOURNALS"
     figZ = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
                       values='Log10 Google hits',
