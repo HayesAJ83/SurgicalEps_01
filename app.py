@@ -663,7 +663,6 @@ def exp_journals():
     #st.markdown('''[Advert space for Google AdSense4]''')
     st.subheader('''Select a journal to explore related eponyms:''')
     st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
-    st.sidebar.markdown("---")
 
     url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
     dfY = pd.read_csv(url_J)
@@ -674,8 +673,7 @@ def exp_journals():
                       color='Log2 Google hits',
                       hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                      width=1000, height=900,
-                    )
+                      width=800, height=600)
     figZ.update_layout(margin=dict(l=0, r=0, t=0, b=0))
     figZ.update_traces(hovertemplate=None, hoverinfo='skip')
     st.write(figZ)
