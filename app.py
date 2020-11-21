@@ -658,9 +658,13 @@ def exp_journals():
         </style>
         """
         ,
-        unsafe_allow_html=True,
-    )
+        unsafe_allow_html=True)
+
     #st.markdown('''[Advert space for Google AdSense4]''')
+    ScreenSize = st.radio('Select Screen Size:',
+                     options=['Smartphone',
+                              'Desktop / Laptop / Tablet'])
+
     st.subheader('''Select a journal to explore related eponyms:''')
     st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
 
@@ -668,16 +672,28 @@ def exp_journals():
     dfY = pd.read_csv(url_J)
     dfY1 = dfY.dropna()
     dfY1["JOURNALS"] = "JOURNALS"
-    figZ = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
+
+    if ScreenSize == "Smartphone":
+        figJSP = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
+                      values='Log10 Google hits',
+                      color='Log2 Google hits',
+                      hover_data=['eponym'],
+                      color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+                      width=400, height=300)
+        figJSP.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+        figJSP.update_traces(hovertemplate=None, hoverinfo='skip')
+        st.write(figJSP)
+
+    if ScreenSize == "Desktop / Laptop / Tablet":
+        figJDLT = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
                       values='Log10 Google hits',
                       color='Log2 Google hits',
                       hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       width=800, height=600)
-    figZ.update_layout(margin=dict(l=0, r=0, t=0, b=0))
-    figZ.update_traces(hovertemplate=None, hoverinfo='skip')
-    st.write(figZ)
-
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+        figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
+        st.write(figJDLT)
 
 
 #----------------------------------------------------------------------------------------------#
