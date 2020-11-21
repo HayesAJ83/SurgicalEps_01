@@ -226,9 +226,6 @@ def exp_operation():
         """
         ,unsafe_allow_html=True,)
 
-
-    st.markdown("---")
-
     #Page
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
@@ -299,17 +296,8 @@ def exp_operation():
 
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
-    ScreenSize = st.selectbox('Screen size',
-                     options=['Smartphone - portrait','Smartphone - landscape',
-                              'Tablet / Laptop / Desktop'])
-
-    if   ScreenSize == "Smartphone - portrait":  Screen_width =  400; Screen_height = 600
-    if   ScreenSize == "Smartphone - landscape": Screen_width = 1100; Screen_height = 500
-    st.markdown("---")
     
     st.subheader('''First, Select Type:''')
-#    st.sidebar.markdown("---")
-    
     types = st.selectbox(""" """,
                             ["Anatomical structures",
                              "Clinical scores",
@@ -501,7 +489,7 @@ def exp_geography():
 #   st.markdown('''[Advert space for Google AdSense3]''')
     ScreenSize = st.radio('Select Screen Size:',
                      options=['Smartphone',
-                              'Desktop / Laptop / Tablet',])
+                              'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
         portrait1 = st.selectbox('Choose Geographical Location:',
@@ -663,7 +651,7 @@ def exp_journals():
     #st.markdown('''[Advert space for Google AdSense4]''')
     ScreenSize = st.radio('Select Screen Size:',
                      options=['Smartphone',
-                              'Desktop / Laptop / Tablet'])
+                              'Desktop / Laptop / Tablet'],index=0)
 
     st.subheader('''Select a journal to explore related eponyms:''')
     st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
@@ -675,9 +663,7 @@ def exp_journals():
 
     if ScreenSize == "Smartphone":
         figJSP = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
-                      values='Log10 Google hits',
-                      color='Log2 Google hits',
-                      hover_data=['eponym'],
+                      values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       width=400, height=300)
         figJSP.update_layout(margin=dict(l=0, r=0, t=0, b=0))
@@ -686,11 +672,9 @@ def exp_journals():
 
     if ScreenSize == "Desktop / Laptop / Tablet":
         figJDLT = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
-                      values='Log10 Google hits',
-                      color='Log2 Google hits',
-                      hover_data=['eponym'],
+                      values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                      width=800, height=600)
+                      width=750, height=550)
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
         figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
         st.write(figJDLT)
