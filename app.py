@@ -329,7 +329,7 @@ def show_anatomical():
     st.markdown(
         """
         <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:450px;}
+        div[role="listbox"] ul {height:700px;}
         </style>
         """
         ,unsafe_allow_html=True,)
