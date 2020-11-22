@@ -352,7 +352,8 @@ def show_scores():
 
 #3
 def show_signs():
-    df = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv')
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     Sign_df = df[(df['Type'].str.match('Signs'))]
     if not Sign_df['Type'].isnull().all():
         Table = ff.create_table(Sign_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
@@ -365,10 +366,10 @@ def show_signs():
     Sign_options2 = st.selectbox('', Sign_df['Eponym'].unique())
     Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
 
-
 #4
 def show_opNames():
-    df = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv')
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     OpName_df = df[(df['Type'].str.match('Operations'))]
     if not OpName_df['Type'].isnull().all():
         Table = ff.create_table(OpName_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
@@ -382,6 +383,25 @@ def show_opNames():
     OpName_options2 = st.selectbox('', OpName_df['Eponym'].unique())
     OpName_options2_info = OpName_df[OpName_df['Eponym'].str.match(OpName_options2)]
 
+
+#5
+def show_path():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Path_df = df[(df['Type'].str.match('Pathology'))]
+    if not Path_df['Type'].isnull().all():
+        Table = ff.create_table(Path_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+
+
+    st.subheader('''Then, choose from pathological condition, classification, rule or score:''')
+    Paths_options2 = st.selectbox('', Path_df['Eponym'].unique())
+    Paths_options2_info = Path_df[Path_df['Eponym'].str.match(Paths_options2)]
 
 
 
