@@ -556,7 +556,7 @@ def exp_geography():
                 pitch=5,zoom=zoom_country,style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
-        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map. Consider changing to another web browser, such Firefox.''')
+        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map.''')
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
         options3 = st.selectbox('Choose Geographical Location',
@@ -627,7 +627,7 @@ def exp_geography():
                 style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
-        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map. Consider changing to another web browser, such Firefox.''')
+        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map.''')
 
         #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor',
         #'basic', 'streets','outdoors', 'light', 'dark','satellite', 'satellite-streets'
