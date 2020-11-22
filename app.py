@@ -141,9 +141,6 @@ def exp_about():
         ,
         unsafe_allow_html=True)
 
-
-
-
     #Page
     st.write('''_UNDER CONSTRUCTION_''')
     st.markdown('''# SurgicalEps''')
@@ -297,7 +294,7 @@ def exp_operation():
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
     
-    st.subheader('''First, Select Type:''')
+    st.subheader('''First, select type:''')
     types = st.selectbox(""" """,
                             ["Anatomical structures",
                              "Clinical scores",
@@ -325,15 +322,6 @@ def exp_type():
 
 #1
 def show_anatomical():
-
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:700px;}
-        </style>
-        """
-        ,unsafe_allow_html=True,)
-
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df.rename(columns={"Eponym": "Eponym_OLD", "Eponym_easy": "Eponym"})
@@ -346,35 +334,12 @@ def show_anatomical():
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
  
-    st.subheader('''Then, search list of named anatomical structures:''')
+    st.subheader('''Then, search list of named structures:''')
     Anat_options2 = st.selectbox('', Anat_df['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
     Anat_options2_info = Anat_df[Anat_df['Eponym'].str.match(Anat_options2)]
 
-
-
 #2
 def show_scores():
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:430px}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        .hovertext text {
-        font-size: 20px !important;}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,
-    )
-
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     Scores_df = df[(df['Type'].str.match('Scores'))]
@@ -385,6 +350,24 @@ def show_scores():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Then, search list of clinical scores:''')
+    Scores_options2 = st.selectbox('', Scores_df['Eponym'].unique())
+    Scores_options2_info = df2[df2['Eponym'].str.match(Scores_options2)]
+
+#3
+def show_signs():
+    df = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv')
+    Sign_df = df[(df['Type'].str.match('Signs'))]
+    if not Sign_df['Type'].isnull().all():
+        Table = ff.create_table(Sign_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Then, search list of clinical signs:''')
+    Sign_options2 = st.selectbox('', Sign_df['Eponym'].unique())
+    Sign_options2_info = df2[df2['Eponym'].str.match(Sign_options2)]
 
 
 #----------------------------------------------------------------------------------------------#
