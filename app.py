@@ -93,7 +93,7 @@ def show_the_app_team():
 def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
-                                ["About This App",
+                                ["About this App",
                                  "By Operation",
                                  "Type of Eponym",
                                  "Geographical",
@@ -102,7 +102,7 @@ def show_explore():
                                  "Time Travel",
                                  "Exam Favourites",
                                  ])
-    if   exp == "About This App":           exp_about()             #1
+    if   exp == "About this App":           exp_about()             #1
     elif exp == "By Operation":             exp_operation()         #2
     elif exp == "Type of Eponym":           exp_type()              #3
     elif exp == "Geographical":             exp_geography()         #4         
@@ -201,7 +201,6 @@ def exp_about():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 
-
 def exp_operation():
     st.markdown(
         """
@@ -293,10 +292,8 @@ def exp_operation():
 
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
-    
     st.subheader('''First, select type:''')
-    types = st.selectbox(""" """,
-                            ["Anatomical structures",
+    types = st.selectbox('',["Anatomical structures",
                              "Clinical scores",
                              "Clinical signs",
                              "Operations",
@@ -318,7 +315,6 @@ def exp_type():
     elif types == "Surgical incisions":                 show_cuts()             #8
     elif types == "Surgical instruments":               show_instruments()      #9
     elif types == "Surgical maneuvers & techniques":    show_maneuvers()        #10
-
 
 #1
 def show_anatomical():
@@ -352,7 +348,7 @@ def show_scores():
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
     st.subheader('''Then, search list of clinical scores:''')
     Scores_options2 = st.selectbox('', Scores_df['Eponym'].unique())
-    Scores_options2_info = df2[df2['Eponym'].str.match(Scores_options2)]
+    Scores_options2_info = Scores_df[Scores_df['Eponym'].str.match(Scores_options2)]
 
 #3
 def show_signs():
@@ -367,7 +363,26 @@ def show_signs():
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
     st.subheader('''Then, search list of clinical signs:''')
     Sign_options2 = st.selectbox('', Sign_df['Eponym'].unique())
-    Sign_options2_info = df2[df2['Eponym'].str.match(Sign_options2)]
+    Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
+
+
+#4
+def show_opNames():
+    df = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite.csv')
+    OpName_df = df[(df['Type'].str.match('Operations'))]
+    if not OpName_df['Type'].isnull().all():
+        Table = ff.create_table(OpName_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation',
+                    'GxP', 'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type',
+                    'Journal','History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Then, search list of named operations:''')
+    OpName_options2 = st.selectbox('', OpName_df['Eponym'].unique())
+    OpName_options2_info = OpName_df[OpName_df['Eponym'].str.match(OpName_options2)]
+
+
 
 
 #----------------------------------------------------------------------------------------------#
