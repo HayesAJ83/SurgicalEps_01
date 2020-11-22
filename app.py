@@ -556,6 +556,7 @@ def exp_geography():
                 pitch=5,zoom=zoom_country,style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
+        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map. Consider changing to another web browser, such Firefox.''')
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
         options3 = st.selectbox('Choose Geographical Location',
@@ -604,7 +605,7 @@ def exp_geography():
         if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  700; Screen_height = 440
         if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  700; Screen_height = 440
         if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Sweden":         lat_3 = 62.80; lon_3 =  18.5; zoom_country =  3.1; markersize =11; Screen_width =  700; Screen_height = 440
+        if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.15; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
         if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
@@ -626,6 +627,7 @@ def exp_geography():
                 style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
+        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map. Consider changing to another web browser, such Firefox.''')
 
         #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor',
         #'basic', 'streets','outdoors', 'light', 'dark','satellite', 'satellite-streets'
