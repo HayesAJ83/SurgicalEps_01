@@ -325,17 +325,14 @@ def exp_type():
 
 #1
 def show_anatomical():
-    
+
     st.markdown(
         """
         <style type="text/css" media="screen">
-        .hovertext text {
-        font-size: 16px !important;}
+        div[role="listbox"] ul {height:450px;}
         </style>
         """
-        ,
-        unsafe_allow_html=True,
-    )
+        ,unsafe_allow_html=True,)
 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -348,86 +345,7 @@ def show_anatomical():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-
-    worldMap = st.checkbox('''Show on world map - Smartphone''', value=False)
-    if worldMap:
-        Year = st.slider('Time traveler function - Year:', 1560, 2020, value=2020)
-#       mapbox_access_token = open('https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/ajhayes83_1mapbox_token.txt').read()  
-        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
-        dfT = Anat_df.sort_values(by=['Year'],ascending=True)
-        time_df = Anat_df.loc[Anat_df['Year'] <= Year]
-        site_lat = time_df['Lat_A1']                           
-        site_lon = time_df['Long_A1']           
-        text = time_df['Eponym'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
-        locations_name = time_df['Eponym']
-        fig = go.Figure()
-        fig.add_trace(go.Scattermapbox(
-                lat=site_lat,lon=site_lon,
-                mode='markers',
-                marker=go.scattermapbox.Marker(
-                    color='yellow',
-                    opacity=0.7,
-                    size=5,
-                ),
-                text=text,
-            hoverinfo='text'
-            ))
-        fig.update_layout(
-            autosize=True,
-            hovermode='closest',
-            showlegend=False,
-            width=345,
-            height=230,
-            mapbox=dict(
-                accesstoken=mapbox_access_token,
-                bearing=0,
-                center=dict(lat=35,lon=8),
-                pitch=0,
-                zoom=-0.50,
-                style='dark'),
-            )
-        fig.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(fig)
-
-    worldMap1 = st.checkbox('''Show on world map - Widescreen''', value=False)
-    if worldMap1:
-        Year = st.slider('Time traveler function - Year:', 1560, 2020, value=2020)
-#       mapbox_access_token = open('https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/ajhayes83_1mapbox_token.txt').read()  
-        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
-        dfT = Anat_df.sort_values(by=['Year'],ascending=True)
-        time_df = Anat_df.loc[Anat_df['Year'] <= Year]
-        site_lat = time_df['Lat_A1']                           
-        site_lon = time_df['Long_A1']           
-        text = time_df['Eponym'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
-        locations_name = time_df['Eponym']
-        fig = go.Figure()
-        fig.add_trace(go.Scattermapbox(
-                lat=site_lat,lon=site_lon,
-                mode='markers',
-                marker=go.scattermapbox.Marker(
-                    color='yellow',
-                    opacity=0.7,
-                    size=12,
-                ),
-                text=text,
-            hoverinfo='text'
-            ))
-        fig.update_layout(
-            autosize=True,
-            hovermode='closest',
-            showlegend=False,
-            width=700,
-            height=400,
-            mapbox=dict(
-                accesstoken=mapbox_access_token,
-                bearing=0,
-                center=dict(lat=25,lon=8),
-                pitch=0,
-                zoom=0.90,
-                style='dark'),
-            )
-        fig.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(fig) 
+ 
     st.subheader('''Then, search list of named anatomical structures:''')
     Anat_options2 = st.selectbox('', Anat_df['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
     Anat_options2_info = Anat_df[Anat_df['Eponym'].str.match(Anat_options2)]
