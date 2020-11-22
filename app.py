@@ -430,7 +430,7 @@ def show_trials():
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
     st.subheader('''Then, search list of research trials:''')
     Trial_options2 = st.selectbox('', Trial_df['Eponym'].unique())
-    Trial_options2_info = Trial_df[Trial_dfTrial_df['Eponym'].str.match(Trial_options2)]
+    Trial_options2_info = Trial_df[Trial_df['Eponym'].str.match(Trial_options2)]
 
 #8
 def show_cuts():
@@ -482,7 +482,7 @@ def show_maneuvers():
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
     st.subheader('''Choose from list of surgical maneuvers or techniques:''')
     Maneuv_options2 = st.selectbox('', Maneuv_df['Eponym'].unique())
-    Maneuv_options2_info = Maneuv_dfManeuv_df[Maneuv_df['Eponym'].str.match(Maneuv_options2)]
+    Maneuv_options2_info = Maneuv_df[Maneuv_df['Eponym'].str.match(Maneuv_options2)]
 
 
 #----------------------------------------------------------------------------------------------#
