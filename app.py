@@ -329,7 +329,6 @@ def show_anatomical():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
- 
     st.subheader('''Then, search list of named structures:''')
     Anat_options2 = st.selectbox('', Anat_df['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
     Anat_options2_info = Anat_df[Anat_df['Eponym'].str.match(Anat_options2)]
@@ -383,7 +382,6 @@ def show_opNames():
     OpName_options2 = st.selectbox('', OpName_df['Eponym'].unique())
     OpName_options2_info = OpName_df[OpName_df['Eponym'].str.match(OpName_options2)]
 
-
 #5
 def show_path():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -397,12 +395,94 @@ def show_path():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-
-
     st.subheader('''Then, choose from pathological condition, classification, rule or score:''')
     Paths_options2 = st.selectbox('', Path_df['Eponym'].unique())
     Paths_options2_info = Path_df[Path_df['Eponym'].str.match(Paths_options2)]
 
+#6
+def show_positions():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Positions_df = df[(df['Type'].str.match('Positions'))]
+    if not Positions_df['Type'].isnull().all():
+        Table = ff.create_table(Positions_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Choose named patient position:''')
+    Positions_options2 = st.selectbox('', Positions_df['Eponym'].unique())
+    Positions_options2_info = Positions_df[Positions_df['Eponym'].str.match(Positions_options2)]
+
+#7
+def show_trials():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Trial_df = df[(df['Type'].str.match('Trials'))]
+    if not Trial_df['Type'].isnull().all():
+        Table = ff.create_table(Trial_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Then, search list of research trials:''')
+    Trial_options2 = st.selectbox('', Trial_df['Eponym'].unique())
+    Trial_options2_info = Trial_df[Trial_dfTrial_df['Eponym'].str.match(Trial_options2)]
+
+#8
+def show_cuts():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Cuts_df = df[(df['Type'].str.match('Incisions'))]
+    if not Cuts_df['Type'].isnull().all():
+        Table = ff.create_table(Cuts_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Choose from list of incisions:''')
+    Cuts_options2 = st.selectbox('', Cuts_df['Eponym'].unique())
+    Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
+
+#9    
+def show_instruments():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Instrum_df = df[(df['Type'].str.match('Instruments'))]
+    if not Instrum_df['Type'].isnull().all():
+        Table = ff.create_table(Instrum_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Choose from list of surgical instruments:''')
+    Instrum_options2 = st.selectbox('', Instrum_df['Eponym'].unique())
+    Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
+
+
+#10
+def show_maneuvers():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Maneuv_df = df[(df['Type'].str.match('Surgical Maneuvers & Techniques'))]
+    if not Maneuv_df['Type'].isnull().all():
+        Table = ff.create_table(Maneuv_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    st.subheader('''Choose from list of surgical maneuvers or techniques:''')
+    Maneuv_options2 = st.selectbox('', Maneuv_df['Eponym'].unique())
+    Maneuv_options2_info = Maneuv_dfManeuv_df[Maneuv_df['Eponym'].str.match(Maneuv_options2)]
 
 
 #----------------------------------------------------------------------------------------------#
