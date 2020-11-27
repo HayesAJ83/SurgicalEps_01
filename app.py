@@ -678,13 +678,14 @@ def exp_journals():
         jrnls = st.multiselect('Select from journals:',options=list(U))
         new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-        #st.write(new_jrnls2)
         if not jrnls == None:
             J_options = st.selectbox('Related eponyms:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+
             df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+            
             if not df_ep_info2['year'].isnull().all():
-                st.write('_When_:',df_ep_info2['year'].to_string(index=False))        
+                st.write('_When_:',df_ep_info2['year'].to_string(index=False))
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
