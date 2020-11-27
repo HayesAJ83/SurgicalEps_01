@@ -647,10 +647,22 @@ def exp_journals():
     st.markdown(
         """
         <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:350px}
+        .hovertext text {
+        font-size: 20px !important;}
         </style>
         """
-        ,unsafe_allow_html=True)
+        ,
+        unsafe_allow_html=True,)
+
+    st.markdown(
+        """
+        <style type="text/css" media="screen">
+        div[role="listbox"] ul {
+            height:250px;
+        }
+        </style>
+        """
+        ,unsafe_allow_html=True,)
 
     #st.markdown('''[Advert space for Google AdSense4]''')
     ScreenSize = st.radio('Select screen size:',
