@@ -687,6 +687,9 @@ def exp_journals():
             if not df_ep_info2['year_str'].isnull().all():
                 st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
 
+            if not df_ep_info2['Who'].isnull().all():
+                st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
+
 
     if ScreenSize == "Desktop / Laptop / Tablet":
         figJDLT = px.sunburst(dfY1, path=['JOURNALS',
