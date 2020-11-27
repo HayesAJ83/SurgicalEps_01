@@ -687,7 +687,7 @@ def exp_journals():
     U = np.sort(T)
 
     if ScreenSize == "Smartphone":
-        jrnls = st.multiselect('Select from journals:',options=list(U))
+        jrnls = st.multiselect('Select from journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
         new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         if not jrnls == None:
