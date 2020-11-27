@@ -65,7 +65,7 @@ def show_the_app_team():
     about1 = st.checkbox("Alastair Hayes")
     if about1:
         st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Endocrine and Emergency General Surgery.
-    His qualifications consist of BSc(Hons), MBChB, MRCS(Ed), MSc, PhD.
+    His qualifications include FRCSEd, PhD.
     He is working to develop data science and software solutions for clinical data systems, research and education in surgical practice.''')
 
     st.subheader("Associate Project Lead")
@@ -96,7 +96,7 @@ def show_explore():
                                 ["About this App",
                                  "By Operation",
                                  "Type of Eponym",
-                                 "Geographical",
+                                 "World Maps",
                                  "Journal of Publication",
                                  "Famous People",
                                  "Time Travel",
@@ -105,7 +105,7 @@ def show_explore():
     if   exp == "About this App":           exp_about()             #1
     elif exp == "By Operation":             exp_operation()         #2
     elif exp == "Type of Eponym":           exp_type()              #3
-    elif exp == "Geographical":             exp_geography()         #4         
+    elif exp == "World Maps":               exp_geography()         #4         
     elif exp == "Journal of Publication":   exp_journals()          #5
     elif exp == "Famous People":            exp_people()            #6
     elif exp == "Time Travel":              exp_year()              #7
@@ -127,8 +127,7 @@ def exp_about():
         font-size: 20px !important;}
         </style>
         """
-        ,
-        unsafe_allow_html=True)
+        ,unsafe_allow_html=True)
 
     st.markdown(
         """
@@ -138,8 +137,7 @@ def exp_about():
         }
         </style>
         """
-        ,
-        unsafe_allow_html=True)
+        ,unsafe_allow_html=True)
 
     #Page
     st.write('''_UNDER CONSTRUCTION_''')
@@ -559,7 +557,8 @@ def exp_geography():
                 pitch=5,zoom=zoom_country,style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
-        st.markdown('''If the map does not locate correctly, select 'Zoom in' on top right of map.''')
+        st.markdown('''<span style="font-size:8pt;color:black;">If the map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
+                unsafe_allow_html=True)
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
         options3 = st.selectbox('Choose map location:',
@@ -630,7 +629,8 @@ def exp_geography():
                 style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
-        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map.''')
+        st.markdown('''<span style="font-size:10pt;color:black;">If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
+                unsafe_allow_html=True)
 
         #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor',
         #'basic', 'streets','outdoors', 'light', 'dark','satellite', 'satellite-streets'
@@ -650,35 +650,41 @@ def exp_journals():
         div[role="listbox"] ul {height:350px}
         </style>
         """
-        ,
-        unsafe_allow_html=True)
+        ,unsafe_allow_html=True)
 
     #st.markdown('''[Advert space for Google AdSense4]''')
     ScreenSize = st.radio('Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet'],index=0)
 
-    st.write('''Click on a journal name to find related eponyms:''')
-    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
+#    st.write('''Click on a journal name to find related eponyms:''')
+#    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
 
     url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
     dfY = pd.read_csv(url_J)
     dfY1 = dfY.dropna()
     dfY1["JOURNALS"] = "JOURNALS"
 
+    df1 = pd.read_csv(url_J)
+    df2 = df1.sort_values(by=['journal'],ascending=True)
+    df3 = df2['journal'].dropna()
+    string = df3.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+
     if ScreenSize == "Smartphone":
-     #   jrnls = st.multiselect('Select from journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
-        
-        figJSP = px.sunburst(dfY1, path=['JOURNALS',
-                                         'journal', 'year', 'eponym'],
-                      values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
-                      color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                      width=400, height=300)
-        figJSP.update_layout(margin=dict(l=0, r=0, t=0, b=0))
-        figJSP.update_traces(hovertemplate=None, hoverinfo='skip')
-        st.write(figJSP)
-
-
+        jrnls = st.multiselect('Select from journals:',options=list(U))
+        new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
+        new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+        #st.write(new_jrnls2)
+        if not jrnls == None:
+            J_options = st.selectbox('Related eponyms:',
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+            df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+            if not df_ep_info2['year'].isnull().all():
+                st.write('_When_:',df_ep_info2['year'].to_string(index=False))        
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
