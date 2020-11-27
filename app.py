@@ -684,8 +684,8 @@ def exp_journals():
 
             df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
             
-            if not df_ep_info2['year'].isnull().all():
-                st.write('_When_:',df_ep_info2['year'].to_string(index=False))
+            if not df_ep_info2['year_str'].isnull().all():
+                st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
