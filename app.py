@@ -233,14 +233,12 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    st.subheader('''Choose operations of interest:''')
-    eponymByOp = st.multiselect('',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+    eponymByOp = st.multiselect('Select from operations:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
     if not eponymByOp == None:
-        st.subheader('''Then, search list of related eponyms:''')
-        Op_options = st.selectbox('',
+        Op_options = st.selectbox('Related eponyms:',
                                   new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
 
         df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
@@ -292,8 +290,7 @@ def exp_operation():
 
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
-    st.subheader('''First, select type:''')
-    types = st.selectbox('',["Anatomical structures",
+    types = st.selectbox('First, select type of eponym from list:',["Anatomical structures",
                              "Clinical scores",
                              "Clinical signs",
                              "Operations",
@@ -329,8 +326,7 @@ def show_anatomical():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Then, search list of named structures:''')
-    Anat_options2 = st.selectbox('', Anat_df['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+    Anat_options2 = st.selectbox('Then, search list of named structures:', Anat_df['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
     Anat_options2_info = Anat_df[Anat_df['Eponym'].str.match(Anat_options2)]
 
 #2
@@ -503,7 +499,7 @@ def exp_geography():
         unsafe_allow_html=True,
     )
 #   st.markdown('''[Advert space for Google AdSense3]''')
-    ScreenSize = st.radio('Select Screen Size:',
+    ScreenSize = st.radio('Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet',],index=0)
 
@@ -519,7 +515,7 @@ def exp_geography():
                                  "South America","Sweden","Switzerland",
                                  "UK","United Kingdom","USA"])
 
-        Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
+        Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -572,7 +568,7 @@ def exp_geography():
                 pitch=5,zoom=zoom_country,style='satellite-streets'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
-        st.markdown('''If map does not locate correctly, press 'Zoom in' on top right of map.''')
+        st.markdown('''If the map does not locate correctly, select 'Zoom in' on top right of map.''')
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
         options3 = st.selectbox('Choose Geographical Location',
@@ -667,11 +663,11 @@ def exp_journals():
         unsafe_allow_html=True)
 
     #st.markdown('''[Advert space for Google AdSense4]''')
-    ScreenSize = st.radio('Select Screen Size:',
+    ScreenSize = st.radio('Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet'],index=0)
 
-    st.subheader('''Select a journal to explore related eponyms:''')
+    st.write('''Click on a journal name to find related eponyms:''')
     st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
 
     url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
