@@ -341,8 +341,7 @@ def show_scores():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Then, search list of clinical scores:''')
-    Scores_options2 = st.selectbox('', Scores_df['Eponym'].unique())
+    Scores_options2 = st.selectbox('Then, search list of clinical scores:', Scores_df['Eponym'].unique())
     Scores_options2_info = Scores_df[Scores_df['Eponym'].str.match(Scores_options2)]
 
 #3
@@ -357,8 +356,7 @@ def show_signs():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Then, search list of clinical signs:''')
-    Sign_options2 = st.selectbox('', Sign_df['Eponym'].unique())
+    Sign_options2 = st.selectbox('Then, search list of clinical signs:', Sign_df['Eponym'].unique())
     Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
 
 #4
@@ -374,8 +372,7 @@ def show_opNames():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Then, search list of named operations:''')
-    OpName_options2 = st.selectbox('', OpName_df['Eponym'].unique())
+    OpName_options2 = st.selectbox('Then, search list of named operations:', OpName_df['Eponym'].unique())
     OpName_options2_info = OpName_df[OpName_df['Eponym'].str.match(OpName_options2)]
 
 #5
@@ -391,8 +388,7 @@ def show_path():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Then, choose from pathological condition, classification, rule or score:''')
-    Paths_options2 = st.selectbox('', Path_df['Eponym'].unique())
+    Paths_options2 = st.selectbox('Then, choose from eponymous pathological term:', Path_df['Eponym'].unique())
     Paths_options2_info = Path_df[Path_df['Eponym'].str.match(Paths_options2)]
 
 #6
@@ -408,8 +404,7 @@ def show_positions():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Choose named patient position:''')
-    Positions_options2 = st.selectbox('', Positions_df['Eponym'].unique())
+    Positions_options2 = st.selectbox('Choose named patient position:', Positions_df['Eponym'].unique())
     Positions_options2_info = Positions_df[Positions_df['Eponym'].str.match(Positions_options2)]
 
 #7
@@ -424,8 +419,7 @@ def show_trials():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Then, search list of research trials:''')
-    Trial_options2 = st.selectbox('', Trial_df['Eponym'].unique())
+    Trial_options2 = st.selectbox('Then, search list of eponymous research trials:', Trial_df['Eponym'].unique())
     Trial_options2_info = Trial_df[Trial_df['Eponym'].str.match(Trial_options2)]
 
 #8
@@ -441,8 +435,7 @@ def show_cuts():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Choose from list of incisions:''')
-    Cuts_options2 = st.selectbox('', Cuts_df['Eponym'].unique())
+    Cuts_options2 = st.selectbox('Choose from list of incisions:', Cuts_df['Eponym'].unique())
     Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
 
 #9    
@@ -458,8 +451,7 @@ def show_instruments():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Choose from list of surgical instruments:''')
-    Instrum_options2 = st.selectbox('', Instrum_df['Eponym'].unique())
+    Instrum_options2 = st.selectbox('Choose from list of surgical instruments:', Instrum_df['Eponym'].unique())
     Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
 
 
@@ -476,8 +468,7 @@ def show_maneuvers():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    st.subheader('''Choose from list of surgical maneuvers or techniques:''')
-    Maneuv_options2 = st.selectbox('', Maneuv_df['Eponym'].unique())
+    Maneuv_options2 = st.selectbox('Choose from list of surgical maneuvers or techniques:', Maneuv_df['Eponym'].unique())
     Maneuv_options2_info = Maneuv_df[Maneuv_df['Eponym'].str.match(Maneuv_options2)]
 
 
@@ -504,7 +495,7 @@ def exp_geography():
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-        portrait1 = st.selectbox('Choose Geographical Location:',
+        portrait1 = st.selectbox('Choose map Location:',
                                 ["World","  ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
@@ -571,7 +562,7 @@ def exp_geography():
         st.markdown('''If the map does not locate correctly, select 'Zoom in' on top right of map.''')
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
-        options3 = st.selectbox('Choose Geographical Location',
+        options3 = st.selectbox('Choose map location:',
                                 ["World"," ","  ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
@@ -582,7 +573,7 @@ def exp_geography():
                                  "South America","Sweden","Switzerland",
                                  "UK","United Kingdom","USA",])
 
-        Year = st.slider('Travel Back In Time:', 1560, 2020, value=2020)
+        Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -676,7 +667,10 @@ def exp_journals():
     dfY1["JOURNALS"] = "JOURNALS"
 
     if ScreenSize == "Smartphone":
-        figJSP = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
+     #   jrnls = st.multiselect('Select from journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+        
+        figJSP = px.sunburst(dfY1, path=['JOURNALS',
+                                         'journal', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       width=400, height=300)
@@ -684,8 +678,12 @@ def exp_journals():
         figJSP.update_traces(hovertemplate=None, hoverinfo='skip')
         st.write(figJSP)
 
+
+
+
     if ScreenSize == "Desktop / Laptop / Tablet":
-        figJDLT = px.sunburst(dfY1, path=['JOURNALS', 'journal', 'year', 'eponym'],
+        figJDLT = px.sunburst(dfY1, path=['JOURNALS',
+                                          'journal', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       width=750, height=550)
