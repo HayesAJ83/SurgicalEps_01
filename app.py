@@ -714,11 +714,18 @@ def exp_people():
     #Data read and arrange
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-    
     dfY1 = df.sort_values(by=['Surname'],ascending=True)
-    options = st.selectbox('', dfY1['Who'].unique(),
+    who = st.selectbox('Selected person:', dfY1['Who'].unique(),
                            format_func=lambda x: ' ' if x == '1' else x) #use '1's for first row in CSV file to create empty row
-    df_ep_info = dfY1[dfY1['Who'].str.match(options)]
+
+    if not who == None:
+        df_who_info = dfY1[dfY1['Who'].str.match(who)]
+        
+        if not df_who_info['Year_str'].isnull().all():
+            st.write('_When_:',df_who_info['Year_str'].to_string(index=False))
+
+        if not df_who_info['Who'].isnull().all():
+            st.write('_Who_:',df_who_info['Who'].to_string(index=False))
 
 
 
@@ -766,7 +773,7 @@ def exp_exam():
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
     if not exams == None:
-        Ex_options = st.selectbox('Related eponyms:',
+        Ex_options = st.selectbox('List of eponyms often found in exams:',
                                   new_exams2['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
         df_ep_info2 = new_exams1[new_exams1['Eponym'].str.match(Ex_options)]
