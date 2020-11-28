@@ -711,7 +711,16 @@ def exp_journals():
 #----------------------------------------------------------------------------------------------#
 def exp_people():
 
+    #Data read and arrange
+    dfY = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite4People.csv', dtype={'PMID':str,'Year':str})
 
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    
+    dfY1 = df.sort_values(by=['Surname'],ascending=True)
+    options = st.selectbox('', dfY1['Who'].unique(),
+                           format_func=lambda x: ' ' if x == '1' else x) #use '1's for first row in CSV file to create empty row
+    df_ep_info = dfY1[dfY1['Who'].str.match(options)]
 
 
 
@@ -725,7 +734,8 @@ def exp_people():
 #----------------------------------------------------------------------------------------------#
 def exp_year():
 
-
+    #Data read and arrange
+    dfY = pd.read_csv('/Users/alastairhayes/desktop/Eponyms/Eponyms4python_Lite4People.csv', dtype={'PMID':str,'Year':str})
 
 
 
