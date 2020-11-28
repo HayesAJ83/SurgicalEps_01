@@ -737,7 +737,7 @@ def exp_exam():
                            default=['General Surgery','Bariatrics','Breast','Colorectal',
                                     'Endocrine','HPB','Hernia','Neurosurgery',
                                     'Oesophagogastric','Paediatric Surgery','Plastics',
-                                    'Transplant','Trauma','Urology','Vascular',])
+                                    'Trauma','Urology','Vascular',])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
@@ -754,17 +754,6 @@ def exp_exam():
             st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
 
 
-    
-#    if not ExamF_df['ExamFav'].isnull().all():
-#        Table = ff.create_table(ExamF_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
-#                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-#                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
-#                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
-#                             axis=1).sort_values(by=['Eponym'],
-#                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-
-#        st.write('''Choose from surgical specialties:''')
-#        st.write(ExamF_df)
 
 #-------------------------------------------------------------------------------------------#
 if __name__ == "__main__":
