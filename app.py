@@ -724,40 +724,47 @@ def exp_journals():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 def exp_exam():
-
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:430px}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,
-    )
-
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        .hovertext text {
-        font-size: 20px !important;}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,
-    )
-
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-    ExamF_df = df[(df['ExamFav'].str.match('Yes'))]
-    if not ExamF_df['ExamFav'].isnull().all():
-        Table = ff.create_table(ExamF_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
-                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
-                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
-                             axis=1).sort_values(by=['Eponym'],
-                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    df1 = df['ExamSpec'].dropna()
+    string = df1.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+    exams = st.multiselect('Select from specialties:',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['General Surgery','Bariatrics','Breast','Colorectal',
+                                    'Endocrine','HPB','Hernia','Neurosurgery',
+                                    'Oesophagogastric','Paediatric Surgery','Plastics',
+                                    'Transplant','Trauma','Urology','Vascular',])
+    new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
+    new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
+
+    if not exams == None:
+        Ex_options = st.selectbox('Related eponyms:',
+                                  new_exams2['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+
+        df_ep_info2 = new_exams1[new_exams1['Eponym'].str.match(Ex_options)]
+            
+        if not df_ep_info2['Year_str'].isnull().all():
+            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+
+        if not df_ep_info2['Who'].isnull().all():
+            st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
 
 
+    
+#    if not ExamF_df['ExamFav'].isnull().all():
+#        Table = ff.create_table(ExamF_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+#                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+#                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
+#                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+#                             axis=1).sort_values(by=['Eponym'],
+#                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+
+#        st.write('''Choose from surgical specialties:''')
+#        st.write(ExamF_df)
 
 #-------------------------------------------------------------------------------------------#
 if __name__ == "__main__":
