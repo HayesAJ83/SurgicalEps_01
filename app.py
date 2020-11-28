@@ -228,8 +228,8 @@ def exp_operation():
         df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
 
-        if not df_ep_info2['Who'].isnull().all():
-            st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
 
         if not df_ep_info2['Year_str'].isnull().all():
             st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
@@ -246,7 +246,7 @@ def exp_operation():
             st.write('**_History_**:', history)
             st.markdown("---")
 
-        if not df_ep_info2['Who'].isnull().all():
+        if not df_ep_info2['Who_B'].isnull().all():
             st.write('**External links**')
         ref_link = df_ep_info2['Pubmed'].to_string(index=False)
         if not df_ep_info2['Pubmed'].isnull().all():
