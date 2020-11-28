@@ -630,18 +630,6 @@ def exp_geography():
 #----------------------------------------------------------------------------------------------#
 
 def exp_journals():
-
-
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {
-            height:250px;
-        }
-        </style>
-        """
-        ,unsafe_allow_html=True,)
-
     #st.markdown('''[Advert space for Google AdSense4]''')
     ScreenSize = st.radio('Select screen size:',
                      options=['Smartphone',
@@ -684,9 +672,11 @@ def exp_journals():
 
             if not df_ep_info2['journal_name'].isnull().all():
                 st.markdown(journal, unsafe_allow_html=True)
+
+                
             #st.markdown('''<span style="color:black;font-style:italic;">Journal:</span>
-                       #    <span style="color:black;font-weight:bold;">Journal of the American (JAMA)</span>''',
-               # unsafe_allow_html=True)
+            #               <span style="color:black;font-weight:bold;">Journal of the American (JAMA)</span>''',
+            #               unsafe_allow_html=True)
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
