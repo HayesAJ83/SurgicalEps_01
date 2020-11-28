@@ -732,11 +732,11 @@ def exp_exam():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    exams = st.multiselect('Select from specialties:',options=list(U),
+    exams = st.multiselect('Select from surgical specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['General Surgery','Bariatrics','Breast','Colorectal',
                                     'Endocrine','HPB','Hernia','Neurosurgery',
-                                    'Oesophagogastric','Paediatric Surgery','Plastics',
+                                    'Oesophagogastric','Paediatrics','Plastics',
                                     'Trauma','Urology','Vascular',])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
