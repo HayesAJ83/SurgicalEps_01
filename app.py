@@ -65,7 +65,7 @@ def show_the_app_team():
     about1 = st.checkbox("Alastair Hayes")
     if about1:
         st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Endocrine and Emergency General Surgery.
-    His qualifications include FRCSEd, PhD.
+    His qualifications include FRCSEd & PhD.
     He is working to develop data science and software solutions for clinical data systems, research and education in surgical practice.''')
 
     st.subheader("Associate Project Lead")
@@ -121,23 +121,9 @@ def show_explore():
 def exp_about():
 
     st.markdown(
-        """
-        <style type="text/css" media="screen">
-        .hovertext text {
-        font-size: 20px !important;}
-        </style>
-        """
-        ,unsafe_allow_html=True)
-
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {
-            height:110px;
-        }
-        </style>
-        """
-        ,unsafe_allow_html=True)
+        """<style type="text/css" media="screen">
+        .hovertext text {font-size: 20px !important;}
+        </style>""",unsafe_allow_html=True)
 
     #Page
     st.write('''_UNDER CONSTRUCTION_''')
