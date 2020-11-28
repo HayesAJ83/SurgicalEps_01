@@ -630,15 +630,7 @@ def exp_geography():
 #----------------------------------------------------------------------------------------------#
 
 def exp_journals():
-    st.markdown(
-        """
-        <style type="text/css" media="screen">
-        .hovertext text {
-        font-size: 20px !important;}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,)
+
 
     st.markdown(
         """
@@ -688,8 +680,13 @@ def exp_journals():
             if not df_ep_info2['Who'].isnull().all():
                 st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
 
+            journal = df_ep_info2['journal_name'].to_string(index=False)
+
             if not df_ep_info2['journal_name'].isnull().all():
-                st.write('_Journal_:',df_ep_info2['journal_name'].to_string(index=False))
+                st.markdown(journal, unsafe_allow_html=True)
+            #st.markdown('''<span style="color:black;font-style:italic;">Journal:</span>
+                       #    <span style="color:black;font-weight:bold;">Journal of the American (JAMA)</span>''',
+               # unsafe_allow_html=True)
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
@@ -781,8 +778,8 @@ def exp_exam():
         if not df_ep_info2['Year_str'].isnull().all():
             st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
 
-        if not df_ep_info2['Who'].isnull().all():
-            st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
 
 
 
