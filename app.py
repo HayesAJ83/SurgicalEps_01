@@ -65,8 +65,8 @@ def show_the_app_team():
     about1 = st.checkbox("Alastair Hayes")
     if about1:
         st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Endocrine and Emergency General Surgery.
-    His qualifications include FRCSEd & PhD.
-    He is working to develop data science and software solutions for clinical data systems, research and education in surgical practice.''')
+    His qualifications include FRCSEd (Gen Surg) & PhD.''')
+        st.markdown('''He is working to develop data science and software solutions for clinical data systems, research and education in surgical practice.''')
 
     st.subheader("Associate Project Lead")
     about2 = st.checkbox('''Anne Ewing''')
@@ -718,12 +718,12 @@ def exp_exam():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    exams = st.multiselect('Select from surgical specialties:',options=list(U),
+    exams = st.multiselect('Select from specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['General Surgery','Bariatrics','Breast','Colorectal',
-                                    'Endocrine','HPB','Hernia','Neurosurgery',
+                                    'Endocrine','Gynaecology','HPB','Hernia','Neurosurgery',
                                     'Oesophagogastric','Paediatrics','Plastics',
-                                    'Trauma','Urology','Vascular',])
+                                    'Trauma','Urology','Vascular'])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
