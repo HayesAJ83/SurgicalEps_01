@@ -760,7 +760,7 @@ def exp_exam():
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
     if not exams == None:
-        Ex_options = st.selectbox('List of eponyms often found in exams:',
+        Ex_options = st.selectbox('Eponyms often seen in exam papers:',
                                   new_exams2['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
         df_ep_info2 = new_exams1[new_exams1['Eponym'].str.match(Ex_options)]
