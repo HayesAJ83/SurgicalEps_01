@@ -673,12 +673,14 @@ def exp_people():
 
     if not who == None:
         df_who_info = dfY1[dfY1['Who'].str.match(who)]
-        
-        if not df_who_info['Year_str'].isnull().all():
-            st.write('_When_:',df_who_info['Year_str'].to_string(index=False))
 
-        if not df_who_info['Who'].isnull().all():
-            st.write('_Who_:',df_who_info['Who'].to_string(index=False))
+        if not df_who_info['Who_B'].isnull().all():
+            st.write('_Name_:',df_who_info['Who_B'].to_string(index=False))
+        
+        if not df_who_info['Where'].isnull().all():
+            st.write('_Where_:',df_who_info['Where'].to_string(index=False))
+
+
 
 
 
@@ -692,13 +694,45 @@ def exp_people():
 #----------------------------------------------------------------------------------------------#
 def exp_year():
 
-    #Data read and arrange
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df2 = df1.sort_values(by=['Year'],ascending=True)
+    df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
+    dfT = df3.sort_values(by=['Year'],ascending=True)
+    Cent = st.selectbox('Century:', ('1500 - 1599', '1600 - 1699', '1700 - 1799',
+                                    '1800 - 1899', '1900 - 1999', '2000 - now'), index=4)
 
+    if Cent == "1500 - 1599":
+        Year = st.slider('Year of origin - explore with slider:', 1500, 1599, value=1550)
+        Decade = st.selectbox('Decade:', ("1500's", "1510's", "1520's", "1530's", "1540's",
+                                          "1550's", "1560's", "1570's", "1580's", "1590's"), index=0)
+    if Cent == "1600 - 1699":
+        Year = st.slider('Year of origin - explore with slider:', 1600, 1699, value=1650)
+        Decade = st.selectbox('Decade:', ("1600's", "1610's", "1620's", "1630's", "1640's",
+                                          "1650's", "1660's", "1670's", "1680's", "1690's"), index=0)
+    if Cent == "1700 - 1799":
+        Year = st.slider('Year of origin - explore with slider:', 1700, 1799, value=1750)
+    
+    if Cent == "1800 - 1899":
+        Year = st.slider('Year of origin - explore with slider:', 1800, 1899, value=1850)
+        
+    if Cent == "1900 - 1999":
+        Year = st.slider('Year of origin - explore with slider:', 1900, 1999, value=1950)
+        
+    if Cent == "2000 - now":
+        Year = st.slider('Year of origin - explore with slider:', 2000, 2020, value=2010)
+        Decade = st.selectbox('Decade:', ("2000's", "2010's", "2020's"), index=0)
 
+    time_df = dfT.loc[dfT['Year'] == Year]
 
-
+    if not time_df['Year'].isnull().all():
+        Table = ff.create_table(time_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        st.write(Table)
 
 
 #----------------------------------------------------------------------------------------------#
