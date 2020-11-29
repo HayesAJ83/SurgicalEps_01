@@ -12,9 +12,9 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
-
 import streamlit as st
 import pandas as pd
+pd.options.display.max_colwidth = 1000000
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
@@ -25,7 +25,6 @@ import plotly.figure_factory as ff
 import io
 import requests
 #px.set_mapbox_access_token(open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read())
-
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -47,7 +46,7 @@ def main():
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
 #  About the team                                                                              #
-# :::                                                                                          #                                                                                              #
+# :::                                                                                          #
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 
@@ -72,15 +71,13 @@ def show_the_app_team():
     about2 = st.checkbox('''Anne Ewing''')
     if about2:
         st.markdown('''Anne is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Hernias and Emergency General Surgery.
-    She is passionate about surgical teaching and outside work Anne is a competitive triathlete.''')
-    
+    She is passionate about surgical teaching and outside work Anne is a competitive triathlete.''')   
 
     st.subheader("Acknowledgements")
     st.markdown('''[Google](https://www.google.com/search/howsearchworks/?fg=1),
     [Mapbox](https://www.mapbox.com),
     [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/), [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
     [Streamlit](https://www.streamlit.io)''')
-    st.sidebar.markdown("---")
 
 
 #----------------------------------------------------------------------------------------------#
@@ -114,18 +111,17 @@ def show_explore():
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
 #  About (1)                                                                                   #
-# ::: Handles                                                                                  #                                                                                              #
+# ::: Handles                                                                                  #                                                                                              
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 
 def exp_about():
-
     st.markdown(
         """<style type="text/css" media="screen">
         .hovertext text {font-size: 20px !important;}
         </style>""",unsafe_allow_html=True)
 
-    #Page
+#Page
     st.write('''_UNDER CONSTRUCTION_''')
     st.markdown('''# SurgicalEps''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
@@ -133,7 +129,7 @@ def exp_about():
     st.markdown("---")
     st.subheader('Introduction')
     st.markdown(' ')
-#   st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
+    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history,
     and how they relate to one another. We include direct links to primary papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and TeachMeSurgery.''')
@@ -177,7 +173,6 @@ def exp_about():
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched Jan 2021")
 
-
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
 #  Surgical Operations (2)                                                                     #
@@ -186,25 +181,14 @@ def exp_about():
 #----------------------------------------------------------------------------------------------#
 
 def exp_operation():
+    
     st.markdown(
-        """
-        <style type="text/css" media="screen">
-        .hovertext text {
-        font-size: 20px !important;}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,)
+        """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
+        </style>""",unsafe_allow_html=True,)
 
     st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {
-            height:250px;
-        }
-        </style>
-        """
-        ,unsafe_allow_html=True,)
+        """<style type="text/css" media="screen">div[role="listbox"] ul {height:250px;}
+        </style>""",unsafe_allow_html=True,)
 
     #Page
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -263,7 +247,6 @@ def exp_operation():
         icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
         if not df_ep_info2['ICD11_link'].isnull().all():
            st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -465,14 +448,9 @@ def show_maneuvers():
 
 def exp_geography():
     st.markdown(
-        """
-        <style type="text/css" media="screen">
-        div[role="listbox"] ul {height:55px}
-        </style>
-        """
-        ,
-        unsafe_allow_html=True,
-    )
+        """<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}
+        </style>""",unsafe_allow_html=True,)
+
 #   st.markdown('''[Advert space for Google AdSense3]''')
     ScreenSize = st.radio('Select screen size:',
                      options=['Smartphone',
@@ -618,9 +596,6 @@ def exp_geography():
         st.markdown('''<span style="font-size:10pt;color:black;">If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
                 unsafe_allow_html=True)
 
-        #'open-street-map','white-bg','carto-positron','carto-darkmatter','stamen- terrain','stamen-watercolor',
-        #'basic', 'streets','outdoors', 'light', 'dark','satellite', 'satellite-streets'
-
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -634,7 +609,6 @@ def exp_journals():
     ScreenSize = st.radio('Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet'],index=0)
-
 #    st.write('''Click on a journal name to find related eponyms:''')
 #    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
 
@@ -642,7 +616,6 @@ def exp_journals():
     dfY = pd.read_csv(url_J)
     dfY1 = dfY.dropna()
     dfY1["JOURNALS"] = "JOURNALS"
-
     df1 = pd.read_csv(url_J)
     df2 = df1.sort_values(by=['journal'],ascending=True)
     df3 = df2['journal'].dropna()
@@ -651,7 +624,6 @@ def exp_journals():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-
     if ScreenSize == "Smartphone":
         jrnls = st.multiselect('Select from journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
         new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
@@ -661,22 +633,16 @@ def exp_journals():
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
             df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
-            
+            journal = df_ep_info2['journal_name'].to_string(index=False)
+            if not df_ep_info2['journal_name'].isnull().all():
+                st.write(journal, unsafe_allow_html=True)
+                
+
             if not df_ep_info2['year_str'].isnull().all():
                 st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
 
             if not df_ep_info2['Who'].isnull().all():
                 st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
-
-            journal = df_ep_info2['journal_name'].to_string(index=False)
-
-            if not df_ep_info2['journal_name'].isnull().all():
-                st.markdown(journal, unsafe_allow_html=True)
-
-                
-            #st.markdown('''<span style="color:black;font-style:italic;">Journal:</span>
-            #               <span style="color:black;font-weight:bold;">Journal of the American (JAMA)</span>''',
-            #               unsafe_allow_html=True)
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
