@@ -625,11 +625,11 @@ def exp_journals():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     if ScreenSize == "Smartphone":
-        jrnls = st.multiselect('Select from journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+        jrnls = st.multiselect('Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
         new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         if not jrnls == None:
-            J_options = st.selectbox('Related eponyms:',
+            J_options = st.selectbox('Eponyms in journals:',
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
             df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
@@ -647,7 +647,7 @@ def exp_journals():
 
     if ScreenSize == "Desktop / Laptop / Tablet":
         figJDLT = px.sunburst(dfY1, path=['JOURNALS',
-                                          'journal', 'year', 'eponym'],
+                                          'journal_short', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       width=750, height=550)
@@ -913,19 +913,6 @@ def exp_year():
             st.write('No eponyms yet for 2020 - 2030')
            # newdf = dfY.loc[["2020",]]#20,21,22,26,27,28
            # Eps = st.selectbox('Eponyms from years 1920 - 1929:', newdf['Eponym_easy_yr'].unique())
-
-         
-
-   # time_df = dfT.loc[dfT['Year'] == Year]
-
-  #  if not time_df['Year'].isnull().all():
-   #     Table = ff.create_table(time_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
-    #                'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-     #               'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link',
-      #              'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
-       #                      axis=1).sort_values(by=['Eponym'],
-       #                                          ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        #st.write(Table)
 
 
 #----------------------------------------------------------------------------------------------#
