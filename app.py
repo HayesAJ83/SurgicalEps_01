@@ -96,7 +96,7 @@ def show_explore():
                                  "World Maps",
                                  "Journal of Publication",
                                  "Famous People",
-                                 "Time Travel",
+                                 "By Year",
                                  "Exam Favourites",
                                  ])
     if   exp == "About this App":           exp_about()             #1
@@ -105,7 +105,7 @@ def show_explore():
     elif exp == "World Maps":               exp_geography()         #4         
     elif exp == "Journal of Publication":   exp_journals()          #5
     elif exp == "Famous People":            exp_people()            #6
-    elif exp == "Time Travel":              exp_year()              #7
+    elif exp == "By Year":                  exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
 
 #----------------------------------------------------------------------------------------------#
@@ -129,7 +129,7 @@ def exp_about():
     st.markdown("---")
     st.subheader('Introduction')
     st.markdown(' ')
-    st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
+    #st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
     st.write('''There are a hundreds of eponyms used in daily surgical practice.
     We hope that you will find this app helpful in understanding what these terms mean, their history,
     and how they relate to one another. We include direct links to primary papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and TeachMeSurgery.''')
@@ -257,7 +257,7 @@ def exp_operation():
 
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
-    types = st.selectbox('First, select type of eponym from list:',["Anatomical structures",
+    types = st.selectbox('First, select type of eponym:',["Anatomical structures",
                              "Clinical scores",
                              "Clinical signs",
                              "Operations",
@@ -680,11 +680,25 @@ def exp_people():
         if not df_who_info['Where'].isnull().all():
             st.write('_Where_:',df_who_info['Where'].to_string(index=False))
 
-
-
-
-
-
+    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df2 = df1.sort_values(by=['Year'],ascending=True)
+    mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+    site_lat = df_who_info['Lat_A1']            #df3['Lat_A1']                
+    site_lon = df_who_info['Long_A1']           #df3['Long_A1']
+    text = df_who_info['Eponym_easy'] + ', ' + df_who_info['CityOfEponym_A1'] + ', ' + df_who_info['Year'].astype(str)
+    locations_name = df_who_info['Eponym_easy']
+    figG3 = go.Figure()
+    figG3.add_trace(go.Scattermapbox(
+        lat=df_who_info['Lat_A1'],lon=df_who_info['Long_A1'],mode='markers',
+                marker=go.scattermapbox.Marker(size=12,color='yellow',opacity=1.0),
+                text=text,hoverinfo='text',))
+    figG3.update_layout(
+                autosize=True,hovermode='closest',showlegend=False,width=350,height=260,
+                mapbox=dict(accesstoken=mapbox_access_token,
+                            bearing=0,center=dict(lat=40.0,lon=0.0),
+                            pitch=5,zoom=-0.45,style='satellite-streets'))
+    figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+    st.write(figG3)
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
