@@ -697,42 +697,235 @@ def exp_year():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Year'],ascending=True)
-    df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
-    dfT = df3.sort_values(by=['Year'],ascending=True)
+    dfY = df2.set_index("Year")
+ #   df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
+  #  dfT = df3.sort_values(by=['Year'],ascending=True)
+    
     Cent = st.selectbox('Century:', ('1500 - 1599', '1600 - 1699', '1700 - 1799',
                                     '1800 - 1899', '1900 - 1999', '2000 - now'), index=4)
 
     if Cent == "1500 - 1599":
-        Year = st.slider('Year of origin - explore with slider:', 1500, 1599, value=1550)
         Decade = st.selectbox('Decade:', ("1500's", "1510's", "1520's", "1530's", "1540's",
                                           "1550's", "1560's", "1570's", "1580's", "1590's"), index=0)
+        if Decade == "1500's":
+            st.write('No eponyms for 1500 - 1509')
+           # newdf = dfY.loc[["1509",]]#00,01,02,03,05,06,07,08,09
+           # Eps = st.selectbox('Eponyms from years 1600 - 1609:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1510's":
+            st.write('No eponyms for 1510 - 1519')
+           # newdf = dfY.loc[["1519",]]#10,11,12,13,14,16,17,18,19
+           # Eps = st.selectbox('Eponyms from years 1510 - 1519:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1520's":
+            st.write('No eponyms for 1520 - 1529')
+           # newdf = dfY.loc[["1529",]]#20,21,22,23,25,26,28,29
+           # Eps = st.selectbox('Eponyms from years 1520 - 1529:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1530's":
+            st.write('No eponyms for 1530 - 1539')
+           # newdf = dfY.loc[["1539",]]#32,33,34,36,37,38,39
+           # Eps = st.selectbox('Eponyms from years 1530 - 1539:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1540's":
+            st.write('No eponyms for 1540 - 1549')
+           # newdf = dfY.loc[["1549",]]#41,43,45,46,47,48
+           # Eps = st.selectbox('Eponyms from years 1540 - 1549:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1550's":
+            st.write('No eponyms for 1550 - 1559')
+           # newdf = dfY.loc[["1559",]]#50,51,52,54,55,56,57,58,59
+           # Eps = st.selectbox('Eponyms from years 1550 - 1559:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1560's":
+           # st.write('No eponyms for 1560 - 1569')
+            newdf = dfY.loc[["1561",]]#60,62,63,64,65,66,67,68,69
+            Eps = st.selectbox('Eponyms from years 1560 - 1569:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1570's":
+            st.write('No eponyms for 1570 - 1579')
+           # newdf = dfY.loc[["1579",]]#70,71,72,73,74,75,76,79
+           # Eps = st.selectbox('Eponyms from years 1570 - 1579:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1580's":
+            st.write('No eponyms for 1580 - 1589')
+           # newdf = dfY.loc[["1589",]]#80,81,82,84,88,89
+           # Eps = st.selectbox('Eponyms from years 1580 - 1589:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1590's":
+            st.write('No eponyms for 1590 - 1599')
+           # newdf = dfY.loc[["1599",]]#90,92,93,94,95,96,97,98,99
+           # Eps = st.selectbox('Eponyms from years 1590 - 1599:', newdf['Eponym_easy_yr'].unique())
+
     if Cent == "1600 - 1699":
-        Year = st.slider('Year of origin - explore with slider:', 1600, 1699, value=1650)
+       # Year = st.slider('Year of origin - explore with slider:', 1600, 1699, value=1650)
         Decade = st.selectbox('Decade:', ("1600's", "1610's", "1620's", "1630's", "1640's",
                                           "1650's", "1660's", "1670's", "1680's", "1690's"), index=0)
+        if Decade == "1600's":
+            st.write('No eponyms for 1600 - 1609')
+           # newdf = dfY.loc[["1609",]]#00,01,02,03,05,06,07,08,09
+           # Eps = st.selectbox('Eponyms from years 1600 - 1609:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1610's":
+            st.write('No eponyms for 1610 - 1619')
+           # newdf = dfY.loc[["1619",]]#10,11,12,13,14,16,17,18,19
+           # Eps = st.selectbox('Eponyms from years 1610 - 1619:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1620's":
+            newdf = dfY.loc[["1627",]]#20,21,22,23,25,26,28,29
+            Eps = st.selectbox('Eponyms from years 1620 - 1629:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1630's":
+            st.write('No eponyms for 1630 - 1639')
+           # newdf = dfY.loc[["1639",]]#32,33,34,36,37,38,39
+           # Eps = st.selectbox('Eponyms from years 1630 - 1639:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1640's":
+            st.write('No eponyms for 1640 - 1649')
+           # newdf = dfY.loc[["1649",]]#41,43,45,46,47,48
+           # Eps = st.selectbox('Eponyms from years 1640 - 1649:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1650's":
+            st.write('No eponyms for 1650 - 1659')
+           # newdf = dfY.loc[["1659",]]#50,51,52,54,55,56,57,58,59
+           # Eps = st.selectbox('Eponyms from years 1650 - 1659:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1660's":
+            st.write('No eponyms for 1660 - 1669')
+           # newdf = dfY.loc[["1669",]]#60,61,62,64,65,66,68,69
+           # Eps = st.selectbox('Eponyms from years 1660 - 1669:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1670's":
+            st.write('No eponyms for 1670 - 1679')
+           # newdf = dfY.loc[["1679",]]#70,71,72,73,74,75,76,79
+           # Eps = st.selectbox('Eponyms from years 1670 - 1679:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1680's":
+            st.write('No eponyms for 1680 - 1689')
+           # newdf = dfY.loc[["1689",]]#80,81,82,84,88,89
+           # Eps = st.selectbox('Eponyms from years 1680 - 1689:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1690's":
+            newdf = dfY.loc[["1691",]]#90,92,93,94,95,96,97,98,99
+            Eps = st.selectbox('Eponyms from years 1690 - 1699:', newdf['Eponym_easy_yr'].unique())
+        
     if Cent == "1700 - 1799":
-        Year = st.slider('Year of origin - explore with slider:', 1700, 1799, value=1750)
-    
+        #Year = st.slider('Year of origin - explore with slider:', 1700, 1799, value=1750)
+        Decade = st.selectbox('Decade:', ("1700's", "1710's", "1720's", "1730's", "1740's",
+                                          "1750's", "1760's", "1770's", "1780's", "1790's"), index=0)
+        if Decade == "1700's":
+            newdf = dfY.loc[["1704",]]#00,01,02,03,05,06,07,08,09
+            Eps = st.selectbox('Eponyms from years 1700 - 1709:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1710's":
+            newdf = dfY.loc[["1715",]]#10,11,12,13,14,16,17,18,19
+            Eps = st.selectbox('Eponyms from years 1710 - 1719:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1720's":
+            newdf = dfY.loc[["1720","1721","1724",]]#22,23,25,26,27,28,29
+            Eps = st.selectbox('Eponyms from years 1720 - 1729:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1730's":
+            newdf = dfY.loc[["1730","1731","1735",]]#32,33,34,36,37,38,39
+            Eps = st.selectbox('Eponyms from years 1730 - 1739:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1740's":
+            st.write('No eponyms for 1740 - 1749')
+           # newdf = dfY.loc[["1749",]]#41,43,45,46,47,48
+           # Eps = st.selectbox('Eponyms from years 1740 - 1749:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1750's":
+            st.write('No eponyms for 1750 - 1759')
+           # newdf = dfY.loc[["1759",]]#50,51,52,54,55,56,57,58,59
+           # Eps = st.selectbox('Eponyms from years 1750 - 1759:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1760's":
+            st.write('No eponyms for 1760 - 1769')
+           # newdf = dfY.loc[["1769",]]#60,61,62,64,65,66,68,69
+           # Eps = st.selectbox('Eponyms from years 1760 - 1769:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1770's":
+            newdf = dfY.loc[["1779",]]#70,71,72,73,74,75,76,79
+            Eps = st.selectbox('Eponyms from years 1770 - 1779:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1780's":
+            st.write('No eponyms for 1780 - 1789')
+           # newdf = dfY.loc[["1789",]]#80,81,82,84,88,89
+           # Eps = st.selectbox('Eponyms from years 1780 - 1789:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1790's":
+            newdf = dfY.loc[["1792",]]#90,91,93,94,95,96,97,98,99
+            Eps = st.selectbox('Eponyms from years 1790 - 1799:', newdf['Eponym_easy_yr'].unique())
+
     if Cent == "1800 - 1899":
-        Year = st.slider('Year of origin - explore with slider:', 1800, 1899, value=1850)
+        Decade = st.selectbox('Decade:', ("1800's", "1810's", "1820's", "1830's", "1840's",
+                                          "1850's", "1860's", "1870's", "1880's", "1890's"), index=0)
+        if Decade == "1800's":
+            newdf = dfY.loc[["1804","1806","1809",]]#00,01,02,03,05,07,08
+            Eps = st.selectbox('Eponyms from years 1800 - 1809:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1810's":
+            st.write('No eponyms for 1810 - 1819')
+           # newdf = dfY.loc[["",]]
+            #Eps = st.selectbox('Eponyms from years 1810 - 1819:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1820's":
+            newdf = dfY.loc[["1823",]]#20,21,22,24,25,26,27,28,29
+            Eps = st.selectbox('Eponyms from years 1820 - 1829:', newdf['Eponym_easy'].unique())
+        if Decade == "1830's":
+            newdf = dfY.loc[["1832","1835",]]#30,31,33,34,36,37,38,39
+            Eps = st.selectbox('Eponyms from years 1830 - 1839:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1840's":
+            newdf = dfY.loc[["1840","1842","1849",]]#41,43,45,46,47,48
+            Eps = st.selectbox('Eponyms from years 1840 - 1849:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1850's":
+            newdf = dfY.loc[["1853",]]#50,51,52,54,55,56,57,58,59
+            Eps = st.selectbox('Eponyms from years 1850 - 1859:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1860's":
+            newdf = dfY.loc[["1863","1867",]]#60,61,62,64,65,66,68,69
+            Eps = st.selectbox('Eponyms from years 1860 - 1869:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1870's":
+            newdf = dfY.loc[["1878",]]#70,71,72,73,74,75,76,79
+            Eps = st.selectbox('Eponyms from years 1870 - 1879:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1880's":
+            newdf = dfY.loc[["1883","1885","1886","1887",]]#80,81,82,84,88,89
+            Eps = st.selectbox('Eponyms from years 1880 - 1889:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1890's":
+            newdf = dfY.loc[["1890","1891","1892","1893",]]#94,95,96,97,98,99
+            Eps = st.selectbox('Eponyms from years 1890 - 1899:', newdf['Eponym_easy_yr'].unique())
+        
         
     if Cent == "1900 - 1999":
-        Year = st.slider('Year of origin - explore with slider:', 1900, 1999, value=1950)
-        
+        Decade = st.selectbox('Decade:', ("1900's", "1910's", "1920's", "1930's", "1940's",
+                                          "1950's", "1960's", "1970's", "1980's", "1990's"), index=0)
+        if Decade == "1900's":
+            newdf = dfY.loc[["1900","1901","1902","1906",]]#03,04,05,07,08,09
+            Eps = st.selectbox('Eponyms from years 1900 - 1909:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1910's":
+            newdf = dfY.loc[["1911","1912","1914","1919"]]#10,13,15,16,17,18
+            Eps = st.selectbox('Eponyms from years 1910 - 1919:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1920's":
+            newdf = dfY.loc[["1923","1924","1925","1929",]]#20,21,22,26,27,28
+            Eps = st.selectbox('Eponyms from years 1920 - 1929:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1930's":
+            newdf = dfY.loc[["1930","1932","1934","1935",]]#31,33,36,37,38,39
+            Eps = st.selectbox('Eponyms from years 1930 - 1939:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1940's":
+            newdf = dfY.loc[["1940","1944","1946","1948",]]#41,42,43,45,47,49
+            Eps = st.selectbox('Eponyms from years 1940 - 1949:', newdf['Eponym_easy'].unique())
+        if Decade == "1950's":
+            newdf = dfY.loc[["1950","1951","1952","1953",]]#54,55,56,57,58,59
+            Eps = st.selectbox('Eponyms from years 1950 - 1959:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1960's":
+            newdf = dfY.loc[["1960","1961","1962","1963",]]#64,65,66,67,68,69
+            Eps = st.selectbox('Eponyms from years 1960 - 1969:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1970's":
+            newdf = dfY.loc[["1970","1972","1974","1977",]]#71,73,75,76,78,79
+            Eps = st.selectbox('Eponyms from years 1970 - 1979:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1980's":
+            newdf = dfY.loc[["1984","1986","1987","1989",]]#80,81,82,83,85,88
+            Eps = st.selectbox('Eponyms from years 1980 - 1989:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "1990's":
+            newdf = dfY.loc[["1990","1992","1995","1996",]]#91,93,94,97,98,99
+            Eps = st.selectbox('Eponyms from years 1990 - 1999:', newdf['Eponym_easy_yr'].unique())
+
+
     if Cent == "2000 - now":
-        Year = st.slider('Year of origin - explore with slider:', 2000, 2020, value=2010)
         Decade = st.selectbox('Decade:', ("2000's", "2010's", "2020's"), index=0)
+        if Decade == "2000's":
+            newdf = dfY.loc[["2000","2001","2007",]]#03,04,05,06,08,09
+            Eps = st.selectbox('Eponyms from years 2000 - 2009:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "2010's":
+            newdf = dfY.loc[["2011","2012",]]#10,13,14,15,16,17,18,19
+            Eps = st.selectbox('Eponyms from years 2010 - 2019:', newdf['Eponym_easy_yr'].unique())
+        if Decade == "2020's":
+            st.write('No eponyms yet for 2020 - 2030')
+           # newdf = dfY.loc[["2020",]]#20,21,22,26,27,28
+           # Eps = st.selectbox('Eponyms from years 1920 - 1929:', newdf['Eponym_easy'].unique())
 
-    time_df = dfT.loc[dfT['Year'] == Year]
+         
 
-    if not time_df['Year'].isnull().all():
-        Table = ff.create_table(time_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
-                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link',
-                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
-                             axis=1).sort_values(by=['Eponym'],
-                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        st.write(Table)
+   # time_df = dfT.loc[dfT['Year'] == Year]
+
+  #  if not time_df['Year'].isnull().all():
+   #     Table = ff.create_table(time_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+    #                'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+     #               'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','Journal','History','ICD11_link',
+      #              'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+       #                      axis=1).sort_values(by=['Eponym'],
+       #                                          ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        #st.write(Table)
 
 
 #----------------------------------------------------------------------------------------------#
