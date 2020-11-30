@@ -883,7 +883,7 @@ def exp_year():
             Eps = st.selectbox('Eponyms from years 1930 - 1939:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1940's":
             newdf = dfY.loc[["1940","1944","1946","1948",]]#41,42,43,45,47,49
-            Eps = st.selectbox('Eponyms from years 1940 - 1949:', newdf['Eponym_easy'].unique())
+            Eps = st.selectbox('Eponyms from years 1940 - 1949:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1950's":
             newdf = dfY.loc[["1950","1951","1952","1953",]]#54,55,56,57,58,59
             Eps = st.selectbox('Eponyms from years 1950 - 1959:', newdf['Eponym_easy_yr'].unique())
@@ -912,7 +912,7 @@ def exp_year():
         if Decade == "2020's":
             st.write('No eponyms yet for 2020 - 2030')
            # newdf = dfY.loc[["2020",]]#20,21,22,26,27,28
-           # Eps = st.selectbox('Eponyms from years 1920 - 1929:', newdf['Eponym_easy'].unique())
+           # Eps = st.selectbox('Eponyms from years 1920 - 1929:', newdf['Eponym_easy_yr'].unique())
 
          
 
