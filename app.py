@@ -289,7 +289,7 @@ def show_anatomical():
     if not Anat_df['Type'].isnull().all():
         Table = ff.create_table(Anat_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
                     'Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP','Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','ExamFav','Journal','History','ICD11_link','Year',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID','Type','ExamFav','journal','History','ICD11_link','Year',
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym_OLD'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
@@ -304,7 +304,7 @@ def show_scores():
     if not Scores_df['Type'].isnull().all():
         Table = ff.create_table(Scores_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
                     'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal','History','ICD11_link','Year',
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
@@ -350,7 +350,7 @@ def show_path():
     if not Path_df['Type'].isnull().all():
         Table = ff.create_table(Path_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
                     'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
-                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
                     'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
@@ -382,7 +382,7 @@ def show_trials():
     if not Trial_df['Type'].isnull().all():
         Table = ff.create_table(Trial_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
                     'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal','History','ICD11_link','Year',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal','History','ICD11_link','Year',
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
@@ -413,7 +413,7 @@ def show_instruments():
     if not Instrum_df['Type'].isnull().all():
         Table = ff.create_table(Instrum_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
                     'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
-                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
                     'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
@@ -430,7 +430,7 @@ def show_maneuvers():
     if not Maneuv_df['Type'].isnull().all():
         Table = ff.create_table(Maneuv_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
                     'WhoNamedIt','Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP',
-                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','Journal',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
                     'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
