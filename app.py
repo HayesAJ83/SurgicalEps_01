@@ -637,7 +637,6 @@ def exp_journals():
             if not df_ep_info2['journal_name'].isnull().all():
                 st.write(journal, unsafe_allow_html=True)
                 
-
             if not df_ep_info2['year_str'].isnull().all():
                 st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
 
@@ -654,6 +653,24 @@ def exp_journals():
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
         figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
         st.write(figJDLT)
+
+        jrnls = st.multiselect('Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+        new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
+        new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+        if not jrnls == None:
+            J_options = st.selectbox('Eponyms in journals:',
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+
+            df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+            journal = df_ep_info2['journal_name'].to_string(index=False)
+            if not df_ep_info2['journal_name'].isnull().all():
+                st.write(journal, unsafe_allow_html=True)
+                
+            if not df_ep_info2['year_str'].isnull().all():
+                st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+
+            if not df_ep_info2['Who'].isnull().all():
+                st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
 
 #----------------------------------------------------------------------------------------------#
