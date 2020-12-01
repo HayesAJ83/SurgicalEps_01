@@ -685,7 +685,7 @@ def exp_people():
     mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
     site_lat = df_who_info['Lat_A1']            #df3['Lat_A1']                
     site_lon = df_who_info['Long_A1']           #df3['Long_A1']
-    text = df_who_info['Eponym_easy'] + ', ' + df_who_info['CityOfEponym_A1'] + ', ' + df_who_info['Year'].astype(str)
+    text = df_who_info['Who'] + ', ' + df_who_info['CityOfEponym_A1'] + ', ' + df_who_info['Year'].astype(str)
     locations_name = df_who_info['Eponym_easy']
     figG3 = go.Figure()
     figG3.add_trace(go.Scattermapbox(
@@ -946,7 +946,7 @@ def exp_exam():
     U = np.sort(T)
     exams = st.multiselect('Specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['General Surgery','Bariatrics','Breast','Colorectal',
+                           default=['All','General Surgery','Bariatrics','Breast','Colorectal',
                                     'Endocrine','Gynaecology','HPB','Hernia','Neurosurgery',
                                     'Oesophagogastric','Paediatrics','Plastics',
                                     'Trauma','Urology','Vascular'])
