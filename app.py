@@ -645,7 +645,24 @@ def exp_journals():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-        figJDLT = px.sunburst(dfY1, path=['JOURNALS',
+        df = pd.read_csv(url_J, dtype={'PMID':str,'Year':int})
+        df1 = df['specialty'].dropna()
+        string = df1.str.cat(sep=',')
+        splits = string.split(",")
+        S = set(splits)
+        T = np.array(list(S)).astype(object)
+        U = np.sort(T)
+        journal_spec = st.multiselect('Specialties:',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['All','General Surgery','Bariatrics',
+                                    'Colorectal','Endocrine','HPB','Hernia',
+                                    'Oesophagogastric','Paediatrics','Plastics',
+                                    'Trauma','Urology',])
+        new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
+        new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+        new_jrnls2["JOURNALS"] = "JOURNALS"
+        
+        figJDLT = px.sunburst(new_jrnls2, path=['JOURNALS',
                                           'journal_short', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
@@ -654,14 +671,26 @@ def exp_journals():
         figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
         st.write(figJDLT)
 
-        jrnls = st.multiselect('Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
-        new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
-        new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-        if not jrnls == None:
-            J_options = st.selectbox('Eponyms in journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+        
+        url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
+        dfZ = pd.read_csv(url_J)
+        dfZ1 = dfZ.dropna()
+        dfZ2 = dfZ1.sort_values(by=['journal'],ascending=True)
+        dfZ3 = dfZ2['journal'].dropna()
+        stringZ = dfZ3.str.cat(sep=',')
+        splitsZ = stringZ.split(",")
+        SZ = set(splitsZ)
+        TZ = np.array(list(SZ)).astype(object)
+        UZ = np.sort(TZ)
 
-            df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+        jrnlz = st.multiselect('Select journals:',options=list(UZ), format_func=lambda x: ' ' if x == '1' else x)
+        new_jrnlz1 = df.loc[df['journal'].str.contains('|'.join(jrnlz)) == True]
+        new_jrnlz2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+        if not jrnlz == None:
+            J_options = st.selectbox('Eponyms in journals:',
+                                  new_jrnlz2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+
+            df_ep_info2 = new_jrnlz1[new_jrnlz1['eponym'].str.match(J_options)]
             journal = df_ep_info2['journal_name'].to_string(index=False)
             if not df_ep_info2['journal_name'].isnull().all():
                 st.write(journal, unsafe_allow_html=True)
@@ -974,9 +1003,9 @@ def exp_exam():
 
     if not exams == None:
         Ex_options = st.selectbox('Eponyms often seen in exam papers:',
-                                  new_exams2['Eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                                  new_exams2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
-        df_ep_info2 = new_exams1[new_exams1['Eponym'].str.match(Ex_options)]
+        df_ep_info2 = new_exams1[new_exams1['Eponym_easy'].str.match(Ex_options)]
             
         if not df_ep_info2['Year_str'].isnull().all():
             st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
