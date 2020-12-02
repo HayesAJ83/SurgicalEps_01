@@ -645,6 +645,7 @@ def exp_journals():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
+        url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
         df = pd.read_csv(url_J, dtype={'PMID':str,'Year':int})
         df1 = df['specialty'].dropna()
         string = df1.str.cat(sep=',')
@@ -654,24 +655,25 @@ def exp_journals():
         U = np.sort(T)
         journal_spec = st.multiselect('Specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['All','General Surgery','Bariatrics',
+                           default=['General Surgery','Bariatrics',
                                     'Colorectal','Endocrine','HPB','Hernia',
                                     'Oesophagogastric','Paediatrics','Plastics',
                                     'Trauma','Urology',])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         new_jrnls2["JOURNALS"] = "JOURNALS"
+        width1=750
+        height1=550
         
-        figJDLT = px.sunburst(new_jrnls2, path=['JOURNALS',
-                                          'journal_short', 'year', 'eponym'],
+        figJDLT = px.sunburst(new_jrnls2,
+                              path=['JOURNALS','journal_short', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                      width=750, height=550)
+                      width=width1, height=height1)
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
         figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
         st.write(figJDLT)
 
-        
         url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
         dfZ = pd.read_csv(url_J)
         dfZ1 = dfZ.dropna()
