@@ -663,14 +663,15 @@ def exp_journals():
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         new_jrnls2["JOURNALS"] = "JOURNALS"
-        width1=750
-        height1=550
+        #width1=750
+        #height1=550
         
         figJDLT = px.sunburst(new_jrnls2,
                               path=['JOURNALS','journal_short', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                      width=width1, height=height1)
+                      #width=width1, height=height1
+                              )
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
         figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
         st.write(figJDLT)
