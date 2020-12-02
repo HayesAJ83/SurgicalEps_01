@@ -655,10 +655,10 @@ def exp_journals():
         U = np.sort(T)
         journal_spec = st.multiselect('Specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['General Surgery','Bariatrics',
-                                    'Colorectal','Endocrine','HPB','Hernia',
-                                    'Oesophagogastric','Paediatrics','Plastics',
-                                    'Trauma','Urology',])
+                           default=['All Specialties',
+                                    #'Bariatrics','Colorectal','Endocrine','General Surgery',
+                                    #'HPB','Hernia','Oesophagogastric','Paediatrics','Plastics',
+                                    #'Transplant','Trauma','Urology',])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         new_jrnls2["JOURNALS"] = "JOURNALS"
