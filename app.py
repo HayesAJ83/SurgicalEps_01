@@ -91,22 +91,24 @@ def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
                                 ["About this App",
+                                 "By Disease",
                                  "By Operation",
-                                 "Type of Eponym",
-                                 "World Maps",
-                                 "Journal of Publication",
-                                 "Famous People",
+                                 "By Type of Eponym",
                                  "By Year",
                                  "Exam Favourites",
+                                 "Famous People",
+                                 "Journal of Publication",
+                                 "World Maps",
                                  ])
     if   exp == "About this App":           exp_about()             #1
     elif exp == "By Operation":             exp_operation()         #2
-    elif exp == "Type of Eponym":           exp_type()              #3
+    elif exp == "By Type of Eponym":        exp_type()              #3
     elif exp == "World Maps":               exp_geography()         #4         
     elif exp == "Journal of Publication":   exp_journals()          #5
     elif exp == "Famous People":            exp_people()            #6
     elif exp == "By Year":                  exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
+    elif exp == "By Disease":               exp_dis()               #9
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -655,26 +657,27 @@ def exp_journals():
         U = np.sort(T)
         journal_spec = st.multiselect('Specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['All Specialties',
-                                    #'Bariatrics','Colorectal','Endocrine','General Surgery',
-                                    #'HPB','Hernia','Oesophagogastric','Paediatrics','Plastics',
-                                    #'Transplant','Trauma','Urology',
+                           default=[#'All Specialties',
+                                    'Bariatrics','Colorectal','Endocrine','General Surgery',
+                                    'HPB','Hernia','Oesophagogastric','Paediatrics','Plastics',
+                                    'Transplant','Trauma','Urology',
                                     ])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         new_jrnls2["JOURNALS"] = "JOURNALS"
-        #width1=750
-        #height1=550
+        if not journal_spec == None:
+            #width1=750
+            #height1=550
         
-        figJDLT = px.sunburst(new_jrnls2,
+            figJDLT = px.sunburst(new_jrnls2,
                               path=['JOURNALS','journal_short', 'year', 'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       #width=width1, height=height1
                               )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
-        figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
-        st.write(figJDLT)
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+            figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
+            st.write(figJDLT)
 
         url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
         dfZ = pd.read_csv(url_J)
@@ -688,8 +691,8 @@ def exp_journals():
         UZ = np.sort(TZ)
 
         jrnlz = st.multiselect('Select journals:',options=list(UZ), format_func=lambda x: ' ' if x == '1' else x)
-        new_jrnlz1 = df.loc[df['journal'].str.contains('|'.join(jrnlz)) == True]
-        new_jrnlz2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+        new_jrnlz1 = dfZ2.loc[dfZ2['journal'].str.contains('|'.join(jrnlz)) == True]
+        new_jrnlz2 = new_jrnlz1.sort_values(by=['eponym'],ascending=True)
         if not jrnlz == None:
             J_options = st.selectbox('Eponyms in journals:',
                                   new_jrnlz2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
@@ -1016,6 +1019,18 @@ def exp_exam():
 
         if not df_ep_info2['Who_B'].isnull().all():
             st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Disease (9)                                                                                 #
+# ::: Handles the                                                                              #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+
+def exp_dis():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+
 
 
 
