@@ -658,7 +658,8 @@ def exp_journals():
                            default=['All Specialties',
                                     #'Bariatrics','Colorectal','Endocrine','General Surgery',
                                     #'HPB','Hernia','Oesophagogastric','Paediatrics','Plastics',
-                                    #'Transplant','Trauma','Urology',])
+                                    #'Transplant','Trauma','Urology',
+                                    ])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         new_jrnls2["JOURNALS"] = "JOURNALS"
