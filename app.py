@@ -91,8 +91,8 @@ def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
                                 ["About this App",
-                                 "By Disease",
                                  "By Operation",
+                                 "By Speciality or Disease",
                                  "By Type of Eponym",
                                  "By Year",
                                  "Exam Favourites",
@@ -108,7 +108,7 @@ def show_explore():
     elif exp == "Famous People":            exp_people()            #6
     elif exp == "By Year":                  exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
-    elif exp == "By Disease":               exp_dis()               #9
+    elif exp == "By Speciality or Disease": exp_dis()               #9
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -1030,6 +1030,22 @@ def exp_exam():
 def exp_dis():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df1 = df['Topic'].dropna()
+    string = df1.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+    exams = st.multiselect('Choose topic - speciality or disease:',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['Inflammation','Appendicitis','Gallstone disease',
+                                    'Cancer','Hernia',#'Bariatrics','Breast',
+                                    #'Colorectal','Endocrine','Gynaecology','HPB','Hernia',
+                                    #'Neurosurgery','Oesophagogastric','Paediatrics','Plastics',
+                                    #'Trauma','Urology','Vascular',
+                                    ])
+    new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
+    new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
 
 
