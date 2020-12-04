@@ -92,9 +92,10 @@ def show_explore():
     exp = st.sidebar.radio('',#'Select',
                                 ["About this App",
                                  "Search full A to Z list",
-                                 "Explore By Operation",
-                                 "Explore By Speciality or Disease",
                                  "Explore By Eponym Type",
+                                 "Explore By Disease",
+                                 "Explore By Operation",
+                                 "Explore By Speciality",
                                  "Explore By Year",
                                  "Exam Favourites",
                                  "Find Famous People",
@@ -109,7 +110,8 @@ def show_explore():
     elif exp == "Find Famous People":       exp_people()            #6
     elif exp == "Explore By Year":          exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
-    elif exp == "Explore By Speciality or Disease": exp_dis()       #9
+    elif exp == "Explore By Disease":       exp_dis()               #9
+    elif exp == "Explore By Speciality":    exp_spec()              #9
     elif exp == "Search full A to Z list":  exp_A2Z()              #10
 
 #----------------------------------------------------------------------------------------------#
@@ -1032,7 +1034,36 @@ def exp_exam():
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
-#  Disease (9)                                                                                 #
+#  Speciality (9)                                                                              #
+# ::: Handles the                                                                              #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+def exp_spec():
+    st.subheader("Find Eponyms by Speciality")
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df1 = df['Topic'].dropna()
+    string = df1.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+    exams = st.multiselect('Speciality:',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['Bariatrics',
+                                    'Colorectal',
+                                    'Endocrine',
+                                    'Hernia','HPB',
+                                    'Oesophagogastric',
+                                    'Urology',
+                                    ])
+    new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
+    new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
+
+
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  Disease (9)                                                                              #
 # ::: Handles the                                                                              #                                                                                              #
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
@@ -1047,16 +1078,16 @@ def exp_dis():
     U = np.sort(T)
     exams = st.multiselect('Choose topic - speciality or disease:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Appendicitis','Bariatrics',
+                           default=['Appendicitis',
                                     'Cancer','Chronic Pancreatitis','Colorectal',
                                     'Endocrine',
                                     'Gallstone Disease','GORD',
                                     'Hernia','HPB','Inflammation',
-                                    #'Oesophagogastric','Oesophagogastric Cancer',
+                                    #'Obesity','Oesophagogastric Cancer',
                                     #'Peptic Ulcer Disease','Perforation',
                                     #'Sepsis',
                                     #'Gynaecology',
-                                    #'Neurosurgery','','Paediatrics','Plastics',
+                                    #'Neurosurgery','Paediatrics','Plastics',
                                     #'Trauma',
                                     #'Urology',
                                     #'Vascular',
