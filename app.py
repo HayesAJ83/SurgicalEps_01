@@ -91,26 +91,26 @@ def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
                                 ["About this App",
-                                 "All - A to Z list",
-                                 "By Operation",
-                                 "By Speciality or Disease",
-                                 "By Type of Eponym",
-                                 "By Year",
+                                 "Search full A to Z list",
+                                 "Explore By Operation",
+                                 "Explore By Speciality or Disease",
+                                 "Explore By Eponym Type",
+                                 "Explore By Year",
                                  "Exam Favourites",
-                                 "Famous People",
-                                 "Journal of Publication",
-                                 "World Maps",
+                                 "Find Famous People",
+                                 "Explore By Journal",
+                                 "Explore With World Maps",
                                  ])
     if   exp == "About this App":           exp_about()             #1
-    elif exp == "By Operation":             exp_operation()         #2
-    elif exp == "By Type of Eponym":        exp_type()              #3
-    elif exp == "World Maps":               exp_geography()         #4         
-    elif exp == "Journal of Publication":   exp_journals()          #5
-    elif exp == "Famous People":            exp_people()            #6
-    elif exp == "By Year":                  exp_year()              #7
+    elif exp == "Explore By Operation":     exp_operation()         #2
+    elif exp == "Explore By Eponym Type":   exp_type()              #3
+    elif exp == "Explore With World Maps":  exp_geography()         #4         
+    elif exp == "Explore By Journal":       exp_journals()          #5
+    elif exp == "Find Famous People":       exp_people()            #6
+    elif exp == "Explore By Year":          exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
-    elif exp == "By Speciality or Disease": exp_dis()               #9
-    elif exp == "All - A to Z list":         exp_A2Z()              #10
+    elif exp == "Explore By Speciality or Disease": exp_dis()       #9
+    elif exp == "Search full A to Z list":  exp_A2Z()              #10
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -194,6 +194,8 @@ def exp_operation():
         """<style type="text/css" media="screen">div[role="listbox"] ul {height:250px;}
         </style>""",unsafe_allow_html=True,)
 
+    st.subheader("Eponyms Related to Particular Operations") 
+
     #Page
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
@@ -261,6 +263,7 @@ def exp_operation():
 
 def exp_type():
     #st.markdown('''[Advert space for Google AdSense2]''')
+    st.subheader("Eponyms Categorised Into Different Types") 
     types = st.selectbox('First, select type of eponym:',["Anatomical structures",
                              "Clinical scores",
                              "Clinical signs",
@@ -762,13 +765,13 @@ def exp_people():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 def exp_year():
-
+    st.subheader("Eponyms Over the Decades & Centuries") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Year'],ascending=True)
     dfY = df2.set_index("Year")
- #   df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
-  #  dfT = df3.sort_values(by=['Year'],ascending=True)
+#   df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
+#   dfT = df3.sort_values(by=['Year'],ascending=True)
     
     Cent = st.selectbox('Century:', ('1500 - 1599', '1600 - 1699', '1700 - 1799',
                                     '1800 - 1899', '1900 - 1999', '2000 - now'), index=4)
@@ -991,6 +994,7 @@ def exp_year():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 def exp_exam():
+    st.subheader("Often Encountered Eponyms in Surgical Exams") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['ExamSpec'].dropna()
@@ -999,19 +1003,23 @@ def exp_exam():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    exams = st.multiselect('Specialties:',options=list(U),
+    exams = st.multiselect('Choose Specialties of Interest:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['All Specialties',
-                                    #'General Surgery','Bariatrics','Breast',
-                                    #'Colorectal','Endocrine','Gynaecology','HPB','Hernia',
-                                    #'Neurosurgery','Oesophagogastric','Paediatrics','Plastics',
-                                    #'Trauma','Urology','Vascular',
+                           default=[#'All Specialties',
+                                    'General Surgery','Bariatrics','Breast',
+                                    'Colorectal','Endocrine','Gynaecology',
+                                    'HPB','Hernia',
+                                    'Neurosurgery',
+                                    'Oesophagogastric',
+                                    'Paediatrics','Plastics',
+                                    'Trauma',
+                                    'Urology','Vascular',
                                     ])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
     if not exams == None:
-        Ex_options = st.selectbox('Eponyms often seen in exam papers:',
+        Ex_options = st.selectbox('Eponyms:',
                                   new_exams2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
         df_ep_info2 = new_exams1[new_exams1['Eponym_easy'].str.match(Ex_options)]
@@ -1055,15 +1063,14 @@ def exp_dis():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 def exp_A2Z():
-
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df2 = df1.sort_values(by=['Eponym'],ascending=True)
 
-    st.subheader("Eponyms A - Z:")
+    st.subheader("Search The Surgical Eponym Database")
     st.sidebar.markdown("---")   
     
-    options = st.selectbox('Begin typing here', df2['Eponym_easy'], format_func=lambda x: ' ' if x == '1' else x)
+    options = st.selectbox('Begin typing here:', df2['Eponym_easy'], format_func=lambda x: ' ' if x == '1' else x)
     df_ep_info = df2[df2['Eponym_easy'].str.match(options)]
 
     if not df_ep_info['Who'].isnull().all():
