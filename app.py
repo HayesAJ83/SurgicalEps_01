@@ -558,7 +558,7 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options3 == " ":              lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 6; Screen_width =  700; Screen_height = 440
+        if   options3 == " ":              lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 7; Screen_width =  700; Screen_height = 440
         if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  700; Screen_height = 440
         if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  700; Screen_height = 440
@@ -566,7 +566,7 @@ def exp_geography():
         if   options3 == "Denmark":        lat_3 = 56.00; lon_3 =  9.70; zoom_country = 5.00; markersize =10; Screen_width =  700; Screen_height = 440
         if   options3 == "Edinburgh":      lat_3 = 55.92; lon_3 =  -3.2; zoom_country = 9.20; markersize =12; Screen_width =  700; Screen_height = 440
         if   options3 == "England":        lat_3 = 52.80; lon_3 =  -3.0; zoom_country = 5.05; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 6; Screen_width =  700; Screen_height = 440
+        if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 7; Screen_width =  700; Screen_height = 440
         if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize =10; Screen_width =  700; Screen_height = 440
         if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 440
@@ -585,7 +585,7 @@ def exp_geography():
         if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
         if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
         if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "World":          lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 6; Screen_width =  700; Screen_height = 440
+        if   options3 == "World":          lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 7; Screen_width =  700; Screen_height = 440
                
         figG3 = go.Figure()
         figG3.add_trace(go.Scattermapbox(
