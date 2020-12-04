@@ -1047,10 +1047,14 @@ def exp_dis():
     U = np.sort(T)
     exams = st.multiselect('Choose topic - speciality or disease:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Inflammation','Appendicitis','Gallstone disease',
-                                    'Cancer','Hernia',#'Bariatrics','Breast',
-                                    #'Colorectal','Endocrine','Gynaecology','HPB','Hernia',
-                                    #'Neurosurgery','Oesophagogastric','Paediatrics','Plastics',
+                           default=['Appendicitis'
+                                    'Cancer', 'Chronic Pancreatitis','Colorectal',
+                                    'Endocrine',
+                                    'Gallstone disease','GORD',
+                                    'Hernia','HPB','Inflammation',
+                                    'Oesophagogastric',
+                                    #'Gynaecology',
+                                    #'Neurosurgery','','Paediatrics','Plastics',
                                     #'Trauma','Urology','Vascular',
                                     ])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
