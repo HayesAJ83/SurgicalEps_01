@@ -91,6 +91,7 @@ def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
                                 ["About this App",
+                                 "All - A to Z list",
                                  "By Operation",
                                  "By Speciality or Disease",
                                  "By Type of Eponym",
@@ -109,6 +110,7 @@ def show_explore():
     elif exp == "By Year":                  exp_year()              #7
     elif exp == "Exam Favourites":          exp_exam()              #8
     elif exp == "By Speciality or Disease": exp_dis()               #9
+    elif exp == "All - A to Z list":         exp_A2Z()              #10
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -1026,7 +1028,6 @@ def exp_exam():
 # ::: Handles the                                                                              #                                                                                              #
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
-
 def exp_dis():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -1047,8 +1048,34 @@ def exp_dis():
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
+#----------------------------------------------------------------------------------------------#
+#                                                                                              #
+#  A to Z (10)                                                                                 #
+# ::: Handles the                                                                              #                                                                                              #
+#                                                                                              #
+#----------------------------------------------------------------------------------------------#
+def exp_A2Z():
 
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df2 = df1.sort_values(by=['Eponym'],ascending=True)
 
+    st.subheader("Eponyms A - Z:")
+    st.sidebar.markdown("---")   
+    
+    options = st.selectbox('Begin typing here', df2['Eponym_easy'], format_func=lambda x: ' ' if x == '1' else x)
+    df_ep_info = df2[df2['Eponym_easy'].str.match(options)]
+
+    if not df_ep_info['Who'].isnull().all():
+        st.markdown("---")
+        st.write('*_Who_*:', df_ep_info['Who'].to_string(index=False))
+
+        ep_yr = df_ep_info['Year'].to_string(index=False)
+        if not df_ep_info['Year'].isnull().all():
+            st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+
+        if not df_ep_info['Where'].isnull().all():
+            st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
 
 #-------------------------------------------------------------------------------------------#
 if __name__ == "__main__":
