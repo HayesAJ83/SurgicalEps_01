@@ -187,13 +187,8 @@ def exp_about():
 #----------------------------------------------------------------------------------------------#
 
 def exp_operation():
-    
     st.markdown(
         """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
-        </style>""",unsafe_allow_html=True,)
-
-    st.markdown(
-        """<style type="text/css" media="screen">div[role="listbox"] ul {height:250px;}
         </style>""",unsafe_allow_html=True,)
 
     st.subheader("Eponyms Related to Particular Operations") 
@@ -682,7 +677,7 @@ def exp_journals():
         journal_spec = st.multiselect('Specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=[#'All Specialties',
-                                    'Bariatrics','Colorectal','Endocrine','General Surgery',
+                                    'Anaesthetics','Bariatrics','Colorectal','Endocrine','General Surgery',
                                     'HPB','Hernia','Oesophagogastric','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology',
                                     ])
@@ -1065,11 +1060,9 @@ def exp_spec():
     U = np.sort(T)
     exams = st.multiselect('Speciality:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Academic',
-                                    'Bariatrics',
-                                    'Colorectal',
-                                    'Endocrine',
-                                    'Hernia','HPB',
+                           default=['Academic','Anaesthetics',
+                                    'Bariatrics','Colorectal',
+                                    'Endocrine','Hernia','HPB',
                                     'Oesophagogastric',
                                     'Urology',
                                     ])
