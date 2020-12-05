@@ -677,8 +677,8 @@ def exp_journals():
         journal_spec = st.multiselect('Specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=[#'All Specialties',
-                                    'Anaesthetics','Bariatrics','Colorectal','Endocrine','General Surgery',
-                                    'HPB','Hernia','Oesophagogastric','Paediatrics','Plastics',
+                                    'Anaesthetics','Bariatrics','Colorectal','Endocrine','ENT','General Surgery',
+                                    'HPB','Hernia','Neurosurgery','Oesophagogastric','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology',
                                     ])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
