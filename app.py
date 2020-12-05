@@ -273,6 +273,7 @@ def exp_type():
                              "Pathology",
                              "Patient positioning",
                              "Research trials",
+                             "Statistical tests",
                              "Surgical incisions",
                              "Surgical instruments",
                              "Surgical maneuvers & techniques",
@@ -285,9 +286,10 @@ def exp_type():
     elif types == "Pathology":                          show_path()             #5
     elif types == "Patient positioning":                show_positions()        #6
     elif types == "Research trials":                    show_trials()           #7
-    elif types == "Surgical incisions":                 show_cuts()             #8
-    elif types == "Surgical instruments":               show_instruments()      #9
-    elif types == "Surgical maneuvers & techniques":    show_maneuvers()        #10
+    elif types == "Statistical tests":                  show_stats()            #8
+    elif types == "Surgical incisions":                 show_cuts()             #9
+    elif types == "Surgical instruments":               show_instruments()      #10
+    elif types == "Surgical maneuvers & techniques":    show_maneuvers()        #11
 
 #1
 def show_anatomical():
@@ -399,6 +401,21 @@ def show_trials():
     Trial_options2_info = Trial_df[Trial_df['Eponym'].str.match(Trial_options2)]
 
 #8
+def show_stats():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Stats_df = df[(df['Type'].str.match('Statistics'))]
+    if not Stats_df['Type'].isnull().all():
+        Table = ff.create_table(Stats_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    Stats_options2 = st.selectbox('Then, search list of eponymous statistical tests:', Stats_df['Eponym'].unique())
+    Stats_options2_info = Stats_df[Stats_df['Eponym'].str.match(Stats_options2)]
+
+#9
 def show_cuts():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -414,7 +431,7 @@ def show_cuts():
     Cuts_options2 = st.selectbox('Choose from list of incisions:', Cuts_df['Eponym'].unique())
     Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
 
-#9    
+#10    
 def show_instruments():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -431,7 +448,7 @@ def show_instruments():
     Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
 
 
-#10
+#11
 def show_maneuvers():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -1008,14 +1025,12 @@ def exp_exam():
     exams = st.multiselect('Choose Specialties of Interest:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=[#'All Specialties',
-                                    'General Surgery','Bariatrics','Breast',
-                                    'Colorectal','Endocrine','Gynaecology',
+                                    'Academic','Bariatrics','Breast',
+                                    'Colorectal','Endocrine','General Surgery','Gynaecology',
                                     'HPB','Hernia',
-                                    'Neurosurgery',
-                                    'Oesophagogastric',
+                                    'Neurosurgery','Oesophagogastric',
                                     'Paediatrics','Plastics',
-                                    'Trauma',
-                                    'Urology','Vascular',
+                                    'Trauma','Urology','Vascular',
                                     ])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
@@ -1050,7 +1065,8 @@ def exp_spec():
     U = np.sort(T)
     exams = st.multiselect('Speciality:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Bariatrics',
+                           default=['Academic',
+                                    'Bariatrics',
                                     'Colorectal',
                                     'Endocrine',
                                     'Hernia','HPB',
