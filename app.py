@@ -847,7 +847,7 @@ def exp_year():
            # newdf = dfY.loc[["1619",]]#10,11,12,13,14,16,17,18,19
            # Eps = st.selectbox('Eponyms from years 1610 - 1619:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1620's":
-            newdf = dfY.loc[["1627",]]#20,21,22,23,25,26,28,29
+            newdf = dfY.loc[["1625",]]#20,21,22,23,26,27,28,29
             Eps = st.selectbox('Eponyms from years 1620 - 1629:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1630's":
             st.write('No eponyms for 1630 - 1639')
@@ -971,7 +971,7 @@ def exp_year():
             newdf = dfY.loc[["1940","1944","1946","1948",]]#41,42,43,45,47,49
             Eps = st.selectbox('Eponyms from years 1940 - 1949:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1950's":
-            newdf = dfY.loc[["1950","1951","1952","1953",]]#54,55,56,57,58,59
+            newdf = dfY.loc[["1950","1951","1952","1953","1955"]]#54,55,56,57,58,59
             Eps = st.selectbox('Eponyms from years 1950 - 1959:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1960's":
             newdf = dfY.loc[["1960","1961","1962","1963",]]#64,65,66,67,68,69
@@ -980,10 +980,10 @@ def exp_year():
             newdf = dfY.loc[["1970","1972","1974","1977",]]#71,73,75,76,78,79
             Eps = st.selectbox('Eponyms from years 1970 - 1979:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1980's":
-            newdf = dfY.loc[["1984","1986","1987","1989",]]#80,81,82,83,85,88
+            newdf = dfY.loc[["1984","1985","1986","1987","1989",]]#80,81,82,83,85,88
             Eps = st.selectbox('Eponyms from years 1980 - 1989:', newdf['Eponym_easy_yr'].unique())
         if Decade == "1990's":
-            newdf = dfY.loc[["1990","1992","1995","1996",]]#91,93,94,97,98,99
+            newdf = dfY.loc[["1990","1992","1994","1995","1996",]]#91,93,94,97,98,99
             Eps = st.selectbox('Eponyms from years 1990 - 1999:', newdf['Eponym_easy_yr'].unique())
 
 
