@@ -1058,16 +1058,18 @@ def exp_spec():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    exams = st.multiselect('Speciality:',options=list(U),
+    special = st.multiselect('Speciality:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics',
                                     'Breast Surgery','Colorectal','Emergency Surgery',
-                                    'ENT','Endocrine','General Surgery',
-                                    'Hernia','HPB','Oesophagogastric',
+                                    'ENT','Endocrine','General Surgery','Gynaecology',
+                                    'Hernia','HPB',#'Neurosurgery',
+                                    'Oesophagogastric',#'Orthopaedics',
+                                    'Paediatrics',
                                     'Trauma','Urology','Vascular',
                                     ])
-    new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
-    new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
+    new_special1 = df.loc[df['Topic'].str.contains('|'.join(special)) == True]
+    new_special2 = new_special1.sort_values(by=['Eponym'],ascending=True)
 
 
 #----------------------------------------------------------------------------------------------#
