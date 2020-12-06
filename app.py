@@ -91,28 +91,28 @@ def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
                                 ["About this App",
-                                 "Search full A to Z list",
-                                 "Explore By Eponym Type",
+                                 "Search A to Z list",
                                  "Explore By Disease",
+                                 "Explore By Journal",
                                  "Explore By Operation",
                                  "Explore By Speciality",
+                                 "Explore By Type of Eponym",
                                  "Explore By Year",
-                                 "Exam Favourites",
+                                 "Find Exam Favourites",
                                  "Find Famous People",
-                                 "Explore By Journal",
                                  "Explore With World Maps",
                                  ])
     if   exp == "About this App":           exp_about()             #1
     elif exp == "Explore By Operation":     exp_operation()         #2
-    elif exp == "Explore By Eponym Type":   exp_type()              #3
+    elif exp == "Explore By Type of Eponym":exp_type()              #3
     elif exp == "Explore With World Maps":  exp_geography()         #4         
     elif exp == "Explore By Journal":       exp_journals()          #5
     elif exp == "Find Famous People":       exp_people()            #6
     elif exp == "Explore By Year":          exp_year()              #7
-    elif exp == "Exam Favourites":          exp_exam()              #8
+    elif exp == "Find Exam Favourites":     exp_exam()              #8
     elif exp == "Explore By Disease":       exp_dis()               #9
     elif exp == "Explore By Speciality":    exp_spec()              #9
-    elif exp == "Search full A to Z list":  exp_A2Z()              #10
+    elif exp == "Search A to Z list":       exp_A2Z()              #10
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
@@ -1079,30 +1079,15 @@ def exp_spec():
 def exp_dis():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-    df1 = df['Topic'].dropna()
+    df1 = df['Disease'].dropna()
     string = df1.str.cat(sep=',')
     splits = string.split(",")
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    exams = st.multiselect('Choose topic - speciality or disease:',options=list(U),
-                           format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Appendicitis',
-                                    'Cancer','Chronic Pancreatitis','Colorectal',
-                                    'Endocrine',
-                                    'Gallstone Disease','GORD',
-                                    'Hernia','HPB','Inflammation',
-                                    #'Obesity','Oesophagogastric Cancer',
-                                    #'Peptic Ulcer Disease','Perforation',
-                                    #'Sepsis',
-                                    #'Gynaecology',
-                                    #'Neurosurgery','Paediatrics','Plastics',
-                                    #'Trauma',
-                                    #'Urology',
-                                    #'Vascular',
-                                    ])
-    new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
-    new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
+    disease = st.selectbox('Choose disease:',options=list(U))
+    new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
+    new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
