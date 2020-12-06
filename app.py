@@ -1020,10 +1020,10 @@ def exp_exam():
     exams = st.multiselect('Choose Specialties of Interest:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=[#'All Specialties',
-                                    'Academic','Bariatrics','Breast',
-                                    'Colorectal','Endocrine','General Surgery','Gynaecology',
+                                    'Academic','Anaesthetics','Bariatrics','Breast',
+                                    'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
                                     'HPB','Hernia',
-                                    'Neurosurgery','Oesophagogastric',
+                                    'Neurosurgery','Oesophagogastric',#'Orthopaedics',
                                     'Paediatrics','Plastics',
                                     'Trauma','Urology','Vascular',
                                     ])
