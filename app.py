@@ -1071,14 +1071,58 @@ def exp_spec():
     new_special1 = df.loc[df['Topic'].str.contains('|'.join(special)) == True]
     new_special2 = new_special1.sort_values(by=['Eponym'],ascending=True)
 
+    if not special == None:
+        Spec_options = st.selectbox('Related eponyms:',
+                                  new_special2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+
+        df_ep_info2 = new_special1[new_special1['Eponym_easy'].str.match(Spec_options)]
+        ep_yr = df_ep_info2['Year'].to_string(index=False)
+
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+
+        if not df_ep_info2['Year_str'].isnull().all():
+            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+
+        if not df_ep_info2['Where'].isnull().all():
+            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+    
+        description = df_ep_info2['Description'].to_string(index=False)
+        history = df_ep_info2['History'].to_string(index=False)
+
+        if not df_ep_info2['Description'].isnull().all():
+            st.markdown(description, unsafe_allow_html=True)
+        if not df_ep_info2['History'].isnull().all():
+            st.write('**_History_**:', history)
+            st.markdown("---")
+
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('**External links**')
+        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
+        if not df_ep_info2['Pubmed'].isnull().all():
+           st.markdown(f"[PubMed.gov]({ref_link})")
+
+        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
+        if not df_ep_info2['Wiki_link'].isnull().all():
+            st.markdown(f"[wikipedia.org]({wiki_link})")
+
+        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
+        if not df_ep_info2['WNI_link'].isnull().all():
+           st.markdown(f"[whonamedit.com]({wni_link})")
+
+        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
+        if not df_ep_info2['ICD11_link'].isnull().all():
+           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+    
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
-#  Disease (9)                                                                              #
+#  Disease (9)                                                                                 #
 # ::: Handles the                                                                              #                                                                                              #
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 def exp_dis():
+
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -1087,9 +1131,57 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.selectbox('Choose disease:',options=list(U), format_func=lambda x: 'Type disease of interest here' if x == '1' else x)
+    disease = st.multiselect('Choose disease:', options=list(U),
+                             format_func=lambda x: ' ' if x == '1' else x,
+                               default=['Appendicitis','Acute Pancreatitis','Gallstone Disease',
+                                    ])
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
+
+    if not disease == None:
+        Dis_options = st.selectbox('Related eponyms:',
+                                   new_dis2['Eponym_easy'].unique(),
+                               format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+
+        df_ep_info2 = new_dis1[new_dis1['Eponym_easy'].str.match(Dis_options)]
+        ep_yr = df_ep_info2['Year'].to_string(index=False)
+
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+
+        if not df_ep_info2['Year_str'].isnull().all():
+            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+
+        if not df_ep_info2['Where'].isnull().all():
+            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+    
+        description = df_ep_info2['Description'].to_string(index=False)
+        history = df_ep_info2['History'].to_string(index=False)
+
+        if not df_ep_info2['Description'].isnull().all():
+            st.markdown(description, unsafe_allow_html=True)
+        if not df_ep_info2['History'].isnull().all():
+            st.write('**_History_**:', history)
+            st.markdown("---")
+
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('**External links**')
+        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
+        if not df_ep_info2['Pubmed'].isnull().all():
+           st.markdown(f"[PubMed.gov]({ref_link})")
+
+        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
+        if not df_ep_info2['Wiki_link'].isnull().all():
+            st.markdown(f"[wikipedia.org]({wiki_link})")
+
+        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
+        if not df_ep_info2['WNI_link'].isnull().all():
+           st.markdown(f"[whonamedit.com]({wni_link})")
+
+        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
+        if not df_ep_info2['ICD11_link'].isnull().all():
+           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+
 
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
