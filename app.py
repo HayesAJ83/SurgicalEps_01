@@ -1063,8 +1063,8 @@ def exp_spec():
                            default=['Academic','Anaesthetics','Bariatrics',
                                     'Breast Surgery','Colorectal','Emergency Surgery',
                                     'ENT','Endocrine','General Surgery','Gynaecology',
-                                    'Hernia','HPB',#'Neurosurgery',
-                                    'Oesophagogastric',#'Orthopaedics',
+                                    'Hernia','HPB','Neurosurgery',
+                                    'Oesophagogastric','Orthopaedics',
                                     'Paediatrics',
                                     'Trauma','Urology','Vascular',
                                     ])
