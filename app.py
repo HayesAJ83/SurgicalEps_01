@@ -1023,7 +1023,7 @@ def exp_exam():
                                     'Academic','Anaesthetics','Bariatrics','Breast',
                                     'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
                                     'HPB','Hernia',
-                                    'Neurosurgery','Oesophagogastric',#'Orthopaedics',
+                                    'Neurosurgery','Oesophagogastric','Orthopaedics',
                                     'Paediatrics','Plastics',
                                     'Trauma','Urology','Vascular',
                                     ])
