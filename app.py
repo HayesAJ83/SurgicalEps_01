@@ -678,7 +678,7 @@ def exp_journals():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=[#'All Specialties',
                                     'Anaesthetics','Bariatrics','Colorectal','Endocrine','ENT','General Surgery',
-                                    'HPB','Hernia','Neurosurgery','Oesophagogastric','Paediatrics','Plastics',
+                                    'HPB','Hernia','Neurosurgery','Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology',
                                     ])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
