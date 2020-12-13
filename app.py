@@ -478,7 +478,7 @@ def exp_geography():
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-        portrait1 = st.selectbox('Choose map Location:',
+        portrait1 = st.selectbox('Choose map location:',
                                 ["World","  ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
@@ -679,7 +679,7 @@ def exp_journals():
                            default=[#'All Specialties',
                                     'Anaesthetics','Bariatrics','Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia','Neurosurgery','Oesophagogastric',
-                                    'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology',
+                                    'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology',#'Vascular',
                                     ])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
