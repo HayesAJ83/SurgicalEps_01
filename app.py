@@ -1024,7 +1024,7 @@ def exp_exam():
                                     'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
                                     'HPB','Hernia',
                                     'Neurosurgery','Oesophagogastric','Orthopaedics',
-                                    'Paediatrics','Plastics',
+                                    'Paediatrics','Plastics','Transplant',
                                     'Trauma','Urology','Vascular',
                                     ])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
@@ -1065,7 +1065,7 @@ def exp_spec():
                                     'ENT','Endocrine','General Surgery','Gynaecology',
                                     'Hernia','HPB','Neurosurgery',
                                     'Oesophagogastric','Orthopaedics',
-                                    'Paediatrics',
+                                    'Paediatrics','Transplant',
                                     'Trauma','Urology','Vascular',
                                     ])
     new_special1 = df.loc[df['Topic'].str.contains('|'.join(special)) == True]
