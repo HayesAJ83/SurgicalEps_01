@@ -478,16 +478,6 @@ def exp_geography():
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-        portrait1 = st.selectbox('Choose map location:',
-                                ["World","  ",
-                                 "Argentina","Austria","Brazil","Canada",
-                                 "Denmark","Edinburgh","England","Europe",
-                                 "France","Germany","Hawaii",
-                                 "Ireland","Italy","Japan","London",
-                                 "Netherlands","New York City","North America",
-                                 "Paris","Poland",
-                                 "South America","Sweden","Switzerland",
-                                 "UK","United Kingdom","USA"])
 
         Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -503,46 +493,18 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy']
 
-        if portrait1 == " ":         lat_1 = 40.00; lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Argentina": lat_1 =-40.00; lon_1 = -65.0; zoom_country =   2.4; markersize = 6; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Austria":   lat_1 = 47.20; lon_1 =  13.4; zoom_country =  5.50; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Brazil":    lat_1 =-10.00; lon_1 = -55.0; zoom_country =   2.0; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Canada":    lat_1 = 59.00; lon_1 = -97.0; zoom_country =   1.4; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Denmark":   lat_1 = 56.00; lon_1 =   9.8; zoom_country =  4.00; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Europe":    lat_1 = 54.00; lon_1 =  10.0; zoom_country =  1.80; markersize = 6; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Edinburgh": lat_1 = 55.92; lon_1 =  -3.2; zoom_country =  7.20; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "England":   lat_1 = 52.80; lon_1 =  -3.0; zoom_country =  4.30; markersize = 9; Screen_width =  350; Screen_height = 260
-        if portrait1 == "France":    lat_1 = 47.00; lon_1 =   4.0; zoom_country =  4.50; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Germany":   lat_1 = 51.25; lon_1 =  10.2; zoom_country =  3.80; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Hawaii":    lat_1 = 20.50; lon_1 =-157.4; zoom_country =   5.0; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Ireland":   lat_1 = 53.50; lon_1 =  -6.2; zoom_country =   5.0; markersize = 8; Screen_width =  350; Screen_height = 260; 
-        if portrait1 == "Italy":     lat_1 = 41.50; lon_1 =  14.0; zoom_country =   3.6; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Japan":     lat_1 = 37.40; lon_1 = 135.0; zoom_country =   4.4; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "London":         lat_1 = 51.54;  lon_1 =  -0.1; zoom_country =  8.20; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Netherlands":    lat_1 = 52.00;  lon_1 =   5.0; zoom_country =   4.8; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "New York City":  lat_1 = 40.78;  lon_1 = -74.0; zoom_country =  8.20; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "North America":  lat_1 = 52.00;  lon_1 =  -100; zoom_country =   1.8; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Paris":          lat_1 = 48.86;  lon_1 =  2.35; zoom_country =  10.2; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Poland":         lat_1 = 52.00;  lon_1 =  19.0; zoom_country =   4.0; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "South America":  lat_1 =-28.00;  lon_1 = -65.0; zoom_country =   1.8; markersize = 6; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Sweden":         lat_1 = 62.50;  lon_1 =  18.5; zoom_country =   3.0; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "Switzerland":    lat_1 = 47.00;  lon_1 =   8.0; zoom_country =   4.5; markersize = 8; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "UK":             lat_1 = 54.40;  lon_1 =  -3.2; zoom_country =  3.55; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "USA":            lat_1 = 39.00;  lon_1 =   -96; zoom_country =  2.05; markersize = 9; Screen_width =  350; Screen_height = 260;
-        if portrait1 == "World":          lat_1 = 40.00;  lon_1 =   0.0; zoom_country = -0.45; markersize = 4; Screen_width =  350; Screen_height = 260;
-
         figG3 = go.Figure()
         figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
-                marker=go.scattermapbox.Marker(size=markersize,color='yellow',opacity=0.7),
+                marker=go.scattermapbox.Marker(size=5,color='yellow',opacity=0.7),
                 text=text,hoverinfo='text',))
 
         figG3.update_layout(
-                autosize=True,hovermode='closest',showlegend=False,width=Screen_width,height=Screen_height,
-                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_1,lon=lon_1),
-                pitch=5,zoom=zoom_country,style='dark'))
+                autosize=True,hovermode='closest',showlegend=False,width=350,height=250,
+                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
+                pitch=5,zoom=-0.45,style='dark'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
-        st.markdown('''<span style="font-size:8pt;color:black;">If the map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
+        st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in and out of map.</span>''',
                 unsafe_allow_html=True)
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
@@ -611,7 +573,7 @@ def exp_geography():
                 width=Screen_width,height=Screen_height,
                 mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_3,lon=lon_3),
                 pitch=5,zoom=zoom_country,
-                style='dark'))#dark satellite-streets
+                style='satellite-streets'))#dark satellite-streets
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
         st.markdown('''<span style="font-size:10pt;color:black;">If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
