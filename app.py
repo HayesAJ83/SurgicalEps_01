@@ -539,7 +539,7 @@ def exp_geography():
         figG3.update_layout(
                 autosize=True,hovermode='closest',showlegend=False,width=Screen_width,height=Screen_height,
                 mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_1,lon=lon_1),
-                pitch=5,zoom=zoom_country,style='satellite-streets'))
+                pitch=5,zoom=zoom_country,style='dark'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
         st.markdown('''<span style="font-size:8pt;color:black;">If the map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
