@@ -532,7 +532,7 @@ def exp_geography():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy'] #df3['Eponym_easy']
 
-        if   options3 == " ":              lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 7; Screen_width =  700; Screen_height = 440
+        if   options3 == " ":              lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize =6.5; Screen_width =  700; Screen_height = 440
         if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  700; Screen_height = 440
         if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  700; Screen_height = 440
@@ -559,7 +559,7 @@ def exp_geography():
         if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
         if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
         if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "World":          lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize = 7; Screen_width =  700; Screen_height = 440
+        if   options3 == "World":          lat_3 = 35.00; lon_3 =  10.0; zoom_country = 0.44; markersize =6.5; Screen_width =  700; Screen_height = 440
                
         figG3 = go.Figure()
         figG3.add_trace(go.Scattermapbox(
@@ -1095,7 +1095,7 @@ def exp_dis():
     U = np.sort(T)
     disease = st.multiselect('Choose disease:', options=list(U),
                              format_func=lambda x: ' ' if x == '1' else x,
-                               default=['Appendicitis','Acute Pancreatitis','Gallstone Disease',
+                               default=['Trauma','Sepsis',
                                     ])
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
