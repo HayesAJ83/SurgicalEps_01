@@ -640,7 +640,7 @@ def exp_journals():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=[#'All Specialties',
                                     'Anaesthetics','Bariatrics','Colorectal','Emergency Surgery','Endocrine','ENT',
-                                    'General Surgery','Gynaecology','HPB','Hernia','Neurosurgery','Oesophagogastric',
+                                    'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Neurosurgery','Oesophagogastric',
                                     'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology',#'Vascular',
                                     ])
         new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
@@ -1025,7 +1025,7 @@ def exp_spec():
                            default=['Academic','Anaesthetics','Bariatrics',
                                     'Breast Surgery','Colorectal','Emergency Surgery',
                                     'ENT','Endocrine','General Surgery','Gynaecology',
-                                    'Hernia','HPB','Neurosurgery',
+                                    'Hernia','HPB','Laparoscopic Surgery','Neurosurgery',
                                     'Oesophagogastric','Orthopaedics',
                                     'Paediatrics','Plastics','Transplant',
                                     'Trauma','Urology','Vascular',
