@@ -1027,7 +1027,7 @@ def exp_spec():
                                     'ENT','Endocrine','General Surgery','Gynaecology',
                                     'Hernia','HPB','Neurosurgery',
                                     'Oesophagogastric','Orthopaedics',
-                                    'Paediatrics','Transplant',
+                                    'Paediatrics','Plastics','Transplant',
                                     'Trauma','Urology','Vascular',
                                     ])
     new_special1 = df.loc[df['Topic'].str.contains('|'.join(special)) == True]
