@@ -651,7 +651,8 @@ def exp_journals():
             #height1=550
         
             figJDLT = px.sunburst(new_jrnls2,
-                              path=['JOURNALS','journal_short', 'year', 'eponym'],
+                              path=['JOURNALS','journal_short', #'year',
+                                    'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       #width=width1, height=height1
