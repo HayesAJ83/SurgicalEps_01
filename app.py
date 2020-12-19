@@ -651,14 +651,16 @@ def exp_journals():
             #height1=550
         
             figJDLT = px.sunburst(new_jrnls2,
-                              path=['JOURNALS','journal_short', #'year',
+                              path=['JOURNALS',
+                                    'journal_short', #'year',
                                     'eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
-                      color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+                      color_continuous_scale='RdBu', #RdBu inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                       #width=width1, height=height1
                               )
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
-            figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
+            #figJDLT.update_layout(uniformtext=dict(minsize=5, mode='hide'))
+            figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
 
         url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
