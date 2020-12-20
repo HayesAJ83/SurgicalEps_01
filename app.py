@@ -1115,8 +1115,7 @@ def exp_dis():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     disease = st.multiselect('Choose disease:', options=list(U),
-                             format_func=lambda x: ' ' if x == '1' else x,
-                               #default=[''])
+                             format_func=lambda x: ' ' if x == '1' else x,)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
 
