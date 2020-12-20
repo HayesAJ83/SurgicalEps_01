@@ -264,6 +264,7 @@ def exp_type():
     types = st.selectbox('First, select type of eponym:',["Anatomical structures",
                              "Clinical scores",
                              "Clinical signs",
+                             "Clinical syndromes",
                              "Operations",
                              "Pathology",
                              "Patient positioning",
