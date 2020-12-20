@@ -277,6 +277,7 @@ def exp_type():
     if types   == "Anatomical structures":              show_anatomical()       #1
     elif types == "Clinical scores":                    show_scores()           #2
     elif types == "Clinical signs":                     show_signs()            #3
+    elif types == "Clinical syndromes":                 show_synd()             #3
     elif types == "Operations":                         show_opNames()          #4
     elif types == "Pathology":                          show_path()             #5
     elif types == "Patient positioning":                show_positions()        #6
@@ -331,6 +332,22 @@ def show_signs():
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
     Sign_options2 = st.selectbox('Then, search list of clinical signs:', Sign_df['Eponym'].unique())
     Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
+
+
+#3
+def show_synd():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    Synd_df = df[(df['Type'].str.match('Syndrome'))]
+    if not Synd_df['Type'].isnull().all():
+        Table = ff.create_table(Synd_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+    Synd_options2 = st.selectbox('Then, search list of syndromes:', Synd_df['Eponym'].unique())
+    Synd_options2_info = Synd_df[Synd_df['Eponym'].str.match(Synd_options2)]
 
 #4
 def show_opNames():
