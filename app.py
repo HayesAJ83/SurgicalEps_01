@@ -607,9 +607,7 @@ def exp_geography():
 
 def exp_journals():
     #st.markdown('''[Advert space for Google AdSense4]''')
-    ScreenSize = st.radio('Select screen size:',
-                     options=['Smartphone',
-                              'Desktop / Laptop / Tablet'],index=0)
+    ScreenSize = st.radio('Select screen size:',options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
 #    st.write('''Click on a journal name to find related eponyms:''')
 #    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
 
@@ -646,25 +644,22 @@ def exp_journals():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-        url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-        dfY = pd.read_csv(url_J)
-        dfY1 = dfY.dropna()
-        dfY1["JOURNALS"] = "JOURNALS"
-        df1 = pd.read_csv(url_J)
-        df2 = df1.sort_values(by=['journal'],ascending=True)
-        df3 = df2['journal'].dropna()
-        string = df3.str.cat(sep=',')
-        splits = string.split(",")
-        S = set(splits)
-        T = np.array(list(S)).astype(object)
-        U = np.sort(T)
-
         types = st.radio('Specialties:',["All","Selected",])
 
         if types == 'All':
+            url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
+            dfY = pd.read_csv(url_J)
+            dfY1 = dfY.dropna()
             dfY1["JOURNALS"] = "JOURNALS"
-            figJDLT = px.sunburst(dfY1,
-                              path=['JOURNALS','journal_short','eponym'],
+            df1 = pd.read_csv(url_J)
+            df2 = df1.sort_values(by=['journal'],ascending=True)
+            df3 = df2['journal'].dropna()
+            string = df3.str.cat(sep=',')
+            splits = string.split(",")
+            S = set(splits)
+            T = np.array(list(S)).astype(object)
+            U = np.sort(T)
+            figJDLT = px.sunburst(dfY1,path=['JOURNALS','journal_short','eponym'],
                               values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                               color_continuous_scale='RdBu')
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
@@ -689,8 +684,6 @@ def exp_journals():
             if not df_ep_info2['Who'].isnull().all():
                 st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
-            
-                
         if types == 'Selected':
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             df = pd.read_csv(url_J, dtype={'PMID':str,'Year':int})
@@ -702,29 +695,22 @@ def exp_journals():
             U = np.sort(T)
             journal_spec = st.multiselect('Selected specialties:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=[#'All Specialties',
-                                    'Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
+                           default=['Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Neurosurgery','Oesophagogastric',
                                     'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',])
             new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
             new_jrnls2["JOURNALS"] = "JOURNALS"
             if not journal_spec == None:
-                    
-                figJDLT = px.sunburst(new_jrnls2,
-                              path=['JOURNALS','journal_short', 'year', 'eponym'],
+                figJDLT = px.sunburst(new_jrnls2,path=['JOURNALS','journal_short','eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                      #width=width1, height=height1
                               )
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
                 figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
                 st.write(figJDLT)
 
-            url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-            dfZ = pd.read_csv(url_J)
-            dfZ1 = dfZ.dropna()
-            dfZ2 = dfZ1.sort_values(by=['journal'],ascending=True)
+            dfZ2 = new_jrnls2.sort_values(by=['journal'],ascending=True)
             dfZ3 = dfZ2['journal'].dropna()
             stringZ = dfZ3.str.cat(sep=',')
             splitsZ = stringZ.split(",")
