@@ -710,7 +710,10 @@ def exp_journals():
                 figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
                 st.write(figJDLT)
 
-            dfZ2 = new_jrnls2.sort_values(by=['journal'],ascending=True)
+            df["JOURNALS"] = "JOURNALS"
+            dfX = df.head(1)
+            new_jrnls4 = pd.concat([dfX,new_jrnls2]).reset_index(drop=True)
+            dfZ2 = new_jrnls4.sort_values(by=['journal'],ascending=True)
             dfZ3 = dfZ2['journal'].dropna()
             stringZ = dfZ3.str.cat(sep=',')
             splitsZ = stringZ.split(",")
