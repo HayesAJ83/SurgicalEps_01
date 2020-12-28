@@ -316,7 +316,7 @@ def show_scores():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-    Scores_options2 = st.selectbox('Then, search list of clinical scores:', Scores_df['Eponym'].unique())
+    Scores_options2 = st.radio('Then, search list of clinical scores:', Scores_df['Eponym'].unique())
     Scores_options2_info = Scores_df[Scores_df['Eponym'].str.match(Scores_options2)]
 
 #3
@@ -347,6 +347,7 @@ def show_synd():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+   # Synd_options2 = st.selectbox('Then, search list of syndromes:', Synd_df['Eponym'].unique())
     Synd_options2 = st.selectbox('Then, search list of syndromes:', Synd_df['Eponym'].unique())
     Synd_options2_info = Synd_df[Synd_df['Eponym'].str.match(Synd_options2)]
 
@@ -572,7 +573,7 @@ def exp_geography():
         if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  700; Screen_height = 440
         if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  700; Screen_height = 440
         if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.15; markersize =11; Screen_width =  700; Screen_height = 440
+        if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.12; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  700; Screen_height = 440
         if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
         if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
@@ -775,13 +776,13 @@ def exp_people():
     figG3 = go.Figure()
     figG3.add_trace(go.Scattermapbox(
         lat=df_who_info['Lat_A1'],lon=df_who_info['Long_A1'],mode='markers',
-                marker=go.scattermapbox.Marker(size=12,color='yellow',opacity=1.0),
+                marker=go.scattermapbox.Marker(size=9,color='yellow',opacity=0.9),
                 text=text,hoverinfo='text',))
     figG3.update_layout(
                 autosize=True,hovermode='closest',showlegend=False,width=350,height=260,
                 mapbox=dict(accesstoken=mapbox_access_token,
                             bearing=0,center=dict(lat=40.0,lon=0.0),
-                            pitch=5,zoom=-0.45,style='satellite-streets'))
+                            pitch=5,zoom=-0.45,style='dark'))
     figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
     st.write(figG3)
 
@@ -1076,7 +1077,7 @@ def exp_spec():
                            default=['Academic','Anaesthetics','Bariatrics',
                                     'Breast','Colorectal',#'Cardiothoracics',
                                     'Emergency Surgery','ENT','Endocrine','General Surgery','Gynaecology',
-                                    'Hernia','HPB','Laparoscopic Surgery','Neurosurgery',
+                                    'Hernia','HPB','Laparoscopic Surgery','Maxillofacial','Neurosurgery',
                                     'Oesophagogastric','Orthopaedics',
                                     'Paediatrics','Plastics','Transplant',
                                     'Trauma','Urology','Vascular',
@@ -1213,7 +1214,7 @@ def exp_A2Z():
 
     if not df_ep_info['Who'].isnull().all():
         st.markdown("---")
-        st.write('*_Who_*:', df_ep_info['Who'].to_string(index=False))
+        st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
 
         ep_yr = df_ep_info['Year'].to_string(index=False)
         if not df_ep_info['Year'].isnull().all():
