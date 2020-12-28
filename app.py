@@ -661,7 +661,8 @@ def exp_journals():
             U = np.sort(T)
             figJDLT = px.sunburst(dfY1,path=['JOURNALS','journal_short','eponym'],
                               values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
-                              color_continuous_scale='RdBu')
+                              color_continuous_scale='RdBu'
+                                  )
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
@@ -1073,8 +1074,8 @@ def exp_spec():
     special = st.multiselect('Speciality:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics',
-                                    'Breast','Colorectal','Emergency Surgery',
-                                    'ENT','Endocrine','General Surgery','Gynaecology',
+                                    'Breast','Colorectal',#'Cardiothoracics',
+                                    'Emergency Surgery','ENT','Endocrine','General Surgery','Gynaecology',
                                     'Hernia','HPB','Laparoscopic Surgery','Neurosurgery',
                                     'Oesophagogastric','Orthopaedics',
                                     'Paediatrics','Plastics','Transplant',
