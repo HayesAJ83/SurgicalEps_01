@@ -514,7 +514,7 @@ def exp_geography():
 
         figG3 = go.Figure()
         figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
-                marker=go.scattermapbox.Marker(size=5,color='yellow',opacity=0.7),
+                marker=go.scattermapbox.Marker(size=4,color='yellow',opacity=0.6),
                 text=text,hoverinfo='text',))
 
         figG3.update_layout(
@@ -648,6 +648,7 @@ def exp_journals():
         types = st.radio('Specialties:',["All","Selected",])
 
         if types == 'All':
+            #years = st.select_slider('Travel back in time:',options=[np.arange(0,2000,10)],value=(1500,2020))
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
