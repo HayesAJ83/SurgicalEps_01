@@ -608,7 +608,7 @@ def exp_geography():
 
 def exp_journals():
     #st.markdown('''[Advert space for Google AdSense4]''')
-    ScreenSize = st.radio('Select screen size:',options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
+    ScreenSize = st.radio('1st) Select screen size:',options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
 #    st.write('''Click on a journal name to find related eponyms:''')
 #    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
 
@@ -625,11 +625,11 @@ def exp_journals():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     if ScreenSize == "Smartphone":
-        jrnls = st.multiselect('Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
-        new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True] #str.contains('|'.join(jrnls)) == True]
+        jrnls = st.multiselect('2nd) Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+        new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         if not jrnls == None:
-            J_options = st.selectbox('Eponyms in journals:',
+            J_options = st.selectbox('3rd) Search eponyms from selected journals:',
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
             df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
@@ -645,10 +645,10 @@ def exp_journals():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-        types = st.radio('Specialties:',["All","Selected",])
+        types = st.radio('2nd) Specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("Choose time window:", 1735, 2025, [1735, 2025])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1730, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -669,7 +669,7 @@ def exp_journals():
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
 
-            jrnls = st.multiselect('Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+            jrnls = st.multiselect('2nd) Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True] #str.contains('|'.join(jrnls)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
             if not jrnls == None:
@@ -688,7 +688,7 @@ def exp_journals():
                 st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
         if types == 'Selected':
-            min_yrs, max_yrs = st.slider("First, choose time window:", 1735, 2025, [1735, 2025])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1730, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -701,7 +701,7 @@ def exp_journals():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            journal_spec = st.multiselect('Next, add specialties to show related eponyms (default is no filter):',options=list(U),
+            journal_spec = st.multiselect('4) Add specialties to show related eponyms (default is no filter):',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            #default=['Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
                            #         'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery','Oesophagogastric',
