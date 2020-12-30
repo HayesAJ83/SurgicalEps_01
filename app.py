@@ -492,13 +492,12 @@ def exp_geography():
         </style>""",unsafe_allow_html=True,)
 
 #   st.markdown('''[Advert space for Google AdSense3]''')
-    ScreenSize = st.radio('Select screen size:',
+    ScreenSize = st.radio('1st) Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-
-        Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
+        min_yrs, max_yrs = st.slider("2nd) Choose time window:", 1550, 2030, [1560, 2021])
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -506,7 +505,7 @@ def exp_geography():
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
         dfT = df3.sort_values(by=['Year'],ascending=True)
-        time_df = dfT.loc[dfT['Year'] <= Year]
+        time_df = dfT.loc[(dfT['Year'] >= min_yrs) & (dfT['Year'] <= max_yrs)]
         site_lat = time_df['Lat_A1']                            
         site_lon = time_df['Long_A1']
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
@@ -527,7 +526,7 @@ def exp_geography():
                 unsafe_allow_html=True)
 
     if ScreenSize == "Desktop / Laptop / Tablet":                
-        options3 = st.selectbox('Choose map location:',
+        options3 = st.selectbox('2nd) Choose map location:',
                                 ["World"," ","  ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
@@ -538,14 +537,15 @@ def exp_geography():
                                  "South America","Sweden","Switzerland",
                                  "UK","United Kingdom","USA",])
 
-        Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
+       # Year = st.slider('Travel back in time:', 1560, 2020, value=2020)
+        min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1550, 2030, [1560, 2021])
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
         dfT = df3.sort_values(by=['Year'],ascending=True)
-        time_df = dfT.loc[dfT['Year'] <= Year]
+        time_df = dfT.loc[(dfT['Year'] >= min_yrs) & (dfT['Year'] <= max_yrs)]
         site_lat = time_df['Lat_A1']            #df3['Lat_A1']                
         site_lon = time_df['Long_A1']           #df3['Long_A1']
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
