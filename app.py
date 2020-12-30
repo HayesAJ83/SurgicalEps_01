@@ -648,7 +648,7 @@ def exp_journals():
         types = st.radio('Specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("Choose time window:", 1500, 2020, [1500, 2020])
+            min_yrs, max_yrs = st.slider("Choose time window:", 1735, 2025, [1735, 2025])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -688,7 +688,7 @@ def exp_journals():
                 st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
         if types == 'Selected':
-            min_yrs, max_yrs = st.slider("First, choose time window:", 1500, 2020, [1500, 2020])
+            min_yrs, max_yrs = st.slider("First, choose time window:", 1735, 2025, [1735, 2025])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -823,6 +823,7 @@ def exp_year():
                                     '1800 - 1899', '1900 - 1999', '2000 - now'), index=4)
 
     if Cent == "1500 - 1599":
+        #change to select_slider
         Decade = st.selectbox('Decade:', ("1500's", "1510's", "1520's", "1530's", "1540's",
                                           "1550's", "1560's", "1570's", "1580's", "1590's"), index=0)
         if Decade == "1500's":
