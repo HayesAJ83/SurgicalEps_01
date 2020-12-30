@@ -721,7 +721,7 @@ def exp_journals():
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1730, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -742,49 +742,46 @@ def exp_journals():
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
 
-            jrnls = st.multiselect('2nd) Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
-            new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True] #str.contains('|'.join(jrnls)) == True]
-            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-            if not jrnls == None:
-                J_options = st.selectbox('Eponyms in journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-
-                df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
-                journal = df_ep_info2['journal_name'].to_string(index=False)
-            if not df_ep_info2['journal_name'].isnull().all():
-                st.write(journal, unsafe_allow_html=True)
-                
-            if not df_ep_info2['year_str'].isnull().all():
-                st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-
-            if not df_ep_info2['Who'].isnull().all():
-                st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+       #     jrnls = st.multiselect('2nd) Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+       #     new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True] #str.contains('|'.join(jrnls)) == True]
+       #     new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+       #     if not jrnls == None:
+       #         J_options = st.selectbox('Eponyms in journals:',
+       #                           new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+       #         df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+       #         journal = df_ep_info2['journal_name'].to_string(index=False)
+       #     if not df_ep_info2['journal_name'].isnull().all():
+       #         st.write(journal, unsafe_allow_html=True) 
+       #     if not df_ep_info2['year_str'].isnull().all():
+       #         st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+       #     if not df_ep_info2['Who'].isnull().all():
+       #        st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
         if types == 'Selected':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1730, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
             dfY1["JOURNALS"] = "JOURNALS"
-            dfT = dfY1.sort_values(by=['year'],ascending=True)
-            time_df = dfT.loc[(dfT['year'] >= min_yrs) & (dfT['year'] <= max_yrs)]
-            time_spec_df = time_df['specialty'].dropna()
-            string = time_spec_df.str.cat(sep=',')
+            df2 = dfY1.sort_values(by=['year'],ascending=True)
+            spec_df = df2['specialty'].dropna()
+            string = spec_df.str.cat(sep=',')
             splits = string.split(",")
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            journal_spec = st.multiselect('4) Add specialties to show related eponyms (default is no filter):',options=list(U),
+            journal_spec = st.multiselect('Specilaties of interest - pick and choose',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           #default=['Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
-                           #         'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery','Oesophagogastric',
-                           #         'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
+                           default=['Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
+                                    'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery',
+                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
                                           )
-            new_jrnls1 = time_df.loc[time_df['specialty'].str.contains('|'.join(journal_spec)) == True]
-            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-            new_jrnls2["JOURNALS"] = "JOURNALS"
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
+            new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
+            new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
+            new_jrnls2T["JOURNALS"] = "JOURNALS"
             if not journal_spec == None:
-                figJDLT = px.sunburst(new_jrnls2,path=['JOURNALS','journal_short','year','eponym'],
+                figJDLT = px.sunburst(new_jrnls2T,path=['JOURNALS','journal_short','year','eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='rdbu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                               )
@@ -803,34 +800,34 @@ def exp_journals():
                 #'sunsetdark', 'teal', 'tealgrn', 'tealrose', 'tempo', 'temps', 'thermal', 'tropic', 'turbid', 'twilight',
                 #'viridis', 'ylgn', 'ylgnbu', 'ylorbr', 'ylorrd'
 
-            df["JOURNALS"] = "JOURNALS"
-            dfX = dfY.head(1)
-            new_jrnls4 = pd.concat([dfX,new_jrnls2]).reset_index(drop=True)
-            dfZ2 = new_jrnls4.sort_values(by=['journal'],ascending=True)
-            dfZ3 = dfZ2['journal'].dropna()
-            stringZ = dfZ3.str.cat(sep=',')
-            splitsZ = stringZ.split(",")
-            SZ = set(splitsZ)
-            TZ = np.array(list(SZ)).astype(object)
-            UZ = np.sort(TZ)
+       #     df["JOURNALS"] = "JOURNALS"
+       #     dfX = dfY.head(1)
+       #     new_jrnls4 = pd.concat([dfX,new_jrnls2]).reset_index(drop=True)
+       #     dfZ2 = new_jrnls4.sort_values(by=['journal'],ascending=True)
+       #     dfZ3 = dfZ2['journal'].dropna()
+       #     stringZ = dfZ3.str.cat(sep=',')
+       #     splitsZ = stringZ.split(",")
+       #     SZ = set(splitsZ)
+       #     TZ = np.array(list(SZ)).astype(object)
+       #     UZ = np.sort(TZ)
 
-            jrnlz = st.multiselect('Select journals:',options=list(UZ), format_func=lambda x: ' ' if x == '1' else x)
-            new_jrnlz1 = dfZ2.loc[dfZ2['journal'].str.contains('|'.join(jrnlz)) == True]
-            new_jrnlz2 = new_jrnlz1.sort_values(by=['eponym'],ascending=True)
-            if not jrnlz == None:
-                J_options = st.selectbox('Eponyms in journals:',
-                                  new_jrnlz2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+       #     jrnlz = st.multiselect('Select journals:',options=list(UZ), format_func=lambda x: ' ' if x == '1' else x)
+       #     new_jrnlz1 = dfZ2.loc[dfZ2['journal'].str.contains('|'.join(jrnlz)) == True]
+       #     new_jrnlz2 = new_jrnlz1.sort_values(by=['eponym'],ascending=True)
+       #     if not jrnlz == None:
+       #         J_options = st.selectbox('Eponyms in journals:',
+       #                           new_jrnlz2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
 
-                df_ep_info2 = new_jrnlz1[new_jrnlz1['eponym'].str.match(J_options)]
-                journal = df_ep_info2['journal_name'].to_string(index=False)
-                if not df_ep_info2['journal_name'].isnull().all():
-                    st.write(journal, unsafe_allow_html=True)
+        #        df_ep_info2 = new_jrnlz1[new_jrnlz1['eponym'].str.match(J_options)]
+        #        journal = df_ep_info2['journal_name'].to_string(index=False)
+        #        if not df_ep_info2['journal_name'].isnull().all():
+        #            st.write(journal, unsafe_allow_html=True)
                 
-                if not df_ep_info2['year_str'].isnull().all():
-                    st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+        #        if not df_ep_info2['year_str'].isnull().all():
+        #           st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
 
-                if not df_ep_info2['Who'].isnull().all():
-                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+        #        if not df_ep_info2['Who'].isnull().all():
+        #            st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
 
 #----------------------------------------------------------------------------------------------#
