@@ -648,24 +648,24 @@ def exp_journals():
         types = st.radio('Specialties:',["All","Selected",])
 
         if types == 'All':
-            #years = st.select_slider('Travel back in time:',options=[np.arange(0,2000,10)],value=(1500,2020))
+            min_yrs, max_yrs = st.slider("Choose time window:", 1500, 2020, [1500, 2020])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
             dfY1["JOURNALS"] = "JOURNALS"
-            df1 = pd.read_csv(url_J)
-            df2 = df1.sort_values(by=['journal'],ascending=True)
-            df3 = df2['journal'].dropna()
-            string = df3.str.cat(sep=',')
+            dfT = dfY1.sort_values(by=['year'],ascending=True)
+            time_df = dfT.loc[(dfT['year'] >= min_yrs) & (dfT['year'] <= max_yrs)]
+            time_spec_df = time_df['specialty'].dropna()
+            string = time_spec_df.str.cat(sep=',')
             splits = string.split(",")
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            figJDLT = px.sunburst(dfY1,path=['JOURNALS','journal_short','eponym'],
+            figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
                               values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
                               color_continuous_scale='RdBu'
                                   )
-            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=700,height=550)
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
 
@@ -688,33 +688,50 @@ def exp_journals():
                 st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
         if types == 'Selected':
+            min_yrs, max_yrs = st.slider("First, choose time window:", 1500, 2020, [1500, 2020])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-            df = pd.read_csv(url_J, dtype={'PMID':str,'Year':int})
-            df1 = df['specialty'].dropna()
-            string = df1.str.cat(sep=',')
+            dfY = pd.read_csv(url_J)
+            dfY1 = dfY.dropna()
+            dfY1["JOURNALS"] = "JOURNALS"
+            dfT = dfY1.sort_values(by=['year'],ascending=True)
+            time_df = dfT.loc[(dfT['year'] >= min_yrs) & (dfT['year'] <= max_yrs)]
+            time_spec_df = time_df['specialty'].dropna()
+            string = time_spec_df.str.cat(sep=',')
             splits = string.split(",")
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            journal_spec = st.multiselect('Selected specialties:',options=list(U),
+            journal_spec = st.multiselect('Next, add specialties to show related eponyms (default is no filter):',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
-                                    'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery','Oesophagogastric',
-                                    'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',])
-            new_jrnls1 = df.loc[df['specialty'].str.contains('|'.join(journal_spec)) == True]
+                           #default=['Anaesthetics','Bariatrics','Breast','Colorectal','Emergency Surgery','Endocrine','ENT',
+                           #         'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery','Oesophagogastric',
+                           #         'Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
+                                          )
+            new_jrnls1 = time_df.loc[time_df['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
             new_jrnls2["JOURNALS"] = "JOURNALS"
             if not journal_spec == None:
-                figJDLT = px.sunburst(new_jrnls2,path=['JOURNALS','journal_short','eponym'],
+                figJDLT = px.sunburst(new_jrnls2,path=['JOURNALS','journal_short','year','eponym'],
                       values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
-                      color_continuous_scale='RdBu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+                      color_continuous_scale='rdbu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                               )
-                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0))
+                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),
+                                      width=700,height=550)
                 figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
                 st.write(figJDLT)
 
+#colorscales: ['aggrnyl', 'agsunset', 'algae', 'amp', 'armyrose', 'balance', 'blackbody', 'bluered', 'blues',
+                #'blugrn', 'bluyl', 'brbg', 'brwnyl', 'bugn', 'bupu', 'burg', 'burgyl', 'cividis', 'curl', 'darkmint',
+                #'deep', 'delta', 'dense', 'earth', 'edge', 'electric', 'emrld', 'fall', 'geyser', 'gnbu', 'gray', 'greens',
+                #'greys', 'haline', 'hot', 'hsv', 'ice', 'icefire', 'inferno', 'jet', 'magenta', 'magma', 'matter', 'mint',
+                #'mrybm', 'mygbm', 'oranges', 'orrd', 'oryel', 'peach', 'phase', 'picnic', 'pinkyl', 'piyg', 'plasma',
+                #'plotly3', 'portland', 'prgn', 'pubu', 'pubugn', 'puor', 'purd', 'purp', 'purples', 'purpor', 'rainbow',
+                #'rdbu', 'rdgy', 'rdpu', 'rdylbu', 'rdylgn', 'redor', 'reds', 'solar', 'spectral', 'speed', 'sunset',
+                #'sunsetdark', 'teal', 'tealgrn', 'tealrose', 'tempo', 'temps', 'thermal', 'tropic', 'turbid', 'twilight',
+                #'viridis', 'ylgn', 'ylgnbu', 'ylorbr', 'ylorrd'
+
             df["JOURNALS"] = "JOURNALS"
-            dfX = df.head(1)
+            dfX = dfY.head(1)
             new_jrnls4 = pd.concat([dfX,new_jrnls2]).reset_index(drop=True)
             dfZ2 = new_jrnls4.sort_values(by=['journal'],ascending=True)
             dfZ3 = dfZ2['journal'].dropna()
