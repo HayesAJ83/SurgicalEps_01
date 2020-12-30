@@ -264,7 +264,6 @@ def exp_type():
     types = st.selectbox('First, select type of eponym:',["Anatomical structures",
                              "Clinical scores",
                              "Clinical signs",
-                             "Clinical syndromes",
                              "Operations",
                              "Pathology",
                              "Patient positioning",
@@ -273,12 +272,13 @@ def exp_type():
                              "Surgical incisions",
                              "Surgical instruments",
                              "Surgical maneuvers & techniques",
+                             "Syndromes",
                              ], index=0)
 
     if types   == "Anatomical structures":              show_anatomical()       #1
     elif types == "Clinical scores":                    show_scores()           #2
     elif types == "Clinical signs":                     show_signs()            #3
-    elif types == "Clinical syndromes":                 show_synd()             #3
+    elif types == "Syndromes":                          show_synd()             #3
     elif types == "Operations":                         show_opNames()          #4
     elif types == "Pathology":                          show_path()             #5
     elif types == "Patient positioning":                show_positions()        #6
@@ -648,7 +648,7 @@ def exp_journals():
         types = st.radio('2nd) Specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1730, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -688,7 +688,7 @@ def exp_journals():
                 st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
         if types == 'Selected':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1730, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
