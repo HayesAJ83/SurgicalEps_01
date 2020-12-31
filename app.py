@@ -664,7 +664,7 @@ def exp_journals():
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1700, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
