@@ -536,7 +536,7 @@ def exp_geography():
         S = set(splits)
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
-        journal_spec = st.multiselect("2nd) Optional - choose specific specialties. Default 'Choose an option' shows all",options=list(U),
+        journal_spec = st.multiselect("2nd) Optional - choose specific specialties. Default 'Choose an option' shows all.",options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            #default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics','Colorectal','Emergency Surgery','Endocrine','ENT',
                            #         'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery',
@@ -553,7 +553,7 @@ def exp_geography():
         text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
         locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
 
-        options3 = st.selectbox('4th) Type here continent, country or city to geolocate:',
+        options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
                                 ["World"," ","  ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
