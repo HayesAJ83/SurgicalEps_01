@@ -293,7 +293,7 @@ def show_anatomical():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df.rename(columns={"Eponym": "Eponym_OLD", "Eponym_easy": "Eponym"})
-    Anat_df = df1[(df1['Type'].str.match('Structures'))]
+    Anat_df = df1[(df1['Type'].str.match('Anatomy'))]
     if not Anat_df['Type'].isnull().all():
         Table = ff.create_table(Anat_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
                     'Author_1', 'Author_2','Pubmed_results','Google_results','Operation','GxP','Log2_GxP','Societies',
@@ -1282,7 +1282,7 @@ def exp_A2Z():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Anatomy','Incisions','Instruments','Operations','Pathology','Physiology',
                                     'Positions','Scores','Signs','Statistics','Structures','Surgical Maneuvers & Techniques',
-                                    'Syndrome','Trials',])
+                                    'Syndromes','Trials',])
 
         min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
         new_jrnls1 = df2.loc[df2['Type'].str.contains('|'.join(journal_spec)) == True]
