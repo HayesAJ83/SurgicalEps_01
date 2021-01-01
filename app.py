@@ -617,10 +617,12 @@ def exp_geography():
         new_geo2T["WORLD"] = "WORLD"
         figJDLT = px.sunburst(new_geo2T,path=['WORLD',
             'Continent_A1','CountryOfEponym_A1','CityOfEponym_A1','Eponym_easy'],
-                              values='Log10_GxP',color='Log10_GxP',hover_data=['Eponym'],
+                              #values='Log10_GxP',
+                              color='Log10_GxP',
+                              hover_data=['Eponym'],
                               color_continuous_scale='viridis'
                                   )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=700,height=550)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
         st.write(figJDLT)
 
