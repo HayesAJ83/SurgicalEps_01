@@ -1281,7 +1281,7 @@ def exp_A2Z():
         journal_spec = st.multiselect("Eponym types:",options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Anatomy','Incisions','Instruments','Operations','Pathology','Physiology',
-                                    'Positions','Scores','Signs','Statistics','Structures','Surgical Maneuvers & Techniques',
+                                    'Positions','Scores','Signs','Statistics','Surgical Maneuvers & Techniques',
                                     'Syndromes','Trials',])
 
         min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
