@@ -339,7 +339,7 @@ def show_signs():
 def show_synd():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-    Synd_df = df[(df['Type'].str.match('Syndrome'))]
+    Synd_df = df[(df['Type'].str.match('Syndromes'))]
     if not Synd_df['Type'].isnull().all():
         Table = ff.create_table(Synd_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
                     'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
@@ -1186,6 +1186,7 @@ def exp_dis():
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
 
+
     if not disease == None:
         Dis_options = st.selectbox('Related eponyms:',
                                    new_dis2['Eponym_easy'].unique(),
@@ -1238,26 +1239,83 @@ def exp_dis():
 #                                                                                              #
 #----------------------------------------------------------------------------------------------#
 def exp_A2Z():
-    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-    df2 = df1.sort_values(by=['Eponym'],ascending=True)
+    st.subheader("Surgical eponym database")
+    types = st.radio('1st) Choose eponym types:',["All","Selected",])
 
-    st.subheader("Search The Surgical Eponym Database")
-    st.sidebar.markdown("---")   
+    if types == 'All':
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        df2 = df1.sort_values(by=['Year'],ascending=True)
+
+        min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
+
+
+
+      #  new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
+      #  new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
     
-    options = st.selectbox('Begin typing here:', df2['Eponym_easy'], format_func=lambda x: ' ' if x == '1' else x)
-    df_ep_info = df2[df2['Eponym_easy'].str.match(options)]
+        options = st.selectbox('Begin typing here:', df2['Eponym_easy'], format_func=lambda x: ' ' if x == '1' else x)
+        df_ep_info = df2[df2['Eponym_easy'].str.match(options)]
 
-    if not df_ep_info['Who'].isnull().all():
-        st.markdown("---")
-        st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        if not df_ep_info['Who'].isnull().all():
+            st.markdown("---")
+            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
 
-        ep_yr = df_ep_info['Year'].to_string(index=False)
-        if not df_ep_info['Year'].isnull().all():
-            st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            ep_yr = df_ep_info['Year'].to_string(index=False)
+            if not df_ep_info['Year'].isnull().all():
+                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
 
-        if not df_ep_info['Where'].isnull().all():
-            st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            if not df_ep_info['Where'].isnull().all():
+                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+
+    if types == 'Selected':
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        df2 = df1.sort_values(by=['Year'],ascending=True)
+        spec_df = df2['Type'].dropna()
+        string = spec_df.str.cat(sep=',')
+        splits = string.split(",")
+        S = set(splits)
+        T = np.array(list(S)).astype(object)
+        U = np.sort(T)
+        journal_spec = st.multiselect("Eponym types:",options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['Anatomy','Incisions','Instruments','Operations','Pathology','Physiology',
+                                    'Positions','Scores','Signs','Statistics','Structures','Surgical Maneuvers & Techniques',
+                                    'Syndrome','Trials',])
+
+        min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
+        new_jrnls1 = df2.loc[df2['Type'].str.contains('|'.join(journal_spec)) == True]
+        new_jrnls2 = new_jrnls1.sort_values(by=['Year'],ascending=True)
+        new_jrnls2T = new_jrnls2.loc[(new_jrnls2['Year'] >= min_yrs) & (new_jrnls2['Year'] <= max_yrs)]
+        new_jrnls3T = new_jrnls2T.sort_values(by=['Eponym_easy'],ascending=True)
+    
+        options = st.selectbox('Begin typing here:', new_jrnls3T['Eponym_easy'], format_func=lambda x: ' ' if x == '1' else x)
+       # df_ep_info = new_jrnls2T[new_jrnls2T['Eponym_easy'].str.match(options)]
+
+
+
+
+
+
+
+
+
+
+
+
+        if not df_ep_info['Who'].isnull().all():
+            st.markdown("---")
+            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+
+            ep_yr = df_ep_info['Year'].to_string(index=False)
+            if not df_ep_info['Year'].isnull().all():
+                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+
+            if not df_ep_info['Where'].isnull().all():
+                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+
+
 
 #-------------------------------------------------------------------------------------------#
 if __name__ == "__main__":
