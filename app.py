@@ -34,13 +34,14 @@ import requests
 #----------------------------------------------------------------------------------------------#
 
 def main():    
-    st.sidebar.title('Navigator')
-    page = st.sidebar.selectbox('',#'Go to',
-                            ["Surgical Eponym Explorer",
+    st.sidebar.subheader('Navigator')
+    page = st.sidebar.radio('',#'Go to',
+                            ["SurgicalEps Explorer",
                              "App Design Team"])
 
-    if page == "Surgical Eponym Explorer":   show_explore()
-    elif page == "App Design Team":          show_the_app_team()
+    if page ==   "SurgicalEps Explorer":   show_explore()
+    elif page == "App Design Team":        show_the_app_team()
+    
 
 
 #----------------------------------------------------------------------------------------------#
@@ -54,7 +55,7 @@ def show_the_app_team():
     st.title("App Design Team")
     st.markdown('''The team consists of a group of General Surgeons based in Edinburgh who are motivated to develop software to improve surgical **data systems**,
              **research** and **education**.''')
-    st.markdown('''To meet these aims, a company called **Excision** was founded in 2020, and **SurgicalEps** Web App was one of the initial projects.''',unsafe_allow_html=True)
+    st.markdown('''To meet these aims, a company called **Excision** was founded in 2020, and **SurgicalEps** Web App was the first major project.''',unsafe_allow_html=True)
 
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Contact details**''')
@@ -88,6 +89,7 @@ def show_the_app_team():
 #----------------------------------------------------------------------------------------------#
 
 def show_explore():
+    st.sidebar.subheader('SurgicalEps Explorer')
     exp = st.sidebar.radio('',#'Select',
                                 ["About",
                                  "By Disease",
