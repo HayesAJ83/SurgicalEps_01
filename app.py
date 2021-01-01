@@ -620,7 +620,7 @@ def exp_geography():
                               #values='Log10_GxP',
                               color='Log10_GxP',
                               hover_data=['Eponym'],
-                              color_continuous_scale='viridis'
+                              color_continuous_scale='viridis',#'RdBu'
                                   )
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
@@ -690,10 +690,11 @@ def exp_journals():
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
             figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
-                              values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
+                              #values='Log10 Google hits',
+                                  color='Log2 Google hits',hover_data=['eponym'],
                               color_continuous_scale='RdBu'
                                   )
-            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=700,height=550)
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
 
@@ -737,11 +738,12 @@ def exp_journals():
             new_jrnls2T["JOURNALS"] = "JOURNALS"
             if not journal_spec == None:
                 figJDLT = px.sunburst(new_jrnls2T,path=['JOURNALS','journal_short','year','eponym'],
-                      values='Log10 Google hits',color='Log2 Google hits',hover_data=['eponym'],
+                      #values='Log10 Google hits',
+                                      color='Log2 Google hits',hover_data=['eponym'],
                       color_continuous_scale='rdbu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                               )
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),
-                                      width=700,height=550)
+                                      width=680,height=500)
                 figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
                 st.write(figJDLT)
 
