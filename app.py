@@ -90,28 +90,29 @@ def show_the_app_team():
 def show_explore():
    # st.sidebar.title("**Explorer**")
     exp = st.sidebar.radio('',#'Select',
-                                ["About this App",
-                                 "Explore By Disease",
-                                 "Explore By Journal",
-                                 "Explore By Operation",
-                                 "Explore By Speciality",
-                                 "Explore By Type of Eponym",
+                                ["About",
+                                 
+                                 "By Disease",
+                                 "By Journal",
+                                 "By Operation",
+                                 #"Explore By Speciality",
+                                 #"Explore By Type of Eponym",
+                                 #"Find Famous People",
+                                 "By World Maps",
                                  "Exam Favourites",
-                                 "Find Famous People",
-                                 "Explore With World Maps",
-                                 "Search Full Database",
+                                 "Full Database",
                                  ])
-    if   exp == "About this App":           exp_about()             #1
-    elif exp == "Explore By Operation":     exp_operation()         #2
- #   elif exp == "Explore By Type of Eponym":exp_type()              #3
-    elif exp == "Explore With World Maps":  exp_geography()         #4         
-    elif exp == "Explore By Journal":       exp_journals()          #5
-    elif exp == "Find Famous People":       exp_people()            #6
+    if   exp == "About":           exp_about()             #1
+    elif exp == "By Operation":     exp_operation()         #2
+   # elif exp == "Explore By Type of Eponym":exp_type()              #3
+    elif exp == "By World Maps":  exp_geography()         #4         
+    elif exp == "By Journal":       exp_journals()          #5
+   # elif exp == "Find Famous People":       exp_people()            #6
     elif exp == "Exam Favourites":     exp_exam()              #8
-    elif exp == "Explore By Disease":       exp_dis()               #9
-    elif exp == "Explore By Speciality":    exp_spec()              #9
-    elif exp == "Search Full Database":       exp_A2Z()              #10
-
+    elif exp == "By Disease":       exp_dis()               #9
+   # elif exp == "Explore By Speciality":    exp_spec()              #9
+    elif exp == "Full Database":       exp_A2Z()              #10
+    
 #----------------------------------------------------------------------------------------------#
 #                                                                                              #
 #  About (1)                                                                                   #
