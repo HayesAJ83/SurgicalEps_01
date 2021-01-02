@@ -24,15 +24,13 @@ import plotly.graph_objects as go
 import plotly.figure_factory as ff
 import io
 import requests
-#px.set_mapbox_access_token(open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read())
 
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Main                                                                                        #
-# ::: Handles the navigation / routing and data loading / caching                              #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Main                                                                                           #
+# ::: Handles the navigation / routing and data loading / caching                                 #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def main():    
     st.sidebar.subheader('Navigator')
     page = st.sidebar.radio('',#'Go to',
@@ -42,52 +40,54 @@ def main():
     if page ==   "SurgicalEps Explorer":   show_explore()
     elif page == "App Design Team":        show_the_app_team()
     
-
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  About the team                                                                              #
-# :::                                                                                          #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  About the team                                                                                 #
+# :::                                                                                             #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def show_the_app_team():
     st.title("App Design Team")
-    st.markdown('''The team consists of a group of General Surgeons based in Edinburgh who are motivated to develop software to improve surgical **data systems**,
-             **research** and **education**.''')
-    st.markdown('''To meet these aims, a company called **Excision** was founded in 2020, and **SurgicalEps** Web App was the first major project.''',unsafe_allow_html=True)
+    st.markdown('''The team consists of a group of General Surgeons based in Edinburgh who are
+                motivated to develop software to improve surgical **data systems**,
+                **research** and **education**.''')
+    st.markdown('''To meet these aims, a company called **Excision** was founded in 2020, and
+                **SurgicalEps** Web App was the first major project.''',unsafe_allow_html=True)
 
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Contact details**''')
-    st.sidebar.info("Get in touch with any comments, queries or suggestions about this App: surgicaleponyms@gmail.com")
+    st.sidebar.info('''Get in touch with any comments, queries or suggestions about this
+                    App:surgicaleponyms@gmail.com''')
     
     st.subheader("Project Lead & App Developer")
     about1 = st.checkbox("Alastair Hayes")
     if about1:
-        st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests in Upper GI, Endocrine and Emergency General Surgery.
-    His qualifications include FRCSEd (Gen Surg) & PhD.''')
-        st.markdown('''He is working to develop data science and software solutions for clinical data systems, research and education in surgical practice.''')
+        st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests
+                    in Upper GI, Endocrine and Emergency General Surgery. His qualifications
+                    include FRCSEd (Gen Surg) & PhD.''')
+        st.markdown('''He is working to develop data science and software solutions for clinical
+                    data systems, research and education in surgical practice.''')
 
     st.subheader("Associate Project Lead")
     about2 = st.checkbox('''Anne Ewing''')
     if about2:
-        st.markdown('''Anne is Specialty Training Registrar in Edinburgh with interests in Upper GI, Hernias and Emergency General Surgery.
-    She is passionate about surgical teaching and outside work Anne is a competitive triathlete.''')   
+        st.markdown('''Anne is Specialty Training Registrar in Edinburgh with interests in Upper
+                    GI, Hernias and Emergency General Surgery. She is passionate about surgical
+                    teaching and outside work Anne is a competitive triathlete.''')   
 
     st.subheader("Acknowledgements")
     st.markdown('''[Google](https://www.google.com/search/howsearchworks/?fg=1),
-    [Mapbox](https://www.mapbox.com),
-    [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/), [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
-    [Streamlit](https://www.streamlit.io)''')
+                   [Mapbox](https://www.mapbox.com),
+                   [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/),
+                   [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
+                   [Streamlit](https://www.streamlit.io)''')
 
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Explorer                                                                                    #
-# ::: Handles the navigation                                                                   #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Explorer                                                                                       #
+# ::: Handles the navigation                                                                      #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def show_explore():
     st.sidebar.subheader('SurgicalEps Explorer')
     exp = st.sidebar.radio('',#'Select',
@@ -107,16 +107,16 @@ def show_explore():
     elif exp == "Exam Favourites": exp_exam()              #6
     elif exp == "Full Database":   exp_A2Z()               #7
     
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  About (1)                                                                                   #
-# ::: Handles                                                                                  #                                                                                              
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  About (1)                                                                                      #
+# ::: Handles                                                                                     #                                                                                              
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_about():
     st.markdown(
-        """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}</style>""",unsafe_allow_html=True)
+        '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
+           </style>''',unsafe_allow_html=True)
 #Page
     st.write('''_UNDER CONSTRUCTION_''')
     st.markdown('''# SurgicalEps''')
@@ -124,23 +124,45 @@ def exp_about():
     #st.markdown("---")
     st.subheader('Introduction')
     st.markdown(' ')
-    #st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:underline;">Introduction</span>''', unsafe_allow_html=True)
-    st.write('''There are a hundreds of eponyms used in daily surgical practice.
-    We hope that you will find this App helpful in understanding what these terms mean, their history,
-    and how they relate to one another. We include direct links to primary papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and TeachMeSurgery.''')
+    #st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:
+                   #underline;">Introduction</span>''', unsafe_allow_html=True)
+    st.write('''There are a hundreds of eponyms used in daily surgical practice.We hope that
+                you will find this App helpful in understanding what these terms mean, their
+                history, and how they relate to one another. We include direct links to primary
+                papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and
+                TeachMeSurgery.''')
     #st.markdown("---")
     st.subheader('Using This App')
     st.write(' ')
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease:</span><span style="font-size:12pt;color:black;"> Here you can search eponyms related to a disease.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Journal:</span><span style="font-size:12pt;color:black;"> In this section, journals can be selected tofind which eponyms can be traced to their of publication archives. Explorethrough time using the time travel function.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Operation:</span><span style="font-size:12pt;color:black;"> Here you can choose an operation type (eg. Oesophagectomy), and then access all the common eponyms related to that procedure.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By World Maps:</span><span style="font-size:12pt;color:black;"> Choose a region of the world to find eponyms. Select a continent, country or famous city.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:</span><span style="font-size:12pt;color:black;"> Select from those often found in exams.Explore by speciality.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Full Database:</span><span style="font-size:12pt;color:black;"> Choose from anatomical structures, incisions, surgical instruments, operations, pathology, physiology, patient positioning, clinical scores or signs, statistical tests, surgical maneuvers & techniques, syndromes, or research trials.</span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease:</span>
+                   <span style="font-size:12pt;color:black;"> Here you can search eponyms related
+                   to a disease.</span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Journal:</span>
+                   <span style="font-size:12pt;color:black;"> In this section, journals can be
+                   selected to find which eponyms can be traced to their of publication archives.
+                   Explore through time using the time travel function.</span>''',
+                   unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Operation:</span>
+                   <span style="font-size:12pt;color:black;"> Here you can choose an operation type
+                   (eg. Oesophagectomy), and then access all the common eponyms related to that
+                   procedure.</span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By World Maps:</span>
+                   <span style="font-size:12pt;color:black;"> Choose a region of the world to find
+                   eponyms. Select a continent, country or famous city.</span>''',
+                   unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:
+                   </span><span style="font-size:12pt;color:black;"> Select from those often found
+                   in exams. Explore by speciality.</span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Full Database:</span>
+                   <span style="font-size:12pt;color:black;"> Choose from anatomical structures,
+                   incisions, surgical instruments, operations, pathology, physiology, patient
+                   positioning,clinical scores or signs, statistical tests, surgical maneuvers &
+                   techniques, syndromes, or research trials.</span>''',unsafe_allow_html=True)
     #st.markdown("---")
     st.subheader('Who Is This App For?')
     st.markdown(' ')
-    st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health professionals and students.''')
+    st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
+                professionals and students.''')
     #st.markdown("---")
     st.subheader('Disclaimer')
     st.markdown(' ')
@@ -149,13 +171,12 @@ def exp_about():
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched Jan 2021")
 
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Disease (2)                                                                                 #
-# ::: Handles the                                                                              #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Disease (2)                                                                                    #
+# ::: Handles the                                                                                 #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.subheader("Find eponyms related to selected diseases") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -167,8 +188,7 @@ def exp_dis():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     disease = st.multiselect('1st) Choose a disease:', options=list(U),
-                             format_func=lambda x: ' ' if x == '1' else x,
-                             )
+                             format_func=lambda x: ' ' if x == '1' else x,)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
 
@@ -176,8 +196,7 @@ def exp_dis():
     if not disease == None:
         Dis_options = st.selectbox('2) Search list of related eponyms:',
                                    new_dis2['Eponym_easy'].unique(),
-                               format_func=lambda x: ' ' if x == '1' else x
-                                   )   #selectbox
+                               format_func=lambda x: ' ' if x == '1' else x)
 
         df_ep_info2 = new_dis1[new_dis1['Eponym_easy'].str.match(Dis_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
@@ -218,20 +237,17 @@ def exp_dis():
         if not df_ep_info2['ICD11_link'].isnull().all():
            st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
 
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Journals (3)                                                                                #
-# ::: Handles                                                                                  #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Journals (3)                                                                                   #
+# ::: Handles                                                                                     #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_journals():
     #st.markdown('''[Advert space for Google AdSense4]''')
     st.subheader("Find eponyms that can be traced to journal archives") 
-    ScreenSize = st.radio('1st) Select screen size:',options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
-#    st.write('''Click on a journal name to find related eponyms:''')
-#    st.write('''**Zoom in** by clicking on journal name. **Zoom out** by clicking the center of the circle.''')
+    ScreenSize = st.radio('1st) Select screen size:',
+                          options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
 
     url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
     dfY = pd.read_csv(url_J)
@@ -246,12 +262,14 @@ def exp_journals():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     if ScreenSize == "Smartphone":
-        jrnls = st.multiselect('2nd) Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+        jrnls = st.multiselect('2nd) Select journals:',options=list(U),
+                                format_func=lambda x: ' ' if x == '1' else x)
         new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
         if not jrnls == None:
             J_options = st.selectbox('3rd) Search eponyms from selected journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                                new_jrnls2['eponym'].unique(),
+                                format_func=lambda x: ' ' if x == '1' else x)
 
             df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
             journal = df_ep_info2['journal_name'].to_string(index=False)
@@ -290,21 +308,32 @@ def exp_journals():
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
+            st.write('''Zoom in by clicking on journal name. Pan out by clicking the center
+                of the circle.''')
 
-       #     jrnls = st.multiselect('2nd) Select journals:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
-       #     new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True] #str.contains('|'.join(jrnls)) == True]
-       #     new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-       #     if not jrnls == None:
-       #         J_options = st.selectbox('Eponyms in journals:',
-       #                           new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-       #         df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
-       #         journal = df_ep_info2['journal_name'].to_string(index=False)
-       #     if not df_ep_info2['journal_name'].isnull().all():
-       #         st.write(journal, unsafe_allow_html=True) 
-       #     if not df_ep_info2['year_str'].isnull().all():
-       #         st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-       #     if not df_ep_info2['Who'].isnull().all():
-       #        st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+            time_jrnl = time_df.sort_values(by=['journal'],ascending=True)
+            time_jrnl1 = time_jrnl['journal'].dropna()
+            string1 = time_jrnl1.str.cat(sep=',')
+            splits1 = string1.split(",")
+            S1 = set(splits1)
+            T1 = np.array(list(S1)).astype(object)
+            U1 = np.sort(T1)
+
+            jrnls = st.multiselect('4th) Select journals:',options=list(U1),
+                              format_func=lambda x: ' ' if x == '1' else x)
+            new_jrnls1 = time_df.loc[time_df['journal'].str.contains('|'.join(jrnls)) == True]
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            if not jrnls == None:
+                J_options = st.selectbox('Eponyms in journals:',
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+                journal = df_ep_info2['journal_name'].to_string(index=False)
+            if not df_ep_info2['journal_name'].isnull().all():
+                st.write(journal, unsafe_allow_html=True) 
+            if not df_ep_info2['year_str'].isnull().all():
+                st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+            if not df_ep_info2['Who'].isnull().all():
+               st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
         if types == 'Selected':
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
@@ -320,10 +349,12 @@ def exp_journals():
             U = np.sort(T)
             journal_spec = st.multiselect('Specilaties of interest - pick and choose',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Anaesthetics','Bariatrics','Breast','Cardiothoracics','Colorectal','Emergency Surgery','Endocrine','ENT',
-                                    'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery',
-                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
-                                          )
+                           default=['Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+                                    'Colorectal','Emergency Surgery','Endocrine','ENT',
+                                    'General Surgery','Gynaecology','HPB','Hernia',
+                                    'Laparoscopic Surgery','Maxillofacial','Neurosurgery',
+                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
+                                    'Transplant','Trauma','Urology','Vascular',])
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
@@ -333,49 +364,44 @@ def exp_journals():
                 figJDLT = px.sunburst(new_jrnls2T,path=['JOURNALS','journal_short','year','eponym'],
                       #values='Log10 Google hits',
                                       color='Log2 Google hits',hover_data=['eponym'],
-                      color_continuous_scale='rdbu', #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                              )
-                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),
-                                      width=680,height=500)
+                      color_continuous_scale='rdbu',)
+                      #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
                 figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
                 st.write(figJDLT)
 
 
+            time_jrnl = new_jrnls1T.sort_values(by=['journal'],ascending=True)
+            time_jrnl1 = time_jrnl['journal'].dropna()
+            string1 = time_jrnl1.str.cat(sep=',')
+            splits1 = string1.split(",")
+            S1 = set(splits1)
+            T1 = np.array(list(S1)).astype(object)
+            U1 = np.sort(T1)
 
-       #     df["JOURNALS"] = "JOURNALS"
-       #     dfX = dfY.head(1)
-       #     new_jrnls4 = pd.concat([dfX,new_jrnls2]).reset_index(drop=True)
-       #     dfZ2 = new_jrnls4.sort_values(by=['journal'],ascending=True)
-       #     dfZ3 = dfZ2['journal'].dropna()
-       #     stringZ = dfZ3.str.cat(sep=',')
-       #     splitsZ = stringZ.split(",")
-       #     SZ = set(splitsZ)
-       #     TZ = np.array(list(SZ)).astype(object)
-       #     UZ = np.sort(TZ)
-
-       #     jrnlz = st.multiselect('Select journals:',options=list(UZ), format_func=lambda x: ' ' if x == '1' else x)
-       #     new_jrnlz1 = dfZ2.loc[dfZ2['journal'].str.contains('|'.join(jrnlz)) == True]
-       #     new_jrnlz2 = new_jrnlz1.sort_values(by=['eponym'],ascending=True)
-       #     if not jrnlz == None:
-       #         J_options = st.selectbox('Eponyms in journals:',
-       #                           new_jrnlz2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        #        df_ep_info2 = new_jrnlz1[new_jrnlz1['eponym'].str.match(J_options)]
-        #        journal = df_ep_info2['journal_name'].to_string(index=False)
-        #        if not df_ep_info2['journal_name'].isnull().all():
-        #            st.write(journal, unsafe_allow_html=True)
-        #        if not df_ep_info2['year_str'].isnull().all():
-        #           st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-        #        if not df_ep_info2['Who'].isnull().all():
-        #            st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+            jrnls = st.multiselect('4th) Select journals:',options=list(U1),
+                              format_func=lambda x: ' ' if x == '1' else x)
+            new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            if not jrnls == None:
+                J_options = st.selectbox('5th) Eponyms in selected journals:',
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+                journal = df_ep_info2['journal_name'].to_string(index=False)
+            if not df_ep_info2['journal_name'].isnull().all():
+                st.write(journal, unsafe_allow_html=True) 
+            if not df_ep_info2['year_str'].isnull().all():
+                st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+            if not df_ep_info2['Who'].isnull().all():
+                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
 
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Surgical Operations (4)                                                                     #
-# ::: Handles                                                                                  #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Surgical Operations (4)                                                                        #
+# ::: Handles                                                                                     #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_operation():
     st.markdown(
         """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
@@ -393,13 +419,15 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    eponymByOp = st.multiselect('1st) Select from operations:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+    eponymByOp = st.multiselect('1st) Select from operations:',options=list(U),
+                                format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
     if not eponymByOp == None:
         Op_options = st.selectbox('2) Search list of related eponyms:',
-                                  new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+                                  new_df2['Eponym_easy'].unique(),
+                                  format_func=lambda x: ' ' if x == '1' else x)   #selectbox
 
         df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
@@ -440,14 +468,12 @@ def exp_operation():
         if not df_ep_info2['ICD11_link'].isnull().all():
            st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
 
-
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Geographical Origins (5)                                                                    #
-# ::: Handles the                                                                              #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
-
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Geographical Origins (5)                                                                       #
+# ::: Handles the                                                                                 #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_geo():
     st.markdown(
         """<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}
@@ -478,14 +504,13 @@ def exp_geo():
                 text=text,hoverinfo='text',))
 
         figG3.update_layout(
-                autosize=True,hovermode='closest',showlegend=False,width=350,height=250,
+                autosize=True,hovermode='closest',showlegend=False,width=340,height=250,
                 mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
                 pitch=5,zoom=-0.45,style='dark'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
         st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in and out of map.</span>''',
                 unsafe_allow_html=True)
-
 
         st.subheader("Click on geographical locations to zoom in, and in the center to pan out.") 
         time_df["WORLD"] = "WORLD"
@@ -496,13 +521,27 @@ def exp_geo():
                               hover_data=['Eponym'],
                               color_continuous_scale='viridis',#'RdBu'
                                   )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=360,height=350)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=350,height=350)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
         st.write(figJDLT)
 
+        time_df1 = time_df.sort_values(by=['Eponym'],ascending=True)
+        options = st.selectbox('5th) Type here to get details of particular eponym:',
+                               time_df1['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+        df_ep_info = time_df1[time_df1['Eponym_easy'].str.match(options)]
+
+        if not df_ep_info['Who'].isnull().all():
+            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+
+            ep_yr = df_ep_info['Year'].to_string(index=False)
+            if not df_ep_info['Year'].isnull().all():
+                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+
+            if not df_ep_info['Where'].isnull().all():
+                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -513,12 +552,16 @@ def exp_geo():
         S = set(splits)
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
-        journal_spec = st.multiselect("2nd) Optional - enter specific specialties. Default 'Choose an option' shows all.",options=list(U),
-                           format_func=lambda x: ' ' if x == '1' else x,
-                           #default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics','Colorectal','Emergency Surgery','Endocrine','ENT',
-                           #         'General Surgery','Gynaecology','HPB','Hernia','Laparoscopic Surgery','Maxillofacial','Neurosurgery',
-                           #         'Oesophagogastric','Orthopaedics','Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
-                                          )
+        journal_spec = st.multiselect(
+            "2nd) Optional - enter specific specialties. Default 'Choose an option' shows all.",
+             options=list(U), format_func=lambda x: ' ' if x == '1' else x,
+                           #default=['Academic','Anaesthetics','Bariatrics','Breast',
+                           #         'Cardiothoracics','Colorectal','Emergency Surgery',
+                           #         'Endocrine','ENT','General Surgery','Gynaecology',
+                           #         'HPB','Hernia','Laparoscopic Surgery','Maxillofacial',
+                           #         'Neurosurgery','Oesophagogastric','Orthopaedics',
+                           #         'Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
+                                     )
 
         min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1550, 2050, [1550, 2021])
 
@@ -604,7 +647,8 @@ def exp_geo():
 
         st.markdown("---")
         new_geo3T = new_geo2T.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('5th) Type here to get details of particular eponym:', new_geo3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+        options = st.selectbox('5th) Type here to get details of particular eponym:',
+                    new_geo3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_geo3T[new_geo3T['Eponym_easy'].str.match(options)]
 
         if not df_ep_info['Who'].isnull().all():
@@ -618,12 +662,12 @@ def exp_geo():
                 st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
 
 
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  Exam (6)                                                                                    #
-# ::: Handles the                                                                              #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Exam (6)                                                                                       #
+# ::: Handles the                                                                                 #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_exam():
     st.subheader("Eponyms often encountered in surgical exams") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
