@@ -393,12 +393,12 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    eponymByOp = st.multiselect('Select from operations:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
+    eponymByOp = st.multiselect('1st) Select from operations:',options=list(U), format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
     if not eponymByOp == None:
-        Op_options = st.selectbox('Related eponyms:',
+        Op_options = st.selectbox('2) Search list of related eponyms:',
                                   new_df2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)   #selectbox
 
         df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
@@ -485,6 +485,21 @@ def exp_geo():
         st.write(figG3)
         st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in and out of map.</span>''',
                 unsafe_allow_html=True)
+
+
+        st.subheader("Click on geographical locations to zoom in, and in the center to pan out.") 
+        time_df["WORLD"] = "WORLD"
+        figJDLT = px.sunburst(time_df,path=['WORLD',
+            'Continent_A1','CountryOfEponym_A1','CityOfEponym_A1','Eponym_easy'],
+                              #values='Log10_GxP',
+                              color='Log10_GxP',
+                              hover_data=['Eponym'],
+                              color_continuous_scale='viridis',#'RdBu'
+                                  )
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=360,height=350)
+        figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+        st.write(figJDLT)
+
 
     if ScreenSize == "Desktop / Laptop / Tablet":
 
