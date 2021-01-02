@@ -166,16 +166,18 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('Choose disease:', options=list(U),
-                             format_func=lambda x: ' ' if x == '1' else x,)
+    disease = st.multiselect('1st) Choose a disease:', options=list(U),
+                             format_func=lambda x: ' ' if x == '1' else x,
+                             )
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
 
 
     if not disease == None:
-        Dis_options = st.selectbox('Related eponyms:',
+        Dis_options = st.selectbox('2) Search list of related eponyms:',
                                    new_dis2['Eponym_easy'].unique(),
-                               format_func=lambda x: ' ' if x == '1' else x)   #selectbox
+                               format_func=lambda x: ' ' if x == '1' else x
+                                   )   #selectbox
 
         df_ep_info2 = new_dis1[new_dis1['Eponym_easy'].str.match(Dis_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
