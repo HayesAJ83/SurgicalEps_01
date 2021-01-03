@@ -498,21 +498,9 @@ def exp_geo():
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy']
 
-        figG3 = go.Figure()
-        figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
-                marker=go.scattermapbox.Marker(size=4,color='yellow',opacity=0.6),
-                text=text,hoverinfo='text',))
-
-        figG3.update_layout(
-                autosize=True,hovermode='closest',showlegend=False,width=340,height=250,
-                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
-                pitch=5,zoom=-0.45,style='dark'))
-        figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(figG3)
-        st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in and out of map.</span>''',
-                unsafe_allow_html=True)
-
-        st.subheader("Click on geographical locations to zoom in, and in the center to pan out.") 
+        st.markdown("---")
+        st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
         time_df["WORLD"] = "WORLD"
         figJDLT = px.sunburst(time_df,path=['WORLD',
             'Continent_A1','CountryOfEponym_A1','CityOfEponym_A1','Eponym_easy'],
@@ -524,9 +512,23 @@ def exp_geo():
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=350,height=350)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
         st.write(figJDLT)
+        st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
+                       and out of map.</span>''', unsafe_allow_html=True)
 
+        figG3 = go.Figure()
+        figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
+                marker=go.scattermapbox.Marker(size=4,color='yellow',opacity=0.6),
+                text=text,hoverinfo='text',))
+
+        figG3.update_layout(
+                autosize=True,hovermode='closest',showlegend=False,width=340,height=250,
+                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
+                pitch=5,zoom=-0.45,style='dark'))
+        figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        st.write(figG3)
+        st.markdown("---")
         time_df1 = time_df.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('5th) Type here to get details of particular eponym:',
+        options = st.selectbox('3rd) Type here to get details of particular eponym:',
                                time_df1['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = time_df1[time_df1['Eponym_easy'].str.match(options)]
 
