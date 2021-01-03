@@ -281,15 +281,17 @@ def exp_journals():
             st.markdown("---")
             st.markdown('''<span style="font-size:10pt;color:black;">Click on journal names to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
-            
             figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
                             color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
-                            color_continuous_scale='rdbu',) #'RdBu'
+                            color_continuous_scale='rdbu',)
+                                  #marker_colorbar=dict(tickness=10)) #'RdBu'
+            #figJDLT.update_traces(colorbar_thickness=0.2, selector=dict(type='sunburst'))
+            figJDLT.update_traces(marker_colorbar=dict(thickness=25)) #selector=dict(type='sunburst'))
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
-            figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+            figJDLT.update_traces(hovertemplate=None,hoverinfo='skip',)
+            #figJDLT.update_traces(marker_colorbar_thicknessmode=2, selector=dict(type='sunburst'))
             st.write(figJDLT)
             st.markdown("---")
-
             time_jrnl = time_df.sort_values(by=['journal'],ascending=True)
             time_jrnl1 = time_jrnl['journal'].dropna()
             string1 = time_jrnl1.str.cat(sep=',')
@@ -297,13 +299,12 @@ def exp_journals():
             S1 = set(splits1)
             T1 = np.array(list(S1)).astype(object)
             U1 = np.sort(T1)
-
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                               format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = time_df.loc[time_df['journal'].str.contains('|'.join(jrnls)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
             if not jrnls == None:
-                J_options = st.selectbox('Eponyms in journals:',
+                J_options = st.selectbox('5th) Find eponyms in selected journals:',
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
@@ -333,8 +334,10 @@ def exp_journals():
                                     'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery',
                                     'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
-                                    'Transplant','Trauma','Urology','Vascular',])
+                                    'Transplant','Trauma','Urology','Vascular',]
+                                          )
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            st.markdown("---")
             new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
             new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
@@ -356,7 +359,7 @@ def exp_journals():
             S1 = set(splits1)
             T1 = np.array(list(S1)).astype(object)
             U1 = np.sort(T1)
-
+            st.markdown("---")
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                               format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
@@ -374,34 +377,12 @@ def exp_journals():
                     st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
 
-
-    #    jrnls = st.multiselect('2nd) Select journals:',options=list(U),
-    #                           default=['BJS'],
-    #                            format_func=lambda x: ' ' if x == '1' else x)
-    #    new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
-    #    new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-    #    if not jrnls == None:
-    #        J_options = st.selectbox('3rd) Search eponyms from selected journals:',
-    #                            new_jrnls2['eponym'].unique(),
-    #                            format_func=lambda x: ' ' if x == '1' else x)
-
-   #         df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
-   #         journal = df_ep_info2['journal_name'].to_string(index=False)
-   #         if not df_ep_info2['journal_name'].isnull().all():
-   #             st.write(journal, unsafe_allow_html=True)
-                
-   #         if not df_ep_info2['year_str'].isnull().all():
-   #             st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-
-   #         if not df_ep_info2['Who'].isnull().all():
-   #             st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
-
-
     if ScreenSize == "Desktop / Laptop / Tablet":
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
 
         if types == 'All':
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1700, 2021])
+            st.markdown("---")
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J)
             dfY1 = dfY.dropna()
@@ -414,17 +395,15 @@ def exp_journals():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-
-            
+            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
             figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
                             color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
                             color_continuous_scale='rdbu',) #'RdBu'
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
-            st.write('''Zoom in by clicking on journal name. Pan out by clicking the center
-                of the circle.''')
-
+            st.markdown("---")
             time_jrnl = time_df.sort_values(by=['journal'],ascending=True)
             time_jrnl1 = time_jrnl['journal'].dropna()
             string1 = time_jrnl1.str.cat(sep=',')
@@ -432,13 +411,12 @@ def exp_journals():
             S1 = set(splits1)
             T1 = np.array(list(S1)).astype(object)
             U1 = np.sort(T1)
-
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                               format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = time_df.loc[time_df['journal'].str.contains('|'.join(jrnls)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
             if not jrnls == None:
-                J_options = st.selectbox('Eponyms in journals:',
+                J_options = st.selectbox('5th) Find eponyms in selected journals:',
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
@@ -470,6 +448,9 @@ def exp_journals():
                                     'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',])
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            st.markdown("---")
+            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
             new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
             new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
@@ -483,8 +464,7 @@ def exp_journals():
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
                 figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
                 st.write(figJDLT)
-
-
+            st.markdown("---")
             time_jrnl = new_jrnls1T.sort_values(by=['journal'],ascending=True)
             time_jrnl1 = time_jrnl['journal'].dropna()
             string1 = time_jrnl1.str.cat(sep=',')
@@ -498,7 +478,7 @@ def exp_journals():
             new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
             if not jrnls == None:
-                J_options = st.selectbox('5th) Eponyms in selected journals:',
+                J_options = st.selectbox('5th) Find eponyms in selected journals:',
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
@@ -625,6 +605,7 @@ def exp_geo():
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=350,height=350)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
         st.write(figJDLT)
+        st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
                        and out of map.</span>''', unsafe_allow_html=True)
 
@@ -634,9 +615,9 @@ def exp_geo():
                 text=text,hoverinfo='text',))
 
         figG3.update_layout(
-                autosize=True,hovermode='closest',showlegend=False,width=340,height=250,
+                autosize=True,hovermode='closest',showlegend=False,width=340,height=240,
                 mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
-                pitch=5,zoom=-0.45,style='dark'))
+                pitch=5,zoom=-0.47,style='dark'))
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
         st.markdown("---")
@@ -716,35 +697,35 @@ def exp_geo():
                                  "South America","Sweden","Switzerland",
                                  "UK","United Kingdom","USA",])
 
-        if   options3 == " ":              lat_3 = 35.00; lon_3 =  11.0; zoom_country = 0.47; markersize =6.5; Screen_width =  700; Screen_height = 440
-        if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -94.0; zoom_country = 1.90; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "Denmark":        lat_3 = 56.00; lon_3 =  9.70; zoom_country = 5.00; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "Edinburgh":      lat_3 = 55.92; lon_3 =  -3.2; zoom_country = 9.20; markersize =12; Screen_width =  700; Screen_height = 440
-        if   options3 == "England":        lat_3 = 52.80; lon_3 =  -3.0; zoom_country = 5.05; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 8; Screen_width =  700; Screen_height = 440
-        if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 440
-        if   options3 == "India":          lat_3 = 22.00; lon_3 =  80.0; zoom_country = 3.00; markersize = 9; Screen_width =  700; Screen_height = 440
-        if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  700; Screen_height = 440
-        if   options3 == "Italy":          lat_3 = 41.80; lon_3 =  14.0; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Japan":          lat_3 = 37.70; lon_3 = 135.5; zoom_country = 3.45; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "London":         lat_3 = 51.54; lon_3 =  -0.1; zoom_country = 8.96; markersize =12; Screen_width =  700; Screen_height = 440
-        if   options3 == "Netherlands":    lat_3 = 52.20; lon_3 =   5.0; zoom_country = 6.00; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "New York City":  lat_3 = 40.78; lon_3 = -73.9; zoom_country = 9.00; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "North America":  lat_3 = 51.00; lon_3 =  -103; zoom_country = 1.75; markersize = 9; Screen_width =  700; Screen_height = 440
-        if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  700; Screen_height = 440
-        if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  700; Screen_height = 440
-        if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.12; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  700; Screen_height = 440
-        if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
-        if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 440
-        if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize =10; Screen_width =  700; Screen_height = 440
-        if   options3 == "World":          lat_3 = 35.00; lon_3 =  11.0; zoom_country = 0.47; markersize =6.5; Screen_width =  700; Screen_height = 440
+        if   options3 == " ":              lat_3 = 35.00; lon_3 =  11.0; zoom_country = 0.42; markersize=6.5; Screen_width =  650; Screen_height = 440
+        if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  650; Screen_height = 440
+        if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -94.0; zoom_country = 1.90; markersize =10; Screen_width =  650; Screen_height = 440
+        if   options3 == "Denmark":        lat_3 = 56.00; lon_3 =  9.70; zoom_country = 5.00; markersize =10; Screen_width =  650; Screen_height = 440
+        if   options3 == "Edinburgh":      lat_3 = 55.92; lon_3 =  -3.2; zoom_country = 9.20; markersize =12; Screen_width =  650; Screen_height = 440
+        if   options3 == "England":        lat_3 = 52.80; lon_3 =  -3.0; zoom_country = 5.05; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 8; Screen_width =  650; Screen_height = 440
+        if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize =10; Screen_width =  650; Screen_height = 440
+        if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.50; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  650; Screen_height = 440
+        if   options3 == "India":          lat_3 = 22.00; lon_3 =  80.0; zoom_country = 3.00; markersize = 9; Screen_width =  650; Screen_height = 440
+        if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  650; Screen_height = 440
+        if   options3 == "Italy":          lat_3 = 41.80; lon_3 =  14.0; zoom_country = 4.50; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Japan":          lat_3 = 37.70; lon_3 = 135.5; zoom_country = 3.45; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "London":         lat_3 = 51.54; lon_3 =  -0.1; zoom_country = 8.96; markersize =12; Screen_width =  650; Screen_height = 440
+        if   options3 == "Netherlands":    lat_3 = 52.20; lon_3 =   5.0; zoom_country = 6.00; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "New York City":  lat_3 = 40.78; lon_3 = -73.9; zoom_country = 9.00; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "North America":  lat_3 = 51.00; lon_3 =  -103; zoom_country = 1.75; markersize = 9; Screen_width =  650; Screen_height = 440
+        if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  650; Screen_height = 440
+        if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  650; Screen_height = 440
+        if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.12; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  650; Screen_height = 440
+        if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 440
+        if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 440
+        if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize =10; Screen_width =  650; Screen_height = 440
+        if   options3 == "World":          lat_3 = 35.00; lon_3 =  11.0; zoom_country = 0.42; markersize=6.5; Screen_width =  650; Screen_height = 440
                
         figG3 = go.Figure()
         figG3.add_trace(go.Scattermapbox(
