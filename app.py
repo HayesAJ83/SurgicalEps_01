@@ -849,11 +849,14 @@ def exp_A2Z():
         S = set(splits)
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
-        journal_spec = st.multiselect("Eponym types:",options=list(U),
+        journal_spec = st.multiselect("Select eponym types (eg Surgical Maneuvers & Techniques):",options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Anatomy','Incisions','Instruments','Operations','Pathology','Physiology',
-                                    'Positions','Scores','Signs','Statistics','Surgical Maneuvers & Techniques',
-                                    'Syndromes','Trials',])
+                           default=[
+                           #         'Anatomy','Incisions','Instruments','Operations','Pathology','Physiology',
+                           #         'Positions','Scores','Signs','Statistics',
+                                     'Surgical Maneuvers & Techniques',
+                           #         'Syndromes','Trials',
+                                    ])
 
         min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
         new_jrnls1 = df2.loc[df2['Type'].str.contains('|'.join(journal_spec)) == True]
