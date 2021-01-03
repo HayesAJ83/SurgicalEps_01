@@ -674,7 +674,7 @@ def exp_geo():
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["WORLD"] = "WORLD"
         figJDLT = px.sunburst(new_geo2T,path=['WORLD',
-            'Continent_A1','CountryOfEponym_A1','CityOfEponym_A1','Eponym_easy'],
+            'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
                               #values='Log10_GxP',
                               color='Log10_GxP',
                               hover_data=['Eponym'],
