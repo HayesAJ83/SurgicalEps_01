@@ -187,7 +187,8 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('1st) Choose a disease:', options=list(U),
+    disease = st.multiselect('1st) Choose a disease (eg GI Bleeding):', options=list(U),
+                             default=['GI Bleeding'],
                              format_func=lambda x: ' ' if x == '1' else x,)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
@@ -262,25 +263,138 @@ def exp_journals():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     if ScreenSize == "Smartphone":
-        jrnls = st.multiselect('2nd) Select journals:',options=list(U),
-                                format_func=lambda x: ' ' if x == '1' else x)
-        new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
-        new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-        if not jrnls == None:
-            J_options = st.selectbox('3rd) Search eponyms from selected journals:',
-                                new_jrnls2['eponym'].unique(),
-                                format_func=lambda x: ' ' if x == '1' else x)
+        types = st.radio('2nd) Choose specialties:',["All","Selected",])
+        if types == 'All':
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1700, 2021])
+            url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
+            dfY = pd.read_csv(url_J)
+            dfY1 = dfY.dropna()
+            dfY1["JOURNALS"] = "JOURNALS"
+            dfT = dfY1.sort_values(by=['year'],ascending=True)
+            time_df = dfT.loc[(dfT['year'] >= min_yrs) & (dfT['year'] <= max_yrs)]
+            time_spec_df = time_df['specialty'].dropna()
+            string = time_spec_df.str.cat(sep=',')
+            splits = string.split(",")
+            S = set(splits)
+            T = np.array(list(S)).astype(object)
+            U = np.sort(T)
+            st.markdown("---")
+            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal names to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
+            
+            figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
+                            color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
+                            color_continuous_scale='rdbu',) #'RdBu'
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
+            figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+            st.write(figJDLT)
+            st.markdown("---")
 
-            df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
-            journal = df_ep_info2['journal_name'].to_string(index=False)
+            time_jrnl = time_df.sort_values(by=['journal'],ascending=True)
+            time_jrnl1 = time_jrnl['journal'].dropna()
+            string1 = time_jrnl1.str.cat(sep=',')
+            splits1 = string1.split(",")
+            S1 = set(splits1)
+            T1 = np.array(list(S1)).astype(object)
+            U1 = np.sort(T1)
+
+            jrnls = st.multiselect('4th) Select journals:',options=list(U1),
+                              format_func=lambda x: ' ' if x == '1' else x)
+            new_jrnls1 = time_df.loc[time_df['journal'].str.contains('|'.join(jrnls)) == True]
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            if not jrnls == None:
+                J_options = st.selectbox('Eponyms in journals:',
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+                journal = df_ep_info2['journal_name'].to_string(index=False)
             if not df_ep_info2['journal_name'].isnull().all():
-                st.write(journal, unsafe_allow_html=True)
-                
+                st.write(journal, unsafe_allow_html=True) 
             if not df_ep_info2['year_str'].isnull().all():
                 st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-
             if not df_ep_info2['Who'].isnull().all():
-                st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+               st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+
+        if types == 'Selected':
+            url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
+            dfY = pd.read_csv(url_J)
+            dfY1 = dfY.dropna()
+            dfY1["JOURNALS"] = "JOURNALS"
+            df2 = dfY1.sort_values(by=['year'],ascending=True)
+            spec_df = df2['specialty'].dropna()
+            string = spec_df.str.cat(sep=',')
+            splits = string.split(",")
+            S = set(splits)
+            T = np.array(list(S)).astype(object)
+            U = np.sort(T)
+            journal_spec = st.multiselect('Specilaties of interest - pick and choose',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+                                    'Colorectal','Emergency Surgery','Endocrine','ENT',
+                                    'General Surgery','Gynaecology','HPB','Hernia',
+                                    'Laparoscopic Surgery','Maxillofacial','Neurosurgery',
+                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
+                                    'Transplant','Trauma','Urology','Vascular',])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
+            new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
+            new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
+            new_jrnls2T["JOURNALS"] = "JOURNALS"
+            if not journal_spec == None:
+                figJDLT = px.sunburst(new_jrnls2T,path=['JOURNALS','journal_short','year','eponym'],
+                      #values='Log10 Google hits',
+                                      color='Log2 Google hits',hover_data=['eponym'],
+                      color_continuous_scale='rdbu',)
+                      #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
+                figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
+                st.write(figJDLT)
+
+            time_jrnl = new_jrnls1T.sort_values(by=['journal'],ascending=True)
+            time_jrnl1 = time_jrnl['journal'].dropna()
+            string1 = time_jrnl1.str.cat(sep=',')
+            splits1 = string1.split(",")
+            S1 = set(splits1)
+            T1 = np.array(list(S1)).astype(object)
+            U1 = np.sort(T1)
+
+            jrnls = st.multiselect('4th) Select journals:',options=list(U1),
+                              format_func=lambda x: ' ' if x == '1' else x)
+            new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            if not jrnls == None:
+                J_options = st.selectbox('5th) Eponyms in selected journals:',
+                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+                journal = df_ep_info2['journal_name'].to_string(index=False)
+            if not df_ep_info2['journal_name'].isnull().all():
+                st.write(journal, unsafe_allow_html=True) 
+            if not df_ep_info2['year_str'].isnull().all():
+                st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+            if not df_ep_info2['Who'].isnull().all():
+                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+
+
+
+    #    jrnls = st.multiselect('2nd) Select journals:',options=list(U),
+    #                           default=['BJS'],
+    #                            format_func=lambda x: ' ' if x == '1' else x)
+    #    new_jrnls1 = df1.loc[df1['journal'].str.contains('|'.join(jrnls)) == True]
+    #    new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+    #    if not jrnls == None:
+    #        J_options = st.selectbox('3rd) Search eponyms from selected journals:',
+    #                            new_jrnls2['eponym'].unique(),
+    #                            format_func=lambda x: ' ' if x == '1' else x)
+
+   #         df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
+   #         journal = df_ep_info2['journal_name'].to_string(index=False)
+   #         if not df_ep_info2['journal_name'].isnull().all():
+   #             st.write(journal, unsafe_allow_html=True)
+                
+   #         if not df_ep_info2['year_str'].isnull().all():
+   #             st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
+
+   #         if not df_ep_info2['Who'].isnull().all():
+   #             st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
@@ -497,7 +611,6 @@ def exp_geo():
         site_lon = time_df['Long_A1']
         text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
         locations_name = time_df['Eponym_easy']
-
         st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
