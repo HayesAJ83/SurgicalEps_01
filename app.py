@@ -813,7 +813,7 @@ def exp_exam():
 #----------------------------------------------------------------------------------------------#
 def exp_A2Z():
     st.subheader("Search the full SurgicalEps database and filter by eponym type")
-    types = st.radio('1st) Choose eponym types:',["All","Selected",])
+    types = st.radio('1st) Choose eponym types:',["All","Selected",], index=1)
 
     if types == 'All':
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
