@@ -512,7 +512,8 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    eponymByOp = st.multiselect('1st) Select from operations:',options=list(U),
+    eponymByOp = st.multiselect('1st) Select from operations (eg Inguinal hernia repair):',options=list(U),
+                                default=['Inguinal hernia repair - Open'],
                                 format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
@@ -723,7 +724,7 @@ def exp_geo():
         if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  650; Screen_height = 430
         if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 430
         if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "USA":            lat_3 = 39.00; lon_3 =-101.0; zoom_country = 1.95; markersize =10; Screen_width =  650; Screen_height = 430
+        if   options3 == "USA":            lat_3 = 39.00; lon_3 =-105.0; zoom_country = 1.95; markersize =10; Screen_width =  650; Screen_height = 430
         if   options3 == "World":          lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  650; Screen_height = 430
                
         figG3 = go.Figure()
