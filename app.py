@@ -286,10 +286,9 @@ def exp_journals():
                             color_continuous_scale='rdbu',)
                                   #marker_colorbar=dict(tickness=10)) #'RdBu'
             #figJDLT.update_traces(colorbar_thickness=0.2, selector=dict(type='sunburst'))
-            figJDLT.update_traces(marker_colorbar=dict(thickness=25)) #selector=dict(type='sunburst'))
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip',)
-            #figJDLT.update_traces(marker_colorbar_thicknessmode=2, selector=dict(type='sunburst'))
+            #figJDLT.update_traces(marker_ColorBar=dict(thickness=10, thicknessmode='pixels'), selector=dict(type='sunburst'))
             st.write(figJDLT)
             st.markdown("---")
             time_jrnl = time_df.sort_values(by=['journal'],ascending=True)
@@ -680,7 +679,7 @@ def exp_geo():
                               hover_data=['Eponym'],
                               color_continuous_scale='viridis',#'RdBu'
                                   )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=660,height=500)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
         st.write(figJDLT)
 
