@@ -300,11 +300,11 @@ def exp_journals():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
+
+            
             figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
-                              #values='Log10 Google hits',
-                                  color='Log2 Google hits',hover_data=['eponym'],
-                              color_continuous_scale='rdbu',#'RdBu'
-                                  )
+                            color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
+                            color_continuous_scale='rdbu',) #'RdBu'
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
             figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
             st.write(figJDLT)
@@ -575,6 +575,23 @@ def exp_geo():
         text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
         locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
 
+        st.markdown("---")
+        st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
+        new_geo2T["WORLD"] = "WORLD"
+        figJDLT = px.sunburst(new_geo2T,path=['WORLD',
+            'Continent_A1','CountryOfEponym_A1','CityOfEponym_A1','Eponym_easy'],
+                              #values='Log10_GxP',
+                              color='Log10_GxP',
+                              hover_data=['Eponym'],
+                              color_continuous_scale='viridis',#'RdBu'
+                                  )
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
+        figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+        st.write(figJDLT)
+
+        
+        st.markdown("---")
         options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
                                 ["World"," ","  ",
                                  "Argentina","Austria","Brazil","Canada",
@@ -633,19 +650,7 @@ def exp_geo():
         st.write(figG3)
         st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
                 unsafe_allow_html=True)
-        #st.markdown("---")
-        st.subheader("Click on geographical locations to zoom in, and in the center to pan out.") 
-        new_geo2T["WORLD"] = "WORLD"
-        figJDLT = px.sunburst(new_geo2T,path=['WORLD',
-            'Continent_A1','CountryOfEponym_A1','CityOfEponym_A1','Eponym_easy'],
-                              #values='Log10_GxP',
-                              color='Log10_GxP',
-                              hover_data=['Eponym'],
-                              color_continuous_scale='viridis',#'RdBu'
-                                  )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
-        figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
-        st.write(figJDLT)
+
 
         st.markdown("---")
         new_geo3T = new_geo2T.sort_values(by=['Eponym'],ascending=True)
