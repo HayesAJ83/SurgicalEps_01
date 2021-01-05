@@ -34,11 +34,12 @@ import requests
 def main():    
     st.sidebar.subheader('Navigator')
     page = st.sidebar.radio('',#'Go to',
-                            ["SurgicalEps Explorer",
-                             "App Design Team"])
+                            ["SurgicalEps App",
+                             "Design Team",])
 
-    if page ==   "SurgicalEps Explorer":   show_explore()
-    elif page == "App Design Team":        show_the_app_team()
+    if page ==   "SurgicalEps App":   show_explore()
+    elif page == "Design Team":        show_the_app_team()
+
     
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -89,7 +90,7 @@ def show_the_app_team():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def show_explore():
-    st.sidebar.subheader('SurgicalEps Explorer')
+    st.sidebar.subheader('SurgicalEps App')
     exp = st.sidebar.radio('',#'Select',
                                 ["About",
                                  "By Disease",
@@ -97,15 +98,17 @@ def show_explore():
                                  "By Operation",
                                  "By World Maps",
                                  "Exam Favourites",
-                                 "Full Database",
+                                 "Full Database - A to Z",
+                                 "Teaching Tool"
                                  ])
-    if   exp == "About":           exp_about()             #1
-    elif exp == "By Disease":      exp_dis()               #2
-    elif exp == "By Journal":      exp_journals()          #3
-    elif exp == "By Operation":    exp_operation()         #4
-    elif exp == "By World Maps":   exp_geo()               #5         
-    elif exp == "Exam Favourites": exp_exam()              #6
-    elif exp == "Full Database":   exp_A2Z()               #7
+    if   exp == "About":                    exp_about()             #1
+    elif exp == "By Disease":               exp_dis()               #2
+    elif exp == "By Journal":               exp_journals()          #3
+    elif exp == "By Operation":             exp_operation()         #4
+    elif exp == "By World Maps":            exp_geo()               #5         
+    elif exp == "Exam Favourites":          exp_exam()              #6
+    elif exp == "Full Database - A to Z":   exp_A2Z()               #7
+    elif exp == "Teaching Tool":            exp_teach()             #8
     
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -158,6 +161,10 @@ def exp_about():
                    incisions, surgical instruments, operations, pathology, physiology, patient
                    positioning,clinical scores or signs, statistical tests, surgical maneuvers &
                    techniques, syndromes, or research trials.</span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
+                   <span style="font-size:12pt;color:black;">Geo-historical teaching tool.
+                   </span>''',unsafe_allow_html=True)
+
     #st.markdown("---")
     st.subheader('Who Is This App For?')
     st.markdown(' ')
@@ -680,7 +687,7 @@ def exp_geo():
                               hover_data=['Eponym'],
                               color_continuous_scale='viridis',#'RdBu'
                                   )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=660,height=500)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
         figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
         st.write(figJDLT)
 
@@ -805,14 +812,14 @@ def exp_exam():
             st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
 
 
-#----------------------------------------------------------------------------------------------#
-#                                                                                              #
-#  A to Z (7)                                                                                 #
-# ::: Handles the                                                                              #                                                                                              #
-#                                                                                              #
-#----------------------------------------------------------------------------------------------#
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  A to Z (7)                                                                                     #
+# ::: Handles the                                                                                 #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
 def exp_A2Z():
-    st.subheader("Search the full SurgicalEps database and filter by eponym type")
+    st.markdown('''### Search the full database and filter by eponym type''')
     types = st.radio('1st) Choose eponym types:',["All","Selected",], index=1)
 
     if types == 'All':
@@ -877,7 +884,137 @@ def exp_A2Z():
             if not df_ep_info['Where'].isnull().all():
                 st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
 
+#-------------------------------------------------------------------------------------------------#
+#                                                                                                 #
+#  Teaching (8)                                                                                   #
+# ::: Handles the                                                                                 #                                                                                              #
+#                                                                                                 #
+#-------------------------------------------------------------------------------------------------#
+def exp_teach():
+    st.subheader("Teaching Tool")
 
+    st.markdown(
+        '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
+           </style>''',unsafe_allow_html=True)
+    exp = st.radio('1st) Choose your setting:',#'Select',
+                                ['At the Bedside',# - Scars, Signs, Diseases & Severity Scores",
+                                 'In the Operating Room', #- Incisions, Instruments & Operations",
+                                 ])
+
+    if   exp == "At the Bedside":           teach_bed()   #T1   #- Scars, Signs, Severity Scores
+    elif exp == "In the Operating Room":    teach_or()    #T2 #- Incisions, Instruments & Operations
+
+def teach_bed():
+    bed = st.radio('2nd) Bedside Teaching', ['Scars / Incisions', 'Clinical Signs',]) #'Disease Severity Scores' 
+
+    if bed == "Scars / Incisions":
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        Cuts_df = df[(df['Type_bed_scar'].str.match('Incisions'))]
+        if not Cuts_df['Type_bed_scar'].isnull().all():
+            Table = ff.create_table(Cuts_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
+                    'History','ICD11_link', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        Cuts_options2 = st.radio('3rd) Choose from list of eponymous abdominal scars:', Cuts_df['Eponym'].unique())
+        Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
+
+        #NEED TO DROP 'Fowler-Weir approach'
+
+    if bed == "Clinical Signs":
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        Sign_df = df[(df['Type'].str.match('Signs'))]
+        if not Sign_df['Type'].isnull().all():
+            Table = ff.create_table(Sign_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
+                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
+                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal','History','ICD11_link','Year',
+                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        Sign_options2 = st.radio('3rd) Choose from of eponymous abdominal signs:', Sign_df['Eponym'].unique())
+        Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
+
+    
+
+
+  #"Which Department - Surgical Specialty",
+
+def teach_or():
+
+    OR = st.radio('2nd) In The Operating Room', ['Incisions', 'Instruments', 'Operations',])
+
+    if OR == "Incisions":
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        Cuts_df = df[(df['Type_op_cut'].str.match('Incisions'))]
+        if not Cuts_df['Type_op_cut'].isnull().all():
+            Table = ff.create_table(Cuts_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
+                    'History','ICD11_link', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        Cuts_options2 = st.radio('3rd) Choose from list of eponymous abdominal scars:', Cuts_df['Eponym'].unique())
+        Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
+
+    #Sp = st.radio('2) Which Specialty?', ['Anaesthetics', 'General',])
+
+    if OR == "Instruments":
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        Instrum_df = df[(df['Type'].str.match('Instruments'))]
+        if not Instrum_df['Type'].isnull().all():
+            Table = ff.create_table(Instrum_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
+                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
+                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
+                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
+                    'Sex_A1','Lat_A1','Long_A1'],
+                             axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        Instrum_options2 = st.radio('3rd) Choose from list of surgical instruments:', Instrum_df['Eponym'].unique())
+        Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
+
+
+
+
+ #       url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+ #       df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
+ #       df2 = df1.sort_values(by=['Year'],ascending=True)
+ #       df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
+ #       df4 = df3['Operation'].dropna()
+ #       string = df4.str.cat(sep=',')
+ #       splits = string.split(",")
+ #       S = set(splits)
+ #       T = np.array(list(S)).astype(object)
+ #       U = np.sort(T)
+ #       eponymByOp = st.multiselect('4th) Select from operation list:',options=list(U),
+ #                               #default=['Inguinal hernia repair - Open'],
+ #                               format_func=lambda x: ' ' if x == '1' else x)
+ #       new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
+ #       new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
+
+
+
+def teach_spec():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df1 = df['Topic'].dropna()
+    string = df1.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+    special = st.multiselect('2nd) Select from specialies:',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,)
+    new_special1 = df.loc[df['Topic'].str.contains('|'.join(special)) == True]
+    new_special2 = new_special1.sort_values(by=['Eponym'],ascending=True)
+
+    
 
 #-------------------------------------------------------------------------------------------#
 if __name__ == "__main__":
