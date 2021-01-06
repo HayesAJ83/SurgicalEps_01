@@ -338,7 +338,7 @@ def exp_journals():
                            default=['Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia',
-                                    'Laparoscopic Surgery','Maxillofacial','Neurosurgery',
+                                    'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
                                     'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
@@ -732,6 +732,7 @@ def exp_geo():
         if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 430
         if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 430
         if   options3 == "USA":            lat_3 = 39.00; lon_3 =-105.0; zoom_country = 1.95; markersize =10; Screen_width =  650; Screen_height = 430
+        if   options3 == "Vienna":         lat_3 = 47.20; lon_3 =  14.4; zoom_country = 7.80; markersize =11; Screen_width =  650; Screen_height = 430
         if   options3 == "World":          lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  650; Screen_height = 430
                
         figG3 = go.Figure()
@@ -908,6 +909,10 @@ def teach_bed():
     bed = st.radio('2nd) Bedside Teaching', ['Scars / Incisions', 'Clinical Signs',]) #'Disease Severity Scores' 
 
     if bed == "Scars / Incisions":
+    #    color = st.select_slider('Select a region of the abdomen',
+    #        options=['Upper Abdomen','RUQ', 'Epigastrium','Central', 'RIF', 'Suprapubic', 'LIF','Lower abdomen'])
+    #    st.write('Scars and stomas in the', color)
+        st.write('Insert image of abdomen')
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Cuts_df = df[(df['Type_bed_scar'].str.match('Incisions'))]
@@ -919,10 +924,10 @@ def teach_bed():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Cuts_options2 = st.radio('3rd) Choose from list of eponymous abdominal scars:', Cuts_df['Eponym'].unique())
+        Cuts_options2 = st.selectbox('3rd) Choose from list of eponymous abdominal scars and stomas:', Cuts_df['Eponym'].unique())
         Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
 
-        #NEED TO DROP 'Fowler-Weir approach'
+
 
     if bed == "Clinical Signs":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -959,7 +964,7 @@ def teach_or():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Cuts_options2 = st.radio('3rd) Choose from list of eponymous abdominal scars:', Cuts_df['Eponym'].unique())
+        Cuts_options2 = st.radio('''3rd) Choose from list of eponymous incisions and stomas:''', Cuts_df['Eponym'].unique())
         Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
 
     #Sp = st.radio('2) Which Specialty?', ['Anaesthetics', 'General',])
