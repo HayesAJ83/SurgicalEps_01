@@ -451,7 +451,7 @@ def exp_journals():
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery',
-                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
+                                    'Oesophagogastric','Obstetrics','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',])
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             st.markdown("---")
