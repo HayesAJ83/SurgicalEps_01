@@ -898,12 +898,14 @@ def exp_teach():
         '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
            </style>''',unsafe_allow_html=True)
     exp = st.radio('1st) Choose your setting:',#'Select',
-                                ['At the Bedside',# - Scars, Signs, Diseases & Severity Scores",
-                                 'In the Operating Room', #- Incisions, Instruments & Operations",
+                                ['Bedside',        # - Scars, Signs, Diseases & Severity Scores",
+                                 'Classroom',      # - History of Surgery',
+                                 'Operating Room', #- Incisions, Instruments & Operations",
                                  ])
 
-    if   exp == "At the Bedside":           teach_bed()   #T1   #- Scars, Signs, Severity Scores
-    elif exp == "In the Operating Room":    teach_or()    #T2 #- Incisions, Instruments & Operations
+    if   exp == "Bedside":          teach_bed()       #T1 #- Scars, Signs, Severity Scores
+    elif exp == 'Classroom':        teach_classrm()   #T2 #- History
+    elif exp == "Operating Room":   teach_or()        #T3 #- Incisions, Instruments & Operations
 
 def teach_bed():
     bed = st.radio('2nd) Bedside Teaching', ['Scars / Incisions', 'Clinical Signs',]) #'Disease Severity Scores' 
@@ -944,9 +946,13 @@ def teach_bed():
         Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
 
     
+def teach_classrm():
+    
+    classrm = st.radio('2nd) Classroom Teaching',
+                       ['History of Surgery by Eponyms',
+                        'Women of Surgical History by Eponyms',]) #'Disease Severity Scores' 
 
 
-  #"Which Department - Surgical Specialty",
 
 def teach_or():
 
