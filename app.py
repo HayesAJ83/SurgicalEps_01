@@ -407,7 +407,7 @@ def exp_journals():
                             color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
                             color_continuous_scale='rdbu',
                                   ) #'RdBu'
-            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
             st.write(figJDLT)
             st.markdown("---")
@@ -668,7 +668,7 @@ def exp_geo():
                                      )
 
         min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1550, 2050, [1550, 2021])
-
+        st.markdown("---")
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
@@ -677,7 +677,7 @@ def exp_geo():
         text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
         locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
 
-        st.markdown("---")
+        #st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["WORLD"] = "WORLD"
@@ -688,12 +688,12 @@ def exp_geo():
                               hover_data=['Eponym'],
                               color_continuous_scale='viridis',#'RdBu'
                                   )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
 
         
-        st.markdown("---")
+        #st.markdown("---")
         options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
                                 ["World"," ","  ",
                                  "Argentina","Austria","Brazil","Canada",
