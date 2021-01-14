@@ -822,7 +822,7 @@ def exp_exam():
 #-------------------------------------------------------------------------------------------------#
 def exp_A2Z():
     st.markdown('''### Search the full database and filter by eponym type''')
-    types = st.radio('1st) Choose eponym types:',["All","Selected",], index=1)
+    types = st.radio('1st) Choose eponym types:',["All","Selected",], index=0)
 
     if types == 'All':
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
