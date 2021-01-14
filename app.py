@@ -294,7 +294,7 @@ def exp_journals():
                                   #marker_colorbar=dict(tickness=10)) #'RdBu'
             #figJDLT.update_traces(colorbar_thickness=0.2, selector=dict(type='sunburst'))
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
-            figJDLT.update_traces(hovertemplate=None,hoverinfo='skip',)
+            figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
             #figJDLT.update_traces(marker_ColorBar=dict(thickness=10, thicknessmode='pixels'), selector=dict(type='sunburst'))
             st.write(figJDLT)
             st.markdown("---")
@@ -355,7 +355,7 @@ def exp_journals():
                       color_continuous_scale='rdbu',)
                       #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
-                figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
+                figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
                 st.write(figJDLT)
 
             time_jrnl = new_jrnls1T.sort_values(by=['journal'],ascending=True)
@@ -405,9 +405,10 @@ def exp_journals():
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
             figJDLT = px.sunburst(time_df,path=['JOURNALS','journal_short','year','eponym'],
                             color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
-                            color_continuous_scale='rdbu',) #'RdBu'
+                            color_continuous_scale='rdbu',
+                                  ) #'RdBu'
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
-            figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+            figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
             st.write(figJDLT)
             st.markdown("---")
             time_jrnl = time_df.sort_values(by=['journal'],ascending=True)
@@ -468,7 +469,7 @@ def exp_journals():
                       color_continuous_scale='rdbu',)
                       #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
-                figJDLT.update_traces(hovertemplate=None, hoverinfo='skip')
+                figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
                 st.write(figJDLT)
             st.markdown("---")
             time_jrnl = new_jrnls1T.sort_values(by=['journal'],ascending=True)
@@ -610,7 +611,7 @@ def exp_geo():
                               color_continuous_scale='viridis',#'RdBu'
                                   )
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=350,height=350)
-        figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+        figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
         st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
@@ -688,7 +689,7 @@ def exp_geo():
                               color_continuous_scale='viridis',#'RdBu'
                                   )
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
-        figJDLT.update_traces(hovertemplate=None,hoverinfo='skip') 
+        figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
 
         
