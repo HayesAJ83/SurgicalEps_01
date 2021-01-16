@@ -254,7 +254,6 @@ def exp_journals():
     st.subheader("Find eponyms that can be traced to journal archives") 
     ScreenSize = st.radio('1st) Select screen size:',
                           options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
-
     url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
     dfY = pd.read_csv(url_J)
     dfY1 = dfY.dropna()
@@ -368,10 +367,9 @@ def exp_journals():
             U1 = np.sort(T1)
             st.markdown("---")
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
-                              format_func=lambda x: ' ' if x == '1' else x)
+                                   format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
             new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
-
             if jrnls:
                 J_options = st.selectbox('5th) Eponyms in selected journals:',
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
@@ -388,7 +386,6 @@ def exp_journals():
 
     if ScreenSize == "Desktop / Laptop / Tablet":
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
-
         if types == 'All':
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             st.markdown("---")
@@ -535,7 +532,6 @@ def exp_operation():
         Op_options = st.selectbox('2) Search list of related eponyms:',
                                   new_df2['Eponym_easy'].unique(),
                                   format_func=lambda x: ' ' if x == '1' else x)   #selectbox
-
         df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
 
@@ -588,72 +584,6 @@ def exp_geo():
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-        min_yrs, max_yrs = st.slider("2nd) Choose time window:", 1520, 2040, [1560, 2021])
-        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-        df2 = df1.sort_values(by=['Year'],ascending=True)
-#       mapbox_access_token = open("/Users/alastairhayes/desktop/Eponyms/ajhayes83_1.mapbox_token").read()  
-        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
-        df3 = df2.sort_values(by=['CountryOfEponym_A1'],ascending=True)  #Gives eponyms by operation alphabetically
-        dfT = df3.sort_values(by=['Year'],ascending=True)
-        time_df = dfT.loc[(dfT['Year'] >= min_yrs) & (dfT['Year'] <= max_yrs)]
-        site_lat = time_df['Lat_A1']                            
-        site_lon = time_df['Long_A1']
-        text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
-        locations_name = time_df['Eponym_easy']
-        st.markdown("---")
-        st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
-                       and in the center to pan out.</span>''', unsafe_allow_html=True)
-        time_df["World"] = "World"
-        figJDLT = px.sunburst(time_df,path=['World',
-            'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
-                              #values='Log10_GxP',
-                              color='Log10_GxP',
-                              hover_data=['Eponym'],
-                              color_continuous_scale='viridis',#'RdBu'
-                                  )
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=350,height=350)
-        figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
-        st.write(figJDLT)
-        st.markdown("---")
-        st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
-                       and out of map.</span>''', unsafe_allow_html=True)
-
-        figG3 = go.Figure()
-        figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
-                marker=go.scattermapbox.Marker(size=4,color='yellow',opacity=0.6),
-                text=text,hoverinfo='text',))
-
-        figG3.update_layout(
-                autosize=True,hovermode='closest',showlegend=False,width=340,height=240,
-                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
-                pitch=5,zoom=-0.47,style='dark'))
-        figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(figG3)
-        st.markdown("---")
-        time_df1 = time_df.sort_values(by=['Eponym'],ascending=True)
-
-        
-        options = st.selectbox('3rd) Type here to get details of particular eponym:',
-                               time_df1['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        df_ep_info = time_df1[time_df1['Eponym_easy'].str.match(options)]
-
-        if not df_ep_info['Who'].isnull().all():
-            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
-
-            ep_yr = df_ep_info['Year'].to_string(index=False)
-            if not df_ep_info['Year'].isnull().all():
-                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
-
-            if not df_ep_info['Where'].isnull().all():
-                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
-
-
-
-
-
-
-    if ScreenSize == "Desktop / Laptop / Tablet":
         st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -677,7 +607,84 @@ def exp_geo():
                                      )
 
         min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
-        st.markdown("---")
+        new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
+        new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
+        new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
+        site_lat = new_geo2T['Lat_A1']            #df3['Lat_A1']                
+        site_lon = new_geo2T['Long_A1']           #df3['Long_A1']
+        text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
+        locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
+        #st.markdown("---")
+        st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
+        new_geo2T["World"] = "World"
+        figJDLT = px.sunburst(new_geo2T,path=['World',
+            'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
+                              #values='Log10_GxP',
+                              color='Log10_GxP',
+                              hover_data=['Eponym'],
+                              color_continuous_scale='viridis',#'RdBu'
+                                  )
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
+        figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
+        st.write(figJDLT)
+        #st.markdown("---")
+        st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
+                       and out of map.</span>''', unsafe_allow_html=True)
+        figG3 = go.Figure()
+        figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
+                marker=go.scattermapbox.Marker(size=4,color='yellow',opacity=0.6),
+                text=text,hoverinfo='text',))
+        figG3.update_layout(
+                autosize=True,hovermode='closest',showlegend=False,width=340,height=240,
+                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=0),
+                pitch=5,zoom=-0.47,style='dark'))
+        figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+        st.write(figG3)
+        st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
+                unsafe_allow_html=True)
+        #st.markdown("---")
+        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
+                     'Eponym_strip':'','Who':'','Who_B':'','Region_A1':'','RegionOfEponym_A1':'',
+                     'Where':'','Author_1_Role':'1','Operation':'1','WhoNamedIt':'1','Author_1':'1',
+                     'Year':'','Year_str':'',}
+        new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
+        new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
+        options = st.selectbox('Type here to look up an eponym of interest:',
+                    new_geo4T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+        df_ep_info = new_geo4T[new_geo4T['Eponym_easy'].str.match(options)]
+
+        if df_ep_info['Who'].any():
+            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else:
+            pass
+        if df_ep_info['Year'].any():
+            st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        else:
+            pass
+        if df_ep_info['Where'].any():
+            st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:
+            pass
+
+
+    if ScreenSize == "Desktop / Laptop / Tablet":
+        st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
+        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        df2 = df1.sort_values(by=['Year'],ascending=True)
+        spec_df = df2['Topic'].dropna()
+        string = spec_df.str.cat(sep=',')
+        splits = string.split(",")
+        S = set(splits)
+        T = np.array(list(S)).astype(object)
+        U = np.sort(T)
+        journal_spec = st.multiselect(
+            "2nd) Optional - Select specific specialties. Type in box:",
+             options=list(U), format_func=lambda x: ' ' if x == '1' else x,)
+        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+        #st.markdown("---")
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
@@ -763,29 +770,14 @@ def exp_geo():
         st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
                 unsafe_allow_html=True)
 
-        st.markdown("---")
-
-        blank_row = {'Alphabet':'',
-                     'Eponym':'1',
-                     'Eponym_easy':'1',
-                     'Eponym_easy_yr':'',
-                     'Topic':'',
-                     'Disease':'',
-                     'Eponym_strip':'',
-                     'Who':'',
-                     'Who_B':'',
-                     'Surname':'','Region_A1':'','RegionOfEponym_A1':'',
+        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
+                     'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
                      'Where':'','Author_1_Role':'1','Operation':'1',
-                     'WhoNamedIt':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1',
-                     'CityOfEponym_A1':'1','Lat_A1':'1','Long_A1':'1','Continent_A1':'1',
-                     'CountryOfEponym_A1':'1','CountryOfEponym_easy':'1','ISO_country_A1':'1','Author_2':'1',
-                     'Sex_A2':'1','Lat_A2':'1','Long_A2':'1','Class':'1','Subclass':'1',
-                     'Type_bed_scar':'1','Type_op_cut':'1','Type':'1','Type_1':'1',
-                     'ExamSpec':'1','ExamFav':'1','Pubmed_results':'1','Google_results':'1',
+                     'Author_1':'1','Year':'','Year_str':'','Sex_A1':'1',
                      }
         new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
         new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('5th) Type here to select eponym of interest:',
+        options = st.selectbox('Type here to look up an eponym of interest:',
                     new_geo4T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_geo4T[new_geo4T['Eponym_easy'].str.match(options)]
 
@@ -793,19 +785,14 @@ def exp_geo():
             st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else:
             pass
-
         if df_ep_info['Year'].any():
             st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
         else:
             pass
-
         if df_ep_info['Where'].any():
             st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:
             pass
-
-            
-
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
