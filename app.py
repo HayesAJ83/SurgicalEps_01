@@ -272,7 +272,7 @@ def exp_journals():
     if ScreenSize == "Smartphone":
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1700, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J,dtype={'year':int}) 
             dfY1 = dfY.dropna()
@@ -286,7 +286,7 @@ def exp_journals():
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
             st.markdown("---")
-            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal names to zoom in,
+            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
             figJDLT = px.sunburst(time_df,path=['Journals','journal_short','year','eponym'],
                             color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
@@ -345,6 +345,8 @@ def exp_journals():
                                           )
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             st.markdown("---")
+            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
+                       and in the center to pan out.</span>''', unsafe_allow_html=True)
             new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
             new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
@@ -390,7 +392,7 @@ def exp_journals():
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1700, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             st.markdown("---")
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J, dtype={'year':int})
