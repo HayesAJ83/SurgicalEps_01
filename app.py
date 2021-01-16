@@ -194,14 +194,12 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('1st) Choose a disease (eg GI Bleeding):', options=list(U),
-                             default=['GI Bleeding'],
+    disease = st.multiselect('1st) Choose a disease:', options=list(U),
                              format_func=lambda x: ' ' if x == '1' else x,)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
 
-
-    if not disease == None:
+    if disease:
         Dis_options = st.selectbox('2) Search list of related eponyms:',
                                    new_dis2['Eponym_easy'].unique(),
                                format_func=lambda x: ' ' if x == '1' else x)
@@ -528,13 +526,12 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    eponymByOp = st.multiselect('1st) Select from operations (eg Inguinal hernia repair):',options=list(U),
-                                default=['Inguinal hernia repair - Open'],
+    eponymByOp = st.multiselect('1st) Select from operations:',options=list(U),
                                 format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
-    if not eponymByOp == None:
+    if eponymByOp:
         Op_options = st.selectbox('2) Search list of related eponyms:',
                                   new_df2['Eponym_easy'].unique(),
                                   format_func=lambda x: ' ' if x == '1' else x)   #selectbox
@@ -585,9 +582,6 @@ def exp_operation():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_geo():
-    st.markdown(
-        """<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}
-        </style>""",unsafe_allow_html=True,)
     st.subheader("Find eponyms related to their geographical origins") 
     ScreenSize = st.radio('1st) Select screen size:',
                      options=['Smartphone',
@@ -610,8 +604,8 @@ def exp_geo():
         st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
-        time_df["WORLD"] = "WORLD"
-        figJDLT = px.sunburst(time_df,path=['WORLD',
+        time_df["World"] = "World"
+        figJDLT = px.sunburst(time_df,path=['World',
             'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
                               #values='Log10_GxP',
                               color='Log10_GxP',
@@ -638,6 +632,8 @@ def exp_geo():
         st.write(figG3)
         st.markdown("---")
         time_df1 = time_df.sort_values(by=['Eponym'],ascending=True)
+
+        
         options = st.selectbox('3rd) Type here to get details of particular eponym:',
                                time_df1['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = time_df1[time_df1['Eponym_easy'].str.match(options)]
@@ -653,7 +649,12 @@ def exp_geo():
                 st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
 
 
+
+
+
+
     if ScreenSize == "Desktop / Laptop / Tablet":
+        st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -665,7 +666,7 @@ def exp_geo():
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
         journal_spec = st.multiselect(
-            "2nd) Optional - enter specific specialties. Default 'Choose an option' shows all.",
+            "2nd) Optional - Select specific specialties. Type in box:",
              options=list(U), format_func=lambda x: ' ' if x == '1' else x,
                            #default=['Academic','Anaesthetics','Bariatrics','Breast',
                            #         'Cardiothoracics','Colorectal','Emergency Surgery',
@@ -675,7 +676,7 @@ def exp_geo():
                            #         'Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
                                      )
 
-        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1550, 2050, [1550, 2021])
+        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
         st.markdown("---")
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
@@ -688,8 +689,8 @@ def exp_geo():
         #st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
-        new_geo2T["WORLD"] = "WORLD"
-        figJDLT = px.sunburst(new_geo2T,path=['WORLD',
+        new_geo2T["World"] = "World"
+        figJDLT = px.sunburst(new_geo2T,path=['World',
             'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
                               #values='Log10_GxP',
                               color='Log10_GxP',
@@ -762,22 +763,48 @@ def exp_geo():
         st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
                 unsafe_allow_html=True)
 
-
         st.markdown("---")
-        new_geo3T = new_geo2T.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('5th) Type here to get details of particular eponym:',
-                    new_geo3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        df_ep_info = new_geo3T[new_geo3T['Eponym_easy'].str.match(options)]
 
-        if not df_ep_info['Who'].isnull().all():
+        blank_row = {'Alphabet':'',
+                     'Eponym':'1',
+                     'Eponym_easy':'1',
+                     'Eponym_easy_yr':'',
+                     'Topic':'',
+                     'Disease':'',
+                     'Eponym_strip':'',
+                     'Who':'',
+                     'Who_B':'',
+                     'Surname':'','Region_A1':'','RegionOfEponym_A1':'',
+                     'Where':'','Author_1_Role':'1','Operation':'1',
+                     'WhoNamedIt':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1',
+                     'CityOfEponym_A1':'1','Lat_A1':'1','Long_A1':'1','Continent_A1':'1',
+                     'CountryOfEponym_A1':'1','CountryOfEponym_easy':'1','ISO_country_A1':'1','Author_2':'1',
+                     'Sex_A2':'1','Lat_A2':'1','Long_A2':'1','Class':'1','Subclass':'1',
+                     'Type_bed_scar':'1','Type_op_cut':'1','Type':'1','Type_1':'1',
+                     'ExamSpec':'1','ExamFav':'1','Pubmed_results':'1','Google_results':'1',
+                     }
+        new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
+        new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
+        options = st.selectbox('5th) Type here to select eponym of interest:',
+                    new_geo4T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+        df_ep_info = new_geo4T[new_geo4T['Eponym_easy'].str.match(options)]
+
+        if df_ep_info['Who'].any():
             st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else:
+            pass
 
-            ep_yr = df_ep_info['Year'].to_string(index=False)
-            if not df_ep_info['Year'].isnull().all():
-                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        if df_ep_info['Year'].any():
+            st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        else:
+            pass
 
-            if not df_ep_info['Where'].isnull().all():
-                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        if df_ep_info['Where'].any():
+            st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:
+            pass
+
+            
 
 
 #-------------------------------------------------------------------------------------------------#
@@ -830,19 +857,19 @@ def exp_exam():
 #-------------------------------------------------------------------------------------------------#
 def exp_A2Z():
     st.markdown('''### Search the full database and filter by eponym type''')
-    types = st.radio('1st) Choose eponym types:',["All","Selected",], index=0)
+    types = st.radio('1st) Choose eponym types:',["All","Selected",], index=1)
 
     if types == 'All':
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Eponym'],ascending=True)
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
+        min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1500, 2050, [1550, 2021])
 
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
         new_2T = new_1T.sort_values(by=['Eponym'],ascending=True)
     
-        options = st.selectbox('', new_2T['Eponym_easy'].unique()) #format_func=lambda x: ' ' if x == '1' else x)
+        options = st.selectbox('Search A-Z list:', new_2T['Eponym_easy'].unique()) #format_func=lambda x: ' ' if x == '1' else x)
         #df_ep_info = new_2T[new_2T['Eponym_easy'].str.match(options)]
 
         #if not df_ep_info['Who'].isnull().all():
@@ -866,28 +893,23 @@ def exp_A2Z():
         S = set(splits)
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
-        journal_spec = st.multiselect("Select eponym types (eg Surgical Maneuvers & Techniques):",options=list(U),
-                           format_func=lambda x: ' ' if x == '1' else x,
-                           default=[
-                           #         'Anatomy','Incisions','Instruments','Operations','Pathology','Physiology',
-                           #         'Positions','Scores','Signs','Statistics',
-                                     'Surgical Maneuvers & Techniques',
-                           #         'Syndromes','Trials',
-                                    ])
+        journal_spec = st.multiselect("Select from eponym types:",options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,)
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1550, 2050, [1550, 2021])
+        min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1500, 2050, [1550, 2021])
         new_jrnls1 = df2.loc[df2['Type'].str.contains('|'.join(journal_spec)) == True]
         new_jrnls2 = new_jrnls1.sort_values(by=['Year'],ascending=True)
         new_jrnls2T = new_jrnls2.loc[(new_jrnls2['Year'] >= min_yrs) & (new_jrnls2['Year'] <= max_yrs)]
         new_jrnls3T = new_jrnls2T.sort_values(by=['Eponym'],ascending=True)
-    
-        options = st.selectbox('Begin typing here:', new_jrnls3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        df_ep_info = new_jrnls3T[new_jrnls3T['Eponym_easy'].str.match(options)]
 
-        if not df_ep_info['Who'].isnull().all():
-            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        if journal_spec:
+            options = st.selectbox('Search A-Z list:', new_jrnls3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+            df_ep_info = new_jrnls3T[new_jrnls3T['Eponym_easy'].str.match(options)]
 
-            ep_yr = df_ep_info['Year'].to_string(index=False)
+            if not df_ep_info['Who'].isnull().all():
+                st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+
+                ep_yr = df_ep_info['Year'].to_string(index=False)
             if not df_ep_info['Year'].isnull().all():
                 st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
 
