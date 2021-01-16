@@ -41,7 +41,7 @@ def main():
     if page ==   "SurgicalEps App":   show_explore()
     elif page == "Design Team":        show_the_app_team()
 
-    
+
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
 #  About the team                                                                                 #
@@ -210,6 +210,9 @@ def exp_dis():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
         if Dis_options == "Hartmann's pouch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if Dis_options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
         if Dis_options == "Mirizzi's syndrome":
@@ -905,6 +908,12 @@ def exp_A2Z():
             if options == "Allis forceps":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
                 st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
 
             if options == "Calot's triangle":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
@@ -923,6 +932,7 @@ def exp_A2Z():
             if not df_ep_info['Where'].isnull().all():
                 st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
 
+@st.cache(suppress_st_warning=True)
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
 #  Teaching (8)                                                                                   #
@@ -1063,9 +1073,9 @@ def teach_spec():
     new_special1 = df.loc[df['Topic'].str.contains('|'.join(special)) == True]
     new_special2 = new_special1.sort_values(by=['Eponym'],ascending=True)
 
-    
+
 #-------------------------------------------------------------------------------------------#
-#@st.cache(suppress_st_warning=True)
+
 
 if __name__ == "__main__":
     main()
