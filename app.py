@@ -31,6 +31,7 @@ import requests
 # ::: Handles the navigation / routing and data loading / caching                                 #                                                                                              #
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
+
 def main():    
     st.sidebar.subheader('Navigator')
     page = st.sidebar.radio('',#'Go to',
@@ -194,11 +195,9 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('1st) Choose a disease:', options=list(U),
-                             format_func=lambda x: ' ' if x == '1' else x,)
+    disease = st.multiselect('1st) Choose a disease:', options=list(U),)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
-
     if disease:
         Dis_options = st.selectbox('2) Search list of related eponyms:',
                                    new_dis2['Eponym_easy'].unique(),
@@ -206,6 +205,16 @@ def exp_dis():
 
         df_ep_info2 = new_dis1[new_dis1['Eponym_easy'].str.match(Dis_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
+
+        if Dis_options == "Calot's triangle":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+            st.image(image, width=500)
+        if Dis_options == "Hartmann's pouch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if Dis_options == "Mirizzi's syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Pablo_Mirizzi.png'
+            st.image(image, width=160)
 
         if not df_ep_info2['Who_B'].isnull().all():
             st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
@@ -893,6 +902,17 @@ def exp_A2Z():
             options = st.selectbox('Search A-Z list:', new_jrnls3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
             df_ep_info = new_jrnls3T[new_jrnls3T['Eponym_easy'].str.match(options)]
 
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+
             if not df_ep_info['Who'].isnull().all():
                 st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
 
@@ -1044,7 +1064,8 @@ def teach_spec():
     new_special2 = new_special1.sort_values(by=['Eponym'],ascending=True)
 
     
-
 #-------------------------------------------------------------------------------------------#
+#@st.cache(suppress_st_warning=True)
+
 if __name__ == "__main__":
     main()
