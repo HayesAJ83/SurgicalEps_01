@@ -209,6 +209,9 @@ def exp_dis():
         if Dis_options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+        if Dis_options == "Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
         if Dis_options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
@@ -1036,6 +1039,9 @@ def exp_A2Z():
             if options == "Babcock forceps":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
                 st.image(image, width=400)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
             if options == "DeBakey forceps":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
                 st.image(image, width=300)
