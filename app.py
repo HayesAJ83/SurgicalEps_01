@@ -215,11 +215,17 @@ def exp_dis():
         if Dis_options == "Crohn's disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
             st.image(image, width=160)
+        if Dis_options == "Fanelli catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            st.image(image, width=500)
         if Dis_options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
         if Dis_options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if Dis_options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
         if Dis_options == "Mirizzi's syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Pablo_Mirizzi.png'
@@ -407,6 +413,9 @@ def exp_journals():
                 if J_options == "Crohn's disease":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
                     st.image(image, width=160)
+                if J_options == "Ivor Lewis oesophagectomy":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                    st.image(image, width=160)
 
                 if J_options == "Shouldice hernia repair":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
@@ -466,6 +475,10 @@ def exp_journals():
 
                 if J_options == "Crohn's disease":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                    st.image(image, width=160)
+
+                if J_options == "Ivor Lewis oesophagectomy":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
                     st.image(image, width=160)
 
                 if J_options == "Shouldice hernia repair":
@@ -539,6 +552,9 @@ def exp_journals():
                 if J_options == "Crohn's disease":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
                     st.image(image, width=160)
+                if J_options == "Ivor Lewis oesophagectomy":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                    st.image(image, width=160)
                 if J_options == "Shouldice hernia repair":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
                     st.image(image, width=160)
@@ -597,8 +613,19 @@ def exp_operation():
         if Op_options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+
+        if Op_options == "Fanelli catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            st.image(image, width=500)
         if Op_options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if Op_options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+
+        if Op_options == "Kocher maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
         if Op_options == "Shouldice hernia repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
@@ -709,6 +736,41 @@ def exp_geo():
         options = st.selectbox('Type here to look up an eponym of interest:',
                     new_geo4T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_geo4T[new_geo4T['Eponym_easy'].str.match(options)]
+
+        if options == "Allis forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+            st.image(image, width=300)
+        if options == "Babcock forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+            st.image(image, width=400)
+        if options == "Battle's incision":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
+        if options == "Battle's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
+        if options == "Calot's triangle":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+            st.image(image, width=500)
+        if options == "Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
+        if options == "DeBakey forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+            st.image(image, width=300)
+        if options == "Fanelli catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            st.image(image, width=500)
+        if options == "Hartmann's pouch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+        if options == "Kocher maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+            st.image(image, width=160)
+        
         if df_ep_info['Who'].any():
             st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else:
@@ -844,8 +906,18 @@ def exp_geo():
         if options == "DeBakey forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
             st.image(image, width=300)
+        if options == "Fanelli catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            st.image(image, width=500)
         if options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+
+        if options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+        if options == "Kocher maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
 
         if df_ep_info['Who'].any():
@@ -943,6 +1015,9 @@ def exp_exam():
         if Ex_options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
+        if Ex_options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
             
         if not df_ep_info2['Year_str'].isnull().all():
             st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
@@ -1010,6 +1085,16 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+
+        if options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+        if options == "Fanelli catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            st.image(image, width=500)
+        if options == "Kocher maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
             
         if not df_ep_info['Year_str'].isnull().all():
@@ -1081,6 +1166,16 @@ def exp_A2Z():
                 st.image(image, width=500)
             if options == "Hartmann's pouch":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Fanelli catheter":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+                st.image(image, width=500)
+
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
+            if options == "Kocher maneuver":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
                 st.image(image, width=160)
 
             if not df_ep_info['Who'].isnull().all():
