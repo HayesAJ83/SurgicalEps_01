@@ -224,6 +224,9 @@ def exp_dis():
         if Dis_options == "Mirizzi's syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Pablo_Mirizzi.png'
             st.image(image, width=160)
+        if Dis_options == "Shouldice hernia repair":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
+            st.image(image, width=160)
 
         if not df_ep_info2['Who_B'].isnull().all():
             st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
@@ -333,6 +336,9 @@ def exp_journals():
                 if J_options == "Crohn's disease":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
                     st.image(image, width=160)
+                if J_options == "Shouldice hernia repair":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
+                    st.image(image, width=160)
 
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
@@ -402,6 +408,10 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
                     st.image(image, width=160)
 
+                if J_options == "Shouldice hernia repair":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
+                    st.image(image, width=160)
+
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
                 if not df_ep_info2['year_str'].isnull().all():
@@ -456,6 +466,10 @@ def exp_journals():
 
                 if J_options == "Crohn's disease":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                    st.image(image, width=160)
+
+                if J_options == "Shouldice hernia repair":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
                     st.image(image, width=160)
 
                 if not df_ep_info2['journal_name'].isnull().all():
@@ -525,6 +539,9 @@ def exp_journals():
                 if J_options == "Crohn's disease":
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
                     st.image(image, width=160)
+                if J_options == "Shouldice hernia repair":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
+                    st.image(image, width=160)
 
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
@@ -582,6 +599,9 @@ def exp_operation():
             st.image(image, width=500)
         if Op_options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if Op_options == "Shouldice hernia repair":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
             st.image(image, width=160)
 
         if not df_ep_info2['Who_B'].isnull().all():
