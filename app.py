@@ -100,7 +100,7 @@ def show_explore():
                                  "By World Maps",
                                  "Exam Favourites",
                                  "Full Database - A to Z",
-                                 "Teaching Tool"
+                                 #"Teaching Tool"
                                  ])
     if   exp == "About":                    exp_about()             #1
     elif exp == "By Disease":               exp_dis()               #2
@@ -206,6 +206,9 @@ def exp_dis():
         df_ep_info2 = new_dis1[new_dis1['Eponym_easy'].str.match(Dis_options)]
         ep_yr = df_ep_info2['Year'].to_string(index=False)
 
+        if Dis_options == "Battle's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
         if Dis_options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
@@ -327,6 +330,10 @@ def exp_journals():
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
 
+                if J_options == "Crohn's disease":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                    st.image(image, width=160)
+
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
                 if not df_ep_info2['year_str'].isnull().all():
@@ -391,6 +398,10 @@ def exp_journals():
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
 
+                if J_options == "Crohn's disease":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                    st.image(image, width=160)
+
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
                 if not df_ep_info2['year_str'].isnull().all():
@@ -442,6 +453,10 @@ def exp_journals():
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
+
+                if J_options == "Crohn's disease":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                    st.image(image, width=160)
 
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
@@ -506,6 +521,10 @@ def exp_journals():
                                   new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info2 = new_jrnls1[new_jrnls1['eponym'].str.match(J_options)]
                 journal = df_ep_info2['journal_name'].to_string(index=False)
+
+                if J_options == "Crohn's disease":
+                    image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                    st.image(image, width=160)
 
                 if not df_ep_info2['journal_name'].isnull().all():
                     st.write(journal, unsafe_allow_html=True) 
@@ -625,16 +644,8 @@ def exp_geo():
         S = set(splits)
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
-        journal_spec = st.multiselect(
-            "2nd) Optional - Select specific specialties. Type in box:",
-             options=list(U), format_func=lambda x: ' ' if x == '1' else x,
-                           #default=['Academic','Anaesthetics','Bariatrics','Breast',
-                           #         'Cardiothoracics','Colorectal','Emergency Surgery',
-                           #         'Endocrine','ENT','General Surgery','Gynaecology',
-                           #         'HPB','Hernia','Laparoscopic Surgery','Maxillofacial',
-                           #         'Neurosurgery','Oesophagogastric','Orthopaedics',
-                           #         'Paediatrics','Plastics','Transplant','Trauma','Urology','Vascular',]
-                                     )
+        journal_spec = st.multiselect("2nd) Optional - Select specific specialties. Type in box:",
+             options=list(U), format_func=lambda x: ' ' if x == '1' else x,)
 
         min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
@@ -650,15 +661,11 @@ def exp_geo():
         new_geo2T["World"] = "World"
         figJDLT = px.sunburst(new_geo2T,path=['World',
             'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
-                              #values='Log10_GxP',
-                              color='Log10_GxP',
-                              hover_data=['Eponym'],
-                              color_continuous_scale='viridis',#'RdBu'
-                                  )
+                              color='Log10_GxP',hover_data=['Eponym'],
+                              color_continuous_scale='viridis',)#'RdBu'
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
-        #st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
                        and out of map.</span>''', unsafe_allow_html=True)
         figG3 = go.Figure()
@@ -676,14 +683,12 @@ def exp_geo():
         #st.markdown("---")
         blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
                      'Eponym_strip':'','Who':'','Who_B':'','Region_A1':'','RegionOfEponym_A1':'',
-                     'Where':'','Author_1_Role':'1','Operation':'1','WhoNamedIt':'1','Author_1':'1',
-                     'Year':'','Year_str':'',}
+                     'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'',}
         new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
         new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
         options = st.selectbox('Type here to look up an eponym of interest:',
                     new_geo4T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_geo4T[new_geo4T['Eponym_easy'].str.match(options)]
-
         if df_ep_info['Who'].any():
             st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else:
@@ -714,7 +719,6 @@ def exp_geo():
             "2nd) Optional - Select specific specialties. Type in box:",
              options=list(U), format_func=lambda x: ' ' if x == '1' else x,)
         min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
-        #st.markdown("---")
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
@@ -722,21 +726,16 @@ def exp_geo():
         site_lon = new_geo2T['Long_A1']           #df3['Long_A1']
         text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
         locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
-
-        #st.markdown("---")
         st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["World"] = "World"
         figJDLT = px.sunburst(new_geo2T,path=['World',
             'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
                               color='Log10_GxP',hover_data=['Eponym'],
-                              color_continuous_scale='viridis',#'RdBu'
-                              )
+                              color_continuous_scale='viridis',)#'RdBu'
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
-
-        #st.markdown("---")
         options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
                                 ["World"," ","  ",
                                  "Argentina","Austria","Brazil","Canada",
@@ -783,25 +782,21 @@ def exp_geo():
         figG3.add_trace(go.Scattermapbox(
                 lat=site_lat,lon=site_lon,mode='markers',
                 marker=go.scattermapbox.Marker(
-                    size=markersize,color='yellow',opacity=0.7),
-                text=text,hoverinfo='text',
-                ))
+                size=markersize,color='yellow',opacity=0.7),
+                text=text,hoverinfo='text',))
         figG3.update_layout(
                 autosize=True,hovermode='closest',showlegend=False,
                 width=Screen_width,height=Screen_height,
                 mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_3,lon=lon_3),
-                pitch=5,zoom=zoom_country,
-                style='dark'))#dark satellite-streets
+                pitch=5,zoom=zoom_country,style='dark'))#dark satellite-streets
         figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
         st.write(figG3)
         st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
                 unsafe_allow_html=True)
-
         blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
                      'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                     'Where':'','Author_1_Role':'1','Operation':'1',
-                     'Author_1':'1','Year':'','Year_str':'','Sex_A1':'1',
-                     }
+                     'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
+                     'Year_str':'','Sex_A1':'1'}
         new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
         new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
         options = st.selectbox('Type here to look up an eponym of interest:',
@@ -814,12 +809,21 @@ def exp_geo():
         if options == "Babcock forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
             st.image(image, width=400)
-        if options == "DeBakey forceps":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
-            st.image(image, width=300)
+        if options == "Battle's incision":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
+        if options == "Battle's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+        if options == "Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
+        if options == "DeBakey forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+            st.image(image, width=300)
         if options == "Hartmann's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
@@ -884,14 +888,11 @@ def exp_exam():
     U = np.sort(T)
     exams = st.multiselect('1st) Choose specialties of interest:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=[#'All Specialties',
-                                    'Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+                           default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
-                                    'HPB','Hernia','Maxillofacial',
-                                    'Neurosurgery','Oesophagogastric','Orthopaedics',
-                                    'Paediatrics','Plastics','Transplant',
-                                    'Trauma','Urology','Vascular',
-                                    ])
+                                    'HPB','Hernia','Maxillofacial','Neurosurgery','Oesophagogastric',
+                                    'Orthopaedics','Paediatrics','Plastics','Transplant',
+                                    'Trauma','Urology','Vascular'])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
@@ -907,6 +908,9 @@ def exp_exam():
         if Ex_options == "Babcock forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
             st.image(image, width=400)
+        if Ex_options == "Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
         if Ex_options == "DeBakey forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
             st.image(image, width=300)
@@ -961,11 +965,9 @@ def exp_A2Z():
         df2 = df1.sort_values(by=['Eponym'],ascending=True)
 
         min_yrs, max_yrs = st.slider("2nd) Optional - Define a time window:", 1500, 2050, [1550, 2021])
-
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
         new_2T = new_1T.sort_values(by=['Eponym'],ascending=True)
-    
-        options = st.selectbox('Search A-Z list:', new_2T['Eponym_easy'].unique()) #format_func=lambda x: ' ' if x == '1' else x)
+        options = st.selectbox('Search A-Z list:', new_2T['Eponym_easy'].unique())
         df_ep_info = new_2T[new_2T['Eponym_easy'].str.match(options)]
 
         if options == "Allis forceps":
@@ -974,6 +976,9 @@ def exp_A2Z():
         if options == "Babcock forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
             st.image(image, width=400)
+        if options == "Battle's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
         if options == "DeBakey forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
             st.image(image, width=300)
@@ -1039,6 +1044,12 @@ def exp_A2Z():
             if options == "Babcock forceps":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
                 st.image(image, width=400)
+            if options == "Battle's incision":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
+            if options == "Battle's sign":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
             if options == "Crohn's disease":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
                 st.image(image, width=160)
