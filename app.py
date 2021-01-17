@@ -94,6 +94,7 @@ def show_explore():
     st.sidebar.subheader('SurgicalEps App')
     exp = st.sidebar.radio('',#'Select',
                                 ["About",
+                                 "By Category",
                                  "By Disease",
                                  "By Journal",
                                  "By Operation",
@@ -103,6 +104,7 @@ def show_explore():
                                  #"Teaching Tool"
                                  ])
     if   exp == "About":                    exp_about()             #1
+    elif exp == "By Category":              exp_A2Z()               #7
     elif exp == "By Disease":               exp_dis()               #2
     elif exp == "By Journal":               exp_journals()          #3
     elif exp == "By Operation":             exp_operation()         #4
@@ -208,6 +210,9 @@ def exp_dis():
 
         if Dis_options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
+        if Dis_options == "Brown-Séquard syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
             st.image(image, width=160)
         if Dis_options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
@@ -749,6 +754,9 @@ def exp_geo():
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
+        if options == "Brown-Séquard syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+            st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
@@ -897,6 +905,9 @@ def exp_geo():
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
+        if options == "Brown-Séquard syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+            st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
@@ -1000,6 +1011,9 @@ def exp_exam():
         if Ex_options == "Babcock forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
             st.image(image, width=400)
+        if Ex_options == "Brown-Séquard syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+            st.image(image, width=160)
         if Ex_options == "Crohn's disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
             st.image(image, width=160)
@@ -1074,12 +1088,18 @@ def exp_A2Z():
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
-        if options == "DeBakey forceps":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
-            st.image(image, width=300)
+
+        if options == "Brown-Séquard syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+            st.image(image, width=160)
+
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+
+        if options == "DeBakey forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+            st.image(image, width=300)
         if options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
@@ -1154,6 +1174,10 @@ def exp_A2Z():
                 st.image(image, width=160)
             if options == "Battle's sign":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
+
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
                 st.image(image, width=160)
             if options == "Crohn's disease":
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
