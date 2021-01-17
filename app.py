@@ -1094,7 +1094,7 @@ def exp_cats():
         new_geo2T["Category"] = "Category"
         figJDLT = px.sunburst(new_geo2T,path=['Category','Type_short','Year','Eponym_easy'],
                               color='Log2_GxP',hover_data=['Eponym'],
-                              color_continuous_scale='RdBu',)#'RdBu'viridis
+                              color_continuous_scale='Magma',)#'RdBu'viridis
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
@@ -1313,6 +1313,10 @@ def teach_classrm():
                                format_func=lambda x: ' ' if x == '1' else x)
 
         df_ep_info = new_geo2T[new_geo2T['Eponym_easy_yr'].str.match(Dis_options)]
+
+        if Dis_options == "Hartmann's operation, 1923":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
 
         if df_ep_info['Who'].any():
             st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
