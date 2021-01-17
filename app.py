@@ -1092,7 +1092,7 @@ def exp_cats():
         st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["Category"] = "Category"
-        figJDLT = px.sunburst(new_geo2T,path=['Category','Type','Eponym_easy'],
+        figJDLT = px.sunburst(new_geo2T,path=['Category','Type_short','Eponym_easy'],
                               color='Log10_GxP',hover_data=['Eponym'],
                               color_continuous_scale='viridis',)#'RdBu'
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
@@ -1119,7 +1119,7 @@ def exp_cats():
         st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["Category"] = "Category"
-        figJDLT = px.sunburst(new_geo2T,path=['Category','Type','Eponym_easy'],
+        figJDLT = px.sunburst(new_geo2T,path=['Category','Type_short','Eponym_easy'],
                               color='Log10_GxP',hover_data=['Eponym'],
                               color_continuous_scale='viridis',)#'RdBu'
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
