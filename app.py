@@ -1121,7 +1121,7 @@ def exp_cats():
         new_geo2T["Category"] = "Category"
         figJDLT = px.sunburst(new_geo2T,path=['Category','Type_short','Year','Eponym_easy'],
                               color='Log2_GxP',hover_data=['Eponym'],
-                              color_continuous_scale='RdBu',)#'RdBu'viridis
+                              color_continuous_scale='Magma',)#'RdBu'viridis
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
@@ -1275,6 +1275,7 @@ def teach_bed():
 def teach_classrm():
 
     st.markdown('''### History of Surgery through Eponyms''')
+    mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -1287,10 +1288,44 @@ def teach_classrm():
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Year'],ascending=True)
     if disease:
-        Dis_options = st.selectbox('3rd) Search list of related eponyms:',
+        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1480, 2030, [1500, 2021])
+        new_geo1 = new_dis2.loc[new_dis2['Disease'].str.contains('|'.join(disease)) == True]
+        new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
+        new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
+        site_lat = new_geo2T['Lat_A1']                         
+        site_lon = new_geo2T['Long_A1']           
+        text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
+        locations_name = new_geo2T['Eponym_easy']
+        figG3 = go.Figure()
+        figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
+                marker=go.scattermapbox.Marker(size=9,color='yellow',opacity=0.7),
+                text=text,hoverinfo='text',))
+        figG3.update_traces(mode='markers+lines')
+        figG3.update_layout(
+                autosize=False,showlegend=False,
+                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=38,lon=11),
+                pitch=5,zoom=0.38,style='dark'))
+        figG3.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=650,height=430)
+        st.write(figG3)
+
+        Dis_options = st.selectbox('4th) Each related eponym:',
                                    new_dis2['Eponym_easy_yr'].unique(),
                                format_func=lambda x: ' ' if x == '1' else x)
 
+        df_ep_info = new_geo2T[new_geo2T['Eponym_easy_yr'].str.match(Dis_options)]
+
+        if df_ep_info['Who'].any():
+            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else:
+            pass
+        if df_ep_info['Year'].any():
+            st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        else:
+            pass
+        if df_ep_info['Where'].any():
+            st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:
+            pass
 
 
 def teach_or():
@@ -1321,27 +1356,66 @@ def teach_or():
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Instrum_df = df[(df['Type'].str.match('Instruments'))]
         if not Instrum_df['Type'].isnull().all():
-            Table = ff.create_table(Instrum_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
-                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
-                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
-                    'History','ICD11_link','Year', 'CountryOfEponym_A1','Class','Subclass','Description',
-                    'Sex_A1','Lat_A1','Long_A1'],
-                             axis=1).sort_values(by=['Eponym'],
+            Table = ff.create_table(Instrum_df.drop(['Alphabet','CityOfEponym_A1'],axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
         Instrum_options2 = st.selectbox('3rd) Choose from list of surgical instruments:', Instrum_df['Eponym'].unique())
         Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
 
+        if Instrum_options2 == "Allis forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+            st.image(image, width=300)
+        if Instrum_options2 == "Babcock forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+            st.image(image, width=400)
+        if Instrum_options2 == "DeBakey forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+            st.image(image, width=300)
+
+        if Instrum_options2_info['Who'].any():
+            st.write('*_Who_*:', Instrum_options2_info['Who_B'].to_string(index=False))
+        else:
+            pass
+        if Instrum_options2_info['Year'].any():
+            st.write('*_When_*:', Instrum_options2_info['Year_str'].to_string(index=False))
+        else:
+            pass
+        if Instrum_options2_info['Where'].any():
+            st.write('*_Where_*:', Instrum_options2_info['Where'].to_string(index=False))
+        else:
+            pass
+
+
     if OR == "Who Invented That Operation?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
-        df2 = df1.sort_values(by=['Year'],ascending=True)
-        df3 = df2['Type'].dropna()
+        df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+        Op_df = df[(df['Type'].str.match('Operation'))]
+        if not Op_df['Type'].isnull().all():
+            Table = ff.create_table(Op_df.drop(['Alphabet','CityOfEponym_A1'],axis=1).sort_values(by=['Eponym'],
+                                                 ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
+        Op_options2 = st.selectbox('3rd) Choose from list of eponymous operations:', Op_df['Eponym'].unique())
+        Op_options2_info = Op_df[Op_df['Eponym'].str.match(Op_options2)]
 
+        if Op_options2 == "Hartmann's operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
 
+        if Op_options2 == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+
+        if Op_options2_info['Who'].any():
+            st.write('*_Who_*:', Op_options2_info['Who_B'].to_string(index=False))
+        else:
+            pass
+        if Op_options2_info['Year'].any():
+            st.write('*_When_*:', Op_options2_info['Year_str'].to_string(index=False))
+        else:
+            pass
+        if Op_options2_info['Where'].any():
+            st.write('*_Where_*:', Op_options2_info['Where'].to_string(index=False))
+        else:
+            pass
     
-
-        #['Type'] = 'Operations'
-
 
 
 def teach_spec():
