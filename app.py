@@ -101,7 +101,7 @@ def show_explore():
                                  "Exam Favourites",
                                  "Categories (eg Signs)",
                                  "Full Database - A to Z",
-                                 #"Teaching Tool"
+                                 "Teaching Tool",
                                  ])
     if   exp == "About":                    exp_about()             #1
     elif exp == "By Disease":               exp_dis()               #2
@@ -1212,7 +1212,7 @@ def exp_A2Z():
         st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
         
 
-@st.cache(suppress_st_warning=True)
+#@st.cache(suppress_st_warning=True)
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
 #  Teaching (8)                                                                                   #
@@ -1221,10 +1221,6 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_teach():
     st.subheader("Teaching Tool")
-
-    st.markdown(
-        '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
-           </style>''',unsafe_allow_html=True)
     exp = st.radio('1st) Choose your setting:',#'Select',
                                 ['Bedside',        # - Scars, Signs, Diseases & Severity Scores",
                                  'Classroom',      # - History of Surgery',
@@ -1236,13 +1232,15 @@ def exp_teach():
     elif exp == "Operating Room":   teach_or()        #T3 #- Incisions, Instruments & Operations
 
 def teach_bed():
+#    st.markdown("---")
+    st.markdown('''### Clinial Features - What To Look For''')
     bed = st.radio('2nd) Bedside Teaching', ['Scars / Incisions', 'Clinical Signs',]) #'Disease Severity Scores' 
 
     if bed == "Scars / Incisions":
     #    color = st.select_slider('Select a region of the abdomen',
     #        options=['Upper Abdomen','RUQ', 'Epigastrium','Central', 'RIF', 'Suprapubic', 'LIF','Lower abdomen'])
     #    st.write('Scars and stomas in the', color)
-        st.write('Insert image of abdomen')
+    #    st.write('Insert image of abdomen')
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Cuts_df = df[(df['Type_bed_scar'].str.match('Incisions'))]
@@ -1270,23 +1268,38 @@ def teach_bed():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Sign_options2 = st.radio('3rd) Choose from of eponymous abdominal signs:', Sign_df['Eponym'].unique())
+        Sign_options2 = st.selectbox('3rd) Choose from of eponymous abdominal signs:', Sign_df['Eponym'].unique())
         Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
 
     
 def teach_classrm():
-    
-    classrm = st.radio('2nd) Classroom Teaching',
-                       ['History of Surgery by Eponyms',
-                        'Women of Surgical History by Eponyms',]) #'Disease Severity Scores' 
+
+    st.markdown('''### History of Surgery through Eponyms''')
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+    df1 = df['Disease'].dropna()
+    string = df1.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+    disease = st.multiselect('2nd) Choose a disease:', options=list(U),)
+    new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
+    new_dis2 = new_dis1.sort_values(by=['Year'],ascending=True)
+    if disease:
+        Dis_options = st.selectbox('3rd) Search list of related eponyms:',
+                                   new_dis2['Eponym_easy_yr'].unique(),
+                               format_func=lambda x: ' ' if x == '1' else x)
 
 
 
 def teach_or():
+    st.markdown('''### Operative Eponyms''')
 
-    OR = st.radio('2nd) In The Operating Room', ['Incisions', 'Instruments', 'Operations',])
+    OR = st.radio('2nd) In The Operating Room', ["Who Invented That Operation?","Airways & Anaesthesia",
+                                                 "Who Invented That Incision or Technique?","Who's Instrument?",])
 
-    if OR == "Incisions":
+    if OR == "Who Invented That Incision or Technique?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Cuts_df = df[(df['Type_op_cut'].str.match('Incisions'))]
@@ -1298,12 +1311,12 @@ def teach_or():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Cuts_options2 = st.radio('''3rd) Choose from list of eponymous incisions and stomas:''', Cuts_df['Eponym'].unique())
+        Cuts_options2 = st.selectbox('''3rd) Choose from list of eponymous incisions and stomas:''', Cuts_df['Eponym'].unique())
         Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
 
     #Sp = st.radio('2) Which Specialty?', ['Anaesthetics', 'General',])
 
-    if OR == "Instruments":
+    if OR == "Who's Instrument?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Instrum_df = df[(df['Type'].str.match('Instruments'))]
@@ -1315,27 +1328,19 @@ def teach_or():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Instrum_options2 = st.radio('3rd) Choose from list of surgical instruments:', Instrum_df['Eponym'].unique())
+        Instrum_options2 = st.selectbox('3rd) Choose from list of surgical instruments:', Instrum_df['Eponym'].unique())
         Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
 
+    if OR == "Who Invented That Operation?":
+        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
+        df2 = df1.sort_values(by=['Year'],ascending=True)
+        df3 = df2['Type'].dropna()
 
 
+    
 
- #       url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
- #       df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
- #       df2 = df1.sort_values(by=['Year'],ascending=True)
- #       df3 = df2.sort_values(by=['Operation'],ascending=True)  #Gives eponyms by operation alphabetically
- #       df4 = df3['Operation'].dropna()
- #       string = df4.str.cat(sep=',')
- #       splits = string.split(",")
- #       S = set(splits)
- #       T = np.array(list(S)).astype(object)
- #       U = np.sort(T)
- #       eponymByOp = st.multiselect('4th) Select from operation list:',options=list(U),
- #                               #default=['Inguinal hernia repair - Open'],
- #                               format_func=lambda x: ' ' if x == '1' else x)
- #       new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
- #       new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
+        #['Type'] = 'Operations'
 
 
 
