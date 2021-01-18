@@ -1212,7 +1212,7 @@ def exp_A2Z():
         st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
         
 
-#@st.cache(suppress_st_warning=True)
+
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
 #  Teaching (8)                                                                                   #
@@ -1275,6 +1275,16 @@ def teach_bed():
 def teach_classrm():
 
     st.markdown('''### History of Surgery through Eponyms''')
+
+    classrm = st.radio('2nd) Select by disease or type of operation:',#'Select',
+                                ['Disease',        # - Scars, Signs, Diseases & Severity Scores",
+                                 'Type of Operation', # - History of Surgery',
+                                 ])
+
+    if   classrm == "Disease":              classrm_dis()       #T1 #- Scars, Signs, Severity Scores
+    elif classrm == 'Type of Operation':    classrm_op()   #T2 #- History
+    
+def classrm_dis(): 
     mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -1284,11 +1294,11 @@ def teach_classrm():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('2nd) Choose a disease:', options=list(U),)
+    disease = st.multiselect('3rd) Choose a disease:', options=list(U),)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Year'],ascending=True)
     if disease:
-        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1480, 2030, [1500, 2021])
+        min_yrs, max_yrs = st.slider("4th) Optional - define a time window:", 1480, 2030, [1500, 2021])
         new_geo1 = new_dis2.loc[new_dis2['Disease'].str.contains('|'.join(disease)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
@@ -1332,13 +1342,82 @@ def teach_classrm():
             pass
 
 
+def classrm_op():
+    url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+    df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
+    df2 = df1.sort_values(by=['Year'],ascending=True)
+    df3 = df2[(df2['Type'].str.match('Operations'))]
+    df4 = df3[df3['Operation'].notna()]
+    df5 = df4['Operation'].dropna()
+    string = df5.str.cat(sep=',')
+    splits = string.split(",")
+    S = set(splits)
+    T = np.array(list(S)).astype(object)
+    U = np.sort(T)
+    eponymByOp = st.multiselect('3rd) Types of operation:',options=list(U),
+                                format_func=lambda x: ' ' if x == '1' else x)
+    new_df = df4.loc[df4['Operation'].str.contains('|'.join(eponymByOp)) == True]
+    new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
+    if eponymByOp:
+        Op_options = st.selectbox('4th) Search list of related eponyms:', new_df2['Eponym_easy'].unique(),
+                                  format_func=lambda x: ' ' if x == '1' else x)
+        df_ep_info2 = new_df[new_df['Eponym_easy'].str.match(Op_options)]
+        ep_yr = df_ep_info2['Year'].to_string(index=False)
+
+        if Op_options == "Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+        if Op_options == "Kocher maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+            st.image(image, width=160)
+        if Op_options == "Shouldice hernia repair":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
+            st.image(image, width=160)
+
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+
+        if not df_ep_info2['Year_str'].isnull().all():
+            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+
+        if not df_ep_info2['Where'].isnull().all():
+            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+    
+        description = df_ep_info2['Description'].to_string(index=False)
+        history = df_ep_info2['History'].to_string(index=False)
+
+        if not df_ep_info2['Description'].isnull().all():
+            st.markdown(description, unsafe_allow_html=True)
+        if not df_ep_info2['History'].isnull().all():
+            st.write('**_History_**:', history)
+            st.markdown("---")
+
+        if not df_ep_info2['Who_B'].isnull().all():
+            st.write('**External links**')
+        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
+        if not df_ep_info2['Pubmed'].isnull().all():
+           st.markdown(f"[PubMed.gov]({ref_link})")
+
+        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
+        if not df_ep_info2['Wiki_link'].isnull().all():
+            st.markdown(f"[wikipedia.org]({wiki_link})")
+
+        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
+        if not df_ep_info2['WNI_link'].isnull().all():
+           st.markdown(f"[whonamedit.com]({wni_link})")
+
+        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
+        if not df_ep_info2['ICD11_link'].isnull().all():
+           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+
+
 def teach_or():
     st.markdown('''### Operative Eponyms''')
 
-    OR = st.radio('2nd) In The Operating Room', ["Who Invented That Operation?","Airways & Anaesthesia",
-                                                 "Who Invented That Incision or Technique?","Who's Instrument?",])
+    OR = st.radio('2nd) In the operating theatre:', ["Who invented that operation?","Airways & anaesthesia",
+                                                 "Who invented that incision or technique?","Who's instrument?",])
 
-    if OR == "Who Invented That Incision or Technique?":
+    if OR == "Who invented that incision or technique?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Cuts_df = df[(df['Type_op_cut'].str.match('Incisions'))]
@@ -1355,7 +1434,7 @@ def teach_or():
 
     #Sp = st.radio('2) Which Specialty?', ['Anaesthetics', 'General',])
 
-    if OR == "Who's Instrument?":
+    if OR == "Who's instrument?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Instrum_df = df[(df['Type'].str.match('Instruments'))]
@@ -1389,7 +1468,7 @@ def teach_or():
             pass
 
 
-    if OR == "Who Invented That Operation?":
+    if OR == "Who invented that operation?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Op_df = df[(df['Type'].str.match('Operation'))]
@@ -1421,6 +1500,7 @@ def teach_or():
             pass
     
 
+@st.cache(suppress_st_warning=True)
 
 def teach_spec():
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
