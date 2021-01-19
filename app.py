@@ -127,7 +127,6 @@ def exp_about():
     st.write('''_UNDER CONSTRUCTION_''')
     st.markdown('''# SurgicalEps''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
-    #st.markdown("---")
     st.subheader('Introduction')
     st.markdown(' ')
     #st.markdown('''<br><span style="font-size:14pt;font-weight:bold;color:black;text-decoration:
@@ -137,7 +136,6 @@ def exp_about():
                 history, and how they relate to one another. We include direct links to primary
                 papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and
                 TeachMeSurgery.''')
-    #st.markdown("---")
     st.subheader('Using This App')
     st.write(' ')
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease:</span>
@@ -172,18 +170,16 @@ def exp_about():
                    <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or Operating Room modes.
                    </span>''',unsafe_allow_html=True)
 
-    #st.markdown("---")
     st.subheader('Who Is This App For?')
     st.markdown(' ')
     st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
                 professionals and students.''')
-    #st.markdown("---")
     st.subheader('Disclaimer')
     st.markdown(' ')
     st.write('''Educational purposes.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
-    st.sidebar.info("App will be launched Jan 2021")
+    st.sidebar.info("App will be launched Feb 2021")
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -243,14 +239,20 @@ def exp_dis():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
             st.image(image, width=160)
 
-        if not df_ep_info2['Who_B'].isnull().all():
-            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
 
-        if not df_ep_info2['Year_str'].isnull().all():
-            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
-
-        if not df_ep_info2['Where'].isnull().all():
+        if df_ep_info2['Who'].any():
+            st.write('_Who_:', df_ep_info2['Who_B'].to_string(index=False))
+        else:
+            pass
+        if df_ep_info2['Year'].any():
+            st.write('_When_:', df_ep_info2['Year_str'].to_string(index=False))
+        else:
+            pass
+        if df_ep_info2['Where'].any():
             st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+        else:
+            pass
+
     
         description = df_ep_info2['Description'].to_string(index=False)
         history = df_ep_info2['History'].to_string(index=False)
@@ -355,12 +357,37 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
                     st.image(image, width=160)
 
-                if not df_ep_info2['journal_name'].isnull().all():
-                    st.write(journal, unsafe_allow_html=True) 
-                if not df_ep_info2['year_str'].isnull().all():
+                if df_ep_info2['journal_name'].any():
+                    st.write(journal, unsafe_allow_html=True)
+                else:
+                    pass
+                if df_ep_info2['year_str'].any():
                     st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-                if not df_ep_info2['Who'].isnull().all():
-                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Who'].any():
+                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Title'].any():
+                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                else:
+                    pass
+
+                #if df_ep_info2['Where'].any():
+                #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+                #else:
+                #    pass
+
+                #if df_ep_info2['Description'].any():
+                #    st.markdown(description, unsafe_allow_html=True)
+                #if df_ep_info2['History'].any():
+                #    st.write('**_History_**:', history)
+                #st.markdown("---")
+
+
+
+
 
         if types == 'Selected':
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
@@ -430,12 +457,27 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
                     st.image(image, width=160)
 
-                if not df_ep_info2['journal_name'].isnull().all():
-                    st.write(journal, unsafe_allow_html=True) 
-                if not df_ep_info2['year_str'].isnull().all():
+                if df_ep_info2['journal_name'].any():
+                    st.write(journal, unsafe_allow_html=True)
+                else:
+                    pass
+                if df_ep_info2['year_str'].any():
                     st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-                if not df_ep_info2['Who'].isnull().all():
-                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Who'].any():
+                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+
+                if df_ep_info2['Title'].any():
+                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                else:
+                    pass
+                #if df_ep_info2['Where'].any():
+                #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+                #else:
+                #    pass
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
@@ -494,12 +536,27 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
                     st.image(image, width=160)
 
-                if not df_ep_info2['journal_name'].isnull().all():
-                    st.write(journal, unsafe_allow_html=True) 
-                if not df_ep_info2['year_str'].isnull().all():
+                if df_ep_info2['journal_name'].any():
+                    st.write(journal, unsafe_allow_html=True)
+                else:
+                    pass
+                if df_ep_info2['year_str'].any():
                     st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-                if not df_ep_info2['Who'].isnull().all():
-                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Who'].any():
+                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Title'].any():
+                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                else:
+                    pass
+                #if df_ep_info2['Where'].any():
+                #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+                #else:
+                #    pass
+                
 
         if types == 'Selected':
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
@@ -568,12 +625,27 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
                     st.image(image, width=160)
 
-                if not df_ep_info2['journal_name'].isnull().all():
-                    st.write(journal, unsafe_allow_html=True) 
-                if not df_ep_info2['year_str'].isnull().all():
+
+                if df_ep_info2['journal_name'].any():
+                    st.write(journal, unsafe_allow_html=True)
+                else:
+                    pass
+                if df_ep_info2['year_str'].any():
                     st.write('_When_:',df_ep_info2['year_str'].to_string(index=False))
-                if not df_ep_info2['Who'].isnull().all():
-                    st.write('_Authors_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Who'].any():
+                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                else:
+                    pass
+                if df_ep_info2['Title'].any():
+                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                else:
+                    pass
+                #if df_ep_info2['Where'].any():
+                #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+                #else:
+                #    pass
 
 
 #-------------------------------------------------------------------------------------------------#
