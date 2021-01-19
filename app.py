@@ -168,9 +168,9 @@ def exp_about():
 
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Full Database:</span>
                    <span style="font-size:12pt;color:black;"> Full unfiltered A-Z database - Search by name.</span>''',unsafe_allow_html=True)
-#    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
-#                   <span style="font-size:12pt;color:black;">Geo-historical teaching tool.
-#                   </span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
+                   <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or Operating Room modes.
+                   </span>''',unsafe_allow_html=True)
 
     #st.markdown("---")
     st.subheader('Who Is This App For?')
@@ -1091,8 +1091,8 @@ def exp_cats():
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
         st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
-        new_geo2T["Category"] = "Category"
-        figJDLT = px.sunburst(new_geo2T,path=['Category','Type_short','Year','Eponym_easy'],
+        new_geo2T["Categories"] = "Categories"
+        figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Year','Eponym_easy'],
                               color='Log2_GxP',hover_data=['Eponym'],
                               color_continuous_scale='Magma',)#'RdBu'viridis
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
@@ -1118,8 +1118,8 @@ def exp_cats():
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
         st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
-        new_geo2T["Category"] = "Category"
-        figJDLT = px.sunburst(new_geo2T,path=['Category','Type_short','Year','Eponym_easy'],
+        new_geo2T["Categories"] = "Categories"
+        figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Year','Eponym_easy'],
                               color='Log2_GxP',hover_data=['Eponym'],
                               color_continuous_scale='Magma',)#'RdBu'viridis
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
@@ -1252,7 +1252,7 @@ def teach_bed():
                     'Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Cuts_options2 = st.selectbox('3rd) Choose from list of eponymous abdominal scars and stomas:', Cuts_df['Eponym'].unique())
+        Cuts_options2 = st.selectbox('3rd) Choose from list of eponymous scars and stomas:', Cuts_df['Eponym'].unique())
         Cuts_options2_info = Cuts_df[Cuts_df['Eponym'].str.match(Cuts_options2)]
 
 
@@ -1268,7 +1268,7 @@ def teach_bed():
                     'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Sign_options2 = st.selectbox('3rd) Choose from of eponymous abdominal signs:', Sign_df['Eponym'].unique())
+        Sign_options2 = st.selectbox('3rd) Eponymous clinical features of disease:', Sign_df['Eponym'].unique())
         Sign_options2_info = Sign_df[Sign_df['Eponym'].str.match(Sign_options2)]
 
     
@@ -1434,13 +1434,13 @@ def teach_or():
     if OR == "Airways & anaesthesia":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
-        df2 = df1.sort_values(by=['Year'],ascending=True)
+        df2 = df1.sort_values(by=['Eponym'],ascending=True)
         df3 = df2[(df2['Topic'].str.match('Anaesthetics'))]
         df4 = df3[df3['Eponym_easy'].notna()]
 
         Anaes_options2 = st.selectbox('3rd) Select eponyms related to airways and anaesthetics:',
-                                     df4['Eponym_easy_yr'].unique())
-        Anaes_options2_info = df2[df2['Eponym_easy_yr'].str.match(Anaes_options2)]
+                                     df4['Eponym_easy'].unique())
+        Anaes_options2_info = df2[df2['Eponym_easy'].str.match(Anaes_options2)]
 
         if Anaes_options2_info['Who'].any():
             st.write('*_Who_*:', Anaes_options2_info['Who_B'].to_string(index=False))
@@ -1490,8 +1490,8 @@ def teach_or():
             Table = ff.create_table(Cuts_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Cuts_options2 = st.selectbox('''3rd) Choose from list of eponymous incisions and stomas:''', Cuts_df['Eponym_easy_yr'].unique())
-        Cuts_options2_info = Cuts_df[Cuts_df['Eponym_easy_yr'].str.match(Cuts_options2)]
+        Cuts_options2 = st.selectbox('''3rd) Choose from list of eponymous incisions and stomas:''', Cuts_df['Eponym_easy'].unique())
+        Cuts_options2_info = Cuts_df[Cuts_df['Eponym_easy'].str.match(Cuts_options2)]
 
 
 
