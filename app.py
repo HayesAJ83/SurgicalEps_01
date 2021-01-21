@@ -292,18 +292,7 @@ def exp_journals():
     st.subheader("Find eponyms that can be traced to journal archives") 
     ScreenSize = st.radio('1st) Select screen size:',
                           options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
-    url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-    dfY = pd.read_csv(url_J)
-    dfY1 = dfY.dropna()
-    dfY1["JOURNALS"] = "JOURNALS"
-    df1 = pd.read_csv(url_J)
-    df2 = df1.sort_values(by=['journal'],ascending=True)
-    df3 = df2['journal'].dropna()
-    string = df3.str.cat(sep=',')
-    splits = string.split(",")
-    S = set(splits)
-    T = np.array(list(S)).astype(object)
-    U = np.sort(T)
+
     if ScreenSize == "Smartphone":
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
         if types == 'All':
@@ -366,13 +355,17 @@ def exp_journals():
                 else:
                     pass
                 if df_ep_info2['Who'].any():
-                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                    st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
                 else:
                     pass
-                if df_ep_info2['Title'].any():
-                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                if df_ep_info2['Ref'].any():
+                    st.write('_Ref_:',df_ep_info2['Ref'].to_string(index=False))
                 else:
                     pass
+             #   if df_ep_info2['Trans'].any():
+             #       st.write('_Title (into English)_:',df_ep_info2['Trans'].to_string(index=False))
+             #   else:
+             #       pass
 
                 #if df_ep_info2['Where'].any():
                 #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
@@ -384,9 +377,6 @@ def exp_journals():
                 #if df_ep_info2['History'].any():
                 #    st.write('**_History_**:', history)
                 #st.markdown("---")
-
-
-
 
 
         if types == 'Selected':
@@ -466,14 +456,19 @@ def exp_journals():
                 else:
                     pass
                 if df_ep_info2['Who'].any():
-                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                    st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
                 else:
                     pass
 
-                if df_ep_info2['Title'].any():
-                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                if df_ep_info2['Ref'].any():
+                    st.write('_Ref_:',df_ep_info2['Ref'].to_string(index=False))
                 else:
                     pass
+           #     if df_ep_info2['Trans'].any():
+           #         st.write('_Title (into English)_:',df_ep_info2['Trans'].to_string(index=False))
+           #     else:
+           #         pass
+                
                 #if df_ep_info2['Where'].any():
                 #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
                 #else:
@@ -545,13 +540,17 @@ def exp_journals():
                 else:
                     pass
                 if df_ep_info2['Who'].any():
-                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                    st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
                 else:
                     pass
-                if df_ep_info2['Title'].any():
-                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                if df_ep_info2['Ref'].any():
+                    st.write('_Ref_:',df_ep_info2['Ref'].to_string(index=False))
                 else:
                     pass
+       #         if df_ep_info2['Trans'].any():
+       #             st.write('_Title (into English)_:',df_ep_info2['Trans'].to_string(index=False))
+       #         else:
+       #             pass
                 #if df_ep_info2['Where'].any():
                 #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
                 #else:
@@ -635,13 +634,17 @@ def exp_journals():
                 else:
                     pass
                 if df_ep_info2['Who'].any():
-                    st.write('_Main Author(s)_:',df_ep_info2['Who'].to_string(index=False))
+                    st.write('_Who_:',df_ep_info2['Who'].to_string(index=False))
                 else:
                     pass
-                if df_ep_info2['Title'].any():
-                    st.write('_Paper Title_:',df_ep_info2['Title'].to_string(index=False))
+                if df_ep_info2['Ref'].any():
+                    st.write('_Ref_:',df_ep_info2['Ref'].to_string(index=False))
                 else:
                     pass
+        #        if df_ep_info2['Trans'].any():
+        #            st.write('_Title (into English)_:',df_ep_info2['Trans'].to_string(index=False))
+        #        else:
+        #            pass
                 #if df_ep_info2['Where'].any():
                 #    st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
                 #else:
