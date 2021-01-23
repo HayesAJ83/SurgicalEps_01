@@ -1152,6 +1152,25 @@ def exp_cats():
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
+
+#By specialties
+    #df1 = df['ExamSpec'].dropna()
+    #string = df1.str.cat(sep=',')
+    #splits = string.split(",")
+    #S = set(splits)
+    #T = np.array(list(S)).astype(object)
+    #U = np.sort(T)
+    #exams = st.multiselect('1st) Choose specialties of interest:',options=list(U),
+    #                       format_func=lambda x: ' ' if x == '1' else x,
+    #                       default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+    #                                'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
+    #                                'HPB','Hernia','Maxillofacial','Neurosurgery','Oesophagogastric',
+    #                                'Orthopaedics','Paediatrics','Plastics','Transplant',
+    #                                'Trauma','Urology','Vascular'])
+    #new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
+    #new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
+
+
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -1167,7 +1186,7 @@ def exp_cats():
         st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["Categories"] = "Categories"
-        figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Year','Eponym_easy'],
+        figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Eponym_easy'],
                               color='Log2_GxP',hover_data=['Eponym'],
                               color_continuous_scale='Magma',)#'RdBu'viridis
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
@@ -1179,6 +1198,24 @@ def exp_cats():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
+
+#By specialties
+    #df1 = df['ExamSpec'].dropna()
+    #string = df1.str.cat(sep=',')
+    #splits = string.split(",")
+    #S = set(splits)
+    #T = np.array(list(S)).astype(object)
+    #U = np.sort(T)
+    #exams = st.multiselect('1st) Choose specialties of interest:',options=list(U),
+    #                       format_func=lambda x: ' ' if x == '1' else x,
+    #                       default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+    #                                'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
+    #                                'HPB','Hernia','Maxillofacial','Neurosurgery','Oesophagogastric',
+    #                                'Orthopaedics','Paediatrics','Plastics','Transplant',
+    #                                'Trauma','Urology','Vascular'])
+    #new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
+    #new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
+        
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Year'],ascending=True)
@@ -1194,8 +1231,8 @@ def exp_cats():
         st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["Categories"] = "Categories"
-        figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Year','Eponym_easy'],
-                              color='Log2_GxP',hover_data=['Eponym'],
+        figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Eponym_easy'],
+                              color='Log2_GxP',hover_data=['Eponym'],values='Year',
                               color_continuous_scale='Magma',)#'RdBu'viridis
         figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
