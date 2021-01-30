@@ -298,7 +298,7 @@ def exp_journals():
         if types == 'All':
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-            dfY = pd.read_csv(url_J,dtype={'year':int}) 
+            dfY = pd.read_csv(url_J) #,dtype={'year':int}) 
             dfY1 = dfY.dropna()
             dfY1["Journals"] = "Journals"
             dfT = dfY1.sort_values(by=['year'],ascending=True)
@@ -381,7 +381,7 @@ def exp_journals():
 
         if types == 'Selected':
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-            dfY = pd.read_csv(url_J,dtype={'year':int})
+            dfY = pd.read_csv(url_J) #,dtype={'year':int})
             dfY1 = dfY.dropna()
             dfY1["Journals"] = "Journals"
             df2 = dfY1.sort_values(by=['year'],ascending=True)
@@ -481,7 +481,7 @@ def exp_journals():
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             st.markdown("---")
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
-            dfY = pd.read_csv(url_J, dtype={'year':int})
+            dfY = pd.read_csv(url_J) #, dtype={'year':int})
             dfY1 = dfY.dropna()
             dfY1["Journals"] = "Journals"
             dfT = dfY1.sort_values(by=['year'],ascending=True)
@@ -1071,7 +1071,7 @@ def exp_exam():
     exams = st.multiselect('1st) Choose specialties of interest:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
-                                    'Colorectal','Endocrine','ENT','General Surgery','Gynaecology',
+                                    'Colorectal','Emergency Surgery','Endocrine','ENT','General Surgery','Gynaecology',
                                     'HPB','Hernia','Maxillofacial','Neurosurgery','Oesophagogastric',
                                     'Orthopaedics','Paediatrics','Plastics','Transplant',
                                     'Trauma','Urology','Vascular'])
