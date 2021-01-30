@@ -313,9 +313,8 @@ def exp_journals():
             st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
             figJDLT = px.sunburst(time_df,path=['Journals','journal_short','year','eponym'],
-                            color='Log2 Google hits',hover_data=['eponym'],color_continuous_scale='rdbu')
+                            color='Log2 Google hits',hover_data=['eponym'],color_continuous_scale='RdBu')
                                   #marker_colorbar=dict(tickness=10)) #'RdBu'
-            #figJDLT.update_traces(colorbar_thickness=0.2, selector=dict(type='sunburst'))
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
             #figJDLT.update_traces(marker_ColorBar=dict(thickness=10, thicknessmode='pixels'), selector=dict(type='sunburst'))
@@ -410,8 +409,7 @@ def exp_journals():
             if not journal_spec == None:
                 figJDLT = px.sunburst(new_jrnls2T,path=['Journals','journal_short','year','eponym'],
                       #values='Log10 Google hits',
-                                      color='Log2 Google hits',hover_data=['eponym'],
-                      color_continuous_scale='rdbu',)
+                                      color='Log2 Google hits',hover_data=['eponym'], color_continuous_scale='RdBu',)
                       #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
                 figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
