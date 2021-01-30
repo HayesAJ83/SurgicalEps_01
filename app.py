@@ -588,8 +588,7 @@ def exp_journals():
             if not journal_spec == None:
                 figJDLT = px.sunburst(new_jrnls2T,path=['Journals','journal_short','year','eponym'],
                       #values='Log10 Google hits',
-                                      color='Log2 Google hits',hover_data=['eponym'],
-                      color_continuous_scale='rdbu',)
+                                      color='Log2 Google hits',hover_data=['eponym'], color_continuous_scale='rdbu')
                       #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
                 figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
                 figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
