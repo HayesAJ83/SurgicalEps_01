@@ -313,8 +313,7 @@ def exp_journals():
             st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
             figJDLT = px.sunburst(time_df,path=['Journals','journal_short','year','eponym'],
-                            color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
-                            color_continuous_scale='rdbu',)
+                            color='Log2 Google hits',hover_data=['eponym'],color_continuous_scale='rdbu')
                                   #marker_colorbar=dict(tickness=10)) #'RdBu'
             #figJDLT.update_traces(colorbar_thickness=0.2, selector=dict(type='sunburst'))
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=400,height=300)
