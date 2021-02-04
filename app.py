@@ -565,7 +565,7 @@ def exp_journals():
             U = np.sort(T)
             journal_spec = st.multiselect('Specilaties of interest - pick and choose',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,
-                           default=['Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+                           default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
