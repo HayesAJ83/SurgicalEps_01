@@ -1065,7 +1065,7 @@ def exp_exam():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Emergency Surgery','Endocrine','ENT','General Surgery','Gynaecology',
-                                    'HPB','Hernia','Maxillofacial','Neurosurgery','Oesophagogastric',
+                                    'HPB','Hernia','Maxillofacial','Neurosurgery','Obstetrics','Oesophagogastric','Ophthalmology',
                                     'Orthopaedics','Paediatrics','Plastics','Transplant',
                                     'Trauma','Urology','Vascular'])
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
