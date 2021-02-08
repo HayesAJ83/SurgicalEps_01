@@ -866,7 +866,7 @@ def exp_geo():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-        st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
+        #st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
