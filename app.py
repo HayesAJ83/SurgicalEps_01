@@ -899,7 +899,7 @@ def exp_geo():
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
         options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
-                                ["World"," ","  ",
+                                [" ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
                                  "France","Germany","Hawaii",'India',
@@ -907,7 +907,8 @@ def exp_geo():
                                  "Netherlands","New York City","North America",
                                  "Paris","Poland",
                                  "South America","Sweden","Switzerland",
-                                 "UK","United Kingdom","USA","Vienna",])
+                                 "UK","United Kingdom","USA","Vienna",
+                                 "World",s])
 
         if   options3 == " ":              lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  650; Screen_height = 430
         if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  650; Screen_height = 430
