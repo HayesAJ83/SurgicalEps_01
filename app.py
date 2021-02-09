@@ -486,13 +486,13 @@ def exp_journals():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
-                       and in the center to pan out.</span>''', unsafe_allow_html=True)
+            st.markdown('''<span style="font-size:12pt;color:black;">**Click on journal name to zoom in**,
+                       and click in the center to pan out.</span>''', unsafe_allow_html=True)
             figJDLT = px.sunburst(time_df,path=['Journals','journal_short','year','eponym'],
                             color='Log2 Google hits',hover_data=['eponym'],#values='Log10 Google hits',
                             color_continuous_scale='rdbu',
                                   ) #'RdBu'
-            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=700,height=550)
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
             st.write(figJDLT)
             st.markdown("---")
@@ -573,8 +573,8 @@ def exp_journals():
                                     'Transplant','Trauma','Urology','Vascular',])
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
             st.markdown("---")
-            st.markdown('''<span style="font-size:10pt;color:black;">Click on journal name to zoom in,
-                       and in the center to pan out.</span>''', unsafe_allow_html=True)
+            st.markdown('''<span style="font-size:12pt;color:black;">**Click on journal name to zoom in**,
+                       and click in the center to pan out.</span>''', unsafe_allow_html=True)
             new_jrnls1 = df2.loc[df2['specialty'].str.contains('|'.join(journal_spec)) == True]
             new_jrnls1T = new_jrnls1.loc[(new_jrnls1['year'] >= min_yrs) & (new_jrnls1['year'] <= max_yrs)]
             new_jrnls2T = new_jrnls1T.sort_values(by=['eponym'],ascending=True)
@@ -584,7 +584,7 @@ def exp_journals():
                       #values='Log10 Google hits',
                                       color='Log2 Google hits',hover_data=['eponym'], color_continuous_scale='rdbu')
                       #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
-                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=680,height=500)
+                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=0),width=700,height=550)
                 figJDLT.update_traces(hovertemplate='<b>%{label}</b>')
                 st.write(figJDLT)
             st.markdown("---")
@@ -1420,13 +1420,13 @@ def exp_cats():
         min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 1500, 2050, [1550, 2021])
         new_geo2 = df2.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
-        st.markdown('''<span style="font-size:10pt;color:black;">Click on category type to zoom in,
-                       and in the center to pan out.</span>''', unsafe_allow_html=True)
+        st.markdown('''<span style="font-size:12pt;color:black;">**Click on a category type to zoom in**,
+                       and click in the center to pan out.</span>''', unsafe_allow_html=True)
         new_geo2T["Categories"] = "Categories"
         figJDLT = px.sunburst(new_geo2T,path=['Categories','Type_short','Eponym_easy'],
                               color='Log2_GxP',hover_data=['Eponym'],values='Year',
                               color_continuous_scale='Magma',)#'RdBu'viridis
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=700,height=550)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
         journal_spec = st.multiselect(
