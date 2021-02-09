@@ -179,7 +179,7 @@ def exp_about():
     st.write('''Educational purposes.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
-    st.sidebar.info("App will be launched Feb 2021")
+    st.sidebar.info("App will be launched March 2021")
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -757,7 +757,7 @@ def exp_geo():
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-        st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
+        st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:100px}</style>""",unsafe_allow_html=True,)
         mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -775,26 +775,26 @@ def exp_geo():
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
-        site_lat = new_geo2T['Lat_A1']            #df3['Lat_A1']                
-        site_lon = new_geo2T['Long_A1']           #df3['Long_A1']
+        site_lat = new_geo2T['Lat_A1']                          
+        site_lon = new_geo2T['Long_A1']           
         text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
-        locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
+        locations_name = new_geo2T['Eponym_easy']
         #st.markdown("---")
-        st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
+        st.markdown('''<span style="font-size:10pt;color:black;">**Click on a place name to zoom in**,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
+
         new_geo2T["World"] = "World"
         figJDLT = px.sunburst(new_geo2T,path=['World',
             'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
                               color='Log10_GxP',hover_data=['Eponym'],
                               color_continuous_scale='viridis',)#'RdBu'
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
+        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=380,height=350)
         figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
         st.write(figJDLT)
-        st.markdown('''<span style="font-size:10pt;color:black;">Use smartphone touchscreen to zoom in
-                       and out of map.</span>''', unsafe_allow_html=True)
+        st.markdown('''<span style="font-size:10pt;color:black;">**Zoom** into map using **touchscreen**.</span>''', unsafe_allow_html=True)
         figG3 = go.Figure()
         figG3.add_trace(go.Scattermapbox(lat=site_lat,lon=site_lon,mode='markers',
-                marker=go.scattermapbox.Marker(size=4,color='yellow',opacity=0.6),
+                marker=go.scattermapbox.Marker(size=5,color='yellow',opacity=0.6),
                 text=text,hoverinfo='text',))
         figG3.update_layout(
                 autosize=True,hovermode='closest',showlegend=False,width=340,height=240,
@@ -866,39 +866,38 @@ def exp_geo():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-        #st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:55px}</style>""",unsafe_allow_html=True,)
-        mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
-        url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
-        df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-        df2 = df1.sort_values(by=['Year'],ascending=True)
-        spec_df = df2['Topic'].dropna()
-        string = spec_df.str.cat(sep=',')
-        splits = string.split(",")
-        S = set(splits)
-        T = np.array(list(S)).astype(object)
-        U = np.sort(T)
-        journal_spec = st.multiselect(
-            "2nd) Optional - Select specific specialties. Type in box:",
-             options=list(U), format_func=lambda x: ' ' if x == '1' else x,)
-        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
-        new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
-        new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
-        new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
-        site_lat = new_geo2T['Lat_A1']            #df3['Lat_A1']                
-        site_lon = new_geo2T['Long_A1']           #df3['Long_A1']
-        text = new_geo2T['Eponym_easy'] + ', ' + new_geo2T['CityOfEponym_A1'] + ', ' + new_geo2T['Year'].astype(str)
-        locations_name = new_geo2T['Eponym_easy'] #df3['Eponym_easy']
-        st.markdown('''<span style="font-size:10pt;color:black;">Click on geographical locations to zoom in,
-                       and in the center to pan out.</span>''', unsafe_allow_html=True)
-        new_geo2T["World"] = "World"
-        figJDLT = px.sunburst(new_geo2T,path=['World',
-            'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
+        types = st.radio('2nd) Choose specialties:',["All","Selected",])
+
+        if types == 'All':
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            st.markdown("---")
+            st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:100px}</style>""",unsafe_allow_html=True,)
+            mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+            url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+            df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+            dfT = df1.sort_values(by=['Year'],ascending=True)
+            time_df = dfT.loc[(dfT['Year'] >= min_yrs) & (dfT['Year'] <= max_yrs)]
+            time_spec_df = time_df['Topic'].dropna()
+            string = time_spec_df.str.cat(sep=',')
+            splits = string.split(",")
+            S = set(splits)
+            T = np.array(list(S)).astype(object)
+            U = np.sort(T)
+            site_lat = time_df['Lat_A1']                            
+            site_lon = time_df['Long_A1']           
+            text = time_df['Eponym_easy'] + ', ' + time_df['CityOfEponym_A1'] + ', ' + time_df['Year'].astype(str)
+            locations_name = time_df['Eponym_easy'] 
+            st.markdown('''<span style="font-size:12pt;color:black;">**Click on a place name to zoom in**,
+                       and then click in the center to pan out.</span>''', unsafe_allow_html=True)
+            time_df["World"] = "World"
+            figJDLT = px.sunburst(time_df,path=['World',
+                'Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
                               color='Log10_GxP',hover_data=['Eponym'],
                               color_continuous_scale='viridis',)#'RdBu'
-        figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=680,height=510)
-        figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
-        st.write(figJDLT)
-        options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
+            figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=700,height=550)
+            figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
+            st.write(figJDLT)
+            options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
                                 [" ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
@@ -908,142 +907,341 @@ def exp_geo():
                                  "Paris","Poland",
                                  "South America","Sweden","Switzerland",
                                  "UK","United Kingdom","USA","Vienna",
-                                 "World",s])
+                                 "World",])
 
-        if   options3 == " ":              lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  650; Screen_height = 430
-        if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  650; Screen_height = 430
-        if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -94.0; zoom_country = 1.90; markersize =10; Screen_width =  650; Screen_height = 430
-        if   options3 == "Denmark":        lat_3 = 56.00; lon_3 =  9.70; zoom_country = 5.00; markersize =10; Screen_width =  650; Screen_height = 430
-        if   options3 == "Edinburgh":      lat_3 = 55.92; lon_3 =  -3.2; zoom_country = 9.20; markersize =12; Screen_width =  650; Screen_height = 430
-        if   options3 == "England":        lat_3 = 52.80; lon_3 =  -3.0; zoom_country = 5.05; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 8; Screen_width =  650; Screen_height = 430
-        if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize =10; Screen_width =  650; Screen_height = 430
-        if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.50; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "India":          lat_3 = 22.00; lon_3 =  80.0; zoom_country = 3.00; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "Italy":          lat_3 = 41.80; lon_3 =  14.0; zoom_country = 4.50; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Japan":          lat_3 = 37.70; lon_3 = 135.5; zoom_country = 3.45; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "London":         lat_3 = 51.54; lon_3 =  -0.1; zoom_country = 8.96; markersize =12; Screen_width =  650; Screen_height = 430
-        if   options3 == "Netherlands":    lat_3 = 52.20; lon_3 =   5.0; zoom_country = 6.00; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "New York City":  lat_3 = 40.78; lon_3 = -73.9; zoom_country = 9.00; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "North America":  lat_3 = 51.00; lon_3 =  -103; zoom_country = 1.75; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  650; Screen_height = 430
-        if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  650; Screen_height = 430
-        if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.12; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  650; Screen_height = 430
-        if   options3 == "USA":            lat_3 = 39.00; lon_3 =-105.0; zoom_country = 1.95; markersize =10; Screen_width =  650; Screen_height = 430
-        if   options3 == "Vienna":         lat_3 = 48.22; lon_3 = 16.37; zoom_country =10.0; markersize =11; Screen_width =  650; Screen_height = 430
-        if   options3 == "World":          lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  650; Screen_height = 430
+            if   options3 == " ":              lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  700; Screen_height = 430
+            if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -94.0; zoom_country = 1.90; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Denmark":        lat_3 = 56.00; lon_3 =  9.70; zoom_country = 5.00; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Edinburgh":      lat_3 = 55.92; lon_3 =  -3.2; zoom_country = 9.20; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "England":        lat_3 = 52.80; lon_3 =  -3.0; zoom_country = 5.05; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 8; Screen_width =  700; Screen_height = 430
+            if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "India":          lat_3 = 22.00; lon_3 =  80.0; zoom_country = 3.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "Italy":          lat_3 = 41.80; lon_3 =  14.0; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Japan":          lat_3 = 37.70; lon_3 = 135.5; zoom_country = 3.45; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "London":         lat_3 = 51.54; lon_3 =  -0.1; zoom_country = 8.96; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "Netherlands":    lat_3 = 52.20; lon_3 =   5.0; zoom_country = 6.00; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "New York City":  lat_3 = 40.78; lon_3 = -73.9; zoom_country = 9.00; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "North America":  lat_3 = 51.00; lon_3 =  -103; zoom_country = 1.75; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.12; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "USA":            lat_3 = 39.00; lon_3 =-105.0; zoom_country = 1.95; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Vienna":         lat_3 = 48.22; lon_3 = 16.37; zoom_country = 10.0; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "World":          lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  700; Screen_height = 430
                
-        figG3 = go.Figure()
-        figG3.add_trace(go.Scattermapbox(
-                lat=site_lat,lon=site_lon,mode='markers',
-                marker=go.scattermapbox.Marker(
-                size=markersize,color='yellow',opacity=0.7),
-                text=text,hoverinfo='text',))
-        figG3.update_layout(
-                autosize=True,hovermode='closest',showlegend=False,
-                width=Screen_width,height=Screen_height,
-                mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_3,lon=lon_3),
-                pitch=5,zoom=zoom_country,style='dark'))#dark satellite-streets
-        figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
-        st.write(figG3)
-        st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
-                unsafe_allow_html=True)
-        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                     'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                     'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                     'Year_str':'','Sex_A1':'1'}
-        new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
-        new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('Type here to look up an eponym of interest:',
-                    new_geo4T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        df_ep_info = new_geo4T[new_geo4T['Eponym_easy'].str.match(options)]
+            figG3 = go.Figure()
+            figG3.add_trace(go.Scattermapbox(
+                    lat=site_lat,lon=site_lon,mode='markers',
+                    marker=go.scattermapbox.Marker(
+                    size=markersize,color='yellow',opacity=0.7),
+                    text=text,hoverinfo='text',))
+            figG3.update_layout(
+                    autosize=True,hovermode='closest',showlegend=False,
+                    width=Screen_width,height=Screen_height,
+                    mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_3,lon=lon_3),
+                    pitch=5,zoom=zoom_country,style='dark'))#dark satellite-streets
+            figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+            st.write(figG3)
+            st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
+                    unsafe_allow_html=True)
+            
+            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
+                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
+                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
+                         'Year_str':'','Sex_A1':'1'}
+            time_df = dfT.loc[(dfT['Year'] >= min_yrs) & (dfT['Year'] <= max_yrs)]
+            time_df2 = time_df.append(blank_row, ignore_index=True)
+            time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
+            options = st.selectbox('Type here to look up an eponym of interest:',
+                        time_df3['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+            df_ep_info = time_df3[time_df3['Eponym_easy'].str.match(options)]
 
-        if options == "Allis forceps":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
-            st.image(image, width=300)
-        if options == "Babcock forceps":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
-            st.image(image, width=400)
-        if options == "Battle's incision":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
-            st.image(image, width=160)
-        if options == "Battle's sign":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
-            st.image(image, width=160)
-        if options == "Brown-Séquard syndrome":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
-            st.image(image, width=160)
-        if options == "Calot's triangle":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
-            st.image(image, width=500)
-        if options == "Crohn's disease":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
-            st.image(image, width=160)
-        if options == "DeBakey forceps":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
-            st.image(image, width=300)
-        if options == "Fanelli catheter":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
-            st.image(image, width=500)
-        if options == "Hartmann's pouch":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
-            st.image(image, width=160)
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "Battle's incision":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
+            if options == "Battle's sign":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+                st.image(image, width=160)
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
+            if options == "Fanelli catheter":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+                st.image(image, width=500)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
 
-        if options == "Ivor Lewis oesophagectomy":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
-            st.image(image, width=160)
-        if options == "Kocher maneuver":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
-            st.image(image, width=160)
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
+            if options == "Kocher maneuver":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+                st.image(image, width=160)
 
-        if df_ep_info['Who'].any():
-            st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
-        else:
-            pass
-        if df_ep_info['Year'].any():
-            st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
-        else:
-            pass
-        if df_ep_info['Where'].any():
-            st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
-        else:
-            pass
+            if df_ep_info['Who'].any():
+                st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+            else:
+                pass
+            if df_ep_info['Year'].any():
+                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            else:
+                pass
+            if df_ep_info['Where'].any():
+                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            else:
+                pass
 
-        description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
+            description = df_ep_info['Description'].to_string(index=False)
+            history = df_ep_info['History'].to_string(index=False)
 
-        if not df_ep_info['Description'].isnull().all():
-            st.markdown(description, unsafe_allow_html=True)
-        if not df_ep_info['History'].isnull().all():
-            st.write('**_History_**:', history)
-            st.markdown("---")
+            if not df_ep_info['Description'].isnull().all():
+                st.markdown(description, unsafe_allow_html=True)
+            if not df_ep_info['History'].isnull().all():
+                st.write('**_History_**:', history)
+                st.markdown("---")
 
-        if df_ep_info['Pubmed'].any():
-            st.write('**External links**')
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
+            if df_ep_info['Pubmed'].any():
+                st.write('**External links**')
+            ref_link = df_ep_info['Pubmed'].to_string(index=False)
         
-        if not df_ep_info['Pubmed'].isnull().all():
-           st.markdown(f"[PubMed.gov]({ref_link})")
+            if not df_ep_info['Pubmed'].isnull().all():
+               st.markdown(f"[PubMed.gov]({ref_link})")
 
-        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if not df_ep_info['Wiki_link'].isnull().all():
-            st.markdown(f"[wikipedia.org]({wiki_link})")
+            wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+            if not df_ep_info['Wiki_link'].isnull().all():
+                st.markdown(f"[wikipedia.org]({wiki_link})")
 
-        wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if not df_ep_info['WNI_link'].isnull().all():
-           st.markdown(f"[whonamedit.com]({wni_link})")
+            wni_link = df_ep_info['WNI_link'].to_string(index=False)
+            if not df_ep_info['WNI_link'].isnull().all():
+               st.markdown(f"[whonamedit.com]({wni_link})")
 
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if not df_ep_info['ICD11_link'].isnull().all():
-           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+            if not df_ep_info['ICD11_link'].isnull().all():
+               st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+
+
+        if types == 'Selected':
+            st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:100px}</style>""",unsafe_allow_html=True,)
+            mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
+            url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
+            df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
+            df1["World"] = "World"
+            df2 = df1.sort_values(by=['Year'],ascending=True)
+            spec_df = df2['Topic'].dropna()
+            string = spec_df.str.cat(sep=',')
+            splits = string.split(",")
+            S = set(splits)
+            T = np.array(list(S)).astype(object)
+            U = np.sort(T)
+            specs = st.multiselect('Specilaties of interest - pick and choose',options=list(U),
+                           format_func=lambda x: ' ' if x == '1' else x,
+                           default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
+                                    'Colorectal','Emergency Surgery','Endocrine','ENT',
+                                    'General Surgery','Gynaecology','HPB','Hernia',
+                                    'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
+                                    'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
+                                    'Transplant','Trauma','Urology','Vascular',]
+                                          )
+            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+            st.markdown("---")
+            st.markdown('''<span style="font-size:12pt;color:black;">**Click on a place name to zoom in**,
+                       and then click in the center to pan out.</span>''', unsafe_allow_html=True)
+            new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(specs)) == True]
+            new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
+            new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
+            new_geo3T = new_geo2T.sort_values(by=['Eponym'],ascending=True)
+            new_geo3T["World"] = "World"
+
+            if not specs == None:
+                figJDLT = px.sunburst(new_geo3T,path=['World','Continent_A1','CountryOfEponym_A1','RegionOfEponym_A1','Eponym_easy'],
+                              color='Log10_GxP',hover_data=['Eponym'], color_continuous_scale='viridis',)#'RdBu'
+
+                      #inferno,thermal,Magma,Cividis,deep,Viridis,icefire,ylgnbu,'portland','agsunset'
+
+                figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=700,height=550)
+                figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
+                st.write(figJDLT)
+
+            site_lat = new_geo3T['Lat_A1']            #df3['Lat_A1']                
+            site_lon = new_geo3T['Long_A1']           #df3['Long_A1']
+            text = new_geo3T['Eponym_easy'] + ', ' + new_geo3T['CityOfEponym_A1'] + ', ' + new_geo3T['Year'].astype(str)
+            locations_name = new_geo3T['Eponym_easy']
+
+            options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. 'World' returns default. ",
+                                [" ",
+                                 "Argentina","Austria","Brazil","Canada",
+                                 "Denmark","Edinburgh","England","Europe",
+                                 "France","Germany","Hawaii",'India',
+                                 "Ireland","Italy","Japan","London",
+                                 "Netherlands","New York City","North America",
+                                 "Paris","Poland",
+                                 "South America","Sweden","Switzerland",
+                                 "UK","United Kingdom","USA","Vienna",
+                                 "World",])
+
+            if   options3 == " ":              lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  700; Screen_height = 430
+            if   options3 == "Argentina":      lat_3 =-39.00; lon_3 = -65.0; zoom_country = 2.30; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Austria":        lat_3 = 47.20; lon_3 =  13.4; zoom_country = 5.80; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Brazil":         lat_3 =-10.00; lon_3 = -55.0; zoom_country = 2.50; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Canada":         lat_3 = 61.00; lon_3 = -94.0; zoom_country = 1.90; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Denmark":        lat_3 = 56.00; lon_3 =  9.70; zoom_country = 5.00; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Edinburgh":      lat_3 = 55.92; lon_3 =  -3.2; zoom_country = 9.20; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "England":        lat_3 = 52.80; lon_3 =  -3.0; zoom_country = 5.05; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Europe":         lat_3 = 54.40; lon_3 =  10.0; zoom_country = 2.50; markersize = 8; Screen_width =  700; Screen_height = 430
+            if   options3 == "France":         lat_3 = 47.00; lon_3 =   3.0; zoom_country = 4.50; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Germany":        lat_3 = 51.30; lon_3 =  10.2; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Hawaii":         lat_3 = 20.50; lon_3 =-157.3; zoom_country = 5.50; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "India":          lat_3 = 22.00; lon_3 =  80.0; zoom_country = 3.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "Ireland":        lat_3 = 53.50; lon_3 =  -6.2; zoom_country = 5.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "Italy":          lat_3 = 41.80; lon_3 =  14.0; zoom_country = 4.50; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Japan":          lat_3 = 37.70; lon_3 = 135.5; zoom_country = 3.45; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "London":         lat_3 = 51.54; lon_3 =  -0.1; zoom_country = 8.96; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "Netherlands":    lat_3 = 52.20; lon_3 =   5.0; zoom_country = 6.00; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "New York City":  lat_3 = 40.78; lon_3 = -73.9; zoom_country = 9.00; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "North America":  lat_3 = 51.00; lon_3 =  -103; zoom_country = 1.75; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "Paris":          lat_3 = 48.86; lon_3 =  2.35; zoom_country = 10.2; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "Poland":         lat_3 = 52.50; lon_3 =  19.0; zoom_country =  5.0; markersize =12; Screen_width =  700; Screen_height = 430
+            if   options3 == "South America":  lat_3 =-21.80; lon_3 = -65.0; zoom_country = 1.75; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Sweden":         lat_3 = 62.85; lon_3 =  18.5; zoom_country = 3.12; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "Switzerland":    lat_3 = 47.00; lon_3 =   8.0; zoom_country =  6.0; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "UK":             lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "United Kingdom": lat_3 = 54.45; lon_3 =  -3.2; zoom_country = 4.00; markersize = 9; Screen_width =  700; Screen_height = 430
+            if   options3 == "USA":            lat_3 = 39.00; lon_3 =-105.0; zoom_country = 1.95; markersize =10; Screen_width =  700; Screen_height = 430
+            if   options3 == "Vienna":         lat_3 = 48.22; lon_3 = 16.37; zoom_country = 10.0; markersize =11; Screen_width =  700; Screen_height = 430
+            if   options3 == "World":          lat_3 = 38.00; lon_3 =  11.0; zoom_country = 0.38; markersize=6.5; Screen_width =  700; Screen_height = 430
+               
+            figG3 = go.Figure()
+            figG3.add_trace(go.Scattermapbox(
+                    lat=site_lat,lon=site_lon,mode='markers',
+                    marker=go.scattermapbox.Marker(
+                    size=markersize,color='yellow',opacity=0.7),
+                    text=text,hoverinfo='text',))
+            figG3.update_layout(
+                    autosize=True,hovermode='closest',showlegend=False,
+                    width=Screen_width,height=Screen_height,
+                    mapbox=dict(accesstoken=mapbox_access_token,bearing=0,center=dict(lat=lat_3,lon=lon_3),
+                    pitch=5,zoom=zoom_country,style='dark'))#dark satellite-streets
+            figG3.update_layout(margin=dict(l=2, r=2, t=0, b=0))
+            st.write(figG3)
+            
+            st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
+                    unsafe_allow_html=True)
+            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
+                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
+                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
+                         'Year_str':'','Sex_A1':'1'}
+            time_df2 = new_geo2T.append(blank_row, ignore_index=True)
+            time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
+            options = st.selectbox('Type here to look up an eponym of interest:',
+                        time_df3['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+            df_ep_info = time_df3[time_df3['Eponym_easy'].str.match(options)]
+
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "Battle's incision":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
+            if options == "Battle's sign":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+                st.image(image, width=160)
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+                st.image(image, width=160)
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
+            if options == "Fanelli catheter":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+                st.image(image, width=500)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
+            if options == "Kocher maneuver":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+                st.image(image, width=160)
+
+            if df_ep_info['Who'].any():
+                st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+            else:
+                pass
+            if df_ep_info['Year'].any():
+                st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            else:
+                pass
+            if df_ep_info['Where'].any():
+                st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            else:
+                pass
+
+            description = df_ep_info['Description'].to_string(index=False)
+            history = df_ep_info['History'].to_string(index=False)
+
+            if not df_ep_info['Description'].isnull().all():
+                st.markdown(description, unsafe_allow_html=True)
+            if not df_ep_info['History'].isnull().all():
+                st.write('**_History_**:', history)
+                st.markdown("---")
+
+            if df_ep_info['Pubmed'].any():
+                st.write('**External links**')
+            ref_link = df_ep_info['Pubmed'].to_string(index=False)
+        
+            if not df_ep_info['Pubmed'].isnull().all():
+               st.markdown(f"[PubMed.gov]({ref_link})")
+
+            wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+            if not df_ep_info['Wiki_link'].isnull().all():
+                st.markdown(f"[wikipedia.org]({wiki_link})")
+
+            wni_link = df_ep_info['WNI_link'].to_string(index=False)
+            if not df_ep_info['WNI_link'].isnull().all():
+               st.markdown(f"[whonamedit.com]({wni_link})")
+
+            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+            if not df_ep_info['ICD11_link'].isnull().all():
+               st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+
 
 
 #-------------------------------------------------------------------------------------------------#
