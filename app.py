@@ -124,19 +124,15 @@ def exp_about():
     st.markdown(
         '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
            </style>''',unsafe_allow_html=True)
-    st.write('''_# UNDER CONSTRUCTION # UNDER CONSTRUCTION # UNDER CONSTRUCTION #_''')
+    st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
     st.markdown('''# SurgicalEps''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
-    st.subheader('Introduction')
-    st.markdown(' ')
-    st.write('''There are a hundreds of eponyms used in daily surgical practice.We hope that
-                you will find this App helpful in understanding what these terms mean, their
-                history, and how they relate to one another. We include direct links to primary
-                papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and
-                TeachMeSurgery.''')
+
+
     st.subheader('Using This App')
     st.write(' ')
-    
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display. To minimise, click **x** in top right of the sidebar.''')
+           
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
                    <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease:</span>
@@ -167,6 +163,14 @@ def exp_about():
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
                    <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or Operating Room modes.
                    </span>''',unsafe_allow_html=True)
+
+    st.subheader('Introduction')
+    st.markdown(' ')
+    st.write('''There are a hundreds of eponyms used in daily surgical practice. We hope that
+                you will find this App helpful in understanding what these terms mean, their
+                history, and how they relate to one another. We include direct links to primary
+                papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and
+                TeachMeSurgery.''')
 
     st.subheader('Who Is This App For?')
     st.markdown(' ')
