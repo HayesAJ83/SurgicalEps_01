@@ -34,7 +34,8 @@ import requests
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 
-def main():    
+def main():
+    st.sidebar.write('''To hide sidebar, **click X in top right**.''')
     st.sidebar.subheader('Navigator')
     page = st.sidebar.radio('',#'Go to',
                             ["SurgicalEps App",
@@ -2733,9 +2734,9 @@ def exp_exam():
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
     if not exams == None:
-        Ex_options = st.selectbox('2) Search list of eponyms found in exams relevant to selected specialties:',
+        options = st.selectbox('2) Search list of eponyms found in exams relevant to selected specialties:',
                                   new_exams2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        df_ep_info2 = new_exams1[new_exams1['Eponym_easy'].str.match(Ex_options)]
+        df_ep_info2 = new_exams1[new_exams1['Eponym_easy'].str.match(options)]
 
         if options == "Aaron sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aaron.png'
