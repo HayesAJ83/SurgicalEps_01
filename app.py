@@ -192,6 +192,7 @@ def exp_about():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_A2Z():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.markdown('''### Search the full database''')
     types = st.radio('1st) Optional - choose specialties:',["All","Selected",])
 
@@ -615,6 +616,7 @@ def exp_A2Z():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.subheader("Find eponyms related to selected diseases") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -825,6 +827,7 @@ def exp_dis():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_journals():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     #st.markdown('''[Advert space for Google AdSense4]''')
     st.subheader("Find eponyms that can be traced to journal archives") 
     ScreenSize = st.radio('1st) Select screen size:',
@@ -1645,6 +1648,7 @@ def exp_journals():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_operation():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.markdown(
         """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
         </style>""",unsafe_allow_html=True,)
@@ -1861,6 +1865,7 @@ def exp_operation():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_geo():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.subheader("Find eponyms related to their geographical origins") 
     ScreenSize = st.radio('1st) Select screen size:',
                      options=['Smartphone',
@@ -2706,6 +2711,7 @@ def exp_geo():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_exam():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.subheader("Eponyms often encountered in surgical exams") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -2792,6 +2798,7 @@ def exp_exam():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_cats():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.markdown('''### Search by eponym category''')
     ScreenSize = st.radio('1st) Select screen size:',
                      options=['Smartphone',
@@ -3141,6 +3148,7 @@ def exp_cats():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_teach():
+    st.write('''Navigate using the sidebar. If you don't see sidebar, **click > in top left** to display.''')
     st.subheader("Teaching Tool")
     exp = st.radio('1st) Choose your setting:',
                                 ['Bedside',        # - Scars, Signs, Diseases & Severity Scores",
