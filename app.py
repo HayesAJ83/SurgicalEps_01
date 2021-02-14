@@ -802,41 +802,41 @@ def exp_operation():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
             st.image(image, width=160)
 
-        if not df_ep_info2['Who_B'].isnull().all():
-            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+        if df_ep_info2['Who_B'].any():st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+        else:pass
 
-        if not df_ep_info2['Year_str'].isnull().all():
-            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+        if df_ep_info2['Year_str'].any():st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+        else:pass
 
-        if not df_ep_info2['Where'].isnull().all():
-            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+        if df_ep_info2['Where'].any():st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+        else:pass
     
         description = df_ep_info2['Description'].to_string(index=False)
         history = df_ep_info2['History'].to_string(index=False)
 
-        if not df_ep_info2['Description'].isnull().all():
-            st.markdown(description, unsafe_allow_html=True)
-        if not df_ep_info2['History'].isnull().all():
+        if df_ep_info2['Description'].any(): st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info2['History'].any():
             st.write('**_History_**:', history)
             st.markdown("---")
 
-        if not df_ep_info2['Who_B'].isnull().all():
-            st.write('**External links**')
+        if df_ep_info2['Who_B'].any():st.write('**External links**')
+        else:pass
         ref_link = df_ep_info2['Pubmed'].to_string(index=False)
-        if not df_ep_info2['Pubmed'].isnull().all():
-           st.markdown(f"[PubMed.gov]({ref_link})")
+        if df_ep_info2['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
+        else:pass
 
         wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
-        if not df_ep_info2['Wiki_link'].isnull().all():
-            st.markdown(f"[wikipedia.org]({wiki_link})")
+        if df_ep_info2['Wiki_link'].any():st.markdown(f"[wikipedia.org]({wiki_link})")
+        else:pass
 
         wni_link = df_ep_info2['WNI_link'].to_string(index=False)
-        if not df_ep_info2['WNI_link'].isnull().all():
-           st.markdown(f"[whonamedit.com]({wni_link})")
+        if df_ep_info2['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
+        else:pass
 
         icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
-        if not df_ep_info2['ICD11_link'].isnull().all():
-           st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        if not df_ep_info2['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        else:pass
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -1101,21 +1101,28 @@ def exp_geo():
             history = df_ep_info['History'].to_string(index=False)
 
             if df_ep_info['Description'].any():st.markdown(description, unsafe_allow_html=True)
+            else:pass
             if df_ep_info['History'].any():st.write('**_History_**:', history)
+            else:pass
             st.markdown("---")
 
             if df_ep_info['Pubmed'].any(): st.write('**External links**')
+            else:pass
             ref_link = df_ep_info['Pubmed'].to_string(index=False)
             if df_ep_info['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
+            else:pass
 
             wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
             if df_ep_info['Wiki_link'].any(): st.markdown(f"[wikipedia.org]({wiki_link})")
+            else:pass
             
             wni_link = df_ep_info['WNI_link'].to_string(index=False)
             if df_ep_info['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
+            else:pass
 
             icd_link = df_ep_info['ICD11_link'].to_string(index=False)
             if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            else:pass
 
 
         if types == 'Selected':
@@ -1289,18 +1296,23 @@ def exp_geo():
                 st.markdown("---")
 
             if df_ep_info['Pubmed'].any():st.write('**External links**')
+            else:pass
             ref_link = df_ep_info['Pubmed'].to_string(index=False)
         
             if df_ep_info['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
+            else:pass
 
             wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
             if df_ep_info['Wiki_link'].any():st.markdown(f"[wikipedia.org]({wiki_link})")
+            else:pass
 
             wni_link = df_ep_info['WNI_link'].to_string(index=False)
             if df_ep_info['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
+            else:pass
 
             icd_link = df_ep_info['ICD11_link'].to_string(index=False)
             if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            else:pass
 
 
 
@@ -1364,26 +1376,29 @@ def exp_exam():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
             
-        if not df_ep_info2['Year_str'].isnull().all():
-            st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+        if df_ep_info2['Year_str'].any():st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+        else:pass
+            
+        if df_ep_info2['Who_B'].any():st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+        else:pass
 
-        if not df_ep_info2['Who_B'].isnull().all():
-            st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+        if df_ep_info2['Where'].any():st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+        else:pass
 
-        if not df_ep_info2['Where'].isnull().all():
-            st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
-
-#        if not df_ep_info2['Pubmed'].isnull().all():
-#            st.markdown(f"[PubMed.gov]({ref_link})")
+        if df_ep_info2['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
+        else:pass
 
         wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
         if df_ep_info2['Wiki_link'].any():st.markdown(f"[wikipedia.org]({wiki_link})")
+        else:pass
 
         wni_link = df_ep_info2['WNI_link'].to_string(index=False)
         if df_ep_info2['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
+        else:pass
 
         icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
         if df_ep_info2['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        else:pass
 
 
 
@@ -1425,13 +1440,60 @@ def exp_cats():
             st.write(figJDLT)
             blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
                          'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                         'Year_str':'','Sex_A1':'1'}
+                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
             time_df2 = new_geo2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             options = st.selectbox('Type here to look up an eponym of interest:',
                         time_df3['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
             df_ep_info = time_df3[time_df3['Eponym_easy'].str.match(options)]
+            
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+                st.image(image, width=160)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Hartmann's operation":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
+
+
+            if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+            else: pass
+            if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            else:pass
+            if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            else:pass
+            ref_link = df_ep_info['Pubmed'].to_string(index=False)
+            if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+            else:pass
+            wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+            if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+            else:pass
+            wni_link = df_ep_info['WNI_link'].to_string(index=False)
+            if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+            else:pass
+            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+            if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            else:pass
 
 
         if types == "Selected":
@@ -1464,18 +1526,61 @@ def exp_cats():
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
             st.write(figJDLT)
-
             blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
                          'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                         'Year_str':'','Sex_A1':'1'}
+                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
             time_df2 = new_2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             options = st.selectbox('Type here to look up an eponym of interest:',
                         time_df3['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
             df_ep_info = time_df3[time_df3['Eponym_easy'].str.match(options)]
 
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+                st.image(image, width=160)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Hartmann's operation":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
 
+            if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+            else: pass
+            if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            else:pass
+            if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            else:pass
+            ref_link = df_ep_info['Pubmed'].to_string(index=False)
+            if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+            else:pass
+            wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+            if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+            else:pass
+            wni_link = df_ep_info['WNI_link'].to_string(index=False)
+            if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+            else:pass
+            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+            if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            else:pass
 
     if ScreenSize == "Desktop / Laptop / Tablet":
         types = st.radio('2nd) Optional - choose specialties:',["All","Selected",])
@@ -1503,13 +1608,59 @@ def exp_cats():
             st.write(figJDLT)
             blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
                          'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                         'Year_str':'','Sex_A1':'1'}
+                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
             time_df2 = new_geo2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             options = st.selectbox('Type here to look up an eponym of interest:',
                         time_df3['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
             df_ep_info = time_df3[time_df3['Eponym_easy'].str.match(options)]
+
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+                st.image(image, width=160)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Hartmann's operation":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
+
+            if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+            else: pass
+            if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            else:pass
+            if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            else:pass
+            ref_link = df_ep_info['Pubmed'].to_string(index=False)
+            if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+            else:pass
+            wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+            if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+            else:pass
+            wni_link = df_ep_info['WNI_link'].to_string(index=False)
+            if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+            else:pass
+            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+            if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            else:pass
 
         if types == "Selected":
             url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -1530,7 +1681,6 @@ def exp_cats():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
-
             min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
             new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
             new_2T = new_1T.loc[new_1T['Topic'].str.contains('|'.join(specs)) == True]
@@ -1545,16 +1695,61 @@ def exp_cats():
 
             blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
                          'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                         'Year_str':'','Sex_A1':'1'}
+                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
             time_df2 = new_2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             options = st.selectbox('Type here to look up an eponym of interest:',
                         time_df3['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
             df_ep_info = time_df3[time_df3['Eponym_easy'].str.match(options)]
+
+            if options == "Allis forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
+                st.image(image, width=300)
+            if options == "Babcock forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+                st.image(image, width=400)
+            if options == "Brown-Séquard syndrome":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+                st.image(image, width=160)
+            if options == "Crohn's disease":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+                st.image(image, width=160)
+            if options == "DeBakey forceps":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+                st.image(image, width=300)
+            if options == "Calot's triangle":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+                st.image(image, width=500)
+            if options == "Hartmann's operation":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Hartmann's pouch":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+                st.image(image, width=160)
+            if options == "Ivor Lewis oesophagectomy":
+                image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+                st.image(image, width=160)
+
+            if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+            else: pass
+            if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+            else:pass
+            if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+            else:pass
+            ref_link = df_ep_info['Pubmed'].to_string(index=False)
+            if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+            else:pass
+            wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+            if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+            else:pass
+            wni_link = df_ep_info['WNI_link'].to_string(index=False)
+            if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+            else:pass
+            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+            if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            else:pass
             
   
-
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -1564,7 +1759,7 @@ def exp_cats():
 #-------------------------------------------------------------------------------------------------#
 def exp_teach():
     st.subheader("Teaching Tool")
-    exp = st.radio('1st) Choose your setting:',#'Select',
+    exp = st.radio('1st) Choose your setting:',
                                 ['Bedside',        # - Scars, Signs, Diseases & Severity Scores",
                                  'Classroom',      # - History of Surgery',
                                  'Operating Room', #- Incisions, Instruments & Operations",
@@ -1575,13 +1770,12 @@ def exp_teach():
     elif exp == "Operating Room":   teach_or()        #T3 #- Incisions, Instruments & Operations
 
 def teach_bed():
-#    st.markdown("---")
     st.markdown('''### Clinial Features - What To Look For''')
     bed = st.radio('2nd) Bedside Teaching', ['Scars / Incisions', 'Clinical Signs',]) #'Disease Severity Scores' 
 
     if bed == "Scars / Incisions":
     #    color = st.select_slider('Select a region of the abdomen',
-    #        options=['Upper Abdomen','RUQ', 'Epigastrium','Central', 'RIF', 'Suprapubic', 'LIF','Lower abdomen'])
+    #    options=['Upper Abdomen','RUQ', 'Epigastrium','Central', 'RIF', 'Suprapubic', 'LIF','Lower abdomen'])
     #    st.write('Scars and stomas in the', color)
     #    st.write('Insert image of abdomen')
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
@@ -1620,8 +1814,8 @@ def teach_classrm():
     st.markdown('''### History of Surgery through Eponyms''')
 
     classrm = st.radio('2nd) Select by disease or type of operation:',#'Select',
-                                ['Disease',        # - Scars, Signs, Diseases & Severity Scores",
-                                 'Type of Operation', # - History of Surgery',
+                                ['Disease',                           # - Scars, Signs, Diseases & Severity Scores",
+                                 'Type of Operation',                 # - History of Surgery',
                                  ])
 
     if   classrm == "Disease":              classrm_dis()       #T1 #- Scars, Signs, Severity Scores
@@ -1694,10 +1888,13 @@ def classrm_op():
             st.image(image, width=160)
 
         if df_ep_info2['Who_B'].any():st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+        else:pass
 
         if df_ep_info2['Year_str'].any():st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
+        else:pass
 
         if not df_ep_info2['Where'].any():st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
+        else:pass
     
         description = df_ep_info2['Description'].to_string(index=False)
         history = df_ep_info2['History'].to_string(index=False)
@@ -1780,16 +1977,19 @@ def teach_or():
 
         ref_link = Anaes_options2_info['Pubmed'].to_string(index=False)
         if Anaes_options2_info['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
+        else:pass
 
         wiki_link = Anaes_options2_info['Wiki_link'].to_string(index=False)
         if Anaes_options2_info['Wiki_link'].any():st.markdown(f"[wikipedia.org]({wiki_link})")
+        else:pass
 
         wni_link = Anaes_options2_info['WNI_link'].to_string(index=False)
         if Anaes_options2_info['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
-
+        else:pass
+        
         icd_link = Anaes_options2_info['ICD11_link'].to_string(index=False)
         if Anaes_options2_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-
+        else:pass
 
 
 
