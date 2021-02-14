@@ -214,14 +214,20 @@ def exp_A2Z():
             col1, col2 = st.beta_columns(2)
             col1.image(image, width=300)
             #col2.write('testing')
+        if options == "Altemeier procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Altemeier.png'
+            st.image(image, width=160)
         if options == "Babcock forceps":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock.png'
             st.image(image, width=400)
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
         if options == "Brown-Séquard syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+            st.image(image, width=160)
+        if options == "Brooke ileostomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brooke.png'
             st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
@@ -243,6 +249,12 @@ def exp_A2Z():
             st.image(image, width=500)
         if options == "Kocher maneuver":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+            st.image(image, width=160)
+        if options == "Ligament of Treitz":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
+            st.image(image, width=160)
+        if options == "Whipple's operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Whipple.png'
             st.image(image, width=160)
 
         if options == True: st.image(image, width=300)
