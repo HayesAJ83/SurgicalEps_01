@@ -255,6 +255,29 @@ def exp_A2Z():
         else:pass
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
+
+        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+            st.markdown("---")
+
+        description = df_ep_info['Description'].to_string(index=False)
+        history = df_ep_info['History'].to_string(index=False)
+
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        
+        if df_ep_info['History'].any():
+            st.markdown(history, unsafe_allow_html=True)
+            st.markdown("---")
+        else:pass
+
+
+
+
+        if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+            st.markdown("---")
+            st.write('**External Links**')
+        
         ref_link = df_ep_info['Pubmed'].to_string(index=False)
         if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
         else:pass
@@ -336,6 +359,14 @@ def exp_A2Z():
         else:pass
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
+
+
+
+
+        if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+            st.markdown("---")
+            st.write('**External Links**')
+        
         ref_link = df_ep_info['Pubmed'].to_string(index=False)
         if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
         else:pass
