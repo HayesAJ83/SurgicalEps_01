@@ -265,6 +265,21 @@ def exp_A2Z():
         if options == "Berry's ligament":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Berry.png'
             st.image(image, width=160)
+        if options == "Billroth I procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "Billroth II procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "Bochdalek hernia":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bochdalek.png'
+            st.image(image, width=160)
+        if options == "Boerhaave syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Boerhaave.png'
+            st.image(image, width=160)
+        if options == "Bouveret syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bouveret.png'
+            st.image(image, width=160)
         if options == "Brown-Séquard syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
             st.image(image, width=160)
@@ -274,6 +289,13 @@ def exp_A2Z():
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+
+        if options == "Crigler-Najjar syndrome":
+            image_human_C = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crigler.png'
+            image_human_N = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Najjar.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human_C, width=160);
+            col2.image(image_human_N, width=170); col3.write('')
         if options == "Crohn's disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
             st.image(image, width=160)
@@ -297,12 +319,20 @@ def exp_A2Z():
 #            col1, col2, col3, col4 = st.beta_columns(4)
 #            col1.image(image_human, width=160); col2.image(image_forceps, width=297);
 #            col3.write(''); col4.write('')
+
+        if options == "Fallopian tube":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Falloppio.png'
+            st.image(image, width=160)
             
         if options == "Fanelli catheter":
             image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
             image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli_Catheter.png'
             col1, col2, col3 = st.beta_columns(3)
             col1.image(image_human, width=160); col2.image(image_catheter, width=214); col3.write('')
+
+        if options == "Foley catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
+            st.image(image, width=160)
 
 #        if options == "Foley catheter":
 #            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
@@ -311,6 +341,12 @@ def exp_A2Z():
 #            col1.image(image_human, width=160); col2.image(image_catheter, width=297);
 #            col3.write(''); col4.write('')
 
+        if options == "Finochietto retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Finochietto.png'
+            st.image(image, width=160)
+        if options == "Fisher's exact test":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fisher.png'
+            st.image(image, width=160)
         if options == "Graves disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graves.png'
             st.image(image, width=160)
