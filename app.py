@@ -286,10 +286,15 @@ def exp_A2Z():
         if options == "Brooke ileostomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brooke.png'
             st.image(image, width=160)
+        if options == "Buerger disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Buerger.png'
+            st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
-
+        if options == "Interstitial cells of Cajal":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cajal.png'
+            st.image(image, width=160)
         if options == "Crigler-Najjar syndrome":
             image_human_C = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crigler.png'
             image_human_N = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Najjar.png'
@@ -319,36 +324,40 @@ def exp_A2Z():
 #            col1, col2, col3, col4 = st.beta_columns(4)
 #            col1.image(image_human, width=160); col2.image(image_forceps, width=297);
 #            col3.write(''); col4.write('')
-
         if options == "Fallopian tube":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Falloppio.png'
             st.image(image, width=160)
-            
         if options == "Fanelli catheter":
             image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
             image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli_Catheter.png'
             col1, col2, col3 = st.beta_columns(3)
             col1.image(image_human, width=160); col2.image(image_catheter, width=214); col3.write('')
-
         if options == "Foley catheter":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
             st.image(image, width=160)
-
 #        if options == "Foley catheter":
 #            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
 #            image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley_Catheter.png'
 #            col1, col2, col3, col4 = st.beta_columns(4)
 #            col1.image(image_human, width=160); col2.image(image_catheter, width=297);
 #            col3.write(''); col4.write('')
-
         if options == "Finochietto retractor":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Finochietto.png'
             st.image(image, width=160)
         if options == "Fisher's exact test":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fisher.png'
             st.image(image, width=160)
+        if options == "Frantz tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Frantz.png'
+            st.image(image, width=160)
+        if options == "Graham patch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graham.png'
+            st.image(image, width=160)
         if options == "Graves disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graves.png'
+            st.image(image, width=160)
+        if options == "Gleason score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Gleason.png'
             st.image(image, width=160)
         if options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
@@ -376,6 +385,9 @@ def exp_A2Z():
         if options == "Killian's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Killian.png'
             st.image(image, width=160)
+        if options == "Klatskin's tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Klatskin.png'
+            st.image(image, width=160)
         if options == "Kocher's incision of the abdomen":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
@@ -396,6 +408,9 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Nodules of Aranzio":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aranzi.png'
+            st.image(image, width=160)
+        if options == "Skipworth's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Skip.png'
             st.image(image, width=160)
         if options == "Sphincter of Oddi":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Oddi.png'
@@ -423,6 +438,9 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Foramen of Winslow":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
+            st.image(image, width=160)
+        if options == "Yankauer suction tip":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Yankauer.png'
             st.image(image, width=160)
 
         else:pass
@@ -536,8 +554,26 @@ def exp_A2Z():
         if options == "Beger procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Beger.png'
             st.image(image, width=160)
+        if options == "Belsey Mark IV operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Belsey.png'
+            st.image(image, width=160)
         if options == "Berry's ligament":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Berry.png'
+            st.image(image, width=160)
+        if options == "Billroth I procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "Billroth II procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "Bochdalek hernia":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bochdalek.png'
+            st.image(image, width=160)
+        if options == "Boerhaave syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Boerhaave.png'
+            st.image(image, width=160)
+        if options == "Bouveret syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bouveret.png'
             st.image(image, width=160)
         if options == "Brown-Séquard syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
@@ -545,9 +581,24 @@ def exp_A2Z():
         if options == "Brooke ileostomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brooke.png'
             st.image(image, width=160)
+        if options == "Buerger disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Buerger.png'
+            st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+        if options == "Interstitial cells of Cajal":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cajal.png'
+            st.image(image, width=160)
+        if options == "Crigler-Najjar syndrome":
+            image_human_C = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crigler.png'
+            image_human_N = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Najjar.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human_C, width=160);
+            col2.image(image_human_N, width=170); col3.write('')
+        if options == "Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
         if options == "Cushing's ulcer":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cushing.png'
             st.image(image, width=160)
@@ -560,14 +611,48 @@ def exp_A2Z():
         if options == "Delorme's procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Delorme.png'
             st.image(image, width=160)
-        if options == "Fanelli catheter":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+        if options == "Doyen retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
             st.image(image, width=160)
+#            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
+#            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen_Retractor.png'
+#            col1, col2, col3, col4 = st.beta_columns(4)
+#            col1.image(image_human, width=160); col2.image(image_forceps, width=297);
+#            col3.write(''); col4.write('')
+        if options == "Fallopian tube":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Falloppio.png'
+            st.image(image, width=160)
+        if options == "Fanelli catheter":
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli_Catheter.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human, width=160); col2.image(image_catheter, width=214); col3.write('')
         if options == "Foley catheter":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
             st.image(image, width=160)
+#        if options == "Foley catheter":
+#            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
+#            image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley_Catheter.png'
+#            col1, col2, col3, col4 = st.beta_columns(4)
+#            col1.image(image_human, width=160); col2.image(image_catheter, width=297);
+#            col3.write(''); col4.write('')
+        if options == "Finochietto retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Finochietto.png'
+            st.image(image, width=160)
+        if options == "Fisher's exact test":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fisher.png'
+            st.image(image, width=160)
+        if options == "Frantz tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Frantz.png'
+            st.image(image, width=160)
+        if options == "Graham patch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graham.png'
+            st.image(image, width=160)
         if options == "Graves disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graves.png'
+            st.image(image, width=160)
+        if options == "Gleason score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Gleason.png'
             st.image(image, width=160)
         if options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
@@ -578,17 +663,25 @@ def exp_A2Z():
         if options == "Hashimoto's thyroiditis":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hashimoto.png'
             st.image(image, width=160)
+        if options == "Hasson technique":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hasson.png'
+            st.image(image, width=160)
         if options == "Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
         if options == "Joll's retractor":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
-            st.image(image, width=160)
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
+            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Jolls_Retractor.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human, width=160);col2.image(image_retractor, width=220);col3.write('')
         if options == "Joll's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
             st.image(image, width=160)
         if options == "Killian's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Killian.png'
+            st.image(image, width=160)
+        if options == "Klatskin's tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Klatskin.png'
             st.image(image, width=160)
         if options == "Kocher's incision of the abdomen":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
@@ -605,8 +698,14 @@ def exp_A2Z():
         if options == "Morrison's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Morrison.png'
             st.image(image, width=160)
+        if options == "Murphy's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Murphy.png'
+            st.image(image, width=160)
         if options == "Nodules of Aranzio":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aranzi.png'
+            st.image(image, width=160)
+        if options == "Skipworth's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Skip.png'
             st.image(image, width=160)
         if options == "Sphincter of Oddi":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Oddi.png'
@@ -635,6 +734,10 @@ def exp_A2Z():
         if options == "Foramen of Winslow":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
             st.image(image, width=160)
+        if options == "Yankauer suction tip":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Yankauer.png'
+            st.image(image, width=160)
+
 
         else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
@@ -746,8 +849,26 @@ def exp_dis():
         if options == "Beger procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Beger.png'
             st.image(image, width=160)
+        if options == "Belsey Mark IV operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Belsey.png'
+            st.image(image, width=160)
         if options == "Berry's ligament":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Berry.png'
+            st.image(image, width=160)
+        if options == "Billroth I procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "Billroth II procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "Bochdalek hernia":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bochdalek.png'
+            st.image(image, width=160)
+        if options == "Boerhaave syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Boerhaave.png'
+            st.image(image, width=160)
+        if options == "Bouveret syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bouveret.png'
             st.image(image, width=160)
         if options == "Brown-Séquard syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
@@ -755,9 +876,24 @@ def exp_dis():
         if options == "Brooke ileostomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brooke.png'
             st.image(image, width=160)
+        if options == "Buerger disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Buerger.png'
+            st.image(image, width=160)
         if options == "Calot's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
             st.image(image, width=500)
+        if options == "Interstitial cells of Cajal":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cajal.png'
+            st.image(image, width=160)
+        if options == "Crigler-Najjar syndrome":
+            image_human_C = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crigler.png'
+            image_human_N = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Najjar.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human_C, width=160);
+            col2.image(image_human_N, width=170); col3.write('')
+        if options == "Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
         if options == "Cushing's ulcer":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cushing.png'
             st.image(image, width=160)
@@ -770,14 +906,48 @@ def exp_dis():
         if options == "Delorme's procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Delorme.png'
             st.image(image, width=160)
-        if options == "Fanelli catheter":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+        if options == "Doyen retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
             st.image(image, width=160)
+#            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
+#            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen_Retractor.png'
+#            col1, col2, col3, col4 = st.beta_columns(4)
+#            col1.image(image_human, width=160); col2.image(image_forceps, width=297);
+#            col3.write(''); col4.write('')
+        if options == "Fallopian tube":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Falloppio.png'
+            st.image(image, width=160)
+        if options == "Fanelli catheter":
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli_Catheter.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human, width=160); col2.image(image_catheter, width=214); col3.write('')
         if options == "Foley catheter":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
             st.image(image, width=160)
+#        if options == "Foley catheter":
+#            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
+#            image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley_Catheter.png'
+#            col1, col2, col3, col4 = st.beta_columns(4)
+#            col1.image(image_human, width=160); col2.image(image_catheter, width=297);
+#            col3.write(''); col4.write('')
+        if options == "Finochietto retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Finochietto.png'
+            st.image(image, width=160)
+        if options == "Fisher's exact test":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fisher.png'
+            st.image(image, width=160)
+        if options == "Frantz tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Frantz.png'
+            st.image(image, width=160)
+        if options == "Graham patch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graham.png'
+            st.image(image, width=160)
         if options == "Graves disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graves.png'
+            st.image(image, width=160)
+        if options == "Gleason score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Gleason.png'
             st.image(image, width=160)
         if options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
@@ -788,17 +958,25 @@ def exp_dis():
         if options == "Hashimoto's thyroiditis":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hashimoto.png'
             st.image(image, width=160)
+        if options == "Hasson technique":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hasson.png'
+            st.image(image, width=160)
         if options == "Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
         if options == "Joll's retractor":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
-            st.image(image, width=160)
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
+            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Jolls_Retractor.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human, width=160);col2.image(image_retractor, width=220);col3.write('')
         if options == "Joll's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
             st.image(image, width=160)
         if options == "Killian's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Killian.png'
+            st.image(image, width=160)
+        if options == "Klatskin's tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Klatskin.png'
             st.image(image, width=160)
         if options == "Kocher's incision of the abdomen":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
@@ -815,8 +993,14 @@ def exp_dis():
         if options == "Morrison's pouch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Morrison.png'
             st.image(image, width=160)
+        if options == "Murphy's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Murphy.png'
+            st.image(image, width=160)
         if options == "Nodules of Aranzio":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aranzi.png'
+            st.image(image, width=160)
+        if options == "Skipworth's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Skip.png'
             st.image(image, width=160)
         if options == "Sphincter of Oddi":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Oddi.png'
@@ -845,6 +1029,10 @@ def exp_dis():
         if options == "Foramen of Winslow":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
             st.image(image, width=160)
+        if options == "Yankauer suction tip":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Yankauer.png'
+            st.image(image, width=160)
+
 
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else: pass
