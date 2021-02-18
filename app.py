@@ -202,7 +202,7 @@ def exp_A2Z():
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Eponym'],ascending=True)
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 0000, 2050, [100, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
 
@@ -316,6 +316,9 @@ def exp_A2Z():
         if options == "Delorme's procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Delorme.png'
             st.image(image, width=160)
+        if options == "DeMeester score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeMeester.png'
+            st.image(image, width=160)
         if options == "Doyen retractor":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
             st.image(image, width=160)
@@ -393,6 +396,12 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Kocher maneuver":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+            st.image(image, width=160)
+        if options == "Lugol's iodine":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Lugol.png'
+            st.image(image, width=160)
+        if options == "Masson's tumor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Masson.png'
             st.image(image, width=160)
         if options == "Meckel's diverticulum":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Meckel.png'
@@ -504,7 +513,7 @@ def exp_A2Z():
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 0, 2050, [100, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
         new_2T = new_1T.loc[new_1T['Topic'].str.contains('|'.join(specs)) == True]
@@ -2140,7 +2149,7 @@ def exp_geo():
         U = np.sort(T)
         journal_spec = st.multiselect("2nd) Optional - Select specific specialties. Type in box:",
              options=list(U), format_func=lambda x: ' ' if x == '1' else x,)
-        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+        min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 0, 2050, [100, 2021])
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
         new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
@@ -2368,7 +2377,7 @@ def exp_geo():
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 0, 2030, [100, 2021])
             st.markdown("---")
             st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:100px}</style>""",unsafe_allow_html=True,)
             mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
@@ -2676,7 +2685,7 @@ def exp_geo():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 0, 2050, [100, 2021])
             st.markdown("---")
             st.markdown('''<span style="font-size:12pt;color:black;">**Click on a place name to zoom in**,
                        and then click in the center to pan out.</span>''', unsafe_allow_html=True)
@@ -3205,7 +3214,7 @@ def exp_cats():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 0, 2050, [100, 2021])
             new_geo2 = df2.sort_values(by=['Year'],ascending=True)
             new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
             st.markdown('''<span style="font-size:12pt;color:black;">**Click on a category type to zoom in**,
@@ -3431,7 +3440,7 @@ def exp_cats():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 0, 2050, [100, 2021])
             new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
             new_2T = new_1T.loc[new_1T['Topic'].str.contains('|'.join(specs)) == True]
             new_3T = new_2T.sort_values(by=['Eponym'],ascending=True)
@@ -3649,7 +3658,7 @@ def exp_cats():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 0, 2050, [100, 2021])
             new_geo2 = df2.sort_values(by=['Year'],ascending=True)
             new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
             st.markdown('''<span style="font-size:12pt;color:black;">**Click on a category type to zoom in**,
@@ -3875,7 +3884,7 @@ def exp_cats():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 1500, 2050, [1550, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 0, 2050, [100, 2021])
             new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
             new_2T = new_1T.loc[new_1T['Topic'].str.contains('|'.join(specs)) == True]
             new_3T = new_2T.sort_values(by=['Eponym'],ascending=True)
