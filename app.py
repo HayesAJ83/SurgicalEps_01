@@ -37,7 +37,7 @@ import requests
 def main():
     st.sidebar.write('''_Click **X** in top right to hide sidebar_''')
     st.sidebar.subheader('Navigator')
-    page = st.sidebar.radio('',#'Go to',
+    page = st.sidebar.radio('Go to:',
                             ["SurgicalEps App",
                              "Design Team",])
 
@@ -95,7 +95,7 @@ def show_the_app_team():
 #-------------------------------------------------------------------------------------------------#
 def show_explore():
     st.sidebar.subheader('SurgicalEps App')
-    exp = st.sidebar.radio('',#'Select',
+    exp = st.sidebar.radio('Explore:',
                                 ["About",
                                  "A to Z - by Specialty",
                                  "By Disease or Symptom",
@@ -186,7 +186,7 @@ def exp_about():
     st.write('''©2021 Excision Limited. All rights reseved.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
-    st.sidebar.info("App will be launched March 2021")
+    st.sidebar.info("App will be launched April 2021")
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
