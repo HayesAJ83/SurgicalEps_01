@@ -482,7 +482,8 @@ def exp_A2Z():
         else:pass
 
         if df_ep_info['Ref'].any():
-            st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+            st.write('References')
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
 
 
