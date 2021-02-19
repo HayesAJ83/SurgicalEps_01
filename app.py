@@ -51,6 +51,7 @@ def main():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def show_the_app_team():
+    st.write('''_To show sidebar, click **>** in top left_''')
     st.title("App Design Team")
     st.markdown('''The team consists of a group of General Surgeons based in Edinburgh who are
                 motivated to develop software to improve surgical **data systems**,
@@ -100,6 +101,7 @@ def show_explore():
                                  "By Disease",
                                  "By Journal",
                                  "By Operation",
+                                 #"By Symptoms",
                                  "By World Maps",
                                  "Categories (eg Signs)",
                                  "Exam Favourites",
@@ -125,7 +127,8 @@ def exp_about():
     st.markdown(
         '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
            </style>''',unsafe_allow_html=True)
-    st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
+    st.write('''_To show sidebar, click **>** in top left_''')
+    #st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
     st.markdown('''# SurgicalEps''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
@@ -202,7 +205,7 @@ def exp_A2Z():
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         df2 = df1.sort_values(by=['Eponym'],ascending=True)
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 0000, 2050, [100, 2021])
+        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 100, 2050, [150, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
 
@@ -1100,7 +1103,7 @@ def exp_journals():
     if ScreenSize == "Smartphone":
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J) #,dtype={'year':int}) 
             dfY1 = dfY.dropna()
@@ -1319,7 +1322,7 @@ def exp_journals():
                                     'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
             st.markdown("---")
             st.markdown('''<span style="font-size:10pt;color:black;">**Click on journal name to zoom in**,
                        and in the center to pan out.</span>''', unsafe_allow_html=True)
@@ -1516,7 +1519,7 @@ def exp_journals():
     if ScreenSize == "Desktop / Laptop / Tablet":
         types = st.radio('2nd) Choose specialties:',["All","Selected",])
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
             st.markdown("---")
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
             dfY = pd.read_csv(url_J) #, dtype={'year':int})
@@ -1724,7 +1727,7 @@ def exp_journals():
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
                                     'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',])
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1735, 2021])
+            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
             st.markdown("---")
             st.markdown('''<span style="font-size:12pt;color:black;">**Click on journal name to zoom in**,
                        and click in the center to pan out.</span>''', unsafe_allow_html=True)
@@ -2680,7 +2683,7 @@ def exp_geo():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
-                                    'General Surgery','Gynaecology','HPB','Hernia',
+                                    'General Surgery','Gynaecology','HPB','Hernia','Interventional Radiology',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Transplant','Trauma','Urology','Vascular',]
