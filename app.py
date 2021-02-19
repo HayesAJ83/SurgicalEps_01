@@ -518,10 +518,10 @@ def exp_A2Z():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
-                                    'General Surgery','Gynaecology','HPB','Hernia','Interventional Radiology',
+                                    'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
-                                    'Transplant','Trauma','Urology','Vascular',]
+                                    'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
 
         min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 100, 2050, [150, 2021])
@@ -1358,7 +1358,7 @@ def exp_journals():
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
-                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
+                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics','Radiology',
                                     'Transplant','Trauma','Urology','Vascular',]
                                           )
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
@@ -1764,7 +1764,7 @@ def exp_journals():
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
                                     'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
-                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics',
+                                    'Oesophagogastric','Orthopaedics','Paediatrics','Plastics','Radiology',
                                     'Transplant','Trauma','Urology','Vascular',])
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
             st.markdown("---")
@@ -2725,10 +2725,10 @@ def exp_geo():
                            format_func=lambda x: ' ' if x == '1' else x,
                            default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
                                     'Colorectal','Emergency Surgery','Endocrine','ENT',
-                                    'General Surgery','Gynaecology','HPB','Hernia','Interventional Radiology',
+                                    'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
-                                    'Transplant','Trauma','Urology','Vascular',]
+                                    'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
             min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
             st.markdown("---")
@@ -3483,7 +3483,7 @@ def exp_cats():
                                     'General Surgery','Gynaecology','HPB','Hernia',
                                     'Laparoscopic Surgery','Maxillofacial','Neurosurgery','Obstetrics',
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
-                                    'Transplant','Trauma','Urology','Vascular',]
+                                    'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
             min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
             new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
