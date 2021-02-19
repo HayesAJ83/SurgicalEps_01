@@ -790,10 +790,10 @@ def exp_A2Z():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
         
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
-            st.markdown("---")
-        else:pass
+        #if df_ep_info['History'].any():
+        #    st.markdown(history, unsafe_allow_html=True)
+        #    st.markdown("---")
+        #else:pass
 
         if df_ep_info['Ref'].any():
             st.markdown("---")
@@ -1097,15 +1097,9 @@ def exp_dis():
             st.markdown("---")
 
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
 
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
-        else:pass
-        
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
-            st.markdown("---")
         else:pass
 
         if df_ep_info['Ref'].any():
@@ -2143,15 +2137,9 @@ def exp_operation():
             st.markdown("---")
 
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
 
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
-        else:pass
-        
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
-            st.markdown("---")
         else:pass
 
         if df_ep_info['Ref'].any():
@@ -2176,6 +2164,7 @@ def exp_operation():
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
         if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
+
 
 
 #-------------------------------------------------------------------------------------------------#
@@ -2388,6 +2377,7 @@ def exp_geo():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
             st.image(image, width=160)
         
+        else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else: pass
         if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
@@ -2399,34 +2389,34 @@ def exp_geo():
             st.markdown("---")
 
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
 
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
-        
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
+
+        if df_ep_info['Ref'].any():
             st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
         else:pass
-
-
-        if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
-            st.markdown("---")
-            st.write('**External Links**')
-        
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
         else:pass
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-        else:pass
+
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
@@ -2690,32 +2680,32 @@ def exp_geo():
                 st.markdown("---")
 
             description = df_ep_info['Description'].to_string(index=False)
-            history = df_ep_info['History'].to_string(index=False)
 
             if df_ep_info['Description'].any():
                 st.markdown(description, unsafe_allow_html=True)
             else:pass
-        
-            if df_ep_info['History'].any():
-                st.markdown(history, unsafe_allow_html=True)
-                st.markdown("---")
-            else:pass
 
-            if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+            if df_ep_info['Ref'].any():
                 st.markdown("---")
-                st.write('**External Links**')
-        
-            ref_link = df_ep_info['Pubmed'].to_string(index=False)
-            if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+                st.write('<u>References</u>', unsafe_allow_html=True)
+                st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+            else: pass
+
+            if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+                st.markdown("---")
+                st.write('<u>External Links</u>', unsafe_allow_html=True)
+
+            ref_site = df_ep_info['Ref_site'].to_string(index=False)
+            if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+            else:pass
+            pub_link = df_ep_info['Pubmed'].to_string(index=False)
+            if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
             else:pass
             wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-            if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+            if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
             else:pass
             wni_link = df_ep_info['WNI_link'].to_string(index=False)
-            if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
-            else:pass
-            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-            if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+            if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
             else:pass
 
 
