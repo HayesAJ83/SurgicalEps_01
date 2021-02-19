@@ -478,13 +478,21 @@ def exp_A2Z():
             st.markdown("---")
         else:pass
 
+        if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False))
+        else: pass
+
 
         if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
             st.markdown("---")
             st.write('**External Links**')
+
         
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"[Paper link]({ref_site})")
+        else:pass
+        
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({pub_link})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
         if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
