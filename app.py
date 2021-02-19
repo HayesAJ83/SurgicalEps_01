@@ -488,21 +488,20 @@ def exp_A2Z():
 
         
         ref_site = df_ep_info['Ref_site'].to_string(index=False)
-        if df_ep_info['Ref_site'].any(): st.markdown(f"[Paper link]({ref_site})")
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
         else:pass
-        
         pub_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({pub_link})")
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({ref_site})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({ref_site})")
         else:pass
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({ref_site})")
         else:pass
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-        else:pass
+        #icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+        #if df_ep_info['ICD11_link'].any(): st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        #else:pass
         
     if types == "Selected":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
