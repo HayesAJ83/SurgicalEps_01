@@ -98,10 +98,9 @@ def show_explore():
     exp = st.sidebar.radio('',#'Select',
                                 ["About",
                                  "A to Z - by Specialty",
-                                 "By Disease",
+                                 "By Disease or Symptom",
                                  "By Journal",
                                  "By Operation",
-                                 #"By Symptoms",
                                  "By World Maps",
                                  "Categories (eg Signs)",
                                  "Exam Favourites",
@@ -109,7 +108,7 @@ def show_explore():
                                  ])
     if   exp == "About":                    exp_about()             #1
     elif exp == "A to Z - by Specialty":    exp_A2Z()               #2
-    elif exp == "By Disease":               exp_dis()               #3
+    elif exp == "By Disease or Symptom":    exp_dis()               #3
     elif exp == "By Journal":               exp_journals()          #4
     elif exp == "By Operation":             exp_operation()         #5
     elif exp == "By World Maps":            exp_geo()               #6         
@@ -827,7 +826,7 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader("Find eponyms related to selected diseases") 
+    st.subheader("Find eponyms related to a selected disease or symptom") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
