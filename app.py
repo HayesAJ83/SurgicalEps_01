@@ -256,6 +256,9 @@ def exp_A2Z():
         if options == "Bassini hernia repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bassini.png'
             st.image(image, width=160)
+        if options == "Battle's incision":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
@@ -478,7 +481,8 @@ def exp_A2Z():
             st.markdown("---")
         else:pass
 
-        if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False))
+        if df_ep_info['Ref'].any():
+            st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
 
 
@@ -567,6 +571,9 @@ def exp_A2Z():
         if options == "Bassini hernia repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bassini.png'
             st.image(image, width=160)
+        if options == "Battle's incision":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
@@ -629,6 +636,9 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Delorme's procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Delorme.png'
+            st.image(image, width=160)
+        if options == "DeMeester score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeMeester.png'
             st.image(image, width=160)
         if options == "Doyen retractor":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
@@ -708,6 +718,12 @@ def exp_A2Z():
         if options == "Kocher maneuver":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
+        if options == "Lugol's iodine":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Lugol.png'
+            st.image(image, width=160)
+        if options == "Masson's tumor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Masson.png'
+            st.image(image, width=160)
         if options == "Meckel's diverticulum":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Meckel.png'
             st.image(image, width=160)
@@ -775,27 +791,37 @@ def exp_A2Z():
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
+        
         if df_ep_info['History'].any():
             st.markdown(history, unsafe_allow_html=True)
             st.markdown("---")
         else:pass
 
+        if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False),unsafe_allow_html=True)
+        else: pass
+
+
         if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
             st.markdown("---")
             st.write('**External Links**')
+
         
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
         else:pass
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-        else:pass
+        #icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+        #if df_ep_info['ICD11_link'].any(): st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        #else:pass
+
 
 
 #-------------------------------------------------------------------------------------------------#
@@ -862,6 +888,9 @@ def exp_dis():
         if options == "Bassini hernia repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bassini.png'
             st.image(image, width=160)
+        if options == "Battle's incision":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
         if options == "Battle's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
             st.image(image, width=160)
@@ -924,6 +953,9 @@ def exp_dis():
             st.image(image, width=160)
         if options == "Delorme's procedure":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Delorme.png'
+            st.image(image, width=160)
+        if options == "DeMeester score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeMeester.png'
             st.image(image, width=160)
         if options == "Doyen retractor":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
@@ -1003,6 +1035,12 @@ def exp_dis():
         if options == "Kocher maneuver":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
+        if options == "Lugol's iodine":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Lugol.png'
+            st.image(image, width=160)
+        if options == "Masson's tumor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Masson.png'
+            st.image(image, width=160)
         if options == "Meckel's diverticulum":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Meckel.png'
             st.image(image, width=160)
@@ -1051,8 +1089,8 @@ def exp_dis():
         if options == "Yankauer suction tip":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Yankauer.png'
             st.image(image, width=160)
-
-
+            
+        else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else: pass
         if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
@@ -1075,23 +1113,31 @@ def exp_dis():
             st.markdown("---")
         else:pass
 
+        if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False),unsafe_allow_html=True)
+        else: pass
+
 
         if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
             st.markdown("---")
             st.write('**External Links**')
+
         
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
         else:pass
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-        else:pass
+        #icd_link = df_ep_info['ICD11_link'].to_string(index=False)
+        #if df_ep_info['ICD11_link'].any(): st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        #else:pass
+
 
 
 #-------------------------------------------------------------------------------------------------#
