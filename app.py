@@ -474,13 +474,12 @@ def exp_A2Z():
 
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
-            st.markdown("---")
         else:pass
         
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
-            st.markdown("---")
-        else:pass
+        #if df_ep_info['History'].any():
+        #    st.markdown(history, unsafe_allow_html=True)
+        #    st.markdown("---")
+        #else:pass
 
         if df_ep_info['Ref'].any():
             st.markdown("---")
