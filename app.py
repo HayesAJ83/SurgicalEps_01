@@ -465,7 +465,7 @@ def exp_A2Z():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any()
+        if df_ep_info['Description'].any():
             st.markdown("---")
         description = df_ep_info['Description'].to_string(index=False)
         if df_ep_info['Description'].any():
