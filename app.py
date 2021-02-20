@@ -465,31 +465,20 @@ def exp_A2Z():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any()
             st.markdown("---")
-
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
-
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
-        
-        #if df_ep_info['History'].any():
-        #    st.markdown(history, unsafe_allow_html=True)
-        #    st.markdown("---")
-        #else:pass
-
         if df_ep_info['Ref'].any():
             st.markdown("---")
             st.write('<u>References</u>', unsafe_allow_html=True)
             st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
-
-        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
             st.markdown("---")
             st.write('<u>External Links</u>', unsafe_allow_html=True)
-
         ref_site = df_ep_info['Ref_site'].to_string(index=False)
         if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
         else:pass
@@ -779,31 +768,21 @@ def exp_A2Z():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any():
             st.markdown("---")
-
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
-
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
-        
-        #if df_ep_info['History'].any():
-        #    st.markdown(history, unsafe_allow_html=True)
-        #    st.markdown("---")
-        #else:pass
-
         if df_ep_info['Ref'].any():
             st.markdown("---")
             st.write('<u>References</u>', unsafe_allow_html=True)
             st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
 
-        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
             st.markdown("---")
             st.write('<u>External Links</u>', unsafe_allow_html=True)
-
         ref_site = df_ep_info['Ref_site'].to_string(index=False)
         if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
         else:pass
@@ -1092,11 +1071,9 @@ def exp_dis():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any():
             st.markdown("---")
-
         description = df_ep_info['Description'].to_string(index=False)
-
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
@@ -1107,7 +1084,7 @@ def exp_dis():
             st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
 
-        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
             st.markdown("---")
             st.write('<u>External Links</u>', unsafe_allow_html=True)
 
@@ -1329,7 +1306,6 @@ def exp_journals():
                 if df_ep_info['year_str'].any():st.write('_When_:',df_ep_info['year_str'].to_string(index=False))
                 else: pass
                 if df_ep_info['Who'].any():st.write('_Who_:',df_ep_info['Who'].to_string(index=False))
-
 
                 if df_ep_info['Ref'].any():
                     st.markdown("---")
@@ -1555,7 +1531,6 @@ def exp_journals():
                     st.write('<u>References</u>', unsafe_allow_html=True)
                     st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
                 else: pass
-                
                 
                 #if df_ep_info2['Description'].any():
                 #    st.markdown(description, unsafe_allow_html=True)
@@ -2145,7 +2120,7 @@ def exp_operation():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any():
             st.markdown("---")
 
         description = df_ep_info['Description'].to_string(index=False)
@@ -2160,7 +2135,7 @@ def exp_operation():
             st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
 
-        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
             st.markdown("---")
             st.write('<u>External Links</u>', unsafe_allow_html=True)
 
@@ -2396,7 +2371,7 @@ def exp_geo():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any():
             st.markdown("---")
 
         description = df_ep_info['Description'].to_string(index=False)
@@ -2411,7 +2386,7 @@ def exp_geo():
             st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
         else: pass
 
-        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
             st.markdown("---")
             st.write('<u>External Links</u>', unsafe_allow_html=True)
 
@@ -2687,7 +2662,7 @@ def exp_geo():
             if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
             else:pass
 
-            if df_ep_info['Description'].any() or df_ep_info['History'].any():
+            if df_ep_info['Description'].any():
                 st.markdown("---")
 
             description = df_ep_info['Description'].to_string(index=False)
@@ -2702,7 +2677,7 @@ def exp_geo():
                 st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
             else: pass
 
-            if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
+            if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
                 st.markdown("---")
                 st.write('<u>External Links</u>', unsafe_allow_html=True)
 
