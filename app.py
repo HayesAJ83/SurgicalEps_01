@@ -98,7 +98,7 @@ def show_explore():
     exp = st.sidebar.radio('Explore:',
                                 ["About",
                                  "A to Z - by Specialty",
-                                 "By Disease or Symptom",
+                                 "By Disease, Sign or Symptom",
                                  "By Journal",
                                  "By Operation",
                                  "By World Maps",
@@ -106,9 +106,9 @@ def show_explore():
                                  "Exam Favourites",
                                  "Teaching Tool",
                                  ])
-    if   exp == "About":                    exp_about()             #1
-    elif exp == "A to Z - by Specialty":    exp_A2Z()               #2
-    elif exp == "By Disease or Symptom":    exp_dis()               #3
+    if   exp == "About":                        exp_about()         #1
+    elif exp == "A to Z - by Specialty":        exp_A2Z()           #2
+    elif exp == "By Disease, Sign or Symptom":  exp_dis()           #3
     elif exp == "By Journal":               exp_journals()          #4
     elif exp == "By Operation":             exp_operation()         #5
     elif exp == "By World Maps":            exp_geo()               #6         
@@ -805,7 +805,7 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader("Find eponyms related to a selected disease or symptom") 
+    st.subheader("Find eponyms related to a selected disease, sign or symptom") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -814,7 +814,7 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('1st) Choose a disease or symptom:', options=list(U),)
+    disease = st.multiselect('1st) Choose a disease, sign or symptom:', options=list(U),)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
     if disease:
@@ -1375,7 +1375,7 @@ def exp_journals():
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
                                   new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-                df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
+                df_ep_info = new_jrnls1[new_jrnls1['eponym_yr'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
                 if options == "Aaron sign":
@@ -1581,7 +1581,7 @@ def exp_journals():
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
                                   new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-                df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
+                df_ep_info = new_jrnls1[new_jrnls1['eponym_yr'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
                 if options == "Aaron sign":
@@ -1785,7 +1785,7 @@ def exp_journals():
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
                                   new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-                df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
+                df_ep_info = new_jrnls1[new_jrnls1['eponym_yr'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
                 if options == "Aaron sign":
@@ -4125,6 +4125,7 @@ def exp_teach():
     elif exp == "Operating Room":   teach_or()        #T3 #- Incisions, Instruments & Operations
 
 def teach_bed():
+    st.markdown("---")
     st.markdown('''### Clinial Features - What To Look For''')
     bed = st.radio('2nd) Bedside Teaching', ['Scars / Incisions', 'Clinical Signs',]) #'Disease Severity Scores' 
 
@@ -4137,11 +4138,7 @@ def teach_bed():
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Cuts_df = df[(df['Type_bed_scar'].str.match('Incisions'))]
         if not Cuts_df['Type_bed_scar'].isnull().all():
-            Table = ff.create_table(Cuts_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role',
-                    'WhoNamedIt','Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP',
-                    'Log2_GxP','Societies','ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal',
-                    'History','ICD11_link', 'CountryOfEponym_A1','Class','Subclass','Description',
-                    'Sex_A1','Lat_A1','Long_A1'],
+            Table = ff.create_table(Cuts_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role'],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
         options = st.selectbox('3rd) Choose from list of eponymous scars and stomas:', Cuts_df['Eponym'].unique())
@@ -4160,6 +4157,7 @@ def teach_bed():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
             st.image(image, width=160)
 
+        else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else: pass
         if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
@@ -4167,37 +4165,33 @@ def teach_bed():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any():
             st.markdown("---")
-
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
-
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
-        
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
+        if df_ep_info['Ref'].any():
             st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
         else:pass
-
-        if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
-            st.markdown("---")
-            st.write('**External Links**')
-        
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
         else:pass
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-        else:pass
+
 
 
     if bed == "Clinical Signs":
@@ -4205,10 +4199,7 @@ def teach_bed():
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         Sign_df = df[(df['Type'].str.match('Signs'))]
         if not Sign_df['Type'].isnull().all():
-            Table = ff.create_table(Sign_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',
-                    'Author_1', 'Author_2','Pubmed_results', 'Google_results','Operation','GxP', 'Log2_GxP','Societies',
-                    'ICD11','WNI_link', 'Reference', 'Wiki_link','PMID', 'Type','journal','History','ICD11_link','Year',
-                    'CountryOfEponym_A1','Class','Subclass','Description','Sex_A1','Lat_A1','Long_A1'],
+            Table = ff.create_table(Sign_df.drop(['Alphabet','CityOfEponym_A1','ISO_country_A1','Author_1_Role','WhoNamedIt',],
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
         options = st.selectbox('3rd) Eponymous clinical features of disease:', Sign_df['Eponym'].unique())
@@ -4225,6 +4216,7 @@ def teach_bed():
             st.image(image, width=160)
 
             
+        else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else: pass
         if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
@@ -4232,40 +4224,35 @@ def teach_bed():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
+        if df_ep_info['Description'].any():
             st.markdown("---")
-
         description = df_ep_info['Description'].to_string(index=False)
-        history = df_ep_info['History'].to_string(index=False)
-
         if df_ep_info['Description'].any():
             st.markdown(description, unsafe_allow_html=True)
         else:pass
-        
-        if df_ep_info['History'].any():
-            st.markdown(history, unsafe_allow_html=True)
+        if df_ep_info['Ref'].any():
             st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
         else:pass
-
-        if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
-            st.markdown("---")
-            st.write('**External Links**')
-        
-        ref_link = df_ep_info['Pubmed'].to_string(index=False)
-        if df_ep_info['Pubmed'].any(): st.markdown(f"[PubMed.gov]({ref_link})")
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
         else:pass
         wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
-        if df_ep_info['Wiki_link'].any():st.markdown(f"[Wikipedia.org]({wiki_link})")
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
         else:pass
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
-        if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
-        else:pass
-        icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-        if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
     
 def teach_classrm():
-
+    st.markdown("---")
     st.markdown('''### History of Surgery through Eponyms''')
 
     classrm = st.radio('2nd) Select by disease or type of operation:',#'Select',
@@ -4276,7 +4263,7 @@ def teach_classrm():
     if   classrm == "Disease":              classrm_dis()       #T1 #- Scars, Signs, Severity Scores
     elif classrm == 'Type of Operation':    classrm_op()        #T2 #- History
     
-def classrm_dis(): 
+def classrm_dis():
     mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -4302,11 +4289,39 @@ def classrm_dis():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
 
-        if df_ep_info['Who'].any():st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else:pass
-        if df_ep_info['Year'].any():st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else: pass
+        if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
         else:pass
-        if df_ep_info['Where'].any():st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:pass
+
+        if df_ep_info['Description'].any():
+            st.markdown("---")
+        description = df_ep_info['Description'].to_string(index=False)
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info['Ref'].any():
+            st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
+        else:pass
+        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
+        else:pass
+        wni_link = df_ep_info['WNI_link'].to_string(index=False)
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
 
 
@@ -4329,8 +4344,8 @@ def classrm_op():
     if eponymByOp:
         Op_options = st.selectbox('4th) Search list of related eponyms:', new_df2['Eponym_easy_yr'].unique(),
                                   format_func=lambda x: ' ' if x == '1' else x)
-        df_ep_info2 = new_df[new_df['Eponym_easy_yr'].str.match(Op_options)]
-        ep_yr = df_ep_info2['Year'].to_string(index=False)
+        df_ep_info = new_df[new_df['Eponym_easy_yr'].str.match(Op_options)]
+        ep_yr = df_ep_info['Year'].to_string(index=False)
 
         if Op_options == "Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
@@ -4342,37 +4357,43 @@ def classrm_op():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
             st.image(image, width=160)
 
-        if df_ep_info2['Who_B'].any():st.write('_Who_:',df_ep_info2['Who_B'].to_string(index=False))
+        else:pass
+        if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else: pass
+        if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        else:pass
+        if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info2['Year_str'].any():st.write('_When_:',df_ep_info2['Year_str'].to_string(index=False))
-        else:pass
-
-        if not df_ep_info2['Where'].any():st.write('_Where_:', df_ep_info2['Where'].to_string(index=False))
-        else:pass
-    
-        description = df_ep_info2['Description'].to_string(index=False)
-        history = df_ep_info2['History'].to_string(index=False)
-
-        if df_ep_info2['Description'].any():st.markdown(description, unsafe_allow_html=True)
-        if df_ep_info2['History'].any():
-            st.write('**_History_**:', history)
+        if df_ep_info['Description'].any():
             st.markdown("---")
-
-        ref_link = df_ep_info2['Pubmed'].to_string(index=False)
-        if df_ep_info2['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
-
-        wiki_link = df_ep_info2['Wiki_link'].to_string(index=False)
-        if df_ep_info2['Wiki_link'].any():st.markdown(f"[wikipedia.org]({wiki_link})")
-
-        wni_link = df_ep_info2['WNI_link'].to_string(index=False)
-        if df_ep_info2['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
-
-        icd_link = df_ep_info2['ICD11_link'].to_string(index=False)
-        if df_ep_info2['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-
+        description = df_ep_info['Description'].to_string(index=False)
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info['Ref'].any():
+            st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
+        else:pass
+        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
+        else:pass
+        wni_link = df_ep_info['WNI_link'].to_string(index=False)
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
+        else:pass
 
 def teach_or():
+    st.markdown("---")
     st.markdown('''### Operative Eponyms''')
     OR = st.radio('2nd) In the operating theatre:', ["Who invented that operation?",
                                                      "Airways & anaesthesia",
@@ -4387,7 +4408,7 @@ def teach_or():
             Table = ff.create_table(Op_df.drop(['Alphabet','CityOfEponym_A1'],axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
         Op_options2 = st.selectbox('3rd) Choose from list of eponymous operations:', Op_df['Eponym'].unique())
-        Op_options2_info = Op_df[Op_df['Eponym'].str.match(Op_options2)]
+        df_ep_info = Op_df[Op_df['Eponym'].str.match(Op_options2)]
 
         if Op_options2 == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
@@ -4397,11 +4418,39 @@ def teach_or():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
 
-        if Op_options2_info['Who'].any():st.write('*_Who_*:', Op_options2_info['Who_B'].to_string(index=False))
         else:pass
-        if Op_options2_info['Year'].any():st.write('*_When_*:', Op_options2_info['Year_str'].to_string(index=False))
+        if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else: pass
+        if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
         else:pass
-        if Op_options2_info['Where'].any():st.write('*_Where_*:', Op_options2_info['Where'].to_string(index=False))
+        if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:pass
+
+        if df_ep_info['Description'].any():
+            st.markdown("---")
+        description = df_ep_info['Description'].to_string(index=False)
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info['Ref'].any():
+            st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
+        else:pass
+        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
+        else:pass
+        wni_link = df_ep_info['WNI_link'].to_string(index=False)
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
     
 
@@ -4415,35 +4464,41 @@ def teach_or():
 
         Anaes_options2 = st.selectbox('3rd) Select eponyms related to airways and anaesthetics:',
                                      df4['Eponym_easy'].unique())
-        Anaes_options2_info = df2[df2['Eponym_easy'].str.match(Anaes_options2)]
+        df_ep_info = df2[df2['Eponym_easy'].str.match(Anaes_options2)]
 
-        if Anaes_options2_info['Who'].any():st.write('*_Who_*:', Anaes_options2_info['Who_B'].to_string(index=False))
-        else:pass
-        if Anaes_options2_info['Year_str'].any():st.write('_When_:',Anaes_options2_info['Year_str'].to_string(index=False))
-        if Anaes_options2_info['Where'].any():st.write('_Where_:', Anaes_options2_info['Where'].to_string(index=False))
-    
-        description = Anaes_options2_info['Description'].to_string(index=False)
-        history = Anaes_options2_info['History'].to_string(index=False)
-
-        if not Anaes_options2_info['Description'].any():st.markdown(description, unsafe_allow_html=True)
-        if not Anaes_options2_info['History'].any():
-            st.write('**_History_**:', history)
-            st.markdown("---")
-
-        ref_link = Anaes_options2_info['Pubmed'].to_string(index=False)
-        if Anaes_options2_info['Pubmed'].any():st.markdown(f"[PubMed.gov]({ref_link})")
-        else:pass
-
-        wiki_link = Anaes_options2_info['Wiki_link'].to_string(index=False)
-        if Anaes_options2_info['Wiki_link'].any():st.markdown(f"[wikipedia.org]({wiki_link})")
-        else:pass
-
-        wni_link = Anaes_options2_info['WNI_link'].to_string(index=False)
-        if Anaes_options2_info['WNI_link'].any():st.markdown(f"[whonamedit.com]({wni_link})")
-        else:pass
         
-        icd_link = Anaes_options2_info['ICD11_link'].to_string(index=False)
-        if Anaes_options2_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
+        if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else: pass
+        if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        else:pass
+        if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:pass
+
+        if df_ep_info['Description'].any():
+            st.markdown("---")
+        description = df_ep_info['Description'].to_string(index=False)
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info['Ref'].any():
+            st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
+        else:pass
+        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
+        else:pass
+        wni_link = df_ep_info['WNI_link'].to_string(index=False)
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
 
 
@@ -4458,7 +4513,42 @@ def teach_or():
                              axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
         Cuts_options2 = st.selectbox('''3rd) Choose from list of eponymous incisions and stomas:''', Cuts_df['Eponym_easy'].unique())
-        Cuts_options2_info = Cuts_df[Cuts_df['Eponym_easy'].str.match(Cuts_options2)]
+        df_ep_info = Cuts_df[Cuts_df['Eponym_easy'].str.match(Cuts_options2)]
+
+        
+        if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else: pass
+        if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
+        else:pass
+        if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
+        else:pass
+
+        if df_ep_info['Description'].any():
+            st.markdown("---")
+        description = df_ep_info['Description'].to_string(index=False)
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info['Ref'].any():
+            st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
+        else:pass
+        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
+        else:pass
+        wni_link = df_ep_info['WNI_link'].to_string(index=False)
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
+        else:pass
 
 
 
@@ -4471,7 +4561,7 @@ def teach_or():
             Table = ff.create_table(Instrum_df.drop(['Alphabet','CityOfEponym_A1'],axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
         Instrum_options2 = st.selectbox('3rd) Choose from list of surgical instruments:', Instrum_df['Eponym'].unique())
-        Instrum_options2_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
+        df_ep_info = Instrum_df[Instrum_df['Eponym'].str.match(Instrum_options2)]
 
         if Instrum_options2 == "Allis forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
@@ -4483,13 +4573,40 @@ def teach_or():
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
             st.image(image, width=300)
 
-        if Instrum_options2_info['Who'].any():st.write('*_Who_*:', Instrum_options2_info['Who_B'].to_string(index=False))
+
+        if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
+        else: pass
+        if df_ep_info['Year'].any(): st.write('*_When_*:', df_ep_info['Year_str'].to_string(index=False))
         else:pass
-        if Instrum_options2_info['Year'].any():st.write('*_When_*:', Instrum_options2_info['Year_str'].to_string(index=False))
-        else:pass
-        if Instrum_options2_info['Where'].any():st.write('*_Where_*:', Instrum_options2_info['Where'].to_string(index=False))
+        if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
+        if df_ep_info['Description'].any():
+            st.markdown("---")
+        description = df_ep_info['Description'].to_string(index=False)
+        if df_ep_info['Description'].any():
+            st.markdown(description, unsafe_allow_html=True)
+        else:pass
+        if df_ep_info['Ref'].any():
+            st.markdown("---")
+            st.write('<u>References</u>', unsafe_allow_html=True)
+            st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
+        else: pass
+        if df_ep_info['Pubmed'].any() or df_ep_info['Ref_site'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any():
+            st.markdown("---")
+            st.write('<u>External Links</u>', unsafe_allow_html=True)
+        ref_site = df_ep_info['Ref_site'].to_string(index=False)
+        if df_ep_info['Ref_site'].any(): st.markdown(f"* **Primary Paper** [webpage]({ref_site})")
+        else:pass
+        pub_link = df_ep_info['Pubmed'].to_string(index=False)
+        if df_ep_info['Pubmed'].any(): st.markdown(f"* **Pubmed** [webpage]({pub_link})")
+        else:pass
+        wiki_link = df_ep_info['Wiki_link'].to_string(index=False)
+        if df_ep_info['Wiki_link'].any(): st.markdown(f"* **Wikipedia** [webpage]({wiki_link})")
+        else:pass
+        wni_link = df_ep_info['WNI_link'].to_string(index=False)
+        if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
+        else:pass
 
 
 
