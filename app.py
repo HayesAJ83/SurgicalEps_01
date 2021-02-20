@@ -835,7 +835,7 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('1st) Choose a disease:', options=list(U),)
+    disease = st.multiselect('1st) Choose a disease or symptom:', options=list(U),)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
     if disease:
@@ -1329,9 +1329,14 @@ def exp_journals():
                 if df_ep_info['year_str'].any():st.write('_When_:',df_ep_info['year_str'].to_string(index=False))
                 else: pass
                 if df_ep_info['Who'].any():st.write('_Who_:',df_ep_info['Who'].to_string(index=False))
+
+
+                if df_ep_info['Ref'].any():
+                    st.markdown("---")
+                    st.write('<u>References</u>', unsafe_allow_html=True)
+                    st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
                 else: pass
-                if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False))
-                else: pass
+
                 
                 #if df_ep_info2['Description'].any():
                 #    st.markdown(description, unsafe_allow_html=True)
@@ -1538,21 +1543,25 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
                     st.image(image, width=160)
 
-
                 if df_ep_info['journal_name'].any(): st.write(journal, unsafe_allow_html=True)
                 else: pass
                 if df_ep_info['year_str'].any():st.write('_When_:',df_ep_info['year_str'].to_string(index=False))
                 else: pass
                 if df_ep_info['Who'].any():st.write('_Who_:',df_ep_info['Who'].to_string(index=False))
                 else: pass
-                if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False))
+
+                if df_ep_info['Ref'].any():
+                    st.markdown("---")
+                    st.write('<u>References</u>', unsafe_allow_html=True)
+                    st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
                 else: pass
+                
                 
                 #if df_ep_info2['Description'].any():
                 #    st.markdown(description, unsafe_allow_html=True)
                 #if df_ep_info2['History'].any():
                 #    st.write('**_History_**:', history)
-                #st.markdown("---")
+
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
@@ -1736,14 +1745,17 @@ def exp_journals():
                 else: pass
                 if df_ep_info['Who'].any():st.write('_Who_:',df_ep_info['Who'].to_string(index=False))
                 else: pass
-                if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False))
+
+                if df_ep_info['Ref'].any():
+                    st.markdown("---")
+                    st.write('<u>References</u>', unsafe_allow_html=True)
+                    st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
                 else: pass
-                
+
                 #if df_ep_info2['Description'].any():
                 #    st.markdown(description, unsafe_allow_html=True)
                 #if df_ep_info2['History'].any():
                 #    st.write('**_History_**:', history)
-                #st.markdown("---")
                 
 
         if types == 'Selected':
@@ -1930,21 +1942,22 @@ def exp_journals():
                     image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
                     st.image(image, width=160)
 
-
                 if df_ep_info['journal_name'].any(): st.write(journal, unsafe_allow_html=True)
                 else: pass
                 if df_ep_info['year_str'].any():st.write('_When_:',df_ep_info['year_str'].to_string(index=False))
                 else: pass
                 if df_ep_info['Who'].any():st.write('_Who_:',df_ep_info['Who'].to_string(index=False))
                 else: pass
-                if df_ep_info['Ref'].any():st.write('_Ref_:',df_ep_info['Ref'].to_string(index=False))
+                if df_ep_info['Ref'].any():
+                    st.markdown("---")
+                    st.write('<u>References</u>', unsafe_allow_html=True)
+                    st.write(df_ep_info['Ref'].to_string(index=False), unsafe_allow_html=True)
                 else: pass
                 
                 #if df_ep_info2['Description'].any():
                 #    st.markdown(description, unsafe_allow_html=True)
                 #if df_ep_info2['History'].any():
                 #    st.write('**_History_**:', history)
-                #st.markdown("---")
 
 
 #-------------------------------------------------------------------------------------------------#
