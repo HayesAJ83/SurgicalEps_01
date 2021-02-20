@@ -4214,8 +4214,10 @@ def teach_bed():
         if options == "Murphy's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Murphy.png'
             st.image(image, width=160)
+        if options == "Skipworth's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Skip.png'
+            st.image(image, width=160)
 
-            
         else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
         else: pass
@@ -4276,18 +4278,20 @@ def classrm_dis():
     disease = st.multiselect('3rd) Choose a disease:', options=list(U),)
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Year'],ascending=True)
+
     if disease:
         new_geo1 = new_dis2.loc[new_dis2['Disease'].str.contains('|'.join(disease)) == True]
         new_geo2 = new_geo1.sort_values(by=['Year'],ascending=True)
-        Dis_options = st.selectbox('4th) Each related eponym:',
+        options = st.selectbox('4th) Each related eponym:',
                                    new_dis2['Eponym_easy_yr'].unique(),
                                format_func=lambda x: ' ' if x == '1' else x)
 
-        df_ep_info = new_geo2[new_geo2['Eponym_easy_yr'].str.match(Dis_options)]
+        df_ep_info = new_geo2[new_geo2['Eponym_easy_yr'].str.match(options)]
 
-        if Dis_options == "Hartmann's operation, 1923":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+        if options == "1913 - Aaron sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aaron.png'
             st.image(image, width=160)
+
 
         else:pass
         if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
@@ -4407,14 +4411,14 @@ def teach_or():
         if not Op_df['Type'].isnull().all():
             Table = ff.create_table(Op_df.drop(['Alphabet','CityOfEponym_A1'],axis=1).sort_values(by=['Eponym'],
                                                  ascending=True).reindex(columns=['Eponym']).reset_index(drop=True))
-        Op_options2 = st.selectbox('3rd) Choose from list of eponymous operations:', Op_df['Eponym'].unique())
-        df_ep_info = Op_df[Op_df['Eponym'].str.match(Op_options2)]
+        options = st.selectbox('3rd) Choose from list of eponymous operations:', Op_df['Eponym'].unique())
+        df_ep_info = Op_df[Op_df['Eponym'].str.match(options)]
 
-        if Op_options2 == "Hartmann's operation":
+        if options == "Hartmann's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
             st.image(image, width=160)
 
-        if Op_options2 == "Ivor Lewis oesophagectomy":
+        if options == "Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
 
@@ -4503,7 +4507,6 @@ def teach_or():
 
 
 
-
     if OR == "Who invented that incision or technique?":
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -4549,8 +4552,6 @@ def teach_or():
         wni_link = df_ep_info['WNI_link'].to_string(index=False)
         if df_ep_info['WNI_link'].any(): st.markdown(f"* **Whonamedit** [webpage]({wni_link})")
         else:pass
-
-
 
 
     if OR == "Who's instrument?":
