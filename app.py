@@ -1151,11 +1151,11 @@ def exp_journals():
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                               format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = time_df.loc[time_df['journal'].str.contains('|'.join(jrnls)) == True]
-            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym_yr'],ascending=True)
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-                df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
+                                  new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                df_ep_info = new_jrnls1[new_jrnls1['eponym_yr'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
                 if options == "Aaron sign":
@@ -1366,14 +1366,15 @@ def exp_journals():
             T1 = np.array(list(S1)).astype(object)
             U1 = np.sort(T1)
             st.markdown("---")
+            
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                                    format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
-            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym_yr'],ascending=True)
 
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                                  new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
@@ -1576,10 +1577,10 @@ def exp_journals():
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                               format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = time_df.loc[time_df['journal'].str.contains('|'.join(jrnls)) == True]
-            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym_yr'],ascending=True)
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                                  new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
@@ -1779,11 +1780,11 @@ def exp_journals():
             jrnls = st.multiselect('4th) Select journals:',options=list(U1),
                               format_func=lambda x: ' ' if x == '1' else x)
             new_jrnls1 = new_jrnls2T.loc[new_jrnls2T['journal'].str.contains('|'.join(jrnls)) == True]
-            new_jrnls2 = new_jrnls1.sort_values(by=['eponym'],ascending=True)
+            new_jrnls2 = new_jrnls1.sort_values(by=['eponym_yr'],ascending=True)
 
             if jrnls:
                 options = st.selectbox('5th) Eponyms in selected journals:',
-                                  new_jrnls2['eponym'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+                                  new_jrnls2['eponym_yr'].unique(), format_func=lambda x: ' ' if x == '1' else x)
                 df_ep_info = new_jrnls1[new_jrnls1['eponym'].str.match(options)]
                 journal = df_ep_info['journal_name'].to_string(index=False)
 
