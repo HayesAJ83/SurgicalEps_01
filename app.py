@@ -228,9 +228,14 @@ def exp_A2Z():
             col1, col2, col3, col4 = st.beta_columns(4)
             col1.image(image_human, width=160);col2.image(image_forceps, width=386)
             col3.write(''); col4.write('')
+
         if options == "Allison lung retractor":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
-            st.image(image, width=160)
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
+            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison_Retractor.png'
+            col1, col2, col3, col4 = st.beta_columns(4)
+            col1.image(image_human, width=160); col2.image(image_retractor, width=200);
+            col3.write(''); col4.write('')
+
         if options == "Allison repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
             st.image(image, width=160)
