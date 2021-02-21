@@ -225,15 +225,15 @@ def exp_A2Z():
         if options == "Allis forceps":
             image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis.png'
             image_forceps = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
-            col1, col2, col3, col4 = st.beta_columns(4)
-            col1.image(image_human, width=160);col2.image(image_forceps, width=386)
+            col1, col2, col3, col4, col5 = st.beta_columns(5)
+            col1.image(image_human, width=121);col2.image(image_forceps, width=291)
             col3.write(''); col4.write('')
 
         if options == "Allison lung retractor":
             image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
             image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison_Retractor.png'
-            col1, col2, col3, col4 = st.beta_columns(4)
-            col1.image(image_human, width=160); col2.image(image_retractor, width=162);
+            col1, col2, col3, col4, col5 = st.beta_columns(5)
+            col1.image(image_human, width=140); col2.image(image_retractor, width=141);
             col3.write(''); col4.write('')
 
         if options == "Allison repair":
