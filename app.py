@@ -98,7 +98,7 @@ def show_explore():
     exp = st.sidebar.radio('Explore:',
                                 ["About",
                                  "A to Z - by Specialty",
-                                 "By Disease, Sign or Symptom",
+                                 "By Disease or Symptom",
                                  "By Journal",
                                  "By Operation",
                                  "By World Maps",
@@ -108,7 +108,7 @@ def show_explore():
                                  ])
     if   exp == "About":                        exp_about()         #1
     elif exp == "A to Z - by Specialty":        exp_A2Z()           #2
-    elif exp == "By Disease, Sign or Symptom":  exp_dis()           #3
+    elif exp == "By Disease or Symptom":  exp_dis()           #3
     elif exp == "By Journal":               exp_journals()          #4
     elif exp == "By Operation":             exp_operation()         #5
     elif exp == "By World Maps":            exp_geo()               #6         
