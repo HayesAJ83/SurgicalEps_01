@@ -137,9 +137,9 @@ def exp_about():
            
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
                    <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease:</span>
-                   <span style="font-size:12pt;color:black;"> Here you can search eponyms related
-                   to a disease.</span>''',unsafe_allow_html=True)
+    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease or Symptom:</span>
+                   <span style="font-size:12pt;color:black;"> Here you can find eponyms related
+                   to conditions of interest.</span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Journal:</span>
                    <span style="font-size:12pt;color:black;"> In this section, journals can be
                    selected to find which eponyms can be traced to their of publication archives.
