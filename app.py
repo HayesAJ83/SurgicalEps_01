@@ -385,6 +385,9 @@ def exp_A2Z():
         if options == "Hasson technique":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hasson.png'
             st.image(image, width=160)
+        if options == "Spiral valves of Heister":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Heister.png'
+            st.image(image, width=160)
         if options == "Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
@@ -462,6 +465,10 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Ligament of Treitz":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
+            st.image(image, width=160)
+
+        if options == "Valsalva maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Valsalva.png'
             st.image(image, width=160)
         if options == "Whipple's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Whipple.png'
@@ -696,6 +703,9 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Hasson technique":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hasson.png'
+            st.image(image, width=160)
+        if options == "Spiral valves of Heister":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Heister.png'
             st.image(image, width=160)
         if options == "Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
@@ -4437,6 +4447,9 @@ def classrm_dis():
         if options == "1970 - Hasson technique":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hasson.png'
             st.image(image, width=160)
+        if options == "1721 - Spiral valves of Heister":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Heister.png'
+            st.image(image, width=160)
         if options == "1946 - Ivor Lewis oesophagectomy":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
             st.image(image, width=160)
@@ -4513,6 +4526,9 @@ def classrm_dis():
             st.image(image, width=160)
         if options == "1853 - Ligament of Treitz":
             image = 'https://raw.gsithubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
+            st.image(image, width=160)
+        if options == "1704 - Valsalva maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Valsalva.png'
             st.image(image, width=160)
         if options == "1934 - Whipple's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Whipple.png'
