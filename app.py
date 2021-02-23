@@ -396,6 +396,9 @@ def exp_A2Z():
         if options == "Joll's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
             st.image(image, width=160)
+        if options == "Kasai procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kasai.png'
+            st.image(image, width=160)
         if options == "Killian's triangle":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Killian.png'
             st.image(image, width=160)
@@ -438,6 +441,9 @@ def exp_A2Z():
         if options == "Mirizzi's syndrome":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Pablo_Mirizzi.png'
             st.image(image, width=160)
+        if options == "Arc of Riolan":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Jean_Riolan.png'
+            st.image(image, width=160)
         if options == "Rouviere's sulcus":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Rouviere.png'
             st.image(image, width=160)
@@ -449,6 +455,10 @@ def exp_A2Z():
             st.image(image, width=160)
         if options == "Takayasu's arteritis":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Takayasu.jpg'
+            st.image(image, width=160)
+
+        if options == "Tapia syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Tapia.spng'
             st.image(image, width=160)
         if options == "Ligament of Treitz":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
@@ -4471,6 +4481,12 @@ def classrm_dis():
         if options == "1579 - Nodules of Aranzio":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aranzi.png'
             st.image(image, width=160)
+        if options == "1951 - Kasai procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kasai.png'
+            st.image(image, width=160)
+        if options == "1649 - Arc of Riolan":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Jean_Riolan.png'
+            st.image(image, width=160)
         if options == "2011 - Skipworth's sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Skip.png'
             st.image(image, width=160)
@@ -4492,8 +4508,11 @@ def classrm_dis():
         if options == "Takayasu's arteritis":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Takayasu.jpg'
             st.image(image, width=160)
+        if options == "1904 - Tapia syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Tapia.png'
+            st.image(image, width=160)
         if options == "1853 - Ligament of Treitz":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
+            image = 'https://raw.gsithubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
             st.image(image, width=160)
         if options == "1934 - Whipple's operation":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Whipple.png'
