@@ -367,6 +367,9 @@ def exp_A2Z():
         if options == "Graham patch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graham.png'
             st.image(image, width=160)
+        if options == "Ghillebert probability estimate":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ghillebert.png'
+            st.image(image, width=160)
         if options == "Graves disease":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graves.png'
             st.image(image, width=160)
@@ -4425,6 +4428,9 @@ def classrm_dis():
             st.image(image, width=160)
         if options == "1959 - Frantz tumour":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Frantz.png'
+            st.image(image, width=160)
+        if options == "1990 - Ghillebert probability estimate":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ghillebert.png'
             st.image(image, width=160)
         if options == "1937 - Graham patch":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graham.png'
