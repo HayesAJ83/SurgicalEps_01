@@ -106,15 +106,15 @@ def show_explore():
                                  "Exam Favourites",
                                  "Teaching Tool",
                                  ])
-    if   exp == "About":                        exp_about()         #1
-    elif exp == "A to Z - by Specialty":        exp_A2Z()           #2
-    elif exp == "By Disease or Symptom":  exp_dis()           #3
-    elif exp == "By Journal":               exp_journals()          #4
-    elif exp == "By Operation":             exp_operation()         #5
-    elif exp == "By World Maps":            exp_geo()               #6         
-    elif exp == "Exam Favourites":          exp_exam()              #7
-    elif exp == "Categories (eg Signs)":    exp_cats()              #8
-    elif exp == "Teaching Tool":            exp_teach()             #9
+    if   exp == "About":                    exp_about()         #1
+    elif exp == "A to Z - by Specialty":    exp_A2Z()           #2
+    elif exp == "By Disease or Symptom":    exp_dis()           #3
+    elif exp == "By Journal":               exp_journals()      #4
+    elif exp == "By Operation":             exp_operation()     #5
+    elif exp == "By World Maps":            exp_geo()           #6         
+    elif exp == "Exam Favourites":          exp_exam()          #7
+    elif exp == "Categories (eg Signs)":    exp_cats()          #8
+    elif exp == "Teaching Tool":            exp_teach()         #9
     
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -136,7 +136,8 @@ def exp_about():
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
-                   <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',unsafe_allow_html=True)
+                   <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',
+                   unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease or Symptom:</span>
                    <span style="font-size:12pt;color:black;"> Here you can find eponyms related
                    to conditions of interest.</span>''',unsafe_allow_html=True)
@@ -156,15 +157,15 @@ def exp_about():
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Categories:</span>
                    <span style="font-size:12pt;color:black;">Choose from categories: Anatomy,
                    incisions, surgical instruments, operations, pathology, physiology, patient
-                   positioning, eponymous fluids, clinical scores or signs, statistical tests, surgical maneuvers &
-                   techniques, syndromes, doctrines & rules or research trials.
+                   positioning, eponymous fluids, clinical scores or signs, statistical tests, surgical
+                   maneuvers & techniques, syndromes, doctrines & rules or research trials.
                    </span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:
                    </span><span style="font-size:12pt;color:black;"> Select from those often found
                    in exams. Explore by speciality.</span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
-                   <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or Operating Room modes.
-                   </span>''',unsafe_allow_html=True)
+                   <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or
+                   Operating Room modes.</span>''',unsafe_allow_html=True)
 
     st.markdown("---")
     st.subheader('About this App')
@@ -172,8 +173,8 @@ def exp_about():
     st.write('''There are a hundreds of eponyms used in daily surgical practice. We hope that
                 you will find this App helpful in understanding what these terms mean, their
                 history, and how they relate to one another. We include direct links to primary
-                papers, as well as useful webpages in Wikipedia, Whonamedit?, ICD-11 and
-                TeachMeSurgery.''')
+                papers, as well as useful webpages in _Wikipedia_, _Whonamedit?_ and
+                _TeachMeSurgery_.''')
     st.markdown("---")
     st.subheader('Audience')
     st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
@@ -208,10 +209,10 @@ def exp_A2Z():
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
 
-        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                         'Year_str':'','Sex_A1':'1'}
+        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'',
+                     'Disease':'','Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'',
+                     'RegionOfEponym_A1':'','Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1',
+                     'Year':'','Year_str':'','Sex_A1':'1'}
         new_2T = new_1T.append(blank_row, ignore_index=True)
         new_3T = new_2T.sort_values(by=['Eponym'],ascending=True)
         options = st.selectbox('Search SurgicalEps database:',
@@ -3911,13 +3912,7 @@ def exp_exam():
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
     exams = st.multiselect('1st) Choose specialties of interest:',options=list(U),
-                           format_func=lambda x: ' ' if x == '1' else x,
-                           #default=['Academic','Anaesthetics','Bariatrics','Breast','Cardiothoracics',
-                           #         'Colorectal','Emergency Surgery','Endocrine','ENT','General Surgery','Gynaecology',
-                           #         'HPB','Hernia','Maxillofacial','Neurosurgery','Obstetrics','Oesophagogastric','Ophthalmology',
-                           #         'Orthopaedics','Paediatrics','Plastics','Transplant',
-                           #         'Trauma','Urology','Vascular']
-                           )
+                           format_func=lambda x: ' ' if x == '1' else x,)
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
@@ -3935,9 +3930,14 @@ def exp_exam():
             col1, col2, col3, col4 = st.beta_columns(4)
             col1.image(image_human, width=160);col2.image(image_forceps, width=386)
             col3.write(''); col4.write('')
+
         if options == "Allison lung retractor":
-            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
-            st.image(image, width=160)
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
+            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison_Retractor.png'
+            col1, col2, col3, col4, col5 = st.beta_columns(5)
+            col1.image(image_human, width=140); col2.image(image_retractor, width=141);
+            col3.write(''); col4.write('')
+    
         if options == "Allison repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
             st.image(image, width=160)
@@ -4296,6 +4296,215 @@ def classrm_dis():
         if options == "1913 - Aaron sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aaron.png'
             st.image(image, width=160)
+        if options == "1951 - Allison repair":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
+            st.image(image, width=160)
+        if options == "1952 - Altemeier procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Altemeier.png'
+            st.image(image, width=160)
+        if options == "2002 - Ambrosetti classification":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ambrosetti.png'
+            st.image(image, width=160)
+        if options == "1735 - Amyand hernia":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Amyand.png'
+            st.image(image, width=160)
+        if options == "1950 - Barrett's oesophagus":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Barrett.png'
+            st.image(image, width=160)
+        if options == "1887 - Bassini hernia repair":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bassini.png'
+            st.image(image, width=160)
+        if options == "1895 - Battle's incision":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
+        if options == "1890 - Battle's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Battle.png'
+            st.image(image, width=160)
+        if options == "1972 - Beger procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Beger.png'
+            st.image(image, width=160)
+        if options == "1967 - Belsey Mark IV operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Belsey.png'
+            st.image(image, width=160)
+        if options == "1901 - Berry's ligament":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Berry.png'
+            st.image(image, width=160)
+        if options == "1881 - Billroth I procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "1885 - Billroth II procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Billroth.png'
+            st.image(image, width=160)
+        if options == "1848 - Bochdalek hernia":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bochdalek.png'
+            st.image(image, width=160)
+        if options == "1724 - Boerhaave syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Boerhaave.png'
+            st.image(image, width=160)
+        if options == "1896 - Bouveret syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Bouveret.png'
+            st.image(image, width=160)
+        if options == "1851 - Brown-Séquard syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brown-Sequard.png'
+            st.image(image, width=160)
+        if options == "1952 - Brooke ileostomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Brooke.png'
+            st.image(image, width=160)
+        if options == "1908 - Buerger disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Buerger.png'
+            st.image(image, width=160)
+        if options == "1891 - Calot's triangle":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Calot2.png'
+            st.image(image, width=500)
+        if options == "1911 - Interstitial cells of Cajal":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cajal.png'
+            st.image(image, width=160)
+        if options == "1952 - Crigler-Najjar syndrome":
+            image_human_C = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crigler.png'
+            image_human_N = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Najjar.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human_C, width=160);
+            col2.image(image_human_N, width=170); col3.write('')
+        if options == "1932 - Crohn's disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Crohn.png'
+            st.image(image, width=160)
+        if options == "1932 - Cushing's ulcer":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Cushing.png'
+            st.image(image, width=160)
+        if options == "1960 - DeBakey forceps":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeBakey_Forceps.png'
+            st.image(image, width=300)
+        if options == "1731 - De Garengeot's hernia":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_De_Garengeot.png'
+            st.image(image, width=160)
+        if options == "1900 - Delorme's procedure":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Delorme.png'
+            st.image(image, width=160)
+        if options == "1974 - DeMeester score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_DeMeester.png'
+            st.image(image, width=160)
+        if options == "1908 - Doyen retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Doyen.png'
+            st.image(image, width=160)
+        if options == "1561 - Fallopian tube":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Falloppio.png'
+            st.image(image, width=160)
+        if options == "2012 - Fanelli catheter":
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli.png'
+            image_catheter = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fanelli_Catheter.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human, width=160); col2.image(image_catheter, width=214); col3.write('')
+        if options == "1936 - Finochietto retractor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Finochietto.png'
+            st.image(image, width=160)
+        if options == "1934 - Fisher's exact test":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Fisher.png'
+            st.image(image, width=160)
+        if options == "1937 - Foley catheter":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Foley.png'
+            st.image(image, width=160)
+        if options == "1959 - Frantz tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Frantz.png'
+            st.image(image, width=160)
+        if options == "1937 - Graham patch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graham.png'
+            st.image(image, width=160)
+        if options == "1835 - Graves disease":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Graves.png'
+            st.image(image, width=160)
+        if options == "1966 - Gleason score":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Gleason.png'
+            st.image(image, width=160)
+        if options == "1923 - Hartmann's operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if options == "1891 - Hartmann's pouch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Henri_Hartmann.png'
+            st.image(image, width=160)
+        if options == "1912 - Hashimoto's thyroiditis":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hashimoto.png'
+            st.image(image, width=160)
+        if options == "1970 - Hasson technique":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Hasson.png'
+            st.image(image, width=160)
+        if options == "1946 - Ivor Lewis oesophagectomy":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Ivor_Lewis.png'
+            st.image(image, width=160)
+        if options == "1935 - Joll's retractor":
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
+            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Jolls_Retractor.png'
+            col1, col2, col3 = st.beta_columns(3)
+            col1.image(image_human, width=160);col2.image(image_retractor, width=220);col3.write('')
+        if options == "1938 - Joll's triangle":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Joll.png'
+            st.image(image, width=160)
+        if options == "1907 - Killian's triangle":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Killian.png'
+            st.image(image, width=160)
+        if options == "1965 - Klatskin's tumour":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Klatskin.png'
+            st.image(image, width=160)
+        if options == "1892 - Kocher's incision of the abdomen":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+            st.image(image, width=160)
+        if options == "1892 - Kocher maneuver":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Kocher.png'
+            st.image(image, width=160)
+        if options == "1829 - Lugol's iodine":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Lugol.png'
+            st.image(image, width=160)
+        if options == "1923 - Masson's tumor":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Masson.png'
+            st.image(image, width=160)
+        if options == "1809 - Meckel's diverticulum":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Meckel.png'
+            st.image(image, width=160)
+        if options == "1958 - Merendino jejunal interposition":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Merendino.png'
+            st.image(image, width=160)
+        if options == "1900 - Morrison's pouch":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Morrison.png'
+            st.image(image, width=160)
+        if options == "1912 - Murphy's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Murphy.png'
+            st.image(image, width=160)
+        if options == "1579 - Nodules of Aranzio":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aranzi.png'
+            st.image(image, width=160)
+        if options == "2011 - Skipworth's sign":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Skip.png'
+            st.image(image, width=160)
+        if options == "1887 - Sphincter of Oddi":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Oddi.png'
+            st.image(image, width=160)
+        if options == "1948 - Mirizzi's syndrome":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Pablo_Mirizzi.png'
+            st.image(image, width=160)
+        if options == "1924 - Rouviere's sulcus":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Rouviere.png'
+            st.image(image, width=160)
+        if options == "1944 - Shouldice hernia repair":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Shouldice.png'
+            st.image(image, width=160)
+        if options == "1995 - Strasberg's critical view of safety":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Strasberg.png'
+            st.image(image, width=160)
+        if options == "Takayasu's arteritis":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Takayasu.jpg'
+            st.image(image, width=160)
+        if options == "1853 - Ligament of Treitz":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Treitz.png'
+            st.image(image, width=160)
+        if options == "1934 - Whipple's operation":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Whipple.png'
+            st.image(image, width=160)
+        if options == "1715 - Foramen of Winslow":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
+            st.image(image, width=160)
+        if options == "1907 - Yankauer suction tip":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Yankauer.png'
+            st.image(image, width=160)
+
 
 
         else:pass
@@ -4572,6 +4781,12 @@ def teach_or():
         if Instrum_options2 == "Allis forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allis_Forceps.png'
             st.image(image, width=300)
+        if Instrum_options2 == "Allison lung retractor":
+            image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
+            image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison_Retractor.png'
+            col1, col2, col3, col4, col5 = st.beta_columns(5)
+            col1.image(image_human, width=140); col2.image(image_retractor, width=141);
+            col3.write(''); col4.write('')
         if Instrum_options2 == "Babcock forceps":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps.png'
             st.image(image, width=400)
