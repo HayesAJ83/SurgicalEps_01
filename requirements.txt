@@ -4,3 +4,4 @@ numpy
 matplotlib
 plotly
 requests
+python==3.9.0
