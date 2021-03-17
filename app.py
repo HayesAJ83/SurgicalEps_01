@@ -24,8 +24,8 @@ import plotly.graph_objects as go
 import plotly.figure_factory as ff
 import io
 import requests
+import time
 
-#@st.cache(suppress_st_warning=True)
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -38,10 +38,10 @@ def main():
     st.sidebar.write('''_Click **X** in top right to hide sidebar_''')
     st.sidebar.subheader('Navigator')
     page = st.sidebar.radio('Go to:',
-                            ["SurgicalEps App",
+                            ["Surgical Names App",
                              "Design Team",])
 
-    if page ==   "SurgicalEps App":   show_explore()
+    if page ==   "Surgical Names App":   show_explore()
     elif page == "Design Team":        show_the_app_team()
 
 #-------------------------------------------------------------------------------------------------#
@@ -57,19 +57,18 @@ def show_the_app_team():
                 motivated to develop software to improve surgical **data systems**,
                 **research** and **education**.''')
     st.markdown('''To meet these aims, a company called **Excision** was founded in 2020, and
-                **SurgicalEps** Web App was the first major project.''',unsafe_allow_html=True)
+                **Surgical Names** web app was the first major project.''',unsafe_allow_html=True)
 
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Contact details**''')
-    st.sidebar.info('''Get in touch with any comments, queries or suggestions about this
-                    App:surgicaleponyms@gmail.com''')
+    st.sidebar.info('''Get in touch with any comments, queries or suggestions: surgicalnames@gmail.com''')
     
     st.subheader("Project Lead & App Developer")
     about1 = st.checkbox("Alastair Hayes")
     if about1:
         st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests
                     in Upper GI, Endocrine and Emergency General Surgery. His qualifications
-                    include FRCSEd (Gen Surg) & PhD.''')
+                    include FRCSEd(Gen) & PhD.''')
         st.markdown('''He is working to develop data science and software solutions for clinical
                     data systems, research and education in surgical practice.''')
 
@@ -94,7 +93,7 @@ def show_the_app_team():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def show_explore():
-    st.sidebar.subheader('SurgicalEps App')
+    st.sidebar.subheader('Surgical Names App')
     exp = st.sidebar.radio('Explore:',
                                 ["About",
                                  "A to Z - by Specialty",
@@ -102,7 +101,7 @@ def show_explore():
                                  "By Journal",
                                  "By Operation",
                                  "By World Maps",
-                                 "Categories (eg Signs)",
+                                 "Categories",
                                  "Exam Favourites",
                                  "Teaching Tool",
                                  ])
@@ -113,7 +112,7 @@ def show_explore():
     elif exp == "By Operation":             exp_operation()     #5
     elif exp == "By World Maps":            exp_geo()           #6         
     elif exp == "Exam Favourites":          exp_exam()          #7
-    elif exp == "Categories (eg Signs)":    exp_cats()          #8
+    elif exp == "Categories":               exp_cats()          #8
     elif exp == "Teaching Tool":            exp_teach()         #9
     
 #-------------------------------------------------------------------------------------------------#
@@ -128,7 +127,7 @@ def exp_about():
            </style>''',unsafe_allow_html=True)
     st.write('''_To show sidebar, click **>** in top left_''')
     #st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
-    st.markdown('''# SurgicalEps''')
+    st.markdown('''# SURGICAL NAMES''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     st.subheader('Using this App')
@@ -152,17 +151,17 @@ def exp_about():
                    procedure.</span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By World Maps:</span>
                    <span style="font-size:12pt;color:black;"> Choose a region of the world to find
-                   eponyms. Select a continent, country or famous city.</span>''',
+                   local eponyms. Select a continent, country or city.</span>''',
                    unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Categories:</span>
-                   <span style="font-size:12pt;color:black;">Choose from categories: Anatomy,
+                   <span style="font-size:12pt;color:black;">Choose from anatomy,
                    incisions, surgical instruments, operations, pathology, physiology, patient
                    positioning, eponymous fluids, clinical scores or signs, statistical tests, surgical
                    maneuvers & techniques, syndromes, doctrines & rules or research trials.
                    </span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:
                    </span><span style="font-size:12pt;color:black;"> Select from those often found
-                   in exams. Explore by speciality.</span>''',unsafe_allow_html=True)
+                   in exams & filter by speciality.</span>''',unsafe_allow_html=True)
     st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
                    <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or
                    Operating Room modes.</span>''',unsafe_allow_html=True)
@@ -184,7 +183,7 @@ def exp_about():
     st.write('''Educational purposes.''')
     st.markdown("---")
     st.subheader('Copyright')
-    st.write('''©2021 Excision Limited. All rights reseved.''')
+    st.write('''©2021 Excision Ltd. All rights reseved.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched April 2021")
@@ -195,15 +194,23 @@ def exp_about():
 # ::: Handles the                                                                                 #                                                                                              #
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
+
 def exp_A2Z():
+
     st.write('''_To show sidebar, click **>** in top left_''')
     st.markdown('''### Search the full database''')
     types = st.radio('1st) Optional - choose specialties:',["All","Selected",])
 
     if types == "All":
+        @st.cache(suppress_st_warning=True)
+        def load_surgepsdata(url):
+            time.sleep(1)
+            return pd.read_csv(url)
+
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
-        df2 = df1.sort_values(by=['Eponym'],ascending=True)
+        DF1 = load_surgepsdata(url)
+        df2 = DF1.sort_values(by=['Eponym'],ascending=True)
 
         min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 100, 2050, [150, 2021])
         st.markdown("---")
@@ -220,6 +227,12 @@ def exp_A2Z():
         
         df_ep_info = new_3T[new_3T['Eponym_easy'].str.match(options)]
 
+
+#        @st.cache(suppress_st_warning=True)
+#        def load_pic(url):
+#            time.sleep(1)
+#            return image
+
         if options == "Aaron sign":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Aaron.png'
             st.image(image, width=160)
@@ -233,9 +246,9 @@ def exp_A2Z():
         if options == "Allison lung retractor":
             image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
             image_retractor = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison_Retractor.png'
-            col1, col2, col3, col4, col5 = st.beta_columns(5)
-            col1.image(image_human, width=140); col2.image(image_retractor, width=141);
-            col3.write(''); col4.write('')
+            col1, col2, col3, col4,col5, col6, col7 = st.beta_columns(7)
+            col1.image(image_human, width=140); col3.image(image_retractor, width=141);
+            col2.write(''); col4.write('')
 
         if options == "Allison repair":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Allison.png'
@@ -4891,6 +4904,7 @@ def teach_spec():
 
 #-------------------------------------------------------------------------------------------#
 
+main()
 
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+#    main()
