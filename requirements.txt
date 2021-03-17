@@ -4,4 +4,4 @@ numpy
 matplotlib
 plotly
 requests
-python
+python-3.6.12
