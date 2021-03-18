@@ -61,7 +61,7 @@ def show_the_app_team():
 
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Contact details**''')
-    st.sidebar.info('''Get in touch with any comments, queries or suggestions: surgicalnames@gmail.com''')
+    st.sidebar.info('''Comments, queries and suggestions very welcome: surgicalnames@gmail.com''')
     
     st.subheader("Project Lead & App Developer")
     about1 = st.checkbox("Alastair Hayes")
@@ -77,14 +77,22 @@ def show_the_app_team():
     if about2:
         st.markdown('''Anne is Specialty Training Registrar in Edinburgh with interests in Upper
                     GI, Hernias and Emergency General Surgery. She is passionate about surgical
-                    teaching and outside work Anne is a competitive triathlete.''')   
+                    teaching and outside work Anne is a competitive athlete.''')   
 
+    st.markdown("---")
     st.subheader("Acknowledgements")
-    st.markdown('''[Google](https://www.google.com/search/howsearchworks/?fg=1),
+    about3 = st.checkbox('''Websites''')
+    if about3:
+        st.markdown('''[Google](https://www.google.com/search/howsearchworks/?fg=1),
                    [Mapbox](https://www.mapbox.com),
                    [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/),
                    [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
                    [Streamlit](https://www.streamlit.io)''')
+
+    about4 = st.checkbox('''People''')
+    if about4:
+        st.markdown('''Gillian - Educational Lead Theatres, Royal Infirmary of Edinburgh [Instrument Pics]''') 
+        st.markdown('''Andrew De Beaux - Consultant General Surgeon, Royal Infirmary of Edinburgh [Hernia Info]''') 
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -183,7 +191,7 @@ def exp_about():
     st.write('''Educational purposes.''')
     st.markdown("---")
     st.subheader('Copyright')
-    st.write('''©2021 Excision Ltd. All rights reseved.''')
+    st.write('''© 2021 Excision Ltd. All Rights Reserved.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched April 2021")
