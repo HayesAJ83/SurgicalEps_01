@@ -35,6 +35,8 @@ import time
 #-------------------------------------------------------------------------------------------------#
 
 def main():
+    st.markdown('''<title>A website of eponyms used by surgeons</title>''',unsafe_allow_html=True)
+
     st.sidebar.write('''_Click **X** in top right to hide sidebar_''')
     st.sidebar.subheader('Navigator')
     page = st.sidebar.radio('Go to:',
