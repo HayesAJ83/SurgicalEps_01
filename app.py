@@ -135,7 +135,7 @@ def exp_about():
            </style>''',unsafe_allow_html=True)
     st.write('''_To show sidebar, click **>** in top left_''')
     #st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
-    st.markdown('''# Surgical Names App''')
+    st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     st.subheader('Using this App')
