@@ -36,7 +36,7 @@ import streamlit.components.v1 as components
 
 def main():
     #components.html("""<title>Eponyms website</title>""")
-    components.iframe("https://en.wikipedia.org/wiki/Crohn%27s_disease")
+    components.iframe("https://en.wikipedia.org/wiki/Crohn%27s_disease", scrolling=True)
 
     st.sidebar.write('''_Click **X** in top right to hide sidebar_''')
     st.sidebar.subheader('Navigator')
