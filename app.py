@@ -125,29 +125,27 @@ def exp_about():
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     st.subheader('Introduction')
-    st.write('''An '_eponymous_' term, within in the medical context, means a term that derives from
-                somebody's name. Famous examples which relate to surgical practice include _Graves disease_,
-                _McBurney's point_, & _Colles fracture_, to name but a few. When used correctly, eponymous
-                terms can enhance communication, shared professional understanding & assist with decision-making.''')
+    st.write('''An '_eponymous_' term, within in the medical context, derives from
+                somebody's name. Famous examples include _Graves disease_,
+                _McBurney's point_, & _Colles fracture_. When used correctly, eponymous
+                terms can enhance communication, shared understanding & assist with decision-making.''')
 
-    st.write('''However, there now exists a vast number of eponymous terms used by surgeons, making it
-                increasingly challenging to remember their specifics. Dictionaries and encylopedias
-                which list medical eponyms by an alphabetical order are widely available on the internet
-                and libraries, but are of limited use unless searching for a particular eponym of interest.
-                Even best known online sources have only half of the eponyms that are frequently used by surgeons.''')
+    st.write('''However, the vast number of eponymous terms now used by surgeons, makes it
+                increasingly difficult to remember their specifics. Dictionaries and encylopedias
+                which list eponyms in alphabetical order are widely available on the internet
+                and libraries, but are of limited use other than searching for one in particular.
+                Even the most popular online encylopedias have just half of the eponyms that are
+                listed here in the Surgical Names App.''')
 
-    st.write('''With the development of Machine Learning tools, and in particular the excellent format and support
-                by [Streamlit](https://www.streamlit.io), we have **multi-indexed surgical
-                eponyms in intuitive & interactive ways**.''')
+    st.write('''With the development of Machine Learning tools, and in particular the excellent format
+                by [Streamlit](https://www.streamlit.io), we have multi-indexed surgical
+                eponyms in intuitive & interactive ways.''')
 
     st.write('''The functions we have coded are aimed at simulating how we think of terminology (eg. by disease
                 or operation), to help busy people quickly master a deep understanding of terms related to their work.''')
 
-    st.write('''You will find several **interactive visualizations** to help promote long-term memory formation and
-                where possible have included direct **links to original papers & useful related webpages**.''')
-    
-    st.write('''We hope that you will find the Surgical Names App helpful in better understanding the meaning of these
-                terms, their historical origins, and how they relate to one another.''')
+    st.write('''You will find several **interactive visualizations** for interest & to promote long-term memory formation.
+                Where possible, you will find direct **links to original papers & useful related webpages**.''')
     
     st.markdown("---")
     st.subheader('Using this App')
