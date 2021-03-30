@@ -132,7 +132,7 @@ def exp_about():
 
     st.write('''This ever-growing catalog of eponymous terms, however, makes it
                 increasingly difficult to retain all the specific details. Dictionaries and encylopedias
-                which list eponyms are widely available on the internet, but arrange the eponyms only
+                which list eponyms are widely available on the internet, but arrange the terms only
                 by alphabetical order, which limits their usefulness to searching for individual items.''')
 
     st.write('''Even the most popular online encylopedias were found by us to have a surprisingly limited
