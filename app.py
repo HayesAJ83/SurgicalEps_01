@@ -128,7 +128,7 @@ def exp_about():
     st.write('''An '_eponym_' is a thing which is named after someone, such as a disease or an operation.
                 Despite being rooted in history, eponyms are widely used in surgical practice today.''')
 
-    st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kocker manoeuver_,
+    st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kocher manoeuver_,
                 & _Colles fracture_ to name a few, but there are hundreds used on a frequent basis
                 across the surgical specialties.''')
 
