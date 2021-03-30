@@ -127,7 +127,7 @@ def exp_about():
     st.subheader('Introduction')
     st.write('''An '_eponymous_' term, within in the medical context, derives from
                 somebody's name. Famous examples include _Graves disease_,
-                _McBurney's point_, & _Colles fracture_. When used correctly, eponymous
+                _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
                 terms can enhance communication, shared understanding & assist with decision-making.''')
 
     st.write('''This ever-growing catalog of eponymous terms, however, makes it
