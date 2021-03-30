@@ -127,20 +127,21 @@ def exp_about():
     st.subheader('About this App')
     st.write('''An 'eponym' is a thing which is named after someone, and these are commonly used
                 amongst surgeons. Better known examples include _Crohn's disease_, _DeBakey's forceps_,
-                _Ivor-Lewis oesophagectomy_, or _Strasberg's critical view_ but there are hundreds of
-                eponyms used in daily surgical practice which can be difficult to remember accurately,
-                and sometimes misused or misunderstood.''')
+                _Ivor-Lewis oesophagectomy_, or _Strasberg's critical view_, but there are hundreds of
+                eponyms used in daily surgical practice and are sometimes misused, but when understood
+                properly used can be very helpful in communication, decision-making and in operative
+                technique.''')
 
-    st.write('''Although eponyms can be found alphabetically listed in encyclopedias, this is not how we
-                use these terms, and is only helpful when the spelling of a given eponym is remembered.
-                SurgicalNames.com was designed to organise these eponymous terms in several different ways
-                that is practical and interactive, such as selecting a particular type of operation, a
-                disease, or surgical specialty. Additionally, we have added visual aids to help memory
-                recall, such as grouping those that origniate from a particular country or a published
-                journal, as well providing photographs of the person attributed to the eponym.''')
+    st.write('''Although eponyms can be found alphabetically in encyclopedias, this is usually not how we
+                use these terms in surgical life. **SurgicalNames.com** was designed to organise these
+                terms by practical and interactive ways, such as grouping those related to a particular
+                type of operation, disease, or surgical specialty. Additionally, we have added
+                visual aids to help with memory recall, such as grouping those that origniate from a
+                particular country, a peer-reviewed journal, and we provide photographs of the person
+                attributed to the eponym.''')
 
     st.write('''We include direct links to original papers, as well as useful related webpages
-                in _Wikipedia_, _Whonamedit?_ and _TeachMeSurgery_.''')
+                such as _Wikipedia_, _Whonamedit?_ and _TeachMeSurgery_.''')
     
     st.write('''We hope that you will find this App helpful in understanding what these terms mean, their
                 history, and how they relate to one another.''')
