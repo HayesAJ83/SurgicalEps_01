@@ -136,18 +136,18 @@ def exp_about():
                 and libraries, but are of limited use unless searching for a particular eponym of interest.
                 Even best known online sources have only half of the eponyms that are frequently used by surgeons.''')
 
-    st.write('''With the development of **Machine Learning tools**, and in particular the excellent format
-                provided by [Streamlit](https://www.streamlit.io), **we have multi-indexed surgical
+    st.write('''With the development of Machine Learning tools, and in particular the excellent format and support
+                by [Streamlit](https://www.streamlit.io), we have **multi-indexed surgical
                 eponyms in intuitive & interactive ways**.''')
 
-    st.write('''The functions coded in this App are aimed at **simulating & stimulating the human memory**
-                to help busy people quickly master a deep understanding of the eponymous terms related to their work.''')
+    st.write('''The functions we have coded are aimed at simulating how we think of terminology (eg. by disease
+                or operation), to help busy people quickly master a deep understanding of terms related to their work.''')
 
-    st.write('''You will find **several interactive visualizations** to help promote long-term memory formation and
+    st.write('''You will find several **interactive visualizations** to help promote long-term memory formation and
                 where possible have included direct **links to original papers & useful related webpages**.''')
     
-    st.write('''We hope that you will find this App helpful in understanding what these terms mean, their
-                history, and how they relate to one another.''')
+    st.write('''We hope that you will find the Surgical Names App helpful in better understanding the meaning of these
+                terms, their historical origins, and how they relate to one another.''')
     
     st.markdown("---")
     st.subheader('Using this App')
