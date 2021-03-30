@@ -13,19 +13,19 @@
 #limitations under the License.
 
 import streamlit as st
-import pandas as pd
-pd.options.display.max_colwidth = 1000000
-import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
-import plotly
-import plotly.express as px          
-import plotly.graph_objects as go    
-import plotly.figure_factory as ff
-import io
-import requests
-import time
 import streamlit.components.v1 as components
+#import pandas as pd
+#pd.options.display.max_colwidth = 1000000
+#import numpy as np
+#import matplotlib
+#import matplotlib.pyplot as plt
+#import plotly
+#import plotly.express as px          
+#import plotly.graph_objects as go    
+#import plotly.figure_factory as ff
+#import io
+#import requests
+#import time
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -203,6 +203,21 @@ def exp_about():
 # ::: Handles the                                                                                 #                                                                                              #
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
+
+
+import pandas as pd
+pd.options.display.max_colwidth = 1000000
+import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
+import plotly
+import plotly.express as px          
+import plotly.graph_objects as go    
+import plotly.figure_factory as ff
+import io
+import requests
+import time
+
 
 def exp_A2Z():
 
