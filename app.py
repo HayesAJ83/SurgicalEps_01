@@ -130,13 +130,13 @@ def exp_about():
                 _McBurney's point_, & _Colles fracture_. When used correctly, eponymous
                 terms can enhance communication, shared understanding & assist with decision-making.''')
 
-    st.write('''However, the ever growing eponymous terms used by surgeons makes it
+    st.write('''This ever-growing catalog of eponymous terms, however, makes it
                 increasingly difficult to retain all the specific details. Dictionaries and encylopedias
                 which list eponyms are widely available on the internet, but arrange the eponyms only
                 by alphabetical order, which limits their usefulness to searching for individual items.''')
 
     st.write('''Even the most popular online encylopedias were found by us to have a surprisingly limited
-                database which was more relevant to physicians than to surgeons - containing
+                database which was more relevant to medical rather than surgical practice - containing
                 only half of the eponyms that can be found here in the Surgical Names App.''')
 
     st.write('''With the development of Machine Learning tools, and in particular the excellent format
