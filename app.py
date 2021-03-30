@@ -13,19 +13,6 @@
 #limitations under the License.
 
 import streamlit as st
-import streamlit.components.v1 as components
-#import pandas as pd
-#pd.options.display.max_colwidth = 1000000
-#import numpy as np
-#import matplotlib
-#import matplotlib.pyplot as plt
-#import plotly
-#import plotly.express as px          
-#import plotly.graph_objects as go    
-#import plotly.figure_factory as ff
-#import io
-#import requests
-#import time
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -131,13 +118,33 @@ def show_explore():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 def exp_about():
-    st.markdown(
-        '''<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
-           </style>''',unsafe_allow_html=True)
+
     st.write('''_To show sidebar, click **>** in top left_''')
     #st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
+    st.markdown("---")
+    st.subheader('About this App')
+    st.write('''An 'eponym' is a thing which is named after someone, and these are commonly used
+                amongst surgeons. Better known examples include _Crohn's disease_, _DeBakey's forceps_,
+                _Ivor-Lewis oesophagectomy_, or _Strasberg's critical view_ but there are hundreds of
+                eponyms used in daily surgical practice which can be difficult to remember accurately,
+                and sometimes misused or misunderstood.''')
+
+    st.write('''Although eponyms can be found alphabetically listed in encyclopedias, this is not how we
+                use these terms, and is only helpful when the spelling of a given eponym is remembered.
+                SurgicalNames.com was designed to organise these eponymous terms in several different ways
+                that is practical and interactive, such as selecting a particular type of operation, a
+                disease, or surgical specialty. Additionally, we have added visual aids to help memory
+                recall, such as grouping those that origniate from a particular country or a published
+                journal, as well providing photographs of the person attributed to the eponym.''')
+
+    st.write('''We include direct links to original papers, as well as useful related webpages
+                in _Wikipedia_, _Whonamedit?_ and _TeachMeSurgery_.''')
+    
+    st.write('''We hope that you will find this App helpful in understanding what these terms mean, their
+                history, and how they relate to one another.''')
+    
     st.markdown("---")
     st.subheader('Using this App')
     st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
@@ -176,14 +183,6 @@ def exp_about():
                    Operating Room modes.</span>''',unsafe_allow_html=True)
 
     st.markdown("---")
-    st.subheader('About this App')
-    st.markdown(' ')
-    st.write('''There are a hundreds of eponyms used in daily surgical practice. We hope that
-                you will find this App helpful in understanding what these terms mean, their
-                history, and how they relate to one another. We include direct links to primary
-                papers, as well as useful webpages in _Wikipedia_, _Whonamedit?_ and
-                _TeachMeSurgery_.''')
-    st.markdown("---")
     st.subheader('Audience')
     st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
                 professionals and students.''')
@@ -204,7 +203,7 @@ def exp_about():
 #                                                                                                 #
 #-------------------------------------------------------------------------------------------------#
 
-
+import streamlit.components.v1 as components
 import pandas as pd
 pd.options.display.max_colwidth = 1000000
 import numpy as np
