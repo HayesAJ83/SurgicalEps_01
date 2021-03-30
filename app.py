@@ -125,7 +125,7 @@ def exp_about():
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     st.subheader('Introduction')
-    st.write('''An 'eponym' is a thing which is named after someone & despite their historical roots,
+    st.write('''An 'eponym' is a thing which is named after someone. Despite their historical roots,
                 eponyms are widely used in surgical practice today.''')
 
     st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kocker manoeuver_,
