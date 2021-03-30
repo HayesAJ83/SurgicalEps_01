@@ -128,28 +128,29 @@ def exp_about():
     st.write('''An 'eponym' is a thing which is named after someone & despite their historical roots,
                 eponyms are widely used in surgical practice today.''')
 
-    st.write('''Eponyms are a special type of abbreviation, and are very helpful tools in
+    st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kocker manoeuver_,
+                & _Colles fracture_ to name a few, but there are hundreds used on a frequent basis
+                across the surgical specialties.''')
+
+    st.write('''Eponyms are a special type of abbreviation, and are helpful tools in
                 communication & decision-making, both inside and outside of the operating room.
                 However, confusion and errors can arise when terminology is not well understood.''')
     
-    st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kockerisation_,
-                & _Colles fracture_, to name a few, but there are hundreds used across the
-                surgical specialties.''')
+    st.write('''The main problems with remembering terminology is that it can be time-consuming to find
+                the origins of particular terms, and eponyms normally listed alphabetically in various 
+                encyclopedias which is not user-orientated.''')
+    
+    st.write('''To overcome these problems, the software within **SurgicalNames.com** was written
+                to simulate the way people remember terms (but without memory loss!) by organising
+                the eponyms in practical & interactive ways. Our aim is to help busy people quickly
+                master a deep understanding of the eponymous terms related to their work.''')
 
-    st.write('''Whilst lists of eponyms can be often found alphabetically in various encyclopedias,
-                this historical method is not very user-orientated.
-                **SurgicalNames.com** was designed to transform the indexing of eponyms simulate
-                the natural way we think about such terms, by organising these eponyms in
-                practical & interactive ways to help busy users quickly master the
-                terms related to their work.''')
+    st.write('''We have grouped eponyms by symptom, disease, type of operation, or surgical specialty.
+                Also, we have added visual aids to help with memory recall, such as grouping
+                those from one part of the world, a particular medical journal, and show photographs
+                of the people attributed.''')
 
-    st.write('''We have grouped eponyms by type of operation, disease, or surgical specialty.
-                Additionally, we have added visual aids to help with memory recall, such as grouping
-                those from one part of the world, a particular medical journal, and we provide photographs
-                of the people attributed to the eponym.''')
-
-    st.write('''We include direct links to original papers, as well as useful related webpages
-                such as _Wikipedia_, _Whonamedit?_ and _TeachMeSurgery_.''')
+    st.write('''We include direct **links to original papers**, as well as useful related webpages.''')
     
     st.write('''We hope that you will find this App helpful in understanding what these terms mean, their
                 history, and how they relate to one another.''')
