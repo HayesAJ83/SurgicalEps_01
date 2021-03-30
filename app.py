@@ -133,10 +133,11 @@ def exp_about():
     st.write('''However, the ever growing eponymous terms used by surgeons makes it
                 increasingly difficult to retain all the specific details. Dictionaries and encylopedias
                 which list eponyms are widely available on the internet, but arrange the eponyms only
-                by alphabetical order, which limits their usefulness to searching for individual items.
-                Even the most popular online encylopedias were found by us to have a surprisingly limited
-                database which was more relevant to physicians than to surgeons,
-                containig just half of the eponyms that can be found here in the Surgical Names App.''')
+                by alphabetical order, which limits their usefulness to searching for individual items.''')
+
+    st.write('''Even the most popular online encylopedias were found by us to have a surprisingly limited
+                database which was more relevant to physicians than to surgeons - containing
+                only half of the eponyms that can be found here in the Surgical Names App.''')
 
     st.write('''With the development of Machine Learning tools, and in particular the excellent format
                 by [Streamlit](https://www.streamlit.io), we have multi-indexed surgical
@@ -145,8 +146,12 @@ def exp_about():
     st.write('''The functions we have coded are aimed at simulating how we think of terminology (eg. by disease
                 or operation), to help busy people quickly master a deep understanding of terms related to their work.''')
 
-    st.write('''You will find several **interactive visualizations** for interest & to promote long-term memory formation.
-                Where possible, you will find direct **links to original papers & related webpages**.''')
+    st.write('''You will find several **interactive visualizations** which we hope you will find enjoyable
+                & help you retain information for longer.
+                Where possible, you will find **links to original papers & related webpages**.''')
+
+    st.write('''This project is a **growing database** of surgical eponyms with evolving functionality as we
+                develop the software, but will remain at www.surgicalnames.com''')
     
     st.markdown("---")
     st.subheader('Using this App')
