@@ -125,8 +125,8 @@ def exp_about():
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     st.subheader('Introduction')
-    st.write('''An 'eponym' is a thing which is named after someone. Despite their historical roots,
-                eponyms are widely used in surgical practice today.''')
+    st.write('''An '_eponym_' is a thing which is named after someone, such as a disease or an operation.
+                Despite being rooted in history, eponyms are widely used in surgical practice today.''')
 
     st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kocker manoeuver_,
                 & _Colles fracture_ to name a few, but there are hundreds used on a frequent basis
@@ -140,9 +140,9 @@ def exp_about():
                 the origins of particular terms, and eponyms normally listed alphabetically in various 
                 encyclopedias which is not user-orientated.''')
     
-    st.write('''To overcome these problems, the software within **SurgicalNames.com** was written
-                to simulate the way people remember terms (but without memory loss!) by organising
-                the eponyms in practical & interactive ways. Our aim is to help busy people quickly
+    st.write('''To overcome these problems, **the software within _SurgicalNames.com_ was written
+                to simulate & stimulate the way people remember these terms** (but without memory loss!)
+                by organising the eponyms in practical & interactive ways. Our aim is to help busy people quickly
                 master a deep understanding of the eponymous terms related to their work.''')
 
     st.write('''We have grouped eponyms by symptom, disease, type of operation, or surgical specialty.
