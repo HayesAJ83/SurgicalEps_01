@@ -124,23 +124,28 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    st.subheader('About this App')
-    st.write('''An 'eponym' is a thing which is named after someone, & despite their historical roots,
-                these terms are commonly used in modern surgical practice.
-                Famous eponyms include _Graves disease_, _McBurney's point_, _Hartmann's procedure_,
-                & _Colles fracture_, but there are hundreds used across the surgical subspecialties.''')
+    st.subheader('Introduction')
+    st.write('''An 'eponym' is a thing which is named after someone & despite their historical roots,
+                eponyms are widely used in surgical practice today.''')
 
-    st.write('''Eponyms can be thought of as abbreviations which, when used correctly, are very
-                helpful in decision-making and communication, inside and outside of the operating room.
-                Whilst lists of eponyms can be often found alphabetically in encyclopedias, this is not
-                how we use such terms....''')
+    st.write('''Eponyms are a special type of abbreviation, and are very helpful tools in
+                communication & decision-making, both inside and outside of the operating room.
+                However, confusion and errors can arise when terminology is not well understood.''')
+    
+    st.write('''Famous eponyms include _Graves disease_, _McBurney's point_, _Kockerisation_,
+                & _Colles fracture_, to name a few, but there are hundreds used across the
+                surgical specialties.''')
 
-    st.write('''Therefore, **SurgicalNames.com** was designed to organise eponymous terms in practical
-                & interactive ways to help busy users quickly master the terms related to their work.''')
+    st.write('''Whilst lists of eponyms can be often found alphabetically in various encyclopedias,
+                this historical method is not very user-orientated.
+                **SurgicalNames.com** was designed to transform the indexing of eponyms simulate
+                the natural way we think about such terms, by organising these eponyms in
+                practical & interactive ways to help busy users quickly master the
+                terms related to their work.''')
 
     st.write('''We have grouped eponyms by type of operation, disease, or surgical specialty.
                 Additionally, we have added visual aids to help with memory recall, such as grouping
-                those from one part of the world, a particualr medical journal, and we provide photographs
+                those from one part of the world, a particular medical journal, and we provide photographs
                 of the people attributed to the eponym.''')
 
     st.write('''We include direct links to original papers, as well as useful related webpages
