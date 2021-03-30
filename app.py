@@ -125,20 +125,23 @@ def exp_about():
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     st.subheader('About this App')
-    st.write('''An 'eponym' is a thing which is named after someone, and these are commonly used
-                amongst surgeons. Better known examples include _Crohn's disease_, _DeBakey's forceps_,
-                _Ivor-Lewis oesophagectomy_, or _Strasberg's critical view_, but there are hundreds of
-                eponyms used in daily surgical practice and are sometimes misused, but when understood
-                properly used can be very helpful in communication, decision-making and in operative
-                technique.''')
+    st.write('''An 'eponym' is a thing which is named after someone, & despite their historical roots,
+                these terms are commonly used in modern surgical practice.
+                Famous eponyms include _Graves disease_, _McBurney's point_, _Hartmann's procedure_,
+                & _Colles fracture_, but there are hundreds used across the surgical subspecialties.''')
 
-    st.write('''Although eponyms can be found alphabetically in encyclopedias, this is usually not how we
-                use these terms in surgical life. **SurgicalNames.com** was designed to organise these
-                terms by practical and interactive ways, such as grouping those related to a particular
-                type of operation, disease, or surgical specialty. Additionally, we have added
-                visual aids to help with memory recall, such as grouping those that origniate from a
-                particular country, a peer-reviewed journal, and we provide photographs of the person
-                attributed to the eponym.''')
+    st.write('''Eponyms can be thought of as abbreviations which, when used correctly, are very
+                helpful in decision-making and communication, inside and outside of the operating room.
+                Whilst lists of eponyms can be often found alphabetically in encyclopedias, this is not
+                how we use such terms....''')
+
+    st.write('''Therefore, **SurgicalNames.com** was designed to organise eponymous terms in practical
+                & interactive ways to help busy users quickly master the terms related to their work.''')
+
+    st.write('''We have grouped eponyms by type of operation, disease, or surgical specialty.
+                Additionally, we have added visual aids to help with memory recall, such as grouping
+                those from one part of the world, a particualr medical journal, and we provide photographs
+                of the people attributed to the eponym.''')
 
     st.write('''We include direct links to original papers, as well as useful related webpages
                 such as _Wikipedia_, _Whonamedit?_ and _TeachMeSurgery_.''')
