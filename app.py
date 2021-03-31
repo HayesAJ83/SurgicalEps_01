@@ -124,7 +124,7 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    with st.beta_expander('## Introduction [Click Here]'):
+    with st.beta_expander('''## Introduction [Click Here]'''):
         st.write('''An '_eponymous_' term, within in the medical context, derives from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
@@ -154,7 +154,7 @@ def exp_about():
                 develop the software, but will remain at www.surgicalnames.com''')
     
     #st.markdown("---")
-    with st.beta_expander('## Using this App [Click Here]'):
+    with st.beta_expander('Using this App'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
@@ -191,15 +191,15 @@ def exp_about():
                    Operating Room modes.</span>''',unsafe_allow_html=True)
 
     #st.markdown("---")
-    st.subheader('Audience')
-    st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
+    with st.beta_expander('Audience'):
+        st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
                 professionals and students.''')
-    st.markdown("---")
-    st.subheader('Disclaimer')
-    st.write('''Educational purposes.''')
-    st.markdown("---")
-    st.subheader('Copyright')
-    st.write('''© 2021 Excision Ltd. All rights reserved.''')
+    #st.markdown("---")
+    with st.beta_expander('Disclaimer'):
+        st.write('''Educational purposes.''')
+    #st.markdown("---")
+    #st.subheader('Copyright')
+    st.write('''Copyright © 2021 Excision Ltd. All rights reserved.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
     st.sidebar.info("App will be launched April 2021")
