@@ -152,8 +152,8 @@ def exp_about():
 
         st.write('''This project is a **growing database** of surgical eponyms with evolving functionality as we
                 develop the software, but will remain at www.surgicalnames.com''')
-    
-    #st.markdown("---")
+        st.markdown("---")
+        
     with st.beta_expander('How to use this App'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
@@ -189,16 +189,18 @@ def exp_about():
         st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
                    <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or
                    Operating Room modes.</span>''',unsafe_allow_html=True)
+        st.markdown("---")
 
-    #st.markdown("---")
     with st.beta_expander('Audience'):
         st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
                 professionals and students.''')
-    #st.markdown("---")
+        st.markdown("---")
+
     with st.beta_expander('Disclaimer'):
         st.write('''Educational purposes.''')
-    st.markdown("---")
+        st.markdown("---")
     #st.subheader('Copyright')
+    st.markdown("---")
     st.write('''Copyright © 2021 Excision Ltd. All rights reserved.''')
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Latest News**''')
