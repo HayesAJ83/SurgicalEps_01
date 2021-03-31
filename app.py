@@ -124,73 +124,73 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    st.subheader('Introduction')
-    st.write('''An '_eponymous_' term, within in the medical context, derives from
+    with st.beta_expander('## Introduction [Click Here]'):
+        st.write('''An '_eponymous_' term, within in the medical context, derives from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
                 terms can enhance communication, shared understanding & assist with decision-making.''')
 
-    st.write('''This ever-growing catalog of eponymous terms, however, makes it
+        st.write('''This ever-growing catalog of eponymous terms, however, makes it
                 increasingly difficult to retain all the specific details. Dictionaries and encylopedias
                 which list eponyms are widely available on the internet, but arrange the terms only
                 by alphabetical order, which limits their usefulness to searching for individual items.''')
 
-    st.write('''Even the most popular online encylopedias were found by us to have a surprisingly limited
+        st.write('''Even the most popular online encylopedias were found by us to have a surprisingly limited
                 database which was more relevant to medical rather than surgical practice - containing
                 only half of the eponyms that can be found here in the Surgical Names App.''')
 
-    st.write('''With the development of Machine Learning tools, and in particular the excellent format
+        st.write('''With the development of Machine Learning tools, and in particular the excellent format
                 by [Streamlit](https://www.streamlit.io), we have multi-indexed surgical
                 eponyms in intuitive & interactive ways.''')
 
-    st.write('''The functions we have coded are aimed at simulating how we think of terminology (eg. by disease
+        st.write('''The functions we have coded are aimed at simulating how we think of terminology (eg. by disease
                 or operation), to help busy people quickly master a deep understanding of terms related to their work.''')
 
-    st.write('''You will find several **interactive visualizations** which we hope you will find enjoyable
+        st.write('''You will find several **interactive visualizations** which we hope you will find enjoyable
                 & help you retain information for longer.
                 Where possible, you will find **links to original papers & related webpages**.''')
 
-    st.write('''This project is a **growing database** of surgical eponyms with evolving functionality as we
+        st.write('''This project is a **growing database** of surgical eponyms with evolving functionality as we
                 develop the software, but will remain at www.surgicalnames.com''')
     
-    st.markdown("---")
-    st.subheader('Using this App')
-    st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
+    #st.markdown("---")
+    with st.beta_expander('## Using this App [Click Here]'):
+        st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
                    <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',
                    unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease or Symptom:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Disease or Symptom:</span>
                    <span style="font-size:12pt;color:black;"> Here you can find eponyms related
                    to conditions of interest.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Journal:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Journal:</span>
                    <span style="font-size:12pt;color:black;"> In this section, journals can be
                    selected to find which eponyms can be traced to their of publication archives.
                    Explore through time using the time travel function.</span>''',
                    unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Operation:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By Operation:</span>
                    <span style="font-size:12pt;color:black;"> Here you can choose an operation type
                    (eg. Oesophagectomy), and then access all the common eponyms related to that
                    procedure.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By World Maps:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">By World Maps:</span>
                    <span style="font-size:12pt;color:black;"> Choose a region of the world to find
                    local eponyms. Select a continent, country or city.</span>''',
                    unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Categories:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Categories:</span>
                    <span style="font-size:12pt;color:black;">Choose from anatomy,
                    incisions, surgical instruments, operations, pathology, physiology, patient
                    positioning, eponymous fluids, clinical scores or signs, statistical tests, surgical
                    maneuvers & techniques, syndromes, doctrines & rules or research trials.
                    </span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Exam Favourites:
                    </span><span style="font-size:12pt;color:black;"> Select from those often found
                    in exams & filter by speciality.</span>''',unsafe_allow_html=True)
-    st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
+        st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">Teaching Tool:</span>
                    <span style="font-size:12pt;color:black;">Choose from Bedside, Classroom or
                    Operating Room modes.</span>''',unsafe_allow_html=True)
 
-    st.markdown("---")
+    #st.markdown("---")
     st.subheader('Audience')
     st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
                 professionals and students.''')
