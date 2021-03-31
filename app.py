@@ -124,7 +124,7 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    with st.beta_expander('''## Introduction [Click Here]'''):
+    with st.beta_expander('Introduction'):
         st.write('''An '_eponymous_' term, within in the medical context, derives from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
@@ -154,7 +154,7 @@ def exp_about():
                 develop the software, but will remain at www.surgicalnames.com''')
     
     #st.markdown("---")
-    with st.beta_expander('Using this App'):
+    with st.beta_expander('How to use this App'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
@@ -197,7 +197,7 @@ def exp_about():
     #st.markdown("---")
     with st.beta_expander('Disclaimer'):
         st.write('''Educational purposes.''')
-    #st.markdown("---")
+    st.markdown("---")
     #st.subheader('Copyright')
     st.write('''Copyright © 2021 Excision Ltd. All rights reserved.''')
     st.sidebar.markdown("---")
