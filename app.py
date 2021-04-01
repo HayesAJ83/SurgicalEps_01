@@ -53,6 +53,8 @@ def show_the_app_team():
     
     st.subheader("Project Lead & App Developer")
     with st.beta_expander('Alastair Hayes'):
+        image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Alastair_Hayes.png'
+        st.image(image, width=160)
         st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests
                     in Upper GI, Endocrine and Emergency General Surgery. His qualifications
                     include FRCSEd(Gen) & PhD.''')
