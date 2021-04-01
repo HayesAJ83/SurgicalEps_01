@@ -52,8 +52,7 @@ def show_the_app_team():
     st.sidebar.info('''Comments, queries and suggestions very welcome: surgicalnames@gmail.com''')
     
     st.subheader("Project Lead & App Developer")
-    about1 = st.checkbox("Alastair Hayes")
-    if about1:
+    with st.beta_expander('Alastair Hayes'):
         st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests
                     in Upper GI, Endocrine and Emergency General Surgery. His qualifications
                     include FRCSEd(Gen) & PhD.''')
@@ -61,25 +60,24 @@ def show_the_app_team():
                     data systems, research and education in surgical practice.''')
 
     st.subheader("Associate Project Lead")
-    about2 = st.checkbox('''Anne Ewing''')
-    if about2:
+    with st.beta_expander('Anne Ewing'):
         st.markdown('''Anne is Specialty Training Registrar in Edinburgh with interests in Upper
                     GI, Hernias and Emergency General Surgery. She is passionate about surgical
                     teaching and outside work Anne is a competitive athlete.''')   
 
     st.markdown("---")
     st.subheader("Acknowledgements")
-    about3 = st.checkbox('''Websites''')
-    if about3:
-        st.markdown('''[Google](https://www.google.com/search/howsearchworks/?fg=1),
-                   [Mapbox](https://www.mapbox.com),
-                   [Pandas](https://pandas.pydata.org), [Plotly](https://plotly.com/python/),
-                   [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
-                   [Streamlit](https://www.streamlit.io)''')
+    with st.beta_expander('Websites'):
+        st.markdown('''
+                    [Google](https://www.google.com/search/howsearchworks/?fg=1),
+                    [Mapbox](https://www.mapbox.com),
+                    [Pandas](https://pandas.pydata.org),
+                    [Plotly](https://plotly.com/python/),
+                    [PubMed&reg;](http://www.ncbi.nlm.nih.gov/pubmed),
+                    [Streamlit](https://www.streamlit.io)''')
 
-    about4 = st.checkbox('''People''')
-    if about4:
-        st.markdown('''Gillian - Educational Lead Theatres, Royal Infirmary of Edinburgh [Instrument Pics]''') 
+    with st.beta_expander('People'):
+        st.markdown('''Gillian  - Educational Lead Theatres, Royal Infirmary of Edinburgh [Instrument Pics]''') 
         st.markdown('''Andrew De Beaux - Consultant General Surgeon, Royal Infirmary of Edinburgh [Hernia Info]''') 
 
 #-------------------------------------------------------------------------------------------------#
