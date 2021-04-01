@@ -54,18 +54,16 @@ def show_the_app_team():
     st.subheader("Project Lead & App Developer")
     with st.beta_expander('Alastair Hayes'):
         image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Alastair_Hayes.png'
-        st.image(image, width=160)
-        st.markdown('''Alastair is a Specialty Training Registrar in Edinburgh with interests
-                    in Upper GI, Endocrine and Emergency General Surgery. His qualifications
-                    include FRCSEd(Gen) & PhD.''')
-        st.markdown('''He is working to develop data science and software solutions for clinical
-                    data systems, research and education in surgical practice.''')
+        st.image(image, width=100)
+        st.markdown('''Alastair is a General Surgery Specialty Training Registrar in Edinburgh with
+                    interests in Upper GI & Endocrine. His qualifications include FRCSEd(Gen) & PhD.''')
+        st.markdown('''He is interested in creating software solutions for clinical
+                    data system problems, research and education in surgical practice.''')
 
     st.subheader("Associate Project Lead")
     with st.beta_expander('Anne Ewing'):
-        st.markdown('''Anne is Specialty Training Registrar in Edinburgh with interests in Upper
-                    GI, Hernias and Emergency General Surgery. She is passionate about surgical
-                    teaching and outside work Anne is a competitive athlete.''')   
+        st.markdown('''Anne is a General Surgery Specialty Training Registrar in Edinburgh with interests in Upper
+                    GI & Hernias. She is passionate about surgical teaching and outside work Anne is a competitive athlete.''')   
 
     st.markdown("---")
     st.subheader("Acknowledgements")
