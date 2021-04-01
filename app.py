@@ -125,19 +125,18 @@ def exp_about():
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
     with st.beta_expander('Introduction'):
-        st.write('''An '_eponymous_' term, within in the medical context, derives from
+        st.write('''An '_eponymous_' term is one which is derived from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
                 terms can enhance communication, shared understanding & assist with decision-making.''')
 
-        st.write('''This ever-growing catalog of eponymous terms, however, makes it
+        st.write('''This ever-growing catalog, however, makes it
                 increasingly difficult to retain all the specific details. Dictionaries and encylopedias
-                which list eponyms are widely available on the internet, but arrange the terms only
-                by alphabetical order, which limits their usefulness to searching for individual items.''')
+                which list eponyms are widely available on the internet, but are only arranged
+                alphabetically, which limits their usefulness to searching for individual items.''')
 
-        st.write('''Even the most popular online encylopedias were found by us to have a surprisingly limited
-                database which was more relevant to medical rather than surgical practice - containing
-                only half of the eponyms that can be found here in the Surgical Names App.''')
+        st.write('''We have found that the most popular online encylopedias have surprisingly limited
+                numbers of terms and that these are more relevant to medical rather than surgical practice.''')
 
         st.write('''With the development of Machine Learning tools, and in particular the excellent format
                 by [Streamlit](https://www.streamlit.io), we have multi-indexed surgical
