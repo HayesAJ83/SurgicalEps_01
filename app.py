@@ -228,33 +228,28 @@ import time
 def exp_A2Z():
 
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader('Search the Full Database')
-    types = st.radio('Step 1) Choose specialties - _optional_:',["All","Selected",])
+    st.title('Search the full database')
+    types = st.radio('Step 1) Choose specialties:',["All","Selected",])
 
     if types == "All":
         @st.cache(suppress_st_warning=True)
         def load_surgepsdata(url):
-            time.sleep(1)
+            time.sleep(0.1)
             return pd.read_csv(url)
 
         url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
         df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
         DF1 = load_surgepsdata(url)
         df2 = DF1.sort_values(by=['Eponym'],ascending=True)
-
-        min_yrs, max_yrs = st.slider('Step 2) Define a time window - _optional_:', 100, 2050, [150, 2021])
+        st.markdown("---")
+        min_yrs, max_yrs = st.slider('Step 2) Define a time window:', 100, 2050, [150, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
-
-        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'',
-                     #'Disease':'','Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'',
-                     #'RegionOfEponym_A1':'','Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1',
-                     'Year':'','Year_str':'','Sex_A1':'1'}
+        blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'',}
         new_2T = new_1T.append(blank_row, ignore_index=True)
         new_3T = new_2T.sort_values(by=['Eponym'],ascending=True)
         options = st.selectbox('Step 3) Search:',
                         new_3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
-        
         df_ep_info = new_3T[new_3T['Eponym_easy'].str.match(options)]
 
 
@@ -586,12 +581,12 @@ def exp_A2Z():
                                     'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 100, 2050, [150, 2021])
+        min_yrs, max_yrs = st.slider("Step 2) Define a time window:", 100, 2050, [150, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
         new_2T = new_1T.loc[new_1T['Topic'].str.contains('|'.join(specs)) == True]
         new_3T = new_2T.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('Search A-Z list:',new_3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
+        options = st.selectbox('Search:',new_3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_2T[new_2T['Eponym_easy'].str.match(options)]
 
         if options == "Aaron sign":
