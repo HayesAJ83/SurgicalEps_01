@@ -228,8 +228,8 @@ import time
 def exp_A2Z():
 
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.markdown('''### Search the full database''')
-    types = st.radio('1st) Optional - choose specialties:',["All","Selected",])
+    st.subheader('Search the Full Database')
+    types = st.radio('Step 1) Choose specialties - _optional_:',["All","Selected",])
 
     if types == "All":
         @st.cache(suppress_st_warning=True)
@@ -242,17 +242,17 @@ def exp_A2Z():
         DF1 = load_surgepsdata(url)
         df2 = DF1.sort_values(by=['Eponym'],ascending=True)
 
-        min_yrs, max_yrs = st.slider("2nd) Optional - define a time window:", 100, 2050, [150, 2021])
+        min_yrs, max_yrs = st.slider('Step 2) Define a time window - _optional_:', 100, 2050, [150, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
 
         blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'',
-                     'Disease':'','Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'',
-                     'RegionOfEponym_A1':'','Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1',
+                     #'Disease':'','Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'',
+                     #'RegionOfEponym_A1':'','Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1',
                      'Year':'','Year_str':'','Sex_A1':'1'}
         new_2T = new_1T.append(blank_row, ignore_index=True)
         new_3T = new_2T.sort_values(by=['Eponym'],ascending=True)
-        options = st.selectbox('Search SurgicalEps database:',
+        options = st.selectbox('Step 3) Search:',
                         new_3T['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         
         df_ep_info = new_3T[new_3T['Eponym_easy'].str.match(options)]
@@ -292,6 +292,10 @@ def exp_A2Z():
         if options == "Amyand hernia":
             image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Amyand.png'
             st.image(image, width=160)
+        if options == "Artery of Adamkiewicz":
+            image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Adamkiewicz.png'
+            st.image(image, width=160)
+            
         if options == "Babcock forceps":
             image_human = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock.png'
             image_forceps = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Babcock_Forceps2.png'
