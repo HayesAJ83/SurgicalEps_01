@@ -242,7 +242,7 @@ def exp_A2Z():
         DF1 = load_surgepsdata(url)
         df2 = DF1.sort_values(by=['Eponym'],ascending=True)
         st.markdown("---")
-        min_yrs, max_yrs = st.slider('Step 2) Define a time window:', 100, 2050, [150, 2021])
+        min_yrs, max_yrs = st.slider('Step 2) Define a time window (years):', 100, 2050, [150, 2021])
         st.markdown("---")
         new_1T = df2.loc[(df2['Year'] >= min_yrs) & (df2['Year'] <= max_yrs)]
         blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'',}
@@ -876,7 +876,7 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader("Find eponyms related to a selected disease, sign or symptom") 
+    st.title("Find those related to a disease, sign or symptom") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -885,11 +885,12 @@ def exp_dis():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    disease = st.multiselect('1st) Choose a disease, sign or symptom:', options=list(U),)
+    disease = st.multiselect('Step 1) Choose a disease, sign or symptom:', options=list(U),)
+    st.markdown("---")
     new_dis1 = df.loc[df['Disease'].str.contains('|'.join(disease)) == True]
     new_dis2 = new_dis1.sort_values(by=['Eponym'],ascending=True)
     if disease:
-        options = st.selectbox('2) Search list of related eponyms:',
+        options = st.selectbox('Step 2) Search list of related terms:',
                                    new_dis2['Eponym_easy'].unique(),
                                format_func=lambda x: ' ' if x == '1' else x)
 
