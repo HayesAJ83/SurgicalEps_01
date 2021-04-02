@@ -49,7 +49,7 @@ def show_the_app_team():
 
     st.sidebar.markdown("---")
     st.sidebar.markdown('''**Contact details**''')
-    st.sidebar.info('''Comments, queries and suggestions very welcome: surgicalnames@gmail.com''')
+    st.sidebar.info('''Comments, queries and suggestions welcome: surgicalnames@gmail.com''')
     
     st.subheader("Project Lead & App Developer")
     with st.beta_expander('Alastair Hayes'):
