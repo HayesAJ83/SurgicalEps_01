@@ -876,7 +876,7 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Find eponyms by Diseases, Signs & Symptoms") 
+    st.title("Find eponyms by disease, sign or symptom") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -2020,7 +2020,7 @@ def exp_operation():
         """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
         </style>""",unsafe_allow_html=True,)
 
-    st.subheader("Find eponyms related to selected operations") 
+    st.title("Find eponyms related to chosen operation") 
     #Page
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
@@ -2032,13 +2032,13 @@ def exp_operation():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    eponymByOp = st.multiselect('1st) Select from operations:',options=list(U),
+    eponymByOp = st.multiselect('Step 1) Select from operations:',options=list(U),
                                 format_func=lambda x: ' ' if x == '1' else x)
     new_df = df1.loc[df1['Operation'].str.contains('|'.join(eponymByOp)) == True]
     new_df2 = new_df.sort_values(by=['Eponym'],ascending=True)
  
     if eponymByOp:
-        options = st.selectbox('2) Search list of related eponyms:', new_df2['Eponym_easy'].unique(),
+        options = st.selectbox('Step 2) Search list:', new_df2['Eponym_easy'].unique(),
                                   format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_df[new_df['Eponym_easy'].str.match(options)]
         ep_yr = df_ep_info['Year'].to_string(index=False)
@@ -2235,7 +2235,7 @@ def exp_operation():
 #-------------------------------------------------------------------------------------------------#
 def exp_geo():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader("Find eponyms related to their geographical origins") 
+    st.title("Find eponyms related to geographical origin") 
     ScreenSize = st.radio('1st) Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet',],index=0)
@@ -3080,7 +3080,7 @@ def exp_geo():
 #-------------------------------------------------------------------------------------------------#
 def exp_cats():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.markdown('''### Search by eponym category''')
+    st.title('Search by eponym category type')
     ScreenSize = st.radio('1st) Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet',],index=0)
@@ -3968,7 +3968,7 @@ def exp_cats():
 #-------------------------------------------------------------------------------------------------#
 def exp_exam():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader("Eponyms often encountered in surgical exams") 
+    st.title("Eponyms often encountered in surgical exams") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['ExamSpec'].dropna()
@@ -4184,7 +4184,7 @@ def exp_exam():
 #-------------------------------------------------------------------------------------------------#
 def exp_teach():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.subheader("Teaching Tool")
+    st.title("Teaching Tool")
     exp = st.radio('1st) Choose your setting:',
                                 ['Bedside',        # - Scars, Signs, Diseases & Severity Scores",
                                  'Classroom',      # - History of Surgery',
