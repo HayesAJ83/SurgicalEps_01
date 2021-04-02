@@ -3968,7 +3968,7 @@ def exp_cats():
 #-------------------------------------------------------------------------------------------------#
 def exp_exam():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Eponyms often encountered in surgical exams") 
+    st.title("Eponyms often found in exams") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['ExamSpec'].dropna()
@@ -3977,13 +3977,13 @@ def exp_exam():
     S = set(splits)
     T = np.array(list(S)).astype(object)
     U = np.sort(T)
-    exams = st.multiselect('1st) Choose specialties of interest:',options=list(U),
+    exams = st.multiselect('Step 1) Choose specialties of interest:',options=list(U),
                            format_func=lambda x: ' ' if x == '1' else x,)
     new_exams1 = df.loc[df['ExamSpec'].str.contains('|'.join(exams)) == True]
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
     if not exams == None:
-        options = st.selectbox('2) Search list of eponyms found in exams relevant to selected specialties:',
+        options = st.selectbox('Step 2) Search list of eponyms found in exams relevant to selected specialties:',
                                   new_exams2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_exams1[new_exams1['Eponym_easy'].str.match(options)]
 
