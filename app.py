@@ -876,7 +876,7 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Find those related to a disease, sign or symptom") 
+    st.title("Find eponyms by Diseases, Signs & Symptoms") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -1183,13 +1183,13 @@ def exp_dis():
 #-------------------------------------------------------------------------------------------------#
 def exp_journals():
     st.write('''_To show sidebar, click **>** in top left_''')
-    #st.markdown('''[Advert space for Google AdSense4]''')
-    st.subheader("Find eponyms that can be traced to journal archives") 
-    ScreenSize = st.radio('1st) Select screen size:',
-                          options=['Smartphone','Desktop / Laptop / Tablet'],index=0)
+    st.title("Find eponyms according to original publication") 
+    ScreenSize = st.radio('Step 1) Select screen size:',
+                          options=['Smartphone',
+                                   'Desktop / Laptop / Tablet'],index=0)
 
     if ScreenSize == "Smartphone":
-        types = st.radio('2nd) Choose specialties:',["All","Selected",])
+        types = st.radio('Step 2) Choose specialties:',["All","Selected",])
         if types == 'All':
             min_yrs, max_yrs = st.slider("3rd) Choose time window:", 1700, 2030, [1715, 2021])
             url_J = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite4Journals.csv'
