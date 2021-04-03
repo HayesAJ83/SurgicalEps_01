@@ -123,7 +123,7 @@ def exp_about():
     st.markdown("---")
     with st.beta_expander('Introduction'):
         st.write('''An '_eponymous_' term is one which is derived from
-                    somebody's name. Famous examples include _Graves disease_,
+                    somebody's name. Famous examples used in surgical practice include _Graves disease_,
                     _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
                     terms can enhance communication, shared understanding & can help with decision-making.''')
 
@@ -131,10 +131,10 @@ def exp_about():
                     encylopedias which alphabetical index items, but this isn't how we think about or use eponyms.''')
 
         st.write('''With the development of Machine Learning tools, and in particular the excellent format
-                    by [Streamlit](https://www.streamlit.io), we **multi-indexed surgical eponymous terms
+                    by [Streamlit](https://www.streamlit.io), we have **multi-indexed surgical eponymous terms
                     in intuitive & interactive ways**.''')
 
-        st.write('''The multi-indexed functions we have built are aimed at simulating how we think of terminology
+        st.write('''The functions built into surgicalnames.com are aimed at simulating how we think of terminology
                     (eg. by disease or operation), to help busy people quickly master a deep understanding
                     of terms related to their work.''')
 
@@ -142,8 +142,8 @@ def exp_about():
                     & help you retain information for longer. Where possible, you will find **links to
                     original papers & related webpages**.''')
 
-        st.write('''This project is a **growing database** of surgical eponyms with evolving functionality as we
-                    develop the software, but will remain at www.surgicalnames.com''')
+        st.write('''This project, surgicalnames.com, is under continuous development with a growing database of terms
+                    & evolving functionality as we develop the software.''')
         st.markdown("---")
         
     with st.beta_expander('Quick start'):
