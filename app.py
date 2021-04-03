@@ -121,7 +121,7 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    with st.beta_expander('Introduction - A new way of learning'):
+    with st.beta_expander('Introduction - a new way to learn'):
         st.write('''An '_eponymous_' term is one which is derived from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
@@ -150,7 +150,7 @@ def exp_about():
                 develop the software, but will remain at www.surgicalnames.com''')
         st.markdown("---")
         
-    with st.beta_expander('Instructions - How to use this App'):
+    with st.beta_expander('Instructions - how to use'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
@@ -187,15 +187,16 @@ def exp_about():
                    Operating Room modes.</span>''',unsafe_allow_html=True)
         st.markdown("---")
 
-    with st.beta_expander('Audience - Anyone who uses these terms'):
+    with st.beta_expander('Audience - something for everyone'):
         st.write('''We build this App with lots of people in mind - Doctors, nurses, secretaries, operating room staff,
                     physician assistants, allied health professionals & students.''')
         st.markdown("---")
 
-    with st.beta_expander('Disclaimer - Educational only'):
+    with st.beta_expander('Disclaimer - educational only'):
         st.write('''The information you find on surgicalnames.com is intented for educational purposes only.
                     Although some of the clinical signs and procedures included may be well-known, we do
-                    not comment on whether they are currently in usage, as that is beyond the scope of this App.''')
+                    not comment on whether they are in current in usage and how effective they be because that
+                    is beyond the scope of this App.''')
         st.markdown("---")
 
     st.markdown("---")
