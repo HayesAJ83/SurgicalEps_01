@@ -118,11 +118,10 @@ def show_explore():
 def exp_about():
 
     st.write('''_To show sidebar, click **>** in top left_''')
-    #st.write('''_# UNDER CONSTRUCTION # UNDER CON#_''')
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    with st.beta_expander('Introduction'):
+    with st.beta_expander('Introduction - A new way of learning'):
         st.write('''An '_eponymous_' term is one which is derived from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
@@ -151,7 +150,7 @@ def exp_about():
                 develop the software, but will remain at www.surgicalnames.com''')
         st.markdown("---")
         
-    with st.beta_expander('How to use this App'):
+    with st.beta_expander('Instructions - How to use this App'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
@@ -188,15 +187,17 @@ def exp_about():
                    Operating Room modes.</span>''',unsafe_allow_html=True)
         st.markdown("---")
 
-    with st.beta_expander('Audience'):
-        st.write('''Doctors, nurses, secretaries, theatre staff, physician assistants, allied health
-                professionals and students.''')
+    with st.beta_expander('Audience - Anyone who uses these terms'):
+        st.write('''We build this App with lots of people in mind - Doctors, nurses, secretaries, operating room staff,
+                    physician assistants, allied health professionals & students.''')
         st.markdown("---")
 
-    with st.beta_expander('Disclaimer'):
-        st.write('''Educational purposes.''')
+    with st.beta_expander('Disclaimer - Educational only'):
+        st.write('''The information you find on surgicalnames.com is intented for educational purposes only.
+                    Although some of the clinical signs and procedures included may be well-known, we do
+                    not comment on whether they are currently in usage, as that is beyond the scope of this App.''')
         st.markdown("---")
-    #st.subheader('Copyright')
+
     st.markdown("---")
     st.write('''Copyright © 2021 Excision Ltd. All rights reserved.''')
     st.sidebar.markdown("---")
@@ -876,7 +877,7 @@ def exp_A2Z():
 #-------------------------------------------------------------------------------------------------#
 def exp_dis():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Find eponyms by disease, sign or symptom") 
+    st.title("Search by disease, sign or symptom") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['Disease'].dropna()
@@ -1183,7 +1184,7 @@ def exp_dis():
 #-------------------------------------------------------------------------------------------------#
 def exp_journals():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Find eponyms according to original publication") 
+    st.title("Find which eponyms originate from particular journals") 
     ScreenSize = st.radio('Step 1) Select screen size:',
                           options=['Smartphone',
                                    'Desktop / Laptop / Tablet'],index=0)
@@ -2020,7 +2021,7 @@ def exp_operation():
         """<style type="text/css" media="screen">.hovertext text {font-size: 20px !important;}
         </style>""",unsafe_allow_html=True,)
 
-    st.title("Find eponyms related to chosen operation") 
+    st.title("Find eponyms relevant to your operation") 
     #Page
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int,})
@@ -2235,8 +2236,8 @@ def exp_operation():
 #-------------------------------------------------------------------------------------------------#
 def exp_geo():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Find eponyms related to geographical origin") 
-    ScreenSize = st.radio('1st) Select screen size:',
+    st.title("Geographical origins of eponyms") 
+    ScreenSize = st.radio('Step 1) Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet',],index=0)
 
@@ -2252,7 +2253,7 @@ def exp_geo():
         S = set(splits)
         T = np.array(list(S)).astype(object)
         U = np.sort(T)
-        journal_spec = st.multiselect("2nd) Optional - Select specific specialties. Type in box:",
+        journal_spec = st.multiselect("Step 2) Select specific specialties:",
              options=list(U), format_func=lambda x: ' ' if x == '1' else x,)
         min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
         new_geo1 = df2.loc[df2['Topic'].str.contains('|'.join(journal_spec)) == True]
@@ -2286,7 +2287,6 @@ def exp_geo():
         st.write(figG3)
         st.markdown("---")
         blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                     'Eponym_strip':'','Who':'','Who_B':'','Region_A1':'',
                      'Where':'','Operation':'1','Author_1':'1','Year':'','Year_str':'',}  #'Author_1_Role':'1','RegionOfEponym_A1':'',
         new_geo3T = new_geo2T.append(blank_row, ignore_index=True)
         new_geo4T = new_geo3T.sort_values(by=['Eponym'],ascending=True)
@@ -2479,10 +2479,10 @@ def exp_geo():
 
 
     if ScreenSize == "Desktop / Laptop / Tablet":
-        types = st.radio('2nd) Choose specialties:',["All","Selected",])
+        types = st.radio('Step 2) Choose specialties:',["All","Selected",])
 
         if types == 'All':
-            min_yrs, max_yrs = st.slider("3rd) Choose time window:", 100, 2030, [150, 2021])
+            min_yrs, max_yrs = st.slider("Step 3) Choose time window:", 100, 2030, [150, 2021])
             st.markdown("---")
             st.markdown("""<style type="text/css" media="screen">div[role="listbox"] ul {height:100px}</style>""",unsafe_allow_html=True,)
             mapbox_access_token = 'pk.eyJ1IjoiYWpoYXllczgzIiwiYSI6ImNrY2pqM2lvMDB4Z24ydG8zdDl0NTYwbTUifQ.2DKVfTAaE77XAXMpDeq_Pg'
@@ -2790,7 +2790,7 @@ def exp_geo():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
+            min_yrs, max_yrs = st.slider("Step 3) Define a time window:", 100, 2050, [150, 2021])
             st.markdown("---")
             st.markdown('''<span style="font-size:12pt;color:black;">**Click on a place name to zoom in**,
                        and then click in the center to pan out.</span>''', unsafe_allow_html=True)
@@ -2809,12 +2809,12 @@ def exp_geo():
                 figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
                 st.write(figJDLT)
 
-            site_lat = new_geo3T['Lat_A1']            #df3['Lat_A1']                
-            site_lon = new_geo3T['Long_A1']           #df3['Long_A1']
+            site_lat = new_geo3T['Lat_A1']                          
+            site_lon = new_geo3T['Long_A1']           
             text = new_geo3T['Eponym_easy'] + ', ' + new_geo3T['CityOfEponym_A1'] + ', ' + new_geo3T['Year'].astype(str)
             locations_name = new_geo3T['Eponym_easy']
 
-            options3 = st.selectbox("4th) Type continent, country or city to geolocate. Type over previous, don't try to delete. ",
+            options3 = st.selectbox("Step 4) Type continent, country or city to geolocate. Type over previous, don't try to delete. ",
                                 [" ",
                                  "Argentina","Austria","Brazil","Canada",
                                  "Denmark","Edinburgh","England","Europe",
@@ -2874,10 +2874,7 @@ def exp_geo():
             st.markdown('''<span style="font-size:10pt;color:black;">Tip: If map does not locate correctly, press 'Zoom in' on the top right corner.</span>''',
                     unsafe_allow_html=True)
             st.markdown("---")
-            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'',
-                         'Year_str':'','Sex_A1':'1'}
+            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Year_str':'','Sex_A1':'1'}
             time_df2 = new_geo2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             options = st.selectbox('Type here to look up an eponym of interest:',
@@ -3080,13 +3077,13 @@ def exp_geo():
 #-------------------------------------------------------------------------------------------------#
 def exp_cats():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title('Search by eponym category type')
-    ScreenSize = st.radio('1st) Select screen size:',
+    st.title('Search by category type')
+    ScreenSize = st.radio('Step 1) Select screen size:',
                      options=['Smartphone',
                               'Desktop / Laptop / Tablet',],index=0)
 
     if ScreenSize == "Smartphone":
-        types = st.radio('2nd) Optional - choose specialties:',["All","Selected",])
+        types = st.radio('Step 2) Choose specialties:',["All","Selected",])
         if types == "All":
             url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
             df1 = pd.read_csv(url, dtype={'PMID':str,'Year':int})
@@ -3097,7 +3094,7 @@ def exp_cats():
             S = set(splits)
             T = np.array(list(S)).astype(object)
             U = np.sort(T)
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
+            min_yrs, max_yrs = st.slider("Step 3) Define a time window:", 100, 2050, [150, 2021])
             st.markdown("---")
             new_geo2 = df2.sort_values(by=['Year'],ascending=True)
             new_geo2T = new_geo2.loc[(new_geo2['Year'] >= min_yrs) & (new_geo2['Year'] <= max_yrs)]
@@ -3110,9 +3107,7 @@ def exp_cats():
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
             st.write(figJDLT)
-            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
+            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Where':'','Author_1_Role':'1',}
             time_df2 = new_geo2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             st.markdown("---")
@@ -3318,7 +3313,7 @@ def exp_cats():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
+            min_yrs, max_yrs = st.slider("Step 3) Define a time window:", 100, 2050, [150, 2021])
             st.markdown("---")
             st.markdown('''<span style="font-size:10pt;color:black;">**Click on a category type to zoom in**,
                            and click in the center to pan out.</span>''', unsafe_allow_html=True)
@@ -3332,9 +3327,7 @@ def exp_cats():
             figJDLT.update_layout(margin=dict(l=0, r=0, t=0, b=10),width=350,height=350)
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
             st.write(figJDLT)
-            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
+            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',}
             time_df2 = new_2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             st.markdown("---")
@@ -3756,7 +3749,7 @@ def exp_cats():
                                     'Oesophagogastric','Ophthalmology','Orthopaedics','Paediatrics','Plastics',
                                     'Radiology','Transplant','Trauma','Urology','Vascular',]
                                           )
-            min_yrs, max_yrs = st.slider("3rd) Optional - define a time window:", 100, 2050, [150, 2021])
+            min_yrs, max_yrs = st.slider("Step 3) Define a time window:", 100, 2050, [150, 2021])
             st.markdown("---")
             st.markdown('''<span style="font-size:12pt;color:black;">**Click on a category type to zoom in**,
                            and click in the center to pan out.</span>''', unsafe_allow_html=True)
@@ -3771,9 +3764,7 @@ def exp_cats():
             figJDLT.update_traces(hovertemplate='<b>%{label}</b>') 
             st.write(figJDLT)
 
-            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Topic':'','Disease':'',
-                         'Eponym_strip':'','Who':'','Who_B':'','Surname':'','Region_A1':'','RegionOfEponym_A1':'',
-                         'Where':'','Author_1_Role':'1','Operation':'1','Author_1':'1','Year':'','Year_str':'','Sex_A1':'1'}
+            blank_row = {'Alphabet':'','Eponym':'1','Eponym_easy':'1','Eponym_easy_yr':'','Year_str':'','Sex_A1':'1'}
             time_df2 = new_2T.append(blank_row, ignore_index=True)
             time_df3 = time_df2.sort_values(by=['Eponym'],ascending=True)
             st.markdown("---")
@@ -3968,7 +3959,7 @@ def exp_cats():
 #-------------------------------------------------------------------------------------------------#
 def exp_exam():
     st.write('''_To show sidebar, click **>** in top left_''')
-    st.title("Eponyms often found in exams") 
+    st.title("Eponymous terms often found in exams") 
     url = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/Eponyms4python_Lite.csv'
     df = pd.read_csv(url, dtype={'PMID':str,'Year':int})
     df1 = df['ExamSpec'].dropna()
@@ -3983,7 +3974,7 @@ def exp_exam():
     new_exams2 = new_exams1.sort_values(by=['Eponym'],ascending=True)
 
     if not exams == None:
-        options = st.selectbox('Step 2) Search list of eponyms found in exams relevant to selected specialties:',
+        options = st.selectbox('Step 2) Search list relevant your specialty:',
                                   new_exams2['Eponym_easy'].unique(), format_func=lambda x: ' ' if x == '1' else x)
         df_ep_info = new_exams1[new_exams1['Eponym_easy'].str.match(options)]
 
@@ -4188,7 +4179,7 @@ def exp_teach():
     exp = st.radio('1st) Choose your setting:',
                                 ['Bedside',        # - Scars, Signs, Diseases & Severity Scores",
                                  'Classroom',      # - History of Surgery',
-                                 'Operating Room', #- Incisions, Instruments & Operations",
+                                 'Operating Room', # - Incisions, Instruments & Operations",
                                  ])
 
     if   exp == "Bedside":          teach_bed()       #T1 #- Scars, Signs, Severity Scores
