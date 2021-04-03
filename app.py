@@ -89,7 +89,7 @@ def show_the_app_team():
 def show_explore():
     st.sidebar.subheader('Surgical Names App')
     exp = st.sidebar.radio('Explore:',
-                                ["About",
+                                ["Home",
                                  "A to Z - by Specialty",
                                  "By Disease or Symptom",
                                  "By Journal",
@@ -99,7 +99,7 @@ def show_explore():
                                  "Exam Favourites",
                                  "Teaching Tool",
                                  ])
-    if   exp == "About":                    exp_about()         #1
+    if   exp == "Home":                     exp_about()         #1
     elif exp == "A to Z - by Specialty":    exp_A2Z()           #2
     elif exp == "By Disease or Symptom":    exp_dis()           #3
     elif exp == "By Journal":               exp_journals()      #4
@@ -121,8 +121,7 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    st.subheader('Introduction - a new way to learn')
-    with st.beta_expander('_click here_'):
+    with st.beta_expander('Introduction'):
         st.write('''An '_eponymous_' term is one which is derived from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
@@ -151,7 +150,7 @@ def exp_about():
                 develop the software, but will remain at www.surgicalnames.com''')
         st.markdown("---")
         
-    with st.beta_expander('Instruction - how to use'):
+    with st.beta_expander('Quick start'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
@@ -188,12 +187,12 @@ def exp_about():
                    Operating Room modes.</span>''',unsafe_allow_html=True)
         st.markdown("---")
 
-    with st.beta_expander('Audience - something for everyone'):
+    with st.beta_expander('Audience'):
         st.write('''We build this App with lots of people in mind - Doctors, nurses, secretaries, operating room staff,
                     physician assistants, allied health professionals & students.''')
         st.markdown("---")
 
-    with st.beta_expander('Disclaimer - educational only'):
+    with st.beta_expander('Disclaimer'):
         st.write('''The information you find on surgicalnames.com is intented for educational purposes only.
                     Although some of the clinical signs and procedures included may be well-known, we do
                     not comment on whether they are in current in usage and how effective they be because that
