@@ -121,7 +121,8 @@ def exp_about():
     st.markdown('''# www.SurgicalNames.com''')
     st.markdown('''_An Educational Web App from Excision Ltd_''')
     st.markdown("---")
-    with st.beta_expander('Introduction - a new way to learn'):
+    st.subheader('Introduction - a new way to learn')
+    with st.beta_expander('_click here_'):
         st.write('''An '_eponymous_' term is one which is derived from
                 somebody's name. Famous examples include _Graves disease_,
                 _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
@@ -150,7 +151,7 @@ def exp_about():
                 develop the software, but will remain at www.surgicalnames.com''')
         st.markdown("---")
         
-    with st.beta_expander('Instructions - how to use'):
+    with st.beta_expander('Instruction - how to use'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
                 Eponyms related to surgical practice can be explored using sidebar options:''')
            
@@ -2727,7 +2728,6 @@ def exp_geo():
                 image = 'https://raw.githubusercontent.com/HayesAJ83/SurgicalEps_01/main/x_Winslow.png'
                 st.image(image, width=160)
 
-
             else:pass
             if df_ep_info['Who'].any(): st.write('*_Who_*:', df_ep_info['Who_B'].to_string(index=False))
             else: pass
@@ -2737,11 +2737,8 @@ def exp_geo():
             else:pass
 
             if df_ep_info['Description'].any():
+                description = df_ep_info['Description'].to_string(index=False)
                 st.markdown("---")
-
-            description = df_ep_info['Description'].to_string(index=False)
-
-            if df_ep_info['Description'].any():
                 st.markdown(description, unsafe_allow_html=True)
             else:pass
 
@@ -3035,21 +3032,11 @@ def exp_geo():
             if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
             else:pass
 
-            if df_ep_info['Description'].any() or df_ep_info['History'].any():
-                st.markdown("---")
-
-            description = df_ep_info['Description'].to_string(index=False)
-            history = df_ep_info['History'].to_string(index=False)
-
             if df_ep_info['Description'].any():
+                description = df_ep_info['Description'].to_string(index=False)
+                st.markdown("---")
                 st.markdown(description, unsafe_allow_html=True)
             else:pass
-        
-            if df_ep_info['History'].any():
-                st.markdown(history, unsafe_allow_html=True)
-                st.markdown("---")
-            else:pass
-
 
             if df_ep_info['Pubmed'].any() or df_ep_info['Wiki_link'].any() or df_ep_info['WNI_link'].any() or df_ep_info['ICD11_link'].any():
                 st.markdown("---")
@@ -3064,11 +3051,6 @@ def exp_geo():
             wni_link = df_ep_info['WNI_link'].to_string(index=False)
             if df_ep_info['WNI_link'].any():st.markdown(f"[Whonamedit.com]({wni_link})")
             else:pass
-            icd_link = df_ep_info['ICD11_link'].to_string(index=False)
-            if df_ep_info['ICD11_link'].any():st.markdown(f"[Internatinal Classification of Diseases 11th Revision]({icd_link})")
-            else:pass
-
-
 
 #-------------------------------------------------------------------------------------------------#
 #                                                                                                 #
@@ -4137,10 +4119,9 @@ def exp_exam():
         if df_ep_info['Where'].any(): st.write('*_Where_*:', df_ep_info['Where'].to_string(index=False))
         else:pass
 
-        if df_ep_info['Description'].any() or df_ep_info['History'].any():
-            st.markdown("---")
-        description = df_ep_info['Description'].to_string(index=False)
         if df_ep_info['Description'].any():
+            description = df_ep_info['Description'].to_string(index=False)
+            st.markdown("---")
             st.markdown(description, unsafe_allow_html=True)
         else:pass
 
