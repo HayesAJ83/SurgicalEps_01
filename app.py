@@ -128,7 +128,9 @@ def exp_about():
                     terms can enhance communication, shared understanding & can help with decision-making.''')
 
         st.write('''Until now, to better understand these useful terms, we have been limited dictionaries and
-                    encylopedias which alphabetical index items, but this isn't how we think about or use eponyms.''')
+                    encylopedias which index items alphabetically. But because of the rich meaning and
+                    historical background of each term, we imagined a better resource to catalogue & learn
+                    these fascinating terms.''')
 
         st.write('''With the development of Machine Learning tools, and in particular the excellent format
                     by [Streamlit](https://www.streamlit.io), we have **multi-indexed surgical eponymous terms
@@ -146,9 +148,9 @@ def exp_about():
                     & evolving functionality as we develop the software.''')
         st.markdown("---")
         
-    with st.beta_expander('Quick start'):
-        st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
-                    Eponyms related to surgical practice can be explored using sidebar options:''')
+    with st.beta_expander('Quick Start'):
+        st.write('''Navigate with the sidebar on the left. If sidebar is not shown, **click > in top left** to display.
+                    Then explore using sidebar options:''')
            
         st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
                    <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',
@@ -184,14 +186,15 @@ def exp_about():
         st.markdown("---")
 
     with st.beta_expander('Audience'):
-        st.write('''We build this App with lots of people in mind - Doctors, nurses, secretaries, operating room staff,
+        st.write('''We build this app with the aim of helping people from a variety of backgrounds who would
+                    encounter these eponymous terms, including doctors, nurses, secretaries, operating room staff,
                     physician assistants, allied health professionals & students.''')
         st.markdown("---")
 
     with st.beta_expander('Disclaimer'):
         st.write('''The information you find on this surgicalnames.com site is limited to educational purposes only.
                     Although many of these eponymous terms are used in daily practice, we do not comment on their
-                    accuracy or value, as is beyond the scope of this app.''')
+                    accuracy or value, as this is beyond the scope of this app.''')
         st.markdown("---")
 
     st.markdown("---")
