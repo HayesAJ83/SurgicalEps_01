@@ -123,36 +123,33 @@ def exp_about():
     st.markdown("---")
     with st.beta_expander('Introduction'):
         st.write('''An '_eponymous_' term is one which is derived from
-                somebody's name. Famous examples include _Graves disease_,
-                _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
-                terms can enhance communication, shared understanding & assist with decision-making.''')
+                    somebody's name. Famous examples include _Graves disease_,
+                    _McBurney's point_, & _Strasberg's critical view of safety_. When used correctly, eponymous
+                    terms can enhance communication, shared understanding & can help with decision-making.''')
 
-        st.write('''This ever-growing catalog, however, makes it
-                increasingly difficult to retain all the specific details. Dictionaries and encylopedias
-                which list eponyms are widely available on the internet, but are only arranged
-                alphabetically, which limits their usefulness to searching for individual items.''')
-
-        st.write('''We have found that the most popular online encylopedias have surprisingly limited
-                numbers of terms and that these are more relevant to medical rather than surgical practice.''')
+        st.write('''This ever-growing catalog, however, can be difficult to remember. Dictionaries and encylopedias
+                    which list eponyms are widely available, but are normally very limited in their indexing powers,
+                    usually into alphabetic order, which limits their usefulness to searching for individual items.''')
 
         st.write('''With the development of Machine Learning tools, and in particular the excellent format
-                by [Streamlit](https://www.streamlit.io), we have multi-indexed surgical
-                eponyms in intuitive & interactive ways.''')
+                    by [Streamlit](https://www.streamlit.io), we have multi-indexed surgical
+                    eponymous terms in intuitive & interactive ways.''')
 
-        st.write('''The functions we have coded are aimed at simulating how we think of terminology (eg. by disease
-                or operation), to help busy people quickly master a deep understanding of terms related to their work.''')
+        st.write('''The multi-indexed functions we have built are aimed at simulating how we think of terminology
+                    (eg. by disease or operation), to help busy people quickly master a deep understanding
+                    of terms related to their work.''')
 
         st.write('''You will find several **interactive visualizations** which we hope you will find enjoyable
-                & help you retain information for longer.
-                Where possible, you will find **links to original papers & related webpages**.''')
+                    & help you retain information for longer. Where possible, you will find **links to
+                    original papers & related webpages**.''')
 
         st.write('''This project is a **growing database** of surgical eponyms with evolving functionality as we
-                develop the software, but will remain at www.surgicalnames.com''')
+                    develop the software, but will remain at www.surgicalnames.com''')
         st.markdown("---")
         
     with st.beta_expander('Quick start'):
         st.write('''Navigate with the sidebar. If sidebar not shown, **click > in top left** to display.
-                Eponyms related to surgical practice can be explored using sidebar options:''')
+                    Eponyms related to surgical practice can be explored using sidebar options:''')
            
         st.markdown('''<span style="font-size:12pt;color:black;font-weight:bold;">A to Z:</span>
                    <span style="font-size:12pt;color:black;">Search by name and filter by specialty.</span>''',
@@ -193,10 +190,9 @@ def exp_about():
         st.markdown("---")
 
     with st.beta_expander('Disclaimer'):
-        st.write('''The information you find on surgicalnames.com is intented for educational purposes only.
-                    Although some of the clinical signs and procedures included may be well-known, we do
-                    not comment on whether they are in current in usage and how effective they be because that
-                    is beyond the scope of this App.''')
+        st.write('''The information you find on this surgicalnames.com site is limited to educational purposes only.
+                    Although many of these eponymous terms are used in daily practice, we do not comment on their
+                    accuracy or value, as is beyond the scope of this app.''')
         st.markdown("---")
 
     st.markdown("---")
