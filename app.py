@@ -12,6 +12,13 @@
 #See the License for the specific language governing permissions and
 #limitations under the License.
 
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="description" content="This growing site teaches the history of surgical eponyms using powerful interactive functions to help you rapidly memorise terminology.">
+     </head>
+</html>
+
 import streamlit as st
 
 #-------------------------------------------------------------------------------------------------#
